@@ -1,0 +1,13 @@
+node_modules/
+temporary screenshots/
+.DS_Store
+
+# Local reference screenshots (not used by the site)
+desktop.png
+desktop 2.png
+
+# Raw/original photo & video assets — only Ruban/web/** is used by index.html
+Ruban/*.HEIC
+Ruban/*.JPG.jpeg
+Ruban/*.MP4
+Ruban/logo.PNG

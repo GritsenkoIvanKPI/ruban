@@ -1,0 +1,8 @@
+{
+  "name": "ruban-marine-berlin",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "puppeteer": "^25.3.0"
+  }
+}
