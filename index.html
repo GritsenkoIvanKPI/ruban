@@ -799,69 +799,29 @@
   </div>
 </dialog>
 
-<section id="buchung" class="relative py-20 sm:py-28 overflow-hidden">
-  <div class="absolute inset-0 opacity-25">
-    <img src="Ruban/web/IMG_7880.jpg" alt="" class="w-full h-full object-cover" aria-hidden="true">
-    <div class="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background"></div>
-  </div>
-
-  <div class="relative max-w-7xl mx-auto px-5 sm:px-8">
+<section id="buchung" class="relative py-20 sm:py-28">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="reveal max-w-2xl mb-12">
       <div class="divider-gold mb-6"></div>
       <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Buchung</p>
       <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]">Wählen Sie Ihre Zeit auf dem Wasser.</h2>
-      <p class="mt-4 text-foreground/70 leading-[1.7]">Datum, Uhrzeit und Dauer wählen — wir bestätigen Ihre Anfrage innerhalb kurzer Zeit per WhatsApp, Telefon oder E-Mail.</p>
+      <p class="mt-4 text-foreground/70 leading-[1.7]">Datum, Uhrzeit und Dauer direkt online auswählen — Sie erhalten sofort eine Bestätigung.</p>
     </div>
 
-    <form id="booking-form" class="reveal card-surface rounded-2xl p-6 sm:p-10 grid sm:grid-cols-2 gap-6">
-      <div class="flex flex-col gap-2">
-        <label for="b-date" class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Datum</label>
-        <div class="relative">
-          <input required type="date" id="b-date" name="date" class="w-full bg-input border border-border rounded-xl px-4 py-3.5 text-sm focus:border-gold transition-colors" style="color-scheme: dark;">
-        </div>
-      </div>
-      <div class="flex flex-col gap-2">
-        <label for="b-time" class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Startzeit</label>
-        <select required id="b-time" name="time" class="w-full bg-input border border-border rounded-xl px-4 py-3.5 text-sm focus:border-gold transition-colors">
-          <option value="" disabled selected>Uhrzeit wählen</option>
-        </select>
-      </div>
-      <div class="flex flex-col gap-2 sm:col-span-2">
-        <label for="b-hours" class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Mietdauer</label>
-        <select required id="b-hours" name="hours" class="w-full bg-input border border-border rounded-xl px-4 py-3.5 text-sm focus:border-gold transition-colors">
-          <option value="1">1 Stunde</option>
-          <option value="2" selected>2 Stunden</option>
-          <option value="3">3 Stunden</option>
-          <option value="4">4 Stunden</option>
-          <option value="5">5 Stunden</option>
-          <option value="6">6 Stunden</option>
-        </select>
-      </div>
-
-      <div class="sm:col-span-2 flex items-center justify-between rounded-xl bg-secondary/60 px-6 py-5 mt-2">
-        <div>
-          <p class="text-xs text-muted-foreground uppercase tracking-wide">Geschätzter Preis</p>
-          <p id="b-total" class="font-display text-4xl gold-text mt-1">—</p>
-        </div>
-        <p id="b-rate-note" class="text-xs text-muted-foreground text-right max-w-[10rem]">Datum &amp; Zeit wählen</p>
-      </div>
-
-      <p class="sm:col-span-2 text-xs text-muted-foreground leading-relaxed">
-        Kostenlose Stornierung bis 24 Stunden vor Fahrtbeginn. Bei späterer Stornierung oder Nichterscheinen erfolgt keine Rückerstattung.
-      </p>
-
-      <div class="sm:col-span-2 flex flex-col sm:flex-row gap-4 mt-2">
-        <button type="submit" class="btn btn-gold flex-1">
-          <svg class="w-4 h-4"><use href="#i-whatsapp"/></svg>
-          Buchungsanfrage per WhatsApp
-        </button>
-        <a href="tel:+491784421637" class="btn btn-outline flex-1">
-          <svg class="w-4 h-4"><use href="#i-phone"/></svg>
-          Lieber anrufen
-        </a>
-      </div>
-    </form>
+    <div class="reveal card-surface rounded-2xl p-10 sm:p-16 flex flex-col items-center text-center gap-6">
+      <span class="inline-flex items-center justify-center w-14 h-14 rounded-full" style="background: oklch(82% .14 85 / .12); color: oklch(82% .14 85);">
+        <svg class="w-6 h-6"><use href="#i-calendar"/></svg>
+      </span>
+      <p class="text-foreground/70 max-w-md leading-[1.7]">Öffnen Sie unseren Buchungskalender, um Datum, Uhrzeit und Dauer Ihrer Fahrt in wenigen Klicks auszuwählen.</p>
+      <button type="button" onclick="supersaas_843995.show()" class="btn btn-gold">
+        <svg class="w-4 h-4"><use href="#i-calendar"/></svg>
+        Jetzt buchen
+      </button>
+    </div>
   </div>
+
+  <script src="https://cdn.supersaas.net/widget.js"></script>
+  <script class="supersaas-widget">var supersaas_843995 = new SuperSaaS("635072:rubanmarineberlin","843995:Booking",{"modal_width":"500px","slot_view":"btn","legend":"show"})</script>
 </section>
 
 <section id="standort" class="relative py-20 sm:py-28">
@@ -1180,10 +1140,11 @@
       <p><strong class="text-foreground">2. Erhebung und Verarbeitung von Daten</strong><br>Wir erheben personenbezogene Daten nur, wenn Sie uns diese über das Kontakt- oder Buchungsformular freiwillig mitteilen (Name, E-Mail-Adresse, Telefonnummer, Nachricht sowie Buchungsdetails wie Datum, Uhrzeit und Dauer). Die Verarbeitung erfolgt zur Bearbeitung Ihrer Anfrage bzw. zur Anbahnung eines Vertrages gemäß Art. 6 Abs. 1 lit. b DSGVO.</p>
       <p><strong class="text-foreground">3. WhatsApp-Kontakt</strong><br>Wenn Sie über die WhatsApp-Buttons auf dieser Seite Kontakt aufnehmen, öffnet sich WhatsApp bzw. die WhatsApp-Web-Anwendung des Anbieters WhatsApp Ireland Limited / Meta Platforms Ireland Limited. Es gelten die Datenschutzbestimmungen von WhatsApp. Die Nutzung ist freiwillig.</p>
       <p><strong class="text-foreground">4. Google Maps</strong><br>Auf unserer Standortseite können Sie über einen Button eine Karte von Google Maps laden. Erst nach Ihrem aktiven Klick wird eine Verbindung zu Servern von Google Ireland Limited hergestellt und Ihre IP-Adresse übertragen. Ohne diesen Klick findet keine Verbindung statt. Weitere Informationen: <a class="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-      <p><strong class="text-foreground">5. Schriftarten</strong><br>Diese Website nutzt lokal eingebundene Schriftarten (selbst gehostet). Es findet keine Verbindung zu Google-Fonts-Servern statt, es werden keine Daten an Dritte übermittelt.</p>
-      <p><strong class="text-foreground">6. Cookies &amp; Tracking</strong><br>Diese Website verwendet keine Tracking- oder Analyse-Cookies und keine Marketing-Pixel.</p>
-      <p><strong class="text-foreground">7. Speicherdauer</strong><br>Wir speichern Ihre Daten nur so lange, wie es zur Bearbeitung Ihrer Anfrage bzw. zur Erfüllung gesetzlicher Aufbewahrungspflichten erforderlich ist.</p>
-      <p><strong class="text-foreground">8. Ihre Rechte</strong><br>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie ein Widerspruchsrecht und ein Recht auf Datenübertragbarkeit. Zudem steht Ihnen ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde zu.</p>
+      <p><strong class="text-foreground">5. Online-Buchungskalender (SuperSaaS)</strong><br>Für die Online-Buchung nutzen wir den Kalenderdienst des Anbieters SuperSaaS. Das dafür erforderliche Skript wird bereits beim Laden dieser Seite eingebunden, wodurch eine Verbindung zu den Servern von SuperSaaS hergestellt und Ihre IP-Adresse übertragen wird. Wenn Sie über den Kalender eine Buchung vornehmen, verarbeitet SuperSaaS die von Ihnen eingegebenen Daten (z.&nbsp;B. Name, Kontaktdaten, gewählter Termin) in unserem Auftrag. Es gelten die Datenschutzbestimmungen von SuperSaaS. <em>[Anbieteradresse und Link zur Datenschutzerklärung von SuperSaaS bitte ergänzen.]</em></p>
+      <p><strong class="text-foreground">6. Schriftarten</strong><br>Diese Website nutzt lokal eingebundene Schriftarten (selbst gehostet). Es findet keine Verbindung zu Google-Fonts-Servern statt, es werden keine Daten an Dritte übermittelt.</p>
+      <p><strong class="text-foreground">7. Cookies &amp; Tracking</strong><br>Diese Website verwendet keine Tracking- oder Analyse-Cookies und keine Marketing-Pixel.</p>
+      <p><strong class="text-foreground">8. Speicherdauer</strong><br>Wir speichern Ihre Daten nur so lange, wie es zur Bearbeitung Ihrer Anfrage bzw. zur Erfüllung gesetzlicher Aufbewahrungspflichten erforderlich ist.</p>
+      <p><strong class="text-foreground">9. Ihre Rechte</strong><br>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie ein Widerspruchsrecht und ein Recht auf Datenübertragbarkeit. Zudem steht Ihnen ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde zu.</p>
     </div>
   </div>
 </dialog>
@@ -1338,66 +1299,6 @@
     if (e.key === 'Escape') lightbox.close();
     if (e.key === 'ArrowLeft') showDelta(-1);
     if (e.key === 'ArrowRight') showDelta(1);
-  });
-
-  // Booking form
-  const dateInput = document.getElementById('b-date');
-  const timeSelect = document.getElementById('b-time');
-  const hoursSelect = document.getElementById('b-hours');
-  const totalEl = document.getElementById('b-total');
-  const rateNoteEl = document.getElementById('b-rate-note');
-
-  const today = new Date();
-  dateInput.min = today.toISOString().split('T')[0];
-
-  for (let h = 10; h <= 23; h++) {
-    const opt = document.createElement('option');
-    opt.value = h;
-    opt.textContent = String(h).padStart(2, '0') + ':00 Uhr';
-    timeSelect.appendChild(opt);
-  }
-
-  function isWeekend(dateStr) {
-    if (!dateStr) return false;
-    const d = new Date(dateStr + 'T00:00:00');
-    const day = d.getDay();
-    return day === 0 || day === 6;
-  }
-
-  function rateFor(dateStr, hour) {
-    const weekend = isWeekend(dateStr);
-    const evening = hour >= 20;
-    if (weekend) return evening ? 99 : 79;
-    return evening ? 79 : 59;
-  }
-
-  function updateTotal() {
-    const dateStr = dateInput.value;
-    const hour = Number(timeSelect.value);
-    const hours = Number(hoursSelect.value);
-    if (!dateStr || !timeSelect.value) {
-      totalEl.textContent = '—';
-      rateNoteEl.textContent = 'Datum & Zeit wählen';
-      return;
-    }
-    const rate = rateFor(dateStr, hour);
-    const total = rate * hours;
-    totalEl.textContent = total + '€';
-    rateNoteEl.textContent = rate + '€/Std · ' + (isWeekend(dateStr) ? 'Wochenende' : 'Wochentag');
-  }
-
-  [dateInput, timeSelect, hoursSelect].forEach(el => el.addEventListener('change', updateTotal));
-
-  document.getElementById('booking-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!dateInput.value || !timeSelect.value) { updateTotal(); return; }
-    const hour = Number(timeSelect.value);
-    const hours = Number(hoursSelect.value);
-    const rate = rateFor(dateInput.value, hour);
-    const total = rate * hours;
-    const dateFormatted = new Date(dateInput.value + 'T00:00:00').toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
-    const msg = `Hallo Ruban Marine! Ich möchte gerne buchen:\nDatum: ${dateFormatted}\nStartzeit: ${String(hour).padStart(2,'0')}:00 Uhr\nDauer: ${hours} Std.\nGeschätzter Preis: ${total}€\n\nBitte bestätigen Sie die Verfügbarkeit.`;
-    window.open('https://wa.me/491784421637?text=' + encodeURIComponent(msg), '_blank');
   });
 
   // Feedback form (mailto handoff, no backend)
