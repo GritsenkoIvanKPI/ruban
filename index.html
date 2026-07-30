@@ -808,20 +808,13 @@
       <p class="mt-4 text-foreground/70 leading-[1.7]">Datum, Uhrzeit und Dauer direkt online auswählen — Sie erhalten sofort eine Bestätigung.</p>
     </div>
 
-    <div class="reveal card-surface rounded-2xl p-10 sm:p-16 flex flex-col items-center text-center gap-6">
-      <span class="inline-flex items-center justify-center w-14 h-14 rounded-full" style="background: oklch(82% .14 85 / .12); color: oklch(82% .14 85);">
-        <svg class="w-6 h-6"><use href="#i-calendar"/></svg>
-      </span>
-      <p class="text-foreground/70 max-w-md leading-[1.7]">Öffnen Sie unseren Buchungskalender, um Datum, Uhrzeit und Dauer Ihrer Fahrt in wenigen Klicks auszuwählen.</p>
-      <button type="button" onclick="supersaas_843995.show()" class="btn btn-gold">
-        <svg class="w-4 h-4"><use href="#i-calendar"/></svg>
-        Jetzt buchen
-      </button>
+    <div class="reveal card-surface rounded-2xl p-4 sm:p-6 overflow-hidden">
+      <div id="ss-booking-widget" class="min-h-[600px]"></div>
     </div>
   </div>
 
   <script src="https://cdn.supersaas.net/widget.js"></script>
-  <script class="supersaas-widget">var supersaas_843995 = new SuperSaaS("635072:rubanmarineberlin","843995:Booking",{"modal_width":"500px","slot_view":"btn","legend":"show"})</script>
+  <script class="supersaas-widget">var supersaas_843995 = new SuperSaaS("635072:rubanmarineberlin","843995:Booking",{"widget_type":"frame","container":"#ss-booking-widget","width":"100%","height":"780px","slot_view":"btn","legend":"show"})</script>
 </section>
 
 <section id="standort" class="relative py-20 sm:py-28">
