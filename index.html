@@ -241,6 +241,11 @@
   .accordion-item[data-open="true"] .accordion-chevron { transform: rotate(45deg); }
   .accordion-chevron { transition: transform .4s cubic-bezier(.16,1,.3,1); }
 
+  .lang-btn { cursor: pointer; }
+  .lang-btn[data-active="true"] { color: oklch(16% .012 240); background: oklch(82% .14 85); }
+  .lang-btn[data-active="false"] { opacity: .55; }
+  .lang-btn[data-active="false"]:hover { opacity: .85; }
+
   .filter-btn[data-active="true"] { color: oklch(16% .012 240); background: oklch(82% .14 85); border-color: transparent; }
   .filter-btn[data-active="false"] { color: oklch(88% .01 240); background: transparent; border-color: oklch(30% .02 240); }
 
@@ -305,57 +310,63 @@
   </defs>
 </svg>
 
-<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-gold focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-full">Zum Inhalt springen</a>
+<a href="#main" data-i18n="skip_link" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-gold focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-full">Zum Inhalt springen</a>
 
 <header id="site-header" class="fixed top-0 inset-x-0 z-50">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between h-20">
     <a href="#hero" class="flex items-center gap-3 group">
-      <img src="Ruban/web/logo-128.webp" alt="Ruban Marine Berlin Logo" class="h-11 w-11 rounded-full">
+      <img src="Ruban/web/logo-128.webp" data-i18n-alt="footer_logo_alt" alt="Ruban Marine Berlin Logo" class="h-11 w-11 rounded-full">
       <span class="font-display text-xl tracking-wide text-foreground">Ruban <span class="gold-text">Marine</span></span>
     </a>
 
     <nav class="hidden lg:flex items-center gap-9 text-sm text-foreground/80" aria-label="Hauptnavigation">
-      <a href="#ueber-uns" class="nav-link hover:text-foreground transition-colors">Über uns</a>
-      <a href="#preise" class="nav-link hover:text-foreground transition-colors">Preise</a>
-      <a href="#galerie" class="nav-link hover:text-foreground transition-colors">Galerie</a>
-      <a href="#sicherheit" class="nav-link hover:text-foreground transition-colors">Sicherheit</a>
-      <a href="#buchung" class="nav-link hover:text-foreground transition-colors">Buchung</a>
-      <a href="#kontakt" class="nav-link hover:text-foreground transition-colors">Kontakt</a>
+      <a href="#ueber-uns" data-i18n="nav_ueber_uns" class="nav-link hover:text-foreground transition-colors">Über uns</a>
+      <a href="#preise" data-i18n="nav_preise" class="nav-link hover:text-foreground transition-colors">Preise</a>
+      <a href="#galerie" data-i18n="nav_galerie" class="nav-link hover:text-foreground transition-colors">Galerie</a>
+      <a href="#sicherheit" data-i18n="nav_sicherheit" class="nav-link hover:text-foreground transition-colors">Sicherheit</a>
+      <a href="#buchung" data-i18n="nav_buchung" class="nav-link hover:text-foreground transition-colors">Buchung</a>
+      <a href="#kontakt" data-i18n="nav_kontakt" class="nav-link hover:text-foreground transition-colors">Kontakt</a>
     </nav>
 
     <div class="hidden lg:flex items-center gap-4">
-      <div class="flex items-center gap-1 text-xs font-medium text-muted-foreground" aria-label="Sprache">
-        <span class="px-2.5 py-1 rounded-full bg-gold text-primary-foreground">DE</span>
-        <span class="px-2 py-1 opacity-50 cursor-default" title="Demnächst verfügbar">EN</span>
-        <span class="px-2 py-1 opacity-50 cursor-default" title="Demnächst verfügbar">RU</span>
-        <span class="px-2 py-1 opacity-50 cursor-default" title="Demnächst verfügbar">FR</span>
+      <div class="flex items-center gap-1 text-xs font-medium text-muted-foreground" data-i18n-aria-label="lang_aria" aria-label="Sprache">
+        <button type="button" class="lang-btn px-2.5 py-1 rounded-full transition-colors" data-lang="de">DE</button>
+        <button type="button" class="lang-btn px-2.5 py-1 rounded-full transition-colors" data-lang="en">EN</button>
+        <button type="button" class="lang-btn px-2.5 py-1 rounded-full transition-colors" data-lang="ru">RU</button>
+        <button type="button" class="lang-btn px-2.5 py-1 rounded-full transition-colors" data-lang="ar">AR</button>
       </div>
-      <a href="#buchung" class="btn btn-gold">Jetzt buchen</a>
+      <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-gold">Jetzt buchen</a>
     </div>
 
-    <button id="menu-toggle" class="lg:hidden text-foreground p-2" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
+    <button id="menu-toggle" class="lg:hidden text-foreground p-2" data-i18n-aria-label="menu_open_aria" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
       <svg class="w-7 h-7"><use href="#i-menu"/></svg>
     </button>
   </div>
 </header>
 
 <div id="mobile-menu" class="mobile-nav fixed inset-0 z-[60] bg-background/[98%] backdrop-blur-xl translate-x-full opacity-0 lg:hidden overflow-y-auto" aria-hidden="true">
-  <button id="menu-close" class="absolute top-5 right-5 p-2 text-foreground" aria-label="Menü schließen">
+  <button id="menu-close" class="absolute top-5 right-5 p-2 text-foreground" data-i18n-aria-label="menu_close_aria" aria-label="Menü schließen">
     <svg class="w-6 h-6"><use href="#i-close"/></svg>
   </button>
   <div class="min-h-full flex flex-col items-center justify-center gap-10 px-5 py-24">
+    <div class="flex items-center gap-1.5 text-xs font-medium text-muted-foreground" data-i18n-aria-label="lang_aria" aria-label="Sprache">
+      <button type="button" class="lang-btn px-3 py-1.5 rounded-full transition-colors" data-lang="de">DE</button>
+      <button type="button" class="lang-btn px-3 py-1.5 rounded-full transition-colors" data-lang="en">EN</button>
+      <button type="button" class="lang-btn px-3 py-1.5 rounded-full transition-colors" data-lang="ru">RU</button>
+      <button type="button" class="lang-btn px-3 py-1.5 rounded-full transition-colors" data-lang="ar">AR</button>
+    </div>
     <nav class="flex flex-col items-center gap-4 font-display text-xl" aria-label="Mobile Navigation">
-      <a href="#ueber-uns" class="mobile-link text-foreground">Über uns</a>
-      <a href="#routen" class="mobile-link text-foreground">Routen</a>
-      <a href="#galerie" class="mobile-link text-foreground">Galerie</a>
-      <a href="#sicherheit" class="mobile-link text-foreground">Sicherheit</a>
-      <a href="#preise" class="mobile-link text-foreground">Preise</a>
-      <a href="#buchung" class="mobile-link text-foreground">Buchung</a>
-      <a href="#bewertungen" class="mobile-link text-foreground">Bewertungen</a>
-      <a href="#kontakt" class="mobile-link text-foreground">Kontakt</a>
+      <a href="#ueber-uns" data-i18n="nav_ueber_uns" class="mobile-link text-foreground">Über uns</a>
+      <a href="#routen" data-i18n="nav_routen" class="mobile-link text-foreground">Routen</a>
+      <a href="#galerie" data-i18n="nav_galerie" class="mobile-link text-foreground">Galerie</a>
+      <a href="#sicherheit" data-i18n="nav_sicherheit" class="mobile-link text-foreground">Sicherheit</a>
+      <a href="#preise" data-i18n="nav_preise" class="mobile-link text-foreground">Preise</a>
+      <a href="#buchung" data-i18n="nav_buchung" class="mobile-link text-foreground">Buchung</a>
+      <a href="#bewertungen" data-i18n="nav_bewertungen" class="mobile-link text-foreground">Bewertungen</a>
+      <a href="#kontakt" data-i18n="nav_kontakt" class="mobile-link text-foreground">Kontakt</a>
     </nav>
     <div class="flex flex-col items-center gap-4">
-      <a href="#buchung" class="mobile-link btn btn-gold px-10">Jetzt buchen</a>
+      <a href="#buchung" data-i18n="btn_jetzt_buchen" class="mobile-link btn btn-gold px-10">Jetzt buchen</a>
       <a href="https://wa.me/491784421637" class="mobile-link text-sm text-muted-foreground">WhatsApp: +49 178 4421637</a>
     </div>
   </div>
@@ -365,30 +376,30 @@
 
 <section id="hero" class="relative min-h-[100svh] flex flex-col justify-end overflow-hidden">
   <div class="absolute inset-0">
-    <video src="Ruban/web/hero-loop.mp4" poster="Ruban/web/hero-loop-poster.webp" class="w-full h-full object-cover" autoplay muted loop playsinline aria-label="Ruban Marine Katamaran mit LED-Beleuchtung bei Nacht auf der Spree in Berlin"></video>
+    <video src="Ruban/web/hero-loop.mp4" poster="Ruban/web/hero-loop-poster.webp" class="w-full h-full object-cover" autoplay muted loop playsinline data-i18n-aria-label="hero_video_aria" aria-label="Ruban Marine Katamaran mit LED-Beleuchtung bei Nacht auf der Spree in Berlin"></video>
     <div class="absolute inset-0 bg-gradient-hero"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-background/40"></div>
     <div class="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-background/80 to-transparent pointer-events-none"></div>
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 pb-16 sm:pb-24 pt-40 w-full">
-    <p class="reveal is-visible text-xs sm:text-sm tracking-[0.3em] text-gold-soft font-medium uppercase mb-6" style="color: oklch(88% .1 90);">Berlin · Spree · Privates Erlebnis</p>
+    <p class="reveal is-visible text-xs sm:text-sm tracking-[0.3em] text-gold-soft font-medium uppercase mb-6" data-i18n="hero_eyebrow" style="color: oklch(88% .1 90);">Berlin · Spree · Privates Erlebnis</p>
 
     <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
-      <h1 class="reveal is-visible reveal-delay-1 font-display text-balance text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-[-0.02em] max-w-2xl">
+      <h1 class="reveal is-visible reveal-delay-1 font-display text-balance text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-[-0.02em] max-w-2xl" data-i18n-html="hero_title_html">
         Entdecken Sie <span class="gold-text">Berlin</span> vom Wasser aus
       </h1>
 
       <div class="reveal is-visible reveal-delay-2 lg:max-w-xs lg:pb-2">
-        <p class="text-foreground/75 text-base leading-[1.7]">
+        <p class="text-foreground/75 text-base leading-[1.7]" data-i18n="hero_subtitle">
           Private Katamaran-Fahrten über die Spree — unvergessliche Momente mit Familie, Freunden oder Ihrem Partner. Stilvoll, sicher und ganz ohne Bootsführerschein.
         </p>
-        <p class="mt-4 text-xs tracking-wide" style="color: oklch(88% .1 90);">4 Gäste · Kein Führerschein nötig · ab 59€/Std</p>
+        <p class="mt-4 text-xs tracking-wide" data-i18n="hero_meta" style="color: oklch(88% .1 90);">4 Gäste · Kein Führerschein nötig · ab 59€/Std</p>
 
         <div class="mt-6 flex flex-wrap items-center gap-3">
           <a href="#buchung" class="btn btn-gold">
             <svg class="w-4 h-4"><use href="#i-calendar"/></svg>
-            Jetzt buchen
+            <span data-i18n="btn_jetzt_buchen">Jetzt buchen</span>
           </a>
         </div>
       </div>
@@ -404,44 +415,44 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="reveal max-w-2xl mb-14">
       <div class="divider-gold mb-6"></div>
-      <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Über Ruban Marine</p>
-      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em] text-balance">Nicht einfach ein Boot — ein Gefühl.</h2>
+      <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="about_eyebrow" style="color: oklch(82% .14 85);">Über Ruban Marine</p>
+      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em] text-balance" data-i18n="about_title">Nicht einfach ein Boot — ein Gefühl.</h2>
     </div>
 
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
       <div class="reveal relative">
         <div class="img-treat rounded-2xl overflow-hidden shadow-luxury aspect-[4/5]">
-          <img src="Ruban/web/IMG_7743.webp" alt="Fahrt in den Sonnenuntergang auf der Spree" class="w-full h-full object-cover">
+          <img src="Ruban/web/IMG_7743.webp" data-i18n-alt="about_img1_alt" alt="Fahrt in den Sonnenuntergang auf der Spree" class="w-full h-full object-cover">
         </div>
         <div class="absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 w-32 sm:w-44 rounded-2xl overflow-hidden shadow-luxury" style="border: 4px solid oklch(14% .012 240);">
-          <img src="Ruban/web/IMG_7734.webp" alt="LED-beleuchteter Sitzbereich an Bord" class="w-full h-full object-cover aspect-square">
+          <img src="Ruban/web/IMG_7734.webp" data-i18n-alt="about_img2_alt" alt="LED-beleuchteter Sitzbereich an Bord" class="w-full h-full object-cover aspect-square">
         </div>
       </div>
 
       <div class="reveal reveal-delay-1 lg:pt-4">
-        <p class="text-foreground/75 text-lg leading-[1.7]">
+        <p class="text-foreground/75 text-lg leading-[1.7]" data-i18n="about_body">
           Ruban Marine Berlin steht für Katamaran-Fahrten, die mehr sind als eine Bootstour: Sonnenuntergänge über der Spree, Musik an Bord, Zeit mit den Menschen, die Ihnen wichtig sind. Unser Katamaran ist eine eigene Entwicklung — gebaut für genau diese Momente.
         </p>
         <a href="#katamaran" class="inline-flex items-center gap-2 mt-6 text-sm font-medium hover:gap-3 transition-all" style="color: oklch(82% .14 85);">
-          Mehr über den Katamaran
-          <svg class="w-4 h-4"><use href="#i-arrow-right"/></svg>
+          <span data-i18n="about_link_katamaran">Mehr über den Katamaran</span>
+          <svg class="w-4 h-4 rtl:rotate-180"><use href="#i-arrow-right"/></svg>
         </a>
 
-        <h3 class="font-display text-3xl mt-14 mb-8">Warum Ruban Marine?</h3>
+        <h3 class="font-display text-3xl mt-14 mb-8" data-i18n="about_why_title">Warum Ruban Marine?</h3>
         <div class="grid sm:grid-cols-2 gap-8">
           <div class="flex flex-col gap-4">
             <span class="inline-flex items-center justify-center w-14 h-14 rounded-full" style="background: oklch(82% .14 85 / .12); color: oklch(82% .14 85);">
               <svg class="w-6 h-6"><use href="#i-gauge"/></svg>
             </span>
-            <p class="font-medium">Führerscheinfrei</p>
-            <p class="text-sm text-muted-foreground leading-relaxed">Steuerung wie beim Jetski — sofort verständlich, auch ohne Erfahrung.</p>
+            <p class="font-medium" data-i18n="about_f1_title">Führerscheinfrei</p>
+            <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="about_f1_body">Steuerung wie beim Jetski — sofort verständlich, auch ohne Erfahrung.</p>
           </div>
           <div class="flex flex-col gap-4">
             <span class="inline-flex items-center justify-center w-14 h-14 rounded-full" style="background: oklch(82% .14 85 / .12); color: oklch(82% .14 85);">
               <svg class="w-6 h-6"><use href="#i-users"/></svg>
             </span>
-            <p class="font-medium">Für kleine Gruppen</p>
-            <p class="text-sm text-muted-foreground leading-relaxed">Bis zu 4 Gäste — ideal für Familien, Paare und Freunde.</p>
+            <p class="font-medium" data-i18n="about_f2_title">Für kleine Gruppen</p>
+            <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="about_f2_body">Bis zu 4 Gäste — ideal für Familien, Paare und Freunde.</p>
           </div>
         </div>
       </div>
@@ -454,70 +465,70 @@
     <div class="card-surface rounded-3xl px-5 py-12 sm:p-14">
       <div class="reveal max-w-2xl mx-auto text-center mb-14">
         <div class="divider-gold mx-auto mb-6"></div>
-        <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Unsere Routen</p>
-        <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]">Die schönsten Ecken Berlins entdecken</h2>
-        <p class="mt-5 text-foreground/70 leading-[1.7]">Jede Fahrt führt vorbei an Berlins schönsten Wasserwegen — die genaue Route wählen wir gemeinsam, je nach Mietdauer und Ihren Wünschen.</p>
+        <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="routes_eyebrow" style="color: oklch(82% .14 85);">Unsere Routen</p>
+        <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]" data-i18n="routes_title">Die schönsten Ecken Berlins entdecken</h2>
+        <p class="mt-5 text-foreground/70 leading-[1.7]" data-i18n="routes_subtitle">Jede Fahrt führt vorbei an Berlins schönsten Wasserwegen — die genaue Route wählen wir gemeinsam, je nach Mietdauer und Ihren Wünschen.</p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="reveal rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="img-treat overflow-hidden aspect-[4/3]">
-            <img src="Ruban/web/IMG_7770.webp" alt="Fahrt auf der Spree in Berlin" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_7770.webp" data-i18n-alt="route_spree_img_alt" alt="Fahrt auf der Spree in Berlin" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
-            <h3 class="font-display text-xl mb-2">Spree</h3>
-            <p class="text-xs text-muted-foreground leading-relaxed mb-5">Das Herzstück Berlins vom Wasser aus erleben.</p>
-            <a href="#buchung" class="btn btn-outline w-full justify-center text-xs py-2.5">Jetzt buchen</a>
+            <h3 class="font-display text-xl mb-2" data-i18n="route_spree_title">Spree</h3>
+            <p class="text-xs text-muted-foreground leading-relaxed mb-5" data-i18n="route_spree_body">Das Herzstück Berlins vom Wasser aus erleben.</p>
+            <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-outline w-full justify-center text-xs py-2.5">Jetzt buchen</a>
           </div>
         </div>
         <div class="reveal reveal-delay-1 rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="img-treat overflow-hidden aspect-[4/3]">
-            <img src="Ruban/web/IMG_7813.webp" alt="Fahrt vorbei am Treptower Park" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_7813.webp" data-i18n-alt="route_treptower_img_alt" alt="Fahrt vorbei am Treptower Park" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
-            <h3 class="font-display text-xl mb-2">Treptower Park</h3>
-            <p class="text-xs text-muted-foreground leading-relaxed mb-5">Vorbei an Grünflächen und historischen Ufern.</p>
-            <a href="#buchung" class="btn btn-outline w-full justify-center text-xs py-2.5">Jetzt buchen</a>
+            <h3 class="font-display text-xl mb-2" data-i18n="route_treptower_title">Treptower Park</h3>
+            <p class="text-xs text-muted-foreground leading-relaxed mb-5" data-i18n="route_treptower_body">Vorbei an Grünflächen und historischen Ufern.</p>
+            <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-outline w-full justify-center text-xs py-2.5">Jetzt buchen</a>
           </div>
         </div>
         <div class="reveal reveal-delay-2 rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="img-treat overflow-hidden aspect-[4/3]">
-            <img src="Ruban/web/IMG_7768.webp" alt="Fahrt Richtung Warschauer Brücke" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_7768.webp" data-i18n-alt="route_warschauer_img_alt" alt="Fahrt Richtung Warschauer Brücke" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
-            <h3 class="font-display text-xl mb-2">Warschauer Brücke</h3>
-            <p class="text-xs text-muted-foreground leading-relaxed mb-5">Industriecharme und Skyline im Blick.</p>
-            <a href="#buchung" class="btn btn-outline w-full justify-center text-xs py-2.5">Jetzt buchen</a>
+            <h3 class="font-display text-xl mb-2" data-i18n="route_warschauer_title">Warschauer Brücke</h3>
+            <p class="text-xs text-muted-foreground leading-relaxed mb-5" data-i18n="route_warschauer_body">Industriecharme und Skyline im Blick.</p>
+            <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-outline w-full justify-center text-xs py-2.5">Jetzt buchen</a>
           </div>
         </div>
         <div class="reveal rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="img-treat overflow-hidden aspect-[4/3]">
-            <img src="Ruban/web/IMG_6697.webp" alt="Fahrt Richtung Oberbaumbrücke" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_6697.webp" data-i18n-alt="route_oberbaum_img_alt" alt="Fahrt Richtung Oberbaumbrücke" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
-            <h3 class="font-display text-xl mb-2">Oberbaumbrücke</h3>
-            <p class="text-xs text-muted-foreground leading-relaxed mb-5">Das berühmteste Wahrzeichen der Spree.</p>
-            <a href="#buchung" class="btn btn-outline w-full justify-center text-xs py-2.5">Jetzt buchen</a>
+            <h3 class="font-display text-xl mb-2" data-i18n="route_oberbaum_title">Oberbaumbrücke</h3>
+            <p class="text-xs text-muted-foreground leading-relaxed mb-5" data-i18n="route_oberbaum_body">Das berühmteste Wahrzeichen der Spree.</p>
+            <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-outline w-full justify-center text-xs py-2.5">Jetzt buchen</a>
           </div>
         </div>
         <div class="reveal reveal-delay-1 rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="img-treat overflow-hidden aspect-[4/3]">
-            <img src="Ruban/web/IMG_7599.webp" alt="Fahrt durch malerische Kanäle" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_7599.webp" data-i18n-alt="route_kanaele_img_alt" alt="Fahrt durch malerische Kanäle" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
-            <h3 class="font-display text-xl mb-2">Malerische Kanäle</h3>
-            <p class="text-xs text-muted-foreground leading-relaxed mb-5">Ruhige Nebenarme abseits des Trubels.</p>
-            <a href="#buchung" class="btn btn-outline w-full justify-center text-xs py-2.5">Jetzt buchen</a>
+            <h3 class="font-display text-xl mb-2" data-i18n="route_kanaele_title">Malerische Kanäle</h3>
+            <p class="text-xs text-muted-foreground leading-relaxed mb-5" data-i18n="route_kanaele_body">Ruhige Nebenarme abseits des Trubels.</p>
+            <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-outline w-full justify-center text-xs py-2.5">Jetzt buchen</a>
           </div>
         </div>
         <div class="reveal reveal-delay-2 rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="img-treat overflow-hidden aspect-[4/3]">
-            <img src="Ruban/web/IMG_7880.webp" alt="Fahrt Richtung Müggelsee" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_7880.webp" data-i18n-alt="route_mueggelsee_img_alt" alt="Fahrt Richtung Müggelsee" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
-            <h3 class="font-display text-xl mb-2">Richtung Müggelsee</h3>
-            <p class="text-xs text-muted-foreground leading-relaxed mb-5">Weites Wasser für längere Touren.</p>
-            <a href="#buchung" class="btn btn-outline w-full justify-center text-xs py-2.5">Jetzt buchen</a>
+            <h3 class="font-display text-xl mb-2" data-i18n="route_mueggelsee_title">Richtung Müggelsee</h3>
+            <p class="text-xs text-muted-foreground leading-relaxed mb-5" data-i18n="route_mueggelsee_body">Weites Wasser für längere Touren.</p>
+            <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-outline w-full justify-center text-xs py-2.5">Jetzt buchen</a>
           </div>
         </div>
       </div>
@@ -529,56 +540,56 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="reveal max-w-2xl mb-10">
       <div class="divider-gold mb-6"></div>
-      <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Ausstattung</p>
-      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]">Alles für entspannte Stunden an Bord.</h2>
-      <p class="mt-4 text-foreground/70 leading-[1.7]">Eigene Speisen und Getränke sind jederzeit willkommen — für alles andere ist gesorgt.</p>
+      <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="ausstattung_eyebrow" style="color: oklch(82% .14 85);">Ausstattung</p>
+      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]" data-i18n="ausstattung_title">Alles für entspannte Stunden an Bord.</h2>
+      <p class="mt-4 text-foreground/70 leading-[1.7]" data-i18n="ausstattung_subtitle">Eigene Speisen und Getränke sind jederzeit willkommen — für alles andere ist gesorgt.</p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
       <div class="reveal">
         <svg class="w-8 h-8 mb-5" style="color:oklch(82% .14 85)"><use href="#i-shield"/></svg>
-        <p class="font-medium text-lg mb-2">Großes Sonnendach</p>
-        <p class="text-sm text-muted-foreground leading-relaxed">Schatten und Schutz für entspannte Stunden auf dem Wasser.</p>
+        <p class="font-medium text-lg mb-2" data-i18n="a_sonnendach_title">Großes Sonnendach</p>
+        <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="a_sonnendach_body">Schatten und Schutz für entspannte Stunden auf dem Wasser.</p>
       </div>
       <div class="reveal reveal-delay-1">
         <svg class="w-8 h-8 mb-5" style="color:oklch(82% .14 85)"><use href="#i-check"/></svg>
-        <p class="font-medium text-lg mb-2">Bequeme Sitze</p>
-        <p class="text-sm text-muted-foreground leading-relaxed">Gepolsterte Sitze mit Rückenlehne für die ganze Fahrt.</p>
+        <p class="font-medium text-lg mb-2" data-i18n="a_sitze_title">Bequeme Sitze</p>
+        <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="a_sitze_body">Gepolsterte Sitze mit Rückenlehne für die ganze Fahrt.</p>
       </div>
       <div class="reveal reveal-delay-2">
         <svg class="w-8 h-8 mb-5" style="color:oklch(82% .14 85)"><use href="#i-beacon"/></svg>
-        <p class="font-medium text-lg mb-2">LED- &amp; Abendbeleuchtung</p>
-        <p class="text-sm text-muted-foreground leading-relaxed">Stimmungsvolles Licht für Dämmerung und Nachtfahrten.</p>
+        <p class="font-medium text-lg mb-2" data-i18n="a_led_title">LED- &amp; Abendbeleuchtung</p>
+        <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="a_led_body">Stimmungsvolles Licht für Dämmerung und Nachtfahrten.</p>
       </div>
       <div class="reveal">
         <svg class="w-8 h-8 mb-5" style="color:oklch(82% .14 85)"><use href="#i-music"/></svg>
-        <p class="font-medium text-lg mb-2">Bluetooth-Musik</p>
-        <p class="text-sm text-muted-foreground leading-relaxed">Ihre eigene Playlist, verbunden in Sekunden.</p>
+        <p class="font-medium text-lg mb-2" data-i18n="a_musik_title">Bluetooth-Musik</p>
+        <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="a_musik_body">Ihre eigene Playlist, verbunden in Sekunden.</p>
       </div>
       <div class="reveal reveal-delay-1">
         <svg class="w-8 h-8 mb-5" style="color:oklch(82% .14 85)"><use href="#i-usb"/></svg>
-        <p class="font-medium text-lg mb-2">USB-Ladeanschluss</p>
-        <p class="text-sm text-muted-foreground leading-relaxed">Immer erreichbar, auch mitten auf der Spree.</p>
+        <p class="font-medium text-lg mb-2" data-i18n="a_usb_title">USB-Ladeanschluss</p>
+        <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="a_usb_body">Immer erreichbar, auch mitten auf der Spree.</p>
       </div>
       <div class="reveal reveal-delay-2">
         <svg class="w-8 h-8 mb-5" style="color:oklch(82% .14 85)"><use href="#i-cooler"/></svg>
-        <p class="font-medium text-lg mb-2">Kühlbox</p>
-        <p class="text-sm text-muted-foreground leading-relaxed">Kostenlos inklusive, für mitgebrachte Getränke und Snacks.</p>
+        <p class="font-medium text-lg mb-2" data-i18n="a_kuehlbox_title">Kühlbox</p>
+        <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="a_kuehlbox_body">Kostenlos inklusive, für mitgebrachte Getränke und Snacks.</p>
       </div>
       <div class="reveal">
         <svg class="w-8 h-8 mb-5" style="color:oklch(82% .14 85)"><use href="#i-cup"/></svg>
-        <p class="font-medium text-lg mb-2">Getränkehalter</p>
-        <p class="text-sm text-muted-foreground leading-relaxed">Für jeden Gast an Bord, immer griffbereit.</p>
+        <p class="font-medium text-lg mb-2" data-i18n="a_becher_title">Getränkehalter</p>
+        <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="a_becher_body">Für jeden Gast an Bord, immer griffbereit.</p>
       </div>
       <div class="reveal reveal-delay-1">
         <svg class="w-8 h-8 mb-5" style="color:oklch(82% .14 85)"><use href="#i-sunset"/></svg>
-        <p class="font-medium text-lg mb-2">Beste Sonnenuntergänge Berlins</p>
-        <p class="text-sm text-muted-foreground leading-relaxed">Die schönste Zeit für eine Fahrt auf dem Wasser.</p>
+        <p class="font-medium text-lg mb-2" data-i18n="a_sunset_title">Beste Sonnenuntergänge Berlins</p>
+        <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="a_sunset_body">Die schönste Zeit für eine Fahrt auf dem Wasser.</p>
       </div>
       <div class="reveal reveal-delay-2">
         <svg class="w-8 h-8 mb-5" style="color:oklch(82% .14 85)"><use href="#i-calendar"/></svg>
-        <p class="font-medium text-lg mb-2">Einfache Online-Buchung</p>
-        <p class="text-sm text-muted-foreground leading-relaxed">Datum, Zeit und Dauer wählen — in wenigen Klicks.</p>
+        <p class="font-medium text-lg mb-2" data-i18n="a_booking_title">Einfache Online-Buchung</p>
+        <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="a_booking_body">Datum, Zeit und Dauer wählen — in wenigen Klicks.</p>
       </div>
     </div>
   </div>
@@ -589,11 +600,11 @@
     <div class="grid lg:grid-cols-5 gap-8 mb-14">
       <div class="reveal lg:col-span-2">
         <div class="divider-gold mb-6"></div>
-        <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Sicherheit</p>
-        <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]">Sicher genießen, sorgenfrei fahren.</h2>
+        <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="sicherheit_eyebrow" style="color: oklch(82% .14 85);">Sicherheit</p>
+        <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]" data-i18n="sicherheit_title">Sicher genießen, sorgenfrei fahren.</h2>
       </div>
       <div class="reveal reveal-delay-1 lg:col-span-3 lg:pt-8">
-        <p class="text-foreground/70 leading-[1.7]">Unser Katamaran ist amtlich registriert, verfügt über alle erforderlichen Dokumente und entspricht den deutschen und europäischen Sicherheitsanforderungen. An Bord finden Sie eine vollständige Sicherheitsausstattung.</p>
+        <p class="text-foreground/70 leading-[1.7]" data-i18n="sicherheit_body">Unser Katamaran ist amtlich registriert, verfügt über alle erforderlichen Dokumente und entspricht den deutschen und europäischen Sicherheitsanforderungen. An Bord finden Sie eine vollständige Sicherheitsausstattung.</p>
       </div>
     </div>
 
@@ -602,12 +613,12 @@
         <svg class="watermark-icon w-56 h-56 -right-10 -bottom-10 text-white"><use href="#i-shield"/></svg>
         <div class="relative">
           <svg class="w-9 h-9 mb-5" style="color: oklch(82% .14 85)"><use href="#i-shield"/></svg>
-          <h3 class="font-display text-2xl mb-3">Geprüfte Sicherheit</h3>
-          <p class="text-sm text-foreground/70 leading-relaxed">Registriert und geprüft nach deutschen und EU-Standards — für jede Fahrt.</p>
+          <h3 class="font-display text-2xl mb-3" data-i18n="sicherheit_card_title">Geprüfte Sicherheit</h3>
+          <p class="text-sm text-foreground/70 leading-relaxed" data-i18n="sicherheit_card_body">Registriert und geprüft nach deutschen und EU-Standards — für jede Fahrt.</p>
         </div>
         <a href="#buchung" class="relative btn btn-gold mt-8 self-start">
-          Jetzt buchen
-          <svg class="w-4 h-4"><use href="#i-arrow-right"/></svg>
+          <span data-i18n="btn_jetzt_buchen">Jetzt buchen</span>
+          <svg class="w-4 h-4 rtl:rotate-180"><use href="#i-arrow-right"/></svg>
         </a>
       </div>
 
@@ -615,25 +626,25 @@
         <div class="reveal card-surface rounded-2xl p-6 flex flex-col gap-4">
           <svg class="w-7 h-7" style="color:oklch(82% .14 85)"><use href="#i-vest"/></svg>
           <div>
-            <p class="font-medium text-sm mb-1">Rettungswesten</p>
-            <p class="text-xs text-muted-foreground leading-relaxed">Für Erwachsene und Kinder immer an Bord.</p>
+            <p class="font-medium text-sm mb-1" data-i18n="sicherheit_westen_title">Rettungswesten</p>
+            <p class="text-xs text-muted-foreground leading-relaxed" data-i18n="sicherheit_westen_body">Für Erwachsene und Kinder immer an Bord.</p>
           </div>
         </div>
         <div class="reveal reveal-delay-1 card-surface rounded-2xl p-6 flex flex-col gap-4">
           <svg class="w-7 h-7" style="color:oklch(82% .14 85)"><use href="#i-firstaid"/></svg>
           <div>
-            <p class="font-medium text-sm mb-1">Erste Hilfe &amp; Brandschutz</p>
-            <p class="text-xs text-muted-foreground leading-relaxed">Erste-Hilfe-Set und Feuerlöscher an Bord.</p>
+            <p class="font-medium text-sm mb-1" data-i18n="sicherheit_hilfe_title">Erste Hilfe &amp; Brandschutz</p>
+            <p class="text-xs text-muted-foreground leading-relaxed" data-i18n="sicherheit_hilfe_body">Erste-Hilfe-Set und Feuerlöscher an Bord.</p>
           </div>
         </div>
         <div class="reveal reveal-delay-2 img-treat rounded-2xl overflow-hidden aspect-[4/5]">
-          <img src="Ruban/web/IMG_7814.webp" alt="Ruban Marine Katamaran mit Sicherheitsausstattung am Steg" class="w-full h-full object-cover">
+          <img src="Ruban/web/IMG_7814.webp" data-i18n-alt="sicherheit_img_alt" alt="Ruban Marine Katamaran mit Sicherheitsausstattung am Steg" class="w-full h-full object-cover">
         </div>
         <div class="reveal reveal-delay-3 card-surface rounded-2xl p-6 flex flex-col gap-4">
           <svg class="w-7 h-7" style="color:oklch(82% .14 85)"><use href="#i-headset"/></svg>
           <div>
-            <p class="font-medium text-sm mb-1">Jederzeit erreichbar</p>
-            <p class="text-xs text-muted-foreground leading-relaxed">Fragen vor oder während der Fahrt? Wir sind per Telefon und WhatsApp für Sie da.</p>
+            <p class="font-medium text-sm mb-1" data-i18n="sicherheit_erreichbar_title">Jederzeit erreichbar</p>
+            <p class="text-xs text-muted-foreground leading-relaxed" data-i18n="sicherheit_erreichbar_body">Fragen vor oder während der Fahrt? Wir sind per Telefon und WhatsApp für Sie da.</p>
           </div>
         </div>
       </div>
@@ -646,58 +657,58 @@
     <div class="card-surface rounded-3xl px-5 py-12 sm:p-14">
       <div class="reveal max-w-2xl mx-auto text-center mb-14">
         <div class="divider-gold mx-auto mb-6"></div>
-        <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Preise</p>
-        <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]">Transparente Preise, keine Überraschungen.</h2>
+        <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="preise_eyebrow" style="color: oklch(82% .14 85);">Preise</p>
+        <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]" data-i18n="preise_title">Transparente Preise, keine Überraschungen.</h2>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-6">
         <div class="reveal rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="relative img-treat overflow-hidden aspect-[16/10]">
-            <img src="Ruban/web/IMG_7127.webp" alt="Ruban Marine Katamaran am Tag" class="w-full h-full object-cover">
-            <span class="absolute top-4 left-4 z-10 rounded-full px-4 py-2 font-display text-lg" style="background: oklch(82% .14 85); color: oklch(16% .012 240);">ab 59€/Std</span>
+            <img src="Ruban/web/IMG_7127.webp" data-i18n-alt="preise_img1_alt" alt="Ruban Marine Katamaran am Tag" class="w-full h-full object-cover">
+            <span class="absolute top-4 left-4 z-10 rounded-full px-4 py-2 font-display text-lg" data-i18n="badge_ab_59" style="background: oklch(82% .14 85); color: oklch(16% .012 240);">ab 59€/Std</span>
           </div>
           <div class="p-6 sm:p-8">
             <div class="flex items-center justify-between mb-6">
-              <h3 class="font-display text-2xl">Wochentags</h3>
-              <span class="text-xs text-muted-foreground uppercase tracking-wide flex items-center gap-1.5"><svg class="w-3.5 h-3.5"><use href="#i-clock"/></svg>Mo – Fr</span>
+              <h3 class="font-display text-2xl" data-i18n="preise_weekday_title">Wochentags</h3>
+              <span class="text-xs text-muted-foreground uppercase tracking-wide flex items-center gap-1.5"><svg class="w-3.5 h-3.5"><use href="#i-clock"/></svg><span data-i18n="preise_weekday_days">Mo – Fr</span></span>
             </div>
             <div class="flex items-end justify-between py-4 border-b border-border/60">
-              <p class="text-sm text-foreground/70">10:00 – 19:00 Uhr</p>
-              <p class="font-display text-3xl gold-text">59€<span class="text-sm font-sans text-muted-foreground">/Std</span></p>
+              <p class="text-sm text-foreground/70" data-i18n="preise_time_day">10:00 – 19:00 Uhr</p>
+              <p class="font-display text-3xl gold-text">59€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
             </div>
             <div class="flex items-end justify-between py-4 mb-6">
-              <p class="text-sm text-foreground/70">20:00 – 23:00 Uhr</p>
-              <p class="font-display text-3xl gold-text">79€<span class="text-sm font-sans text-muted-foreground">/Std</span></p>
+              <p class="text-sm text-foreground/70" data-i18n="preise_time_evening">20:00 – 23:00 Uhr</p>
+              <p class="font-display text-3xl gold-text">79€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
             </div>
             <div class="flex gap-3">
-              <a href="#buchung" class="btn btn-gold flex-1 text-xs">Jetzt buchen</a>
-              <a href="https://wa.me/491784421637" class="btn btn-outline flex-1 text-xs">WhatsApp</a>
+              <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-gold flex-1 text-xs">Jetzt buchen</a>
+              <a href="https://wa.me/491784421637" data-i18n="btn_whatsapp" class="btn btn-outline flex-1 text-xs">WhatsApp</a>
             </div>
           </div>
         </div>
 
         <div class="reveal reveal-delay-1 rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="relative img-treat overflow-hidden aspect-[16/10]">
-            <img src="Ruban/web/IMG_7885.webp" alt="Ruban Marine Katamaran im Abendlicht" class="w-full h-full object-cover">
-            <span class="absolute top-4 left-4 z-10 rounded-full px-4 py-2 font-display text-lg" style="background: oklch(82% .14 85); color: oklch(16% .012 240);">ab 79€/Std</span>
-            <span class="absolute top-4 right-4 z-10 text-[10px] font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full bg-background/80 backdrop-blur">Beliebt</span>
+            <img src="Ruban/web/IMG_7885.webp" data-i18n-alt="preise_img2_alt" alt="Ruban Marine Katamaran im Abendlicht" class="w-full h-full object-cover">
+            <span class="absolute top-4 left-4 z-10 rounded-full px-4 py-2 font-display text-lg" data-i18n="badge_ab_79" style="background: oklch(82% .14 85); color: oklch(16% .012 240);">ab 79€/Std</span>
+            <span class="absolute top-4 right-4 z-10 text-[10px] font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full bg-background/80 backdrop-blur" data-i18n="badge_beliebt">Beliebt</span>
           </div>
           <div class="p-6 sm:p-8">
             <div class="flex items-center justify-between mb-6">
-              <h3 class="font-display text-2xl">Wochenende</h3>
-              <span class="text-xs text-muted-foreground uppercase tracking-wide flex items-center gap-1.5"><svg class="w-3.5 h-3.5"><use href="#i-clock"/></svg>Sa – So</span>
+              <h3 class="font-display text-2xl" data-i18n="preise_weekend_title">Wochenende</h3>
+              <span class="text-xs text-muted-foreground uppercase tracking-wide flex items-center gap-1.5"><svg class="w-3.5 h-3.5"><use href="#i-clock"/></svg><span data-i18n="preise_weekend_days">Sa – So</span></span>
             </div>
             <div class="flex items-end justify-between py-4 border-b border-border/60">
-              <p class="text-sm text-foreground/70">10:00 – 19:00 Uhr</p>
-              <p class="font-display text-3xl gold-text">79€<span class="text-sm font-sans text-muted-foreground">/Std</span></p>
+              <p class="text-sm text-foreground/70" data-i18n="preise_time_day">10:00 – 19:00 Uhr</p>
+              <p class="font-display text-3xl gold-text">79€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
             </div>
             <div class="flex items-end justify-between py-4 mb-6">
-              <p class="text-sm text-foreground/70">20:00 – 23:00 Uhr</p>
-              <p class="font-display text-3xl gold-text">99€<span class="text-sm font-sans text-muted-foreground">/Std</span></p>
+              <p class="text-sm text-foreground/70" data-i18n="preise_time_evening">20:00 – 23:00 Uhr</p>
+              <p class="font-display text-3xl gold-text">99€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
             </div>
             <div class="flex gap-3">
-              <a href="#buchung" class="btn btn-gold flex-1 text-xs">Jetzt buchen</a>
-              <a href="https://wa.me/491784421637" class="btn btn-outline flex-1 text-xs">WhatsApp</a>
+              <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-gold flex-1 text-xs">Jetzt buchen</a>
+              <a href="https://wa.me/491784421637" data-i18n="btn_whatsapp" class="btn btn-outline flex-1 text-xs">WhatsApp</a>
             </div>
           </div>
         </div>
@@ -707,15 +718,15 @@
         <div class="flex items-start gap-4 rounded-2xl border border-border/60 p-6">
           <svg class="w-6 h-6 shrink-0 mt-0.5" style="color:oklch(82% .14 85)"><use href="#i-clock"/></svg>
           <div>
-            <p class="font-medium text-sm">Öffnungszeiten</p>
-            <p class="text-sm text-foreground/70 mt-1 leading-relaxed">Täglich 10:00–24:00 Uhr. Erste Buchung ab 10:00 Uhr, letzte Buchung um 23:00 Uhr.</p>
+            <p class="font-medium text-sm" data-i18n="preise_opening_title">Öffnungszeiten</p>
+            <p class="text-sm text-foreground/70 mt-1 leading-relaxed" data-i18n="preise_opening_body">Täglich 10:00–24:00 Uhr. Erste Buchung ab 10:00 Uhr, letzte Buchung um 23:00 Uhr.</p>
           </div>
         </div>
         <div class="flex items-start gap-4 rounded-2xl border border-border/60 p-6">
           <svg class="w-6 h-6 shrink-0 mt-0.5" style="color:oklch(82% .14 85)"><use href="#i-check-circle"/></svg>
           <div>
-            <p class="font-medium text-sm">Stornobedingungen</p>
-            <p class="text-sm text-foreground/70 mt-1 leading-relaxed">Stornierung bis 24 Std. vorher: 100% Rückerstattung. Danach oder am Fahrttag: keine Rückerstattung.</p>
+            <p class="font-medium text-sm" data-i18n="preise_storno_title">Stornobedingungen</p>
+            <p class="text-sm text-foreground/70 mt-1 leading-relaxed" data-i18n="preise_storno_body">Stornierung bis 24 Std. vorher: 100% Rückerstattung. Danach oder am Fahrttag: keine Rückerstattung.</p>
           </div>
         </div>
       </div>
@@ -728,36 +739,36 @@
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
       <div class="reveal relative">
         <div class="img-treat rounded-2xl overflow-hidden shadow-luxury aspect-[3/4]">
-          <img src="Ruban/web/IMG_7940.webp" alt="Ruban Marine Katamaran am Ufer" class="w-full h-full object-cover">
+          <img src="Ruban/web/IMG_7940.webp" data-i18n-alt="katamaran_img_alt" alt="Ruban Marine Katamaran am Ufer" class="w-full h-full object-cover">
         </div>
       </div>
 
       <div class="reveal reveal-delay-1">
-        <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Der Katamaran</p>
-        <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em] mb-6">Modern. Stabil. Selbst entwickelt.</h2>
-        <p class="text-foreground/75 leading-[1.7]">
+        <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="katamaran_eyebrow" style="color: oklch(82% .14 85);">Der Katamaran</p>
+        <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em] mb-6" data-i18n="katamaran_title">Modern. Stabil. Selbst entwickelt.</h2>
+        <p class="text-foreground/75 leading-[1.7]" data-i18n="katamaran_body1">
           Unser moderner Aluminium-Motorkatamaran ist eine eigene Entwicklung von Ruban Marine Berlin — entstanden aus der Kombination von Katamaran, Boot, Wasserfahrzeug und Lounge-Plattform. So vereinen wir Stabilität, Sicherheit, Komfort, einfache Bedienung und ein modernes Erscheinungsbild in einem Gefährt.
         </p>
-        <p class="mt-4 text-foreground/75 leading-[1.7]">
+        <p class="mt-4 text-foreground/75 leading-[1.7]" data-i18n="katamaran_body2">
           Dank des geringen Tiefgangs erreicht der Katamaran auch flachere Gewässer, die für klassische Motorboote schwer zugänglich sind.
         </p>
         <div class="mt-8 grid grid-cols-2 gap-5">
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:oklch(82% .14 85)"><use href="#i-users"/></svg>
-            <div><p class="text-sm font-medium">Bis 4 Erwachsene</p><p class="text-xs text-muted-foreground mt-0.5">Familien, Paare, Freunde</p></div>
+            <div><p class="text-sm font-medium" data-i18n="katamaran_f1_title">Bis 4 Erwachsene</p><p class="text-xs text-muted-foreground mt-0.5" data-i18n="katamaran_f1_body">Familien, Paare, Freunde</p></div>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:oklch(82% .14 85)"><use href="#i-anchor"/></svg>
-            <div><p class="text-sm font-medium">Registriertes Boot</p><p class="text-xs text-muted-foreground mt-0.5">Alle Dokumente vorhanden</p></div>
+            <div><p class="text-sm font-medium" data-i18n="katamaran_f2_title">Registriertes Boot</p><p class="text-xs text-muted-foreground mt-0.5" data-i18n="katamaran_f2_body">Alle Dokumente vorhanden</p></div>
           </div>
           <div class="flex items-start gap-3 col-span-2">
             <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:oklch(82% .14 85)"><use href="#i-check-circle"/></svg>
-            <div><p class="text-sm font-medium">Einfache Steuerung</p><p class="text-xs text-muted-foreground mt-0.5">Lenker wie beim Jetski — auch für Anfänger sofort verständlich</p></div>
+            <div><p class="text-sm font-medium" data-i18n="katamaran_f3_title">Einfache Steuerung</p><p class="text-xs text-muted-foreground mt-0.5" data-i18n="katamaran_f3_body">Lenker wie beim Jetski — auch für Anfänger sofort verständlich</p></div>
           </div>
         </div>
         <a href="#buchung" class="btn btn-gold mt-9">
-          Jetzt buchen
-          <svg class="w-4 h-4"><use href="#i-arrow-right"/></svg>
+          <span data-i18n="btn_jetzt_buchen">Jetzt buchen</span>
+          <svg class="w-4 h-4 rtl:rotate-180"><use href="#i-arrow-right"/></svg>
         </a>
       </div>
     </div>
@@ -769,14 +780,14 @@
     <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
       <div class="reveal max-w-xl">
         <div class="divider-gold mb-6"></div>
-        <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Galerie</p>
-        <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]">Tag, Dämmerung, Nacht.</h2>
+        <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="galerie_eyebrow" style="color: oklch(82% .14 85);">Galerie</p>
+        <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]" data-i18n="galerie_title">Tag, Dämmerung, Nacht.</h2>
       </div>
       <div class="reveal flex flex-wrap gap-2" role="tablist" aria-label="Galerie filtern">
-        <button class="filter-btn text-xs font-medium px-4 py-2 rounded-full border transition-colors" data-filter="tag" data-active="true">Tag</button>
-        <button class="filter-btn text-xs font-medium px-4 py-2 rounded-full border transition-colors" data-filter="abend" data-active="false">Abend</button>
-        <button class="filter-btn text-xs font-medium px-4 py-2 rounded-full border transition-colors" data-filter="nacht" data-active="false">Nacht</button>
-        <button class="filter-btn text-xs font-medium px-4 py-2 rounded-full border transition-colors" data-filter="gaeste" data-active="false">Gäste</button>
+        <button class="filter-btn text-xs font-medium px-4 py-2 rounded-full border transition-colors" data-filter="tag" data-active="true" data-i18n="filter_tag">Tag</button>
+        <button class="filter-btn text-xs font-medium px-4 py-2 rounded-full border transition-colors" data-filter="abend" data-active="false" data-i18n="filter_abend">Abend</button>
+        <button class="filter-btn text-xs font-medium px-4 py-2 rounded-full border transition-colors" data-filter="nacht" data-active="false" data-i18n="filter_nacht">Nacht</button>
+        <button class="filter-btn text-xs font-medium px-4 py-2 rounded-full border transition-colors" data-filter="gaeste" data-active="false" data-i18n="filter_gaeste">Gäste</button>
       </div>
     </div>
 
@@ -785,11 +796,11 @@
         <!-- items injected via data below -->
       </div>
       <div class="flex justify-end gap-3 mt-6">
-        <button id="gallery-prev" type="button" class="gallery-nav-btn" aria-label="Vorherige Bilder">
-          <svg class="w-5 h-5"><use href="#i-chevron-left"/></svg>
+        <button id="gallery-prev" type="button" class="gallery-nav-btn" data-i18n-aria-label="gallery_prev_aria" aria-label="Vorherige Bilder">
+          <svg class="w-5 h-5 rtl:rotate-180"><use href="#i-chevron-left"/></svg>
         </button>
-        <button id="gallery-next" type="button" class="gallery-nav-btn" aria-label="Weitere Bilder">
-          <svg class="w-5 h-5"><use href="#i-chevron-right"/></svg>
+        <button id="gallery-next" type="button" class="gallery-nav-btn" data-i18n-aria-label="gallery_next_aria" aria-label="Weitere Bilder">
+          <svg class="w-5 h-5 rtl:rotate-180"><use href="#i-chevron-right"/></svg>
         </button>
       </div>
     </div>
@@ -798,15 +809,15 @@
 
 <dialog id="lightbox" class="fixed inset-0 w-full h-full m-0 p-0">
   <div class="relative w-full h-full flex items-center justify-center px-4">
-    <button id="lightbox-close" class="absolute top-5 right-5 sm:top-8 sm:right-8 z-10 text-foreground/80 hover:text-foreground p-2" aria-label="Schließen">
+    <button id="lightbox-close" class="absolute top-5 right-5 sm:top-8 sm:right-8 z-10 text-foreground/80 hover:text-foreground p-2" data-i18n-aria-label="lightbox_close_aria" aria-label="Schließen">
       <svg class="w-8 h-8"><use href="#i-close"/></svg>
     </button>
-    <button id="lightbox-prev" class="absolute left-2 sm:left-8 z-10 text-foreground/70 hover:text-foreground p-3" aria-label="Vorheriges Bild">
-      <svg class="w-8 h-8 sm:w-10 sm:h-10"><use href="#i-chevron-left"/></svg>
+    <button id="lightbox-prev" class="absolute left-2 sm:left-8 z-10 text-foreground/70 hover:text-foreground p-3" data-i18n-aria-label="lightbox_prev_aria" aria-label="Vorheriges Bild">
+      <svg class="w-8 h-8 sm:w-10 sm:h-10 rtl:rotate-180"><use href="#i-chevron-left"/></svg>
     </button>
     <img id="lightbox-img" src="" alt="" class="max-h-[86vh] max-w-[90vw] object-contain rounded-lg shadow-luxury">
-    <button id="lightbox-next" class="absolute right-2 sm:right-8 z-10 text-foreground/70 hover:text-foreground p-3" aria-label="Nächstes Bild">
-      <svg class="w-8 h-8 sm:w-10 sm:h-10"><use href="#i-chevron-right"/></svg>
+    <button id="lightbox-next" class="absolute right-2 sm:right-8 z-10 text-foreground/70 hover:text-foreground p-3" data-i18n-aria-label="lightbox_next_aria" aria-label="Nächstes Bild">
+      <svg class="w-8 h-8 sm:w-10 sm:h-10 rtl:rotate-180"><use href="#i-chevron-right"/></svg>
     </button>
   </div>
 </dialog>
@@ -815,8 +826,8 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="reveal max-w-2xl mb-12">
       <div class="divider-gold mb-6"></div>
-      <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Buchung</p>
-      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]">Wählen Sie Ihre Zeit auf dem Wasser.</h2>
+      <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="buchung_eyebrow" style="color: oklch(82% .14 85);">Buchung</p>
+      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]" data-i18n="buchung_title">Wählen Sie Ihre Zeit auf dem Wasser.</h2>
       <p class="mt-4 text-foreground/70 leading-[1.7]">Datum, Uhrzeit und Dauer direkt online auswählen — Sie erhalten sofort eine Bestätigung.</p>
     </div>
 
@@ -826,32 +837,42 @@
   </div>
 
   <script src="https://cdn.supersaas.net/widget.js"></script>
-  <script class="supersaas-widget">var supersaas_843995 = new SuperSaaS("635072:rubanmarineberlin","843995:Booking",{"widget_type":"frame","container":"#ss-booking-widget","width":"100%","height":"780px","slot_view":"btn","legend":"show"})</script>
+  <script>
+    function initBookingWidget(lang) {
+      if (window.supersaas_843995 && typeof window.supersaas_843995.die === 'function') {
+        window.supersaas_843995.die();
+      }
+      var container = document.getElementById('ss-booking-widget');
+      if (container) container.innerHTML = '';
+      window.supersaas_843995 = new SuperSaaS("635072:rubanmarineberlin", "843995:Booking", { "widget_type": "frame", "container": "#ss-booking-widget", "width": "100%", "height": "780px", "slot_view": "btn", "legend": "show", "shared": { "lang": lang } });
+    }
+    initBookingWidget(document.documentElement.lang || "de");
+  </script>
 </section>
 
 <section id="standort" class="relative py-20 sm:py-28">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12 items-center">
     <div class="reveal">
       <div class="divider-gold mb-6"></div>
-      <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Standort</p>
-      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em] mb-6">Unsere Anlegestelle.</h2>
+      <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="standort_eyebrow" style="color: oklch(82% .14 85);">Standort</p>
+      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em] mb-6" data-i18n="standort_title">Unsere Anlegestelle.</h2>
       <div class="flex items-start gap-3 text-foreground/80 mb-3">
         <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:oklch(82% .14 85)"><use href="#i-pin"/></svg>
-        <p>Wilhelminenhofstraße 92, 12459 Berlin</p>
+        <p data-i18n="standort_address">Wilhelminenhofstraße 92, 12459 Berlin</p>
       </div>
-      <p class="text-sm text-foreground/60 leading-relaxed pl-8">Straßenseitige Parkmöglichkeiten in der Nähe. Genaue Hinweise zur Anfahrt erhalten Sie nach Ihrer Buchung.</p>
+      <p class="text-sm text-foreground/60 leading-relaxed pl-8" data-i18n="standort_body">Straßenseitige Parkmöglichkeiten in der Nähe. Genaue Hinweise zur Anfahrt erhalten Sie nach Ihrer Buchung.</p>
       <a href="https://www.google.com/maps/search/?api=1&query=Wilhelminenhofstra%C3%9Fe+92+12459+Berlin" target="_blank" rel="noopener" class="btn btn-outline mt-7">
         <svg class="w-4 h-4"><use href="#i-external"/></svg>
-        In Google Maps öffnen
+        <span data-i18n="standort_maps_btn">In Google Maps öffnen</span>
       </a>
     </div>
 
     <div class="reveal reveal-delay-1 relative rounded-2xl overflow-hidden shadow-luxury aspect-[4/3]" id="map-wrap">
       <div id="map-consent" class="absolute inset-0 flex flex-col items-center justify-center text-center p-8 card-surface">
         <svg class="w-10 h-10 mb-4" style="color:oklch(82% .14 85)"><use href="#i-map"/></svg>
-        <p class="font-medium mb-2">Karte laden</p>
-        <p class="text-xs text-muted-foreground max-w-xs mb-5 leading-relaxed">Beim Laden wird eine Verbindung zu Google Maps hergestellt und Ihre IP-Adresse an Google übertragen. Mehr dazu in unserer <button type="button" id="map-privacy-link" class="underline underline-offset-2">Datenschutzerklärung</button>.</p>
-        <button id="map-load-btn" class="btn btn-gold">Karte anzeigen</button>
+        <p class="font-medium mb-2" data-i18n="map_load_title">Karte laden</p>
+        <p class="text-xs text-muted-foreground max-w-xs mb-5 leading-relaxed" data-i18n-html="map_load_body_html">Beim Laden wird eine Verbindung zu Google Maps hergestellt und Ihre IP-Adresse an Google übertragen. Mehr dazu in unserer <button type="button" id="map-privacy-link" class="underline underline-offset-2">Datenschutzerklärung</button>.</p>
+        <button id="map-load-btn" class="btn btn-gold" data-i18n="map_load_btn">Karte anzeigen</button>
       </div>
     </div>
   </div>
@@ -863,22 +884,22 @@
       <div class="reveal flex justify-center mb-6">
         <div class="divider-gold mx-auto"></div>
       </div>
-      <p class="reveal text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Bewertungen</p>
-      <h2 class="reveal font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em] mb-6">Was unsere Gäste sagen.</h2>
-      <p class="reveal reveal-delay-1 text-foreground/70 leading-[1.7]">Drei Dinge, auf die Sie sich bei jeder Fahrt verlassen können.</p>
+      <p class="reveal text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="bewertungen_eyebrow" style="color: oklch(82% .14 85);">Bewertungen</p>
+      <h2 class="reveal font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em] mb-6" data-i18n="bewertungen_title">Was unsere Gäste sagen.</h2>
+      <p class="reveal reveal-delay-1 text-foreground/70 leading-[1.7]" data-i18n="bewertungen_subtitle">Drei Dinge, auf die Sie sich bei jeder Fahrt verlassen können.</p>
     </div>
 
     <div class="grid lg:grid-cols-5 gap-5 mb-5">
       <div class="reveal lg:col-span-3 rounded-3xl p-8 sm:p-10 flex flex-col justify-between" style="background: linear-gradient(160deg, oklch(20% .016 240), oklch(14% .012 240));">
         <div>
           <span class="font-display text-4xl sm:text-6xl leading-none" style="color: oklch(82% .14 85);">&bdquo;</span>
-          <p class="font-display text-lg sm:text-3xl leading-snug tracking-[-0.01em] mt-2 text-balance">Wir wollten kein gewöhnliches Boot bauen — sondern ein Gefühl: Sonnenuntergänge über der Spree, Zeit mit den Menschen, die einem wichtig sind, und die Gewissheit, dass alles an Bord durchdacht ist.</p>
+          <p class="font-display text-lg sm:text-3xl leading-snug tracking-[-0.01em] mt-2 text-balance" data-i18n="bewertungen_quote">Wir wollten kein gewöhnliches Boot bauen — sondern ein Gefühl: Sonnenuntergänge über der Spree, Zeit mit den Menschen, die einem wichtig sind, und die Gewissheit, dass alles an Bord durchdacht ist.</p>
         </div>
-        <p class="mt-8 text-sm text-muted-foreground">— Ruban Marine Berlin</p>
+        <p class="mt-8 text-sm text-muted-foreground" data-i18n="bewertungen_quote_author">— Ruban Marine Berlin</p>
       </div>
 
       <div class="reveal reveal-delay-1 lg:col-span-2 relative rounded-3xl overflow-hidden shadow-luxury aspect-[7/10]">
-        <video id="brand-video" class="w-full h-full object-cover" src="Ruban/web/boat-loop.mp4" poster="Ruban/web/boat-loop-poster.webp" autoplay muted loop playsinline aria-label="Ruban Marine Katamaran am Abend auf der Spree"></video>
+        <video id="brand-video" class="w-full h-full object-cover" src="Ruban/web/boat-loop.mp4" poster="Ruban/web/boat-loop-poster.webp" autoplay muted loop playsinline data-i18n-aria-label="bewertungen_video_aria" aria-label="Ruban Marine Katamaran am Abend auf der Spree"></video>
         <button id="video-toggle" type="button" class="absolute inset-0 m-auto w-14 h-14 rounded-full flex items-center justify-center bg-background/40 backdrop-blur border border-foreground/30 text-foreground hover:bg-background/60 transition-colors" aria-label="Video pausieren">
           <svg class="w-5 h-5" id="video-toggle-icon"><use href="#i-pause"/></svg>
         </button>
@@ -888,18 +909,18 @@
     <div class="grid sm:grid-cols-3 gap-5 mb-14">
       <div class="reveal card-surface rounded-2xl p-7">
         <svg class="w-7 h-7 mb-4" style="color:oklch(82% .14 85)"><use href="#i-pin"/></svg>
-        <p class="font-medium text-sm mb-1">Direkt an der Spree</p>
-        <p class="text-xs text-muted-foreground leading-relaxed">Zentrale Anlegestelle in Berlin-Schöneweide.</p>
+        <p class="font-medium text-sm mb-1" data-i18n="bewertungen_f1_title">Direkt an der Spree</p>
+        <p class="text-xs text-muted-foreground leading-relaxed" data-i18n="bewertungen_f1_body">Zentrale Anlegestelle in Berlin-Schöneweide.</p>
       </div>
       <div class="reveal reveal-delay-1 card-surface rounded-2xl p-7">
         <svg class="w-7 h-7 mb-4" style="color:oklch(82% .14 85)"><use href="#i-users"/></svg>
-        <p class="font-medium text-sm mb-1">Familienfreundlich</p>
-        <p class="text-xs text-muted-foreground leading-relaxed">Rettungswesten für Kinder immer an Bord.</p>
+        <p class="font-medium text-sm mb-1" data-i18n="bewertungen_f2_title">Familienfreundlich</p>
+        <p class="text-xs text-muted-foreground leading-relaxed" data-i18n="bewertungen_f2_body">Rettungswesten für Kinder immer an Bord.</p>
       </div>
       <div class="reveal reveal-delay-2 card-surface rounded-2xl p-7">
         <svg class="w-7 h-7 mb-4" style="color:oklch(82% .14 85)"><use href="#i-check-circle"/></svg>
-        <p class="font-medium text-sm mb-1">Transparente Preise</p>
-        <p class="text-xs text-muted-foreground leading-relaxed">Keine versteckten Kosten, klare Stornobedingungen.</p>
+        <p class="font-medium text-sm mb-1" data-i18n="bewertungen_f3_title">Transparente Preise</p>
+        <p class="text-xs text-muted-foreground leading-relaxed" data-i18n="bewertungen_f3_body">Keine versteckten Kosten, klare Stornobedingungen.</p>
       </div>
     </div>
 
@@ -911,10 +932,10 @@
         <svg class="w-6 h-6 star"><use href="#i-star"/></svg>
         <svg class="w-6 h-6 star"><use href="#i-star"/></svg>
       </div>
-      <p class="text-foreground/75 leading-[1.7]">Unsere Gäste teilen ihre Erlebnisse auf Google. Lesen Sie aktuelle Bewertungen oder hinterlassen Sie selbst eine — wir freuen uns über jedes Feedback.</p>
+      <p class="text-foreground/75 leading-[1.7]" data-i18n="bewertungen_google_body">Unsere Gäste teilen ihre Erlebnisse auf Google. Lesen Sie aktuelle Bewertungen oder hinterlassen Sie selbst eine — wir freuen uns über jedes Feedback.</p>
       <a href="https://www.google.com/maps/search/?api=1&query=Ruban+Marine+Berlin" target="_blank" rel="noopener" class="btn btn-dark mt-2">
         <svg class="w-4 h-4"><use href="#i-external"/></svg>
-        Bewertungen auf Google lesen
+        <span data-i18n="bewertungen_google_btn">Bewertungen auf Google lesen</span>
       </a>
     </div>
   </div>
@@ -926,89 +947,89 @@
       <div>
         <div class="reveal">
           <div class="divider-gold mb-6"></div>
-          <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Fragen &amp; Antworten</p>
-          <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]">Häufig gestellte Fragen</h2>
+          <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="faq_eyebrow" style="color: oklch(82% .14 85);">Fragen &amp; Antworten</p>
+          <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]" data-i18n="faq_title">Häufig gestellte Fragen</h2>
         </div>
         <div class="reveal reveal-delay-1 img-treat rounded-2xl overflow-hidden shadow-luxury mt-8 aspect-[4/5]">
-          <img src="Ruban/web/IMG_7919.webp" alt="Ruban Marine Katamaran in der Abenddämmerung auf der Spree" class="w-full h-full object-cover">
+          <img src="Ruban/web/IMG_7919.webp" data-i18n-alt="faq_img_alt" alt="Ruban Marine Katamaran in der Abenddämmerung auf der Spree" class="w-full h-full object-cover">
         </div>
       </div>
 
       <div>
         <div class="reveal reveal-delay-1 rounded-2xl p-6 sm:p-7 mb-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 sm:justify-between" style="background: linear-gradient(135deg, oklch(88% .12 90), oklch(78% .15 80));">
           <div>
-            <p class="font-medium" style="color: oklch(16% .012 240);">Ihre Frage war nicht dabei?</p>
-            <p class="text-sm mt-1" style="color: oklch(16% .012 240 / .75);">Unser Team hilft gerne — schreiben Sie uns, wir antworten schnell.</p>
+            <p class="font-medium" data-i18n="faq_cta_title" style="color: oklch(16% .012 240);">Ihre Frage war nicht dabei?</p>
+            <p class="text-sm mt-1" data-i18n="faq_cta_body" style="color: oklch(16% .012 240 / .75);">Unser Team hilft gerne — schreiben Sie uns, wir antworten schnell.</p>
           </div>
           <a href="https://wa.me/491784421637" class="btn btn-dark shrink-0">
             <svg class="w-4 h-4"><use href="#i-whatsapp"/></svg>
-            Kontakt aufnehmen
+            <span data-i18n="faq_cta_btn">Kontakt aufnehmen</span>
           </a>
         </div>
 
         <div class="reveal reveal-delay-2 accordion divide-y divide-border/60 border-t border-b border-border/60">
           <div class="accordion-item" data-open="false">
             <button class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left">
-              <span class="font-medium">Benötige ich einen Bootsführerschein?</span>
+              <span class="font-medium" data-i18n="faq_q1">Benötige ich einen Bootsführerschein?</span>
               <svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg>
             </button>
-            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]">Nein. Für unseren Katamaran ist kein Bootsführerschein erforderlich. Die Steuerung ähnelt einem Fahrrad- bzw. Jetski-Lenker und ist auch für Anfänger sofort verständlich.</p></div>
+            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a1">Nein. Für unseren Katamaran ist kein Bootsführerschein erforderlich. Die Steuerung ähnelt einem Fahrrad- bzw. Jetski-Lenker und ist auch für Anfänger sofort verständlich.</p></div>
           </div>
           <div class="accordion-item" data-open="false">
             <button class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left">
-              <span class="font-medium">Kann ich mit Kindern fahren?</span>
+              <span class="font-medium" data-i18n="faq_q2">Kann ich mit Kindern fahren?</span>
               <svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg>
             </button>
-            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]">Ja, der Katamaran ist familienfreundlich. Rettungswesten in Kindergrößen sind immer an Bord.</p></div>
+            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a2">Ja, der Katamaran ist familienfreundlich. Rettungswesten in Kindergrößen sind immer an Bord.</p></div>
           </div>
           <div class="accordion-item" data-open="false">
             <button class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left">
-              <span class="font-medium">Sind Rettungswesten vorhanden?</span>
+              <span class="font-medium" data-i18n="faq_q3">Sind Rettungswesten vorhanden?</span>
               <svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg>
             </button>
-            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]">Ja. Rettungswesten für Erwachsene und Kinder, ein Rettungsring, ein Erste-Hilfe-Set und ein Feuerlöscher gehören zur Standardausstattung.</p></div>
+            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a3">Ja. Rettungswesten für Erwachsene und Kinder, ein Rettungsring, ein Erste-Hilfe-Set und ein Feuerlöscher gehören zur Standardausstattung.</p></div>
           </div>
           <div class="accordion-item" data-open="false">
             <button class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left">
-              <span class="font-medium">Darf ich eigenes Essen mitbringen?</span>
+              <span class="font-medium" data-i18n="faq_q4">Darf ich eigenes Essen mitbringen?</span>
               <svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg>
             </button>
-            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]">Gerne. Eine Kühlbox steht Ihnen kostenlos zur Verfügung.</p></div>
+            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a4">Gerne. Eine Kühlbox steht Ihnen kostenlos zur Verfügung.</p></div>
           </div>
           <div class="accordion-item" data-open="false">
             <button class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left">
-              <span class="font-medium">Darf ich Getränke mitbringen?</span>
+              <span class="font-medium" data-i18n="faq_q5">Darf ich Getränke mitbringen?</span>
               <svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg>
             </button>
-            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]">Ja, sehr gerne. An Bord gibt es einen Getränkehalter für jeden Gast.</p></div>
+            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a5">Ja, sehr gerne. An Bord gibt es einen Getränkehalter für jeden Gast.</p></div>
           </div>
           <div class="accordion-item" data-open="false">
             <button class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left">
-              <span class="font-medium">Was passiert bei schlechtem Wetter?</span>
+              <span class="font-medium" data-i18n="faq_q6">Was passiert bei schlechtem Wetter?</span>
               <svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg>
             </button>
-            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]">Bei Sturm, Gewitter oder behördlicher Sperrung der Wasserstraße bieten wir eine kostenlose Umbuchung oder vollständige Rückerstattung an.</p></div>
+            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a6">Bei Sturm, Gewitter oder behördlicher Sperrung der Wasserstraße bieten wir eine kostenlose Umbuchung oder vollständige Rückerstattung an.</p></div>
           </div>
           <div class="accordion-item" data-open="false">
             <button class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left">
-              <span class="font-medium">Wie funktioniert die Rückerstattung?</span>
+              <span class="font-medium" data-i18n="faq_q7">Wie funktioniert die Rückerstattung?</span>
               <svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg>
             </button>
-            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]">Bei Stornierung bis mindestens 24 Stunden vor Fahrtbeginn erhalten Sie 100% des Betrags zurück. Bei späterer Stornierung oder Nichterscheinen erfolgt keine Rückerstattung.</p></div>
+            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a7">Bei Stornierung bis mindestens 24 Stunden vor Fahrtbeginn erhalten Sie 100% des Betrags zurück. Bei späterer Stornierung oder Nichterscheinen erfolgt keine Rückerstattung.</p></div>
           </div>
           <div class="accordion-item" data-open="false">
             <button class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left">
-              <span class="font-medium">Wo ist der Parkplatz?</span>
+              <span class="font-medium" data-i18n="faq_q8">Wo ist der Parkplatz?</span>
               <svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg>
             </button>
-            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]">In der Nähe der Anlegestelle stehen straßenseitige Parkmöglichkeiten zur Verfügung. Genaue Hinweise erhalten Sie nach Ihrer Buchung.</p></div>
+            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a8">In der Nähe der Anlegestelle stehen straßenseitige Parkmöglichkeiten zur Verfügung. Genaue Hinweise erhalten Sie nach Ihrer Buchung.</p></div>
           </div>
           <div class="accordion-item" data-open="false">
             <button class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left">
-              <span class="font-medium">Wo ist die Anlegestelle?</span>
+              <span class="font-medium" data-i18n="faq_q9">Wo ist die Anlegestelle?</span>
               <svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg>
             </button>
-            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]">Wilhelminenhofstraße 92, 12459 Berlin — siehe Karte im Bereich „Standort“.</p></div>
+            <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a9">Wilhelminenhofstraße 92, 12459 Berlin — siehe Karte im Bereich „Standort“.</p></div>
           </div>
         </div>
       </div>
@@ -1020,35 +1041,35 @@
   <div class="max-w-3xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-12">
       <div class="flex justify-center mb-6"><div class="divider-gold mx-auto"></div></div>
-      <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Nachricht</p>
-      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]">Fragen oder Feedback?</h2>
-      <p class="mt-4 text-foreground/70 leading-[1.7]">Schreiben Sie uns — wir antworten so schnell wie möglich.</p>
+      <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="feedback_eyebrow" style="color: oklch(82% .14 85);">Nachricht</p>
+      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]" data-i18n="feedback_title">Fragen oder Feedback?</h2>
+      <p class="mt-4 text-foreground/70 leading-[1.7]" data-i18n="feedback_subtitle">Schreiben Sie uns — wir antworten so schnell wie möglich.</p>
     </div>
 
     <form id="feedback-form" class="reveal card-surface rounded-2xl p-6 sm:p-10 grid sm:grid-cols-2 gap-6">
       <div class="flex flex-col gap-2">
-        <label for="f-name" class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Name</label>
+        <label for="f-name" class="text-xs font-medium text-muted-foreground uppercase tracking-wide" data-i18n="form_name">Name</label>
         <input required type="text" id="f-name" name="name" class="w-full bg-input border border-border rounded-xl px-4 py-3.5 text-sm focus:border-gold transition-colors">
       </div>
       <div class="flex flex-col gap-2">
-        <label for="f-email" class="text-xs font-medium text-muted-foreground uppercase tracking-wide">E-Mail</label>
+        <label for="f-email" class="text-xs font-medium text-muted-foreground uppercase tracking-wide" data-i18n="form_email">E-Mail</label>
         <input required type="email" id="f-email" name="email" class="w-full bg-input border border-border rounded-xl px-4 py-3.5 text-sm focus:border-gold transition-colors">
       </div>
       <div class="flex flex-col gap-2 sm:col-span-2">
-        <label for="f-phone" class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Telefon (optional)</label>
+        <label for="f-phone" class="text-xs font-medium text-muted-foreground uppercase tracking-wide" data-i18n="form_phone">Telefon (optional)</label>
         <input type="tel" id="f-phone" name="phone" class="w-full bg-input border border-border rounded-xl px-4 py-3.5 text-sm focus:border-gold transition-colors">
       </div>
       <div class="flex flex-col gap-2 sm:col-span-2">
-        <label for="f-message" class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Nachricht</label>
+        <label for="f-message" class="text-xs font-medium text-muted-foreground uppercase tracking-wide" data-i18n="form_message">Nachricht</label>
         <textarea required id="f-message" name="message" rows="4" class="w-full bg-input border border-border rounded-xl px-4 py-3.5 text-sm focus:border-gold transition-colors resize-none"></textarea>
       </div>
       <label class="sm:col-span-2 flex items-start gap-3 text-xs text-muted-foreground">
         <input required type="checkbox" id="f-consent" name="consent" class="mt-0.5 accent-[oklch(82%_.14_85)]">
-        Ich habe die <button type="button" id="feedback-privacy-link" class="underline underline-offset-2">Datenschutzerklärung</button> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu.
+        <span data-i18n-html="form_consent_html">Ich habe die <button type="button" id="feedback-privacy-link" class="underline underline-offset-2">Datenschutzerklärung</button> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu.</span>
       </label>
       <button type="submit" class="sm:col-span-2 btn btn-gold">
         <svg class="w-4 h-4"><use href="#i-send"/></svg>
-        Nachricht senden
+        <span data-i18n="form_send">Nachricht senden</span>
       </button>
       <p id="feedback-status" class="sm:col-span-2 text-sm text-center hidden" style="color:oklch(82% .14 85)"></p>
     </form>
@@ -1059,26 +1080,26 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="reveal max-w-2xl mb-14">
       <div class="divider-gold mb-6"></div>
-      <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" style="color: oklch(82% .14 85);">Kontakt</p>
-      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]">Wir freuen uns auf Sie.</h2>
+      <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="kontakt_eyebrow" style="color: oklch(82% .14 85);">Kontakt</p>
+      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]" data-i18n="kontakt_title">Wir freuen uns auf Sie.</h2>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
       <a href="tel:+491784421637" class="reveal card-surface rounded-2xl p-7 flex flex-col gap-4 hover:-translate-y-1 transition-transform">
         <svg class="w-7 h-7" style="color:oklch(82% .14 85)"><use href="#i-phone"/></svg>
-        <div><p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Telefon / WhatsApp</p><p class="text-sm font-medium">+49 178 4421637</p></div>
+        <div><p class="text-xs text-muted-foreground uppercase tracking-wide mb-1" data-i18n="kontakt_phone_label">Telefon / WhatsApp</p><p class="text-sm font-medium">+49 178 4421637</p></div>
       </a>
       <a href="mailto:ruban6467@gmail.com" class="reveal reveal-delay-1 card-surface rounded-2xl p-7 flex flex-col gap-4 hover:-translate-y-1 transition-transform">
         <svg class="w-7 h-7" style="color:oklch(82% .14 85)"><use href="#i-mail"/></svg>
-        <div><p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">E-Mail</p><p class="text-sm font-medium break-all">ruban6467@gmail.com</p></div>
+        <div><p class="text-xs text-muted-foreground uppercase tracking-wide mb-1" data-i18n="kontakt_email_label">E-Mail</p><p class="text-sm font-medium break-all">ruban6467@gmail.com</p></div>
       </a>
       <div class="reveal reveal-delay-2 card-surface rounded-2xl p-7 flex flex-col gap-4">
         <svg class="w-7 h-7" style="color:oklch(82% .14 85)"><use href="#i-pin"/></svg>
-        <div><p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Anlegestelle</p><p class="text-sm font-medium">Wilhelminenhofstraße 92, 12459 Berlin</p></div>
+        <div><p class="text-xs text-muted-foreground uppercase tracking-wide mb-1" data-i18n="kontakt_address_label">Anlegestelle</p><p class="text-sm font-medium" data-i18n="standort_address">Wilhelminenhofstraße 92, 12459 Berlin</p></div>
       </div>
       <div class="reveal reveal-delay-3 card-surface rounded-2xl p-7 flex flex-col gap-4">
         <svg class="w-7 h-7" style="color:oklch(82% .14 85)"><use href="#i-clock"/></svg>
-        <div><p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Öffnungszeiten</p><p class="text-sm font-medium">Täglich 10:00–24:00 Uhr</p></div>
+        <div><p class="text-xs text-muted-foreground uppercase tracking-wide mb-1" data-i18n="kontakt_hours_label">Öffnungszeiten</p><p class="text-sm font-medium" data-i18n="kontakt_hours_value">Täglich 10:00–24:00 Uhr</p></div>
       </div>
     </div>
   </div>
@@ -1090,26 +1111,26 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8 pb-10 border-b border-border/60">
       <a href="#hero" class="flex items-center gap-3">
-        <img src="Ruban/web/logo-128.webp" alt="Ruban Marine Berlin Logo" class="h-10 w-10 rounded-full">
+        <img src="Ruban/web/logo-128.webp" data-i18n-alt="footer_logo_alt" alt="Ruban Marine Berlin Logo" class="h-10 w-10 rounded-full">
         <span class="font-display text-lg">Ruban <span class="gold-text">Marine</span></span>
       </a>
       <nav class="flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground" aria-label="Footer Navigation">
-        <a href="#ueber-uns" class="hover:text-foreground transition-colors">Über uns</a>
-        <a href="#routen" class="hover:text-foreground transition-colors">Routen</a>
-        <a href="#preise" class="hover:text-foreground transition-colors">Preise</a>
-        <a href="#galerie" class="hover:text-foreground transition-colors">Galerie</a>
-        <a href="#sicherheit" class="hover:text-foreground transition-colors">Sicherheit</a>
-        <a href="#buchung" class="hover:text-foreground transition-colors">Buchung</a>
+        <a href="#ueber-uns" data-i18n="nav_ueber_uns" class="hover:text-foreground transition-colors">Über uns</a>
+        <a href="#routen" data-i18n="nav_routen" class="hover:text-foreground transition-colors">Routen</a>
+        <a href="#preise" data-i18n="nav_preise" class="hover:text-foreground transition-colors">Preise</a>
+        <a href="#galerie" data-i18n="nav_galerie" class="hover:text-foreground transition-colors">Galerie</a>
+        <a href="#sicherheit" data-i18n="nav_sicherheit" class="hover:text-foreground transition-colors">Sicherheit</a>
+        <a href="#buchung" data-i18n="nav_buchung" class="hover:text-foreground transition-colors">Buchung</a>
         <a href="#faq" class="hover:text-foreground transition-colors">FAQ</a>
-        <a href="#kontakt" class="hover:text-foreground transition-colors">Kontakt</a>
+        <a href="#kontakt" data-i18n="nav_kontakt" class="hover:text-foreground transition-colors">Kontakt</a>
       </nav>
     </div>
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-8 text-xs text-muted-foreground">
-      <p>© <span id="year"></span> Ruban Marine Berlin. Alle Rechte vorbehalten.</p>
+      <p>© <span id="year"></span> Ruban Marine Berlin. <span data-i18n="footer_rights">Alle Rechte vorbehalten.</span></p>
       <div class="flex flex-wrap gap-x-6 gap-y-2">
-        <button type="button" id="open-impressum" class="hover:text-foreground transition-colors underline-offset-2 hover:underline">Impressum</button>
-        <button type="button" id="open-datenschutz" class="hover:text-foreground transition-colors underline-offset-2 hover:underline">Datenschutz</button>
-        <button type="button" id="open-agb" class="hover:text-foreground transition-colors underline-offset-2 hover:underline">AGB &amp; Stornobedingungen</button>
+        <button type="button" id="open-impressum" class="hover:text-foreground transition-colors underline-offset-2 hover:underline" data-i18n="footer_impressum">Impressum</button>
+        <button type="button" id="open-datenschutz" class="hover:text-foreground transition-colors underline-offset-2 hover:underline" data-i18n="footer_datenschutz">Datenschutz</button>
+        <button type="button" id="open-agb" class="hover:text-foreground transition-colors underline-offset-2 hover:underline" data-i18n="footer_agb">AGB &amp; Stornobedingungen</button>
       </div>
     </div>
   </div>
@@ -1118,10 +1139,10 @@
 <dialog id="dlg-impressum" class="w-full max-w-2xl">
   <div class="card-surface rounded-2xl m-4 sm:m-0 p-7 sm:p-10 max-h-[85vh] overflow-y-auto">
     <div class="flex items-start justify-between mb-6">
-      <h3 class="font-display text-3xl">Impressum</h3>
-      <button class="dlg-close p-1 text-muted-foreground hover:text-foreground" aria-label="Schließen"><svg class="w-6 h-6"><use href="#i-close"/></svg></button>
+      <h3 class="font-display text-3xl" data-i18n="dlg_impressum_title">Impressum</h3>
+      <button class="dlg-close p-1 text-muted-foreground hover:text-foreground" data-i18n-aria-label="dlg_close_aria" aria-label="Schließen"><svg class="w-6 h-6"><use href="#i-close"/></svg></button>
     </div>
-    <div class="text-sm text-foreground/75 leading-[1.8] space-y-4">
+    <div class="text-sm text-foreground/75 leading-[1.8] space-y-4" data-i18n-html="dlg_impressum_html">
       <p><strong class="text-foreground">Angaben gemäß § 5 TMG</strong></p>
       <p>Ruban Marine Berlin<br>Wilhelminenhofstraße 92<br>12459 Berlin</p>
       <p><strong class="text-foreground">Vertreten durch:</strong><br>[Inhaber/Geschäftsführer – bitte ergänzen]</p>
@@ -1137,10 +1158,10 @@
 <dialog id="dlg-datenschutz" class="w-full max-w-2xl">
   <div class="card-surface rounded-2xl m-4 sm:m-0 p-7 sm:p-10 max-h-[85vh] overflow-y-auto">
     <div class="flex items-start justify-between mb-6">
-      <h3 class="font-display text-3xl">Datenschutzerklärung</h3>
-      <button class="dlg-close p-1 text-muted-foreground hover:text-foreground" aria-label="Schließen"><svg class="w-6 h-6"><use href="#i-close"/></svg></button>
+      <h3 class="font-display text-3xl" data-i18n="dlg_datenschutz_title">Datenschutzerklärung</h3>
+      <button class="dlg-close p-1 text-muted-foreground hover:text-foreground" data-i18n-aria-label="dlg_close_aria" aria-label="Schließen"><svg class="w-6 h-6"><use href="#i-close"/></svg></button>
     </div>
-    <div class="text-sm text-foreground/75 leading-[1.8] space-y-4">
+    <div class="text-sm text-foreground/75 leading-[1.8] space-y-4" data-i18n-html="dlg_datenschutz_html">
       <p><strong class="text-foreground">1. Verantwortlicher</strong><br>Ruban Marine Berlin, Wilhelminenhofstraße 92, 12459 Berlin, E-Mail: ruban6467@gmail.com, Telefon: +49 178 4421637.</p>
       <p><strong class="text-foreground">2. Erhebung und Verarbeitung von Daten</strong><br>Wir erheben personenbezogene Daten nur, wenn Sie uns diese über das Kontakt- oder Buchungsformular freiwillig mitteilen (Name, E-Mail-Adresse, Telefonnummer, Nachricht sowie Buchungsdetails wie Datum, Uhrzeit und Dauer). Die Verarbeitung erfolgt zur Bearbeitung Ihrer Anfrage bzw. zur Anbahnung eines Vertrages gemäß Art. 6 Abs. 1 lit. b DSGVO.</p>
       <p><strong class="text-foreground">3. WhatsApp-Kontakt</strong><br>Wenn Sie über die WhatsApp-Buttons auf dieser Seite Kontakt aufnehmen, öffnet sich WhatsApp bzw. die WhatsApp-Web-Anwendung des Anbieters WhatsApp Ireland Limited / Meta Platforms Ireland Limited. Es gelten die Datenschutzbestimmungen von WhatsApp. Die Nutzung ist freiwillig.</p>
@@ -1157,10 +1178,10 @@
 <dialog id="dlg-agb" class="w-full max-w-2xl">
   <div class="card-surface rounded-2xl m-4 sm:m-0 p-7 sm:p-10 max-h-[85vh] overflow-y-auto">
     <div class="flex items-start justify-between mb-6">
-      <h3 class="font-display text-3xl">AGB &amp; Stornobedingungen</h3>
-      <button class="dlg-close p-1 text-muted-foreground hover:text-foreground" aria-label="Schließen"><svg class="w-6 h-6"><use href="#i-close"/></svg></button>
+      <h3 class="font-display text-3xl" data-i18n="dlg_agb_title">AGB &amp; Stornobedingungen</h3>
+      <button class="dlg-close p-1 text-muted-foreground hover:text-foreground" data-i18n-aria-label="dlg_close_aria" aria-label="Schließen"><svg class="w-6 h-6"><use href="#i-close"/></svg></button>
     </div>
-    <div class="text-sm text-foreground/75 leading-[1.8] space-y-4">
+    <div class="text-sm text-foreground/75 leading-[1.8] space-y-4" data-i18n-html="dlg_agb_html">
       <p><strong class="text-foreground">1. Geltungsbereich</strong><br>Diese Bedingungen gelten für alle Buchungen von Katamaran-Fahrten bei Ruban Marine Berlin.</p>
       <p><strong class="text-foreground">2. Buchung</strong><br>Eine Buchungsanfrage über diese Website ist zunächst unverbindlich und wird von uns per WhatsApp, Telefon oder E-Mail bestätigt.</p>
       <p><strong class="text-foreground">3. Preise</strong><br>Es gelten die zum Zeitpunkt der Buchung auf dieser Website ausgewiesenen Preise, gestaffelt nach Wochentag und Uhrzeit.</p>
@@ -1173,6 +1194,1110 @@
 </dialog>
 
 <script>
+const I18N = {
+de: {
+  skip_link: "Zum Inhalt springen",
+  nav_ueber_uns: "Über uns",
+  nav_preise: "Preise",
+  nav_galerie: "Galerie",
+  nav_sicherheit: "Sicherheit",
+  nav_buchung: "Buchung",
+  nav_kontakt: "Kontakt",
+  nav_routen: "Routen",
+  nav_bewertungen: "Bewertungen",
+  lang_aria: "Sprache",
+  btn_jetzt_buchen: "Jetzt buchen",
+  menu_open_aria: "Menü öffnen",
+  menu_close_aria: "Menü schließen",
+
+  hero_eyebrow: "Berlin · Spree · Privates Erlebnis",
+  hero_title_html: 'Entdecken Sie <span class="gold-text">Berlin</span> vom Wasser aus',
+  hero_subtitle: "Private Katamaran-Fahrten über die Spree — unvergessliche Momente mit Familie, Freunden oder Ihrem Partner. Stilvoll, sicher und ganz ohne Bootsführerschein.",
+  hero_meta: "4 Gäste · Kein Führerschein nötig · ab 59€/Std",
+  hero_scroll_aria: "Nach unten scrollen",
+  hero_video_aria: "Ruban Marine Katamaran mit LED-Beleuchtung bei Nacht auf der Spree in Berlin",
+
+  about_eyebrow: "Über Ruban Marine",
+  about_title: "Nicht einfach ein Boot — ein Gefühl.",
+  about_body: "Ruban Marine Berlin steht für Katamaran-Fahrten, die mehr sind als eine Bootstour: Sonnenuntergänge über der Spree, Musik an Bord, Zeit mit den Menschen, die Ihnen wichtig sind. Unser Katamaran ist eine eigene Entwicklung — gebaut für genau diese Momente.",
+  about_link_katamaran: "Mehr über den Katamaran",
+  about_why_title: "Warum Ruban Marine?",
+  about_f1_title: "Führerscheinfrei",
+  about_f1_body: "Steuerung wie beim Jetski — sofort verständlich, auch ohne Erfahrung.",
+  about_f2_title: "Für kleine Gruppen",
+  about_f2_body: "Bis zu 4 Gäste — ideal für Familien, Paare und Freunde.",
+  about_img1_alt: "Fahrt in den Sonnenuntergang auf der Spree",
+  about_img2_alt: "LED-beleuchteter Sitzbereich an Bord",
+
+  routes_eyebrow: "Unsere Routen",
+  routes_title: "Die schönsten Ecken Berlins entdecken",
+  routes_subtitle: "Jede Fahrt führt vorbei an Berlins schönsten Wasserwegen — die genaue Route wählen wir gemeinsam, je nach Mietdauer und Ihren Wünschen.",
+  route_spree_title: "Spree",
+  route_spree_body: "Das Herzstück Berlins vom Wasser aus erleben.",
+  route_spree_img_alt: "Fahrt auf der Spree in Berlin",
+  route_treptower_title: "Treptower Park",
+  route_treptower_body: "Vorbei an Grünflächen und historischen Ufern.",
+  route_treptower_img_alt: "Fahrt vorbei am Treptower Park",
+  route_warschauer_title: "Warschauer Brücke",
+  route_warschauer_body: "Industriecharme und Skyline im Blick.",
+  route_warschauer_img_alt: "Fahrt Richtung Warschauer Brücke",
+  route_oberbaum_title: "Oberbaumbrücke",
+  route_oberbaum_body: "Das berühmteste Wahrzeichen der Spree.",
+  route_oberbaum_img_alt: "Fahrt Richtung Oberbaumbrücke",
+  route_kanaele_title: "Malerische Kanäle",
+  route_kanaele_body: "Ruhige Nebenarme abseits des Trubels.",
+  route_kanaele_img_alt: "Fahrt durch malerische Kanäle",
+  route_mueggelsee_title: "Richtung Müggelsee",
+  route_mueggelsee_body: "Weites Wasser für längere Touren.",
+  route_mueggelsee_img_alt: "Fahrt Richtung Müggelsee",
+
+  ausstattung_eyebrow: "Ausstattung",
+  ausstattung_title: "Alles für entspannte Stunden an Bord.",
+  ausstattung_subtitle: "Eigene Speisen und Getränke sind jederzeit willkommen — für alles andere ist gesorgt.",
+  a_sonnendach_title: "Großes Sonnendach",
+  a_sonnendach_body: "Schatten und Schutz für entspannte Stunden auf dem Wasser.",
+  a_sitze_title: "Bequeme Sitze",
+  a_sitze_body: "Gepolsterte Sitze mit Rückenlehne für die ganze Fahrt.",
+  a_led_title: "LED- & Abendbeleuchtung",
+  a_led_body: "Stimmungsvolles Licht für Dämmerung und Nachtfahrten.",
+  a_musik_title: "Bluetooth-Musik",
+  a_musik_body: "Ihre eigene Playlist, verbunden in Sekunden.",
+  a_usb_title: "USB-Ladeanschluss",
+  a_usb_body: "Immer erreichbar, auch mitten auf der Spree.",
+  a_kuehlbox_title: "Kühlbox",
+  a_kuehlbox_body: "Kostenlos inklusive, für mitgebrachte Getränke und Snacks.",
+  a_becher_title: "Getränkehalter",
+  a_becher_body: "Für jeden Gast an Bord, immer griffbereit.",
+  a_sunset_title: "Beste Sonnenuntergänge Berlins",
+  a_sunset_body: "Die schönste Zeit für eine Fahrt auf dem Wasser.",
+  a_booking_title: "Einfache Online-Buchung",
+  a_booking_body: "Datum, Zeit und Dauer wählen — in wenigen Klicks.",
+
+  sicherheit_eyebrow: "Sicherheit",
+  sicherheit_title: "Sicher genießen, sorgenfrei fahren.",
+  sicherheit_body: "Unser Katamaran ist amtlich registriert, verfügt über alle erforderlichen Dokumente und entspricht den deutschen und europäischen Sicherheitsanforderungen. An Bord finden Sie eine vollständige Sicherheitsausstattung.",
+  sicherheit_card_title: "Geprüfte Sicherheit",
+  sicherheit_card_body: "Registriert und geprüft nach deutschen und EU-Standards — für jede Fahrt.",
+  sicherheit_westen_title: "Rettungswesten",
+  sicherheit_westen_body: "Für Erwachsene und Kinder immer an Bord.",
+  sicherheit_hilfe_title: "Erste Hilfe & Brandschutz",
+  sicherheit_hilfe_body: "Erste-Hilfe-Set und Feuerlöscher an Bord.",
+  sicherheit_erreichbar_title: "Jederzeit erreichbar",
+  sicherheit_erreichbar_body: "Fragen vor oder während der Fahrt? Wir sind per Telefon und WhatsApp für Sie da.",
+  sicherheit_img_alt: "Ruban Marine Katamaran mit Sicherheitsausstattung am Steg",
+
+  preise_eyebrow: "Preise",
+  preise_title: "Transparente Preise, keine Überraschungen.",
+  unit_per_hour: "/Std",
+  badge_ab_59: "ab 59€/Std",
+  badge_ab_79: "ab 79€/Std",
+  badge_beliebt: "Beliebt",
+  preise_weekday_title: "Wochentags",
+  preise_weekday_days: "Mo – Fr",
+  preise_weekend_title: "Wochenende",
+  preise_weekend_days: "Sa – So",
+  preise_time_day: "10:00 – 19:00 Uhr",
+  preise_time_evening: "20:00 – 23:00 Uhr",
+  btn_whatsapp: "WhatsApp",
+  preise_img1_alt: "Ruban Marine Katamaran am Tag",
+  preise_img2_alt: "Ruban Marine Katamaran im Abendlicht",
+  preise_opening_title: "Öffnungszeiten",
+  preise_opening_body: "Täglich 10:00–24:00 Uhr. Erste Buchung ab 10:00 Uhr, letzte Buchung um 23:00 Uhr.",
+  preise_storno_title: "Stornobedingungen",
+  preise_storno_body: "Stornierung bis 24 Std. vorher: 100% Rückerstattung. Danach oder am Fahrttag: keine Rückerstattung.",
+
+  katamaran_eyebrow: "Der Katamaran",
+  katamaran_title: "Modern. Stabil. Selbst entwickelt.",
+  katamaran_body1: "Unser moderner Aluminium-Motorkatamaran ist eine eigene Entwicklung von Ruban Marine Berlin — entstanden aus der Kombination von Katamaran, Boot, Wasserfahrzeug und Lounge-Plattform. So vereinen wir Stabilität, Sicherheit, Komfort, einfache Bedienung und ein modernes Erscheinungsbild in einem Gefährt.",
+  katamaran_body2: "Dank des geringen Tiefgangs erreicht der Katamaran auch flachere Gewässer, die für klassische Motorboote schwer zugänglich sind.",
+  katamaran_f1_title: "Bis 4 Erwachsene",
+  katamaran_f1_body: "Familien, Paare, Freunde",
+  katamaran_f2_title: "Registriertes Boot",
+  katamaran_f2_body: "Alle Dokumente vorhanden",
+  katamaran_f3_title: "Einfache Steuerung",
+  katamaran_f3_body: "Lenker wie beim Jetski — auch für Anfänger sofort verständlich",
+  katamaran_img_alt: "Ruban Marine Katamaran am Ufer",
+
+  galerie_eyebrow: "Galerie",
+  galerie_title: "Tag, Dämmerung, Nacht.",
+  filter_tag: "Tag",
+  filter_abend: "Abend",
+  filter_nacht: "Nacht",
+  filter_gaeste: "Gäste",
+  gallery_prev_aria: "Vorherige Bilder",
+  gallery_next_aria: "Weitere Bilder",
+  gallery_zoom_prefix: "Bild vergrößern",
+  lightbox_close_aria: "Schließen",
+  lightbox_prev_aria: "Vorheriges Bild",
+  lightbox_next_aria: "Nächstes Bild",
+
+  buchung_eyebrow: "Buchung",
+  buchung_title: "Wählen Sie Ihre Zeit auf dem Wasser.",
+  buchung_subtitle: "Datum, Uhrzeit und Dauer direkt online auswählen — Sie erhalten sofort eine Bestätigung.",
+
+  standort_eyebrow: "Standort",
+  standort_title: "Unsere Anlegestelle.",
+  standort_address: "Wilhelminenhofstraße 92, 12459 Berlin",
+  standort_body: "Straßenseitige Parkmöglichkeiten in der Nähe. Genaue Hinweise zur Anfahrt erhalten Sie nach Ihrer Buchung.",
+  standort_maps_btn: "In Google Maps öffnen",
+  map_load_title: "Karte laden",
+  map_load_body_html: 'Beim Laden wird eine Verbindung zu Google Maps hergestellt und Ihre IP-Adresse an Google übertragen. Mehr dazu in unserer <button type="button" id="map-privacy-link" class="underline underline-offset-2">Datenschutzerklärung</button>.',
+  map_load_btn: "Karte anzeigen",
+  map_iframe_title: "Google Maps – Anlegestelle Ruban Marine Berlin",
+
+  bewertungen_eyebrow: "Bewertungen",
+  bewertungen_title: "Was unsere Gäste sagen.",
+  bewertungen_subtitle: "Drei Dinge, auf die Sie sich bei jeder Fahrt verlassen können.",
+  bewertungen_quote: "Wir wollten kein gewöhnliches Boot bauen — sondern ein Gefühl: Sonnenuntergänge über der Spree, Zeit mit den Menschen, die einem wichtig sind, und die Gewissheit, dass alles an Bord durchdacht ist.",
+  bewertungen_quote_author: "— Ruban Marine Berlin",
+  bewertungen_video_aria: "Ruban Marine Katamaran am Abend auf der Spree",
+  video_pause_aria: "Video pausieren",
+  video_play_aria: "Video abspielen",
+  bewertungen_f1_title: "Direkt an der Spree",
+  bewertungen_f1_body: "Zentrale Anlegestelle in Berlin-Schöneweide.",
+  bewertungen_f2_title: "Familienfreundlich",
+  bewertungen_f2_body: "Rettungswesten für Kinder immer an Bord.",
+  bewertungen_f3_title: "Transparente Preise",
+  bewertungen_f3_body: "Keine versteckten Kosten, klare Stornobedingungen.",
+  bewertungen_google_body: "Unsere Gäste teilen ihre Erlebnisse auf Google. Lesen Sie aktuelle Bewertungen oder hinterlassen Sie selbst eine — wir freuen uns über jedes Feedback.",
+  bewertungen_google_btn: "Bewertungen auf Google lesen",
+
+  faq_eyebrow: "Fragen & Antworten",
+  faq_title: "Häufig gestellte Fragen",
+  faq_img_alt: "Ruban Marine Katamaran in der Abenddämmerung auf der Spree",
+  faq_cta_title: "Ihre Frage war nicht dabei?",
+  faq_cta_body: "Unser Team hilft gerne — schreiben Sie uns, wir antworten schnell.",
+  faq_cta_btn: "Kontakt aufnehmen",
+  faq_q1: "Benötige ich einen Bootsführerschein?",
+  faq_a1: "Nein. Für unseren Katamaran ist kein Bootsführerschein erforderlich. Die Steuerung ähnelt einem Fahrrad- bzw. Jetski-Lenker und ist auch für Anfänger sofort verständlich.",
+  faq_q2: "Kann ich mit Kindern fahren?",
+  faq_a2: "Ja, der Katamaran ist familienfreundlich. Rettungswesten in Kindergrößen sind immer an Bord.",
+  faq_q3: "Sind Rettungswesten vorhanden?",
+  faq_a3: "Ja. Rettungswesten für Erwachsene und Kinder, ein Rettungsring, ein Erste-Hilfe-Set und ein Feuerlöscher gehören zur Standardausstattung.",
+  faq_q4: "Darf ich eigenes Essen mitbringen?",
+  faq_a4: "Gerne. Eine Kühlbox steht Ihnen kostenlos zur Verfügung.",
+  faq_q5: "Darf ich Getränke mitbringen?",
+  faq_a5: "Ja, sehr gerne. An Bord gibt es einen Getränkehalter für jeden Gast.",
+  faq_q6: "Was passiert bei schlechtem Wetter?",
+  faq_a6: "Bei Sturm, Gewitter oder behördlicher Sperrung der Wasserstraße bieten wir eine kostenlose Umbuchung oder vollständige Rückerstattung an.",
+  faq_q7: "Wie funktioniert die Rückerstattung?",
+  faq_a7: "Bei Stornierung bis mindestens 24 Stunden vor Fahrtbeginn erhalten Sie 100% des Betrags zurück. Bei späterer Stornierung oder Nichterscheinen erfolgt keine Rückerstattung.",
+  faq_q8: "Wo ist der Parkplatz?",
+  faq_a8: "In der Nähe der Anlegestelle stehen straßenseitige Parkmöglichkeiten zur Verfügung. Genaue Hinweise erhalten Sie nach Ihrer Buchung.",
+  faq_q9: "Wo ist die Anlegestelle?",
+  faq_a9: "Wilhelminenhofstraße 92, 12459 Berlin — siehe Karte im Bereich „Standort“.",
+
+  feedback_eyebrow: "Nachricht",
+  feedback_title: "Fragen oder Feedback?",
+  feedback_subtitle: "Schreiben Sie uns — wir antworten so schnell wie möglich.",
+  form_name: "Name",
+  form_email: "E-Mail",
+  form_phone: "Telefon (optional)",
+  form_message: "Nachricht",
+  form_consent_html: 'Ich habe die <button type="button" id="feedback-privacy-link" class="underline underline-offset-2">Datenschutzerklärung</button> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu.',
+  form_send: "Nachricht senden",
+  form_sent_status: "Ihr E-Mail-Programm wird geöffnet, um die Nachricht zu senden.",
+  form_mail_subject_prefix: "Anfrage über die Website von ",
+
+  kontakt_eyebrow: "Kontakt",
+  kontakt_title: "Wir freuen uns auf Sie.",
+  kontakt_phone_label: "Telefon / WhatsApp",
+  kontakt_email_label: "E-Mail",
+  kontakt_address_label: "Anlegestelle",
+  kontakt_hours_label: "Öffnungszeiten",
+  kontakt_hours_value: "Täglich 10:00–24:00 Uhr",
+
+  footer_rights: "Alle Rechte vorbehalten.",
+  footer_impressum: "Impressum",
+  footer_datenschutz: "Datenschutz",
+  footer_agb: "AGB & Stornobedingungen",
+  footer_logo_alt: "Ruban Marine Berlin Logo",
+
+  dlg_impressum_title: "Impressum",
+  dlg_impressum_html: `<p><strong class="text-foreground">Angaben gemäß § 5 TMG</strong></p>
+<p>Ruban Marine Berlin<br>Wilhelminenhofstraße 92<br>12459 Berlin</p>
+<p><strong class="text-foreground">Vertreten durch:</strong><br>[Inhaber/Geschäftsführer – bitte ergänzen]</p>
+<p><strong class="text-foreground">Kontakt:</strong><br>Telefon: +49 178 4421637<br>E-Mail: ruban6467@gmail.com</p>
+<p><strong class="text-foreground">Umsatzsteuer-ID / Steuernummer:</strong><br>[bitte ergänzen, sofern vorhanden]</p>
+<p><strong class="text-foreground">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</strong><br>[Name, Anschrift – bitte ergänzen]</p>
+<p><strong class="text-foreground">EU-Streitschlichtung:</strong><br>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a class="underline" href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>. Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+<p><strong class="text-foreground">Haftung für Inhalte:</strong><br>Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Für externe Links übernehmen wir keine Gewähr für deren Inhalte.</p>`,
+
+  dlg_datenschutz_title: "Datenschutzerklärung",
+  dlg_datenschutz_html: `<p><strong class="text-foreground">1. Verantwortlicher</strong><br>Ruban Marine Berlin, Wilhelminenhofstraße 92, 12459 Berlin, E-Mail: ruban6467@gmail.com, Telefon: +49 178 4421637.</p>
+<p><strong class="text-foreground">2. Erhebung und Verarbeitung von Daten</strong><br>Wir erheben personenbezogene Daten nur, wenn Sie uns diese über das Kontakt- oder Buchungsformular freiwillig mitteilen (Name, E-Mail-Adresse, Telefonnummer, Nachricht sowie Buchungsdetails wie Datum, Uhrzeit und Dauer). Die Verarbeitung erfolgt zur Bearbeitung Ihrer Anfrage bzw. zur Anbahnung eines Vertrages gemäß Art. 6 Abs. 1 lit. b DSGVO.</p>
+<p><strong class="text-foreground">3. WhatsApp-Kontakt</strong><br>Wenn Sie über die WhatsApp-Buttons auf dieser Seite Kontakt aufnehmen, öffnet sich WhatsApp bzw. die WhatsApp-Web-Anwendung des Anbieters WhatsApp Ireland Limited / Meta Platforms Ireland Limited. Es gelten die Datenschutzbestimmungen von WhatsApp. Die Nutzung ist freiwillig.</p>
+<p><strong class="text-foreground">4. Google Maps</strong><br>Auf unserer Standortseite können Sie über einen Button eine Karte von Google Maps laden. Erst nach Ihrem aktiven Klick wird eine Verbindung zu Servern von Google Ireland Limited hergestellt und Ihre IP-Adresse übertragen. Ohne diesen Klick findet keine Verbindung statt. Weitere Informationen: <a class="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+<p><strong class="text-foreground">5. Online-Buchungskalender (SuperSaaS)</strong><br>Für die Online-Buchung nutzen wir den Kalenderdienst des Anbieters SuperSaaS. Das dafür erforderliche Skript wird bereits beim Laden dieser Seite eingebunden, wodurch eine Verbindung zu den Servern von SuperSaaS hergestellt und Ihre IP-Adresse übertragen wird. Wenn Sie über den Kalender eine Buchung vornehmen, verarbeitet SuperSaaS die von Ihnen eingegebenen Daten (z.&nbsp;B. Name, Kontaktdaten, gewählter Termin) in unserem Auftrag. Es gelten die Datenschutzbestimmungen von SuperSaaS. <em>[Anbieteradresse und Link zur Datenschutzerklärung von SuperSaaS bitte ergänzen.]</em></p>
+<p><strong class="text-foreground">6. Schriftarten</strong><br>Diese Website nutzt lokal eingebundene Schriftarten (selbst gehostet). Es findet keine Verbindung zu Google-Fonts-Servern statt, es werden keine Daten an Dritte übermittelt.</p>
+<p><strong class="text-foreground">7. Cookies &amp; Tracking</strong><br>Diese Website verwendet keine Tracking- oder Analyse-Cookies und keine Marketing-Pixel.</p>
+<p><strong class="text-foreground">8. Speicherdauer</strong><br>Wir speichern Ihre Daten nur so lange, wie es zur Bearbeitung Ihrer Anfrage bzw. zur Erfüllung gesetzlicher Aufbewahrungspflichten erforderlich ist.</p>
+<p><strong class="text-foreground">9. Ihre Rechte</strong><br>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie ein Widerspruchsrecht und ein Recht auf Datenübertragbarkeit. Zudem steht Ihnen ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde zu.</p>`,
+
+  dlg_agb_title: "AGB & Stornobedingungen",
+  dlg_agb_html: `<p><strong class="text-foreground">1. Geltungsbereich</strong><br>Diese Bedingungen gelten für alle Buchungen von Katamaran-Fahrten bei Ruban Marine Berlin.</p>
+<p><strong class="text-foreground">2. Buchung</strong><br>Eine Buchungsanfrage über diese Website ist zunächst unverbindlich und wird von uns per WhatsApp, Telefon oder E-Mail bestätigt.</p>
+<p><strong class="text-foreground">3. Preise</strong><br>Es gelten die zum Zeitpunkt der Buchung auf dieser Website ausgewiesenen Preise, gestaffelt nach Wochentag und Uhrzeit.</p>
+<p><strong class="text-foreground">4. Stornierung</strong><br>Bei Stornierung bis mindestens 24 Stunden vor Fahrtbeginn erhalten Sie den vollen Betrag zurück. Bei einer Stornierung weniger als 24 Stunden vor Fahrtbeginn oder am Tag der Fahrt erfolgt keine Rückerstattung.</p>
+<p><strong class="text-foreground">5. Wetter</strong><br>Bei Sturm, Gewitter oder behördlicher Sperrung der Wasserstraße bieten wir eine kostenlose Umbuchung oder vollständige Rückerstattung an.</p>
+<p><strong class="text-foreground">6. Sicherheit &amp; Verhalten an Bord</strong><br>Die Anweisungen des Bootsführers bzw. der Crew sind zu befolgen. Rettungswesten sind auf Anweisung zu tragen. Der Konsum von Alkohol vor und während der Fahrt darf die sichere Nutzung des Bootes nicht beeinträchtigen.</p>
+<p><strong class="text-foreground">7. Haftung</strong><br>Die Teilnahme erfolgt im Rahmen der gesetzlichen Sorgfaltspflichten. Für Schäden, die auf grober Fahrlässigkeit oder Vorsatz der Gäste beruhen, haften diese selbst.</p>`,
+
+  dlg_close_aria: "Schließen",
+  meta_title: "Ruban Marine Berlin — Katamaran mieten auf der Spree",
+  meta_description: "Private Katamaran-Touren auf der Spree in Berlin. Kein Bootsführerschein nötig, bis 4 Gäste, LED-Beleuchtung, Sonnenuntergänge über Berlin. Jetzt online buchen.",
+},
+
+en: {
+  skip_link: "Skip to content",
+  nav_ueber_uns: "About",
+  nav_preise: "Prices",
+  nav_galerie: "Gallery",
+  nav_sicherheit: "Safety",
+  nav_buchung: "Booking",
+  nav_kontakt: "Contact",
+  nav_routen: "Routes",
+  nav_bewertungen: "Reviews",
+  lang_aria: "Language",
+  btn_jetzt_buchen: "Book now",
+  menu_open_aria: "Open menu",
+  menu_close_aria: "Close menu",
+
+  hero_eyebrow: "Berlin · Spree · Private Experience",
+  hero_title_html: 'Discover <span class="gold-text">Berlin</span> from the water',
+  hero_subtitle: "Private catamaran rides on the Spree — unforgettable moments with family, friends, or your partner. Stylish, safe, and with no boating licence required.",
+  hero_meta: "4 guests · No licence needed · from €59/hr",
+  hero_scroll_aria: "Scroll down",
+  hero_video_aria: "Ruban Marine catamaran with LED lighting at night on the Spree in Berlin",
+
+  about_eyebrow: "About Ruban Marine",
+  about_title: "Not just a boat — a feeling.",
+  about_body: "Ruban Marine Berlin stands for catamaran rides that are more than a boat tour: sunsets over the Spree, music on board, time with the people who matter to you. Our catamaran is our own development — built for exactly these moments.",
+  about_link_katamaran: "More about the catamaran",
+  about_why_title: "Why Ruban Marine?",
+  about_f1_title: "No licence required",
+  about_f1_body: "Controls like a jet ski — instantly intuitive, even without experience.",
+  about_f2_title: "For small groups",
+  about_f2_body: "Up to 4 guests — ideal for families, couples, and friends.",
+  about_img1_alt: "Riding into the sunset on the Spree",
+  about_img2_alt: "LED-lit seating area on board",
+
+  routes_eyebrow: "Our Routes",
+  routes_title: "Discover Berlin's most beautiful corners",
+  routes_subtitle: "Every ride passes Berlin's most beautiful waterways — we choose the exact route together, depending on rental duration and your wishes.",
+  route_spree_title: "Spree",
+  route_spree_body: "Experience the heart of Berlin from the water.",
+  route_spree_img_alt: "Riding on the Spree in Berlin",
+  route_treptower_title: "Treptower Park",
+  route_treptower_body: "Past green spaces and historic riverbanks.",
+  route_treptower_img_alt: "Riding past Treptower Park",
+  route_warschauer_title: "Warschauer Brücke",
+  route_warschauer_body: "Industrial charm with the skyline in view.",
+  route_warschauer_img_alt: "Riding towards Warschauer Brücke",
+  route_oberbaum_title: "Oberbaumbrücke",
+  route_oberbaum_body: "The Spree's most famous landmark.",
+  route_oberbaum_img_alt: "Riding towards Oberbaumbrücke",
+  route_kanaele_title: "Picturesque Canals",
+  route_kanaele_body: "Quiet side channels away from the crowds.",
+  route_kanaele_img_alt: "Riding through picturesque canals",
+  route_mueggelsee_title: "Towards Müggelsee",
+  route_mueggelsee_body: "Open water for longer tours.",
+  route_mueggelsee_img_alt: "Riding towards Müggelsee",
+
+  ausstattung_eyebrow: "Amenities",
+  ausstattung_title: "Everything for relaxed hours on board.",
+  ausstattung_subtitle: "Feel free to bring your own food and drinks — everything else is taken care of.",
+  a_sonnendach_title: "Large sun canopy",
+  a_sonnendach_body: "Shade and shelter for relaxed hours on the water.",
+  a_sitze_title: "Comfortable seating",
+  a_sitze_body: "Padded seats with backrests for the whole ride.",
+  a_led_title: "LED & evening lighting",
+  a_led_body: "Atmospheric light for dusk and night rides.",
+  a_musik_title: "Bluetooth music",
+  a_musik_body: "Your own playlist, connected in seconds.",
+  a_usb_title: "USB charging port",
+  a_usb_body: "Always reachable, even in the middle of the Spree.",
+  a_kuehlbox_title: "Cooler box",
+  a_kuehlbox_body: "Included for free, for drinks and snacks you bring along.",
+  a_becher_title: "Cup holders",
+  a_becher_body: "One for every guest on board, always within reach.",
+  a_sunset_title: "Berlin's best sunsets",
+  a_sunset_body: "The most beautiful time for a ride on the water.",
+  a_booking_title: "Easy online booking",
+  a_booking_body: "Choose date, time, and duration — in just a few clicks.",
+
+  sicherheit_eyebrow: "Safety",
+  sicherheit_title: "Enjoy safely, travel worry-free.",
+  sicherheit_body: "Our catamaran is officially registered, carries all required documents, and meets German and European safety requirements. Full safety equipment is on board.",
+  sicherheit_card_title: "Certified safety",
+  sicherheit_card_body: "Registered and inspected to German and EU standards — for every ride.",
+  sicherheit_westen_title: "Life jackets",
+  sicherheit_westen_body: "For adults and children, always on board.",
+  sicherheit_hilfe_title: "First aid & fire safety",
+  sicherheit_hilfe_body: "First-aid kit and fire extinguisher on board.",
+  sicherheit_erreichbar_title: "Reachable anytime",
+  sicherheit_erreichbar_body: "Questions before or during the ride? We're here for you by phone and WhatsApp.",
+  sicherheit_img_alt: "Ruban Marine catamaran with safety equipment at the jetty",
+
+  preise_eyebrow: "Prices",
+  preise_title: "Transparent prices, no surprises.",
+  unit_per_hour: "/hr",
+  badge_ab_59: "from €59/hr",
+  badge_ab_79: "from €79/hr",
+  badge_beliebt: "Popular",
+  preise_weekday_title: "Weekdays",
+  preise_weekday_days: "Mon – Fri",
+  preise_weekend_title: "Weekend",
+  preise_weekend_days: "Sat – Sun",
+  preise_time_day: "10:00 AM – 7:00 PM",
+  preise_time_evening: "8:00 PM – 11:00 PM",
+  btn_whatsapp: "WhatsApp",
+  preise_img1_alt: "Ruban Marine catamaran by day",
+  preise_img2_alt: "Ruban Marine catamaran in evening light",
+  preise_opening_title: "Opening hours",
+  preise_opening_body: "Daily 10:00 AM – midnight. First booking from 10:00 AM, last booking at 11:00 PM.",
+  preise_storno_title: "Cancellation policy",
+  preise_storno_body: "Cancel up to 24 hrs in advance: 100% refund. After that or on the day of the ride: no refund.",
+
+  katamaran_eyebrow: "The Catamaran",
+  katamaran_title: "Modern. Stable. Self-developed.",
+  katamaran_body1: "Our modern aluminium motor catamaran is Ruban Marine Berlin's own development — born from combining a catamaran, boat, watercraft, and lounge platform. This unites stability, safety, comfort, easy handling, and a modern look in a single vessel.",
+  katamaran_body2: "Thanks to its shallow draft, the catamaran also reaches shallower waters that are hard to access for classic motorboats.",
+  katamaran_f1_title: "Up to 4 adults",
+  katamaran_f1_body: "Families, couples, friends",
+  katamaran_f2_title: "Registered boat",
+  katamaran_f2_body: "All documents in place",
+  katamaran_f3_title: "Simple controls",
+  katamaran_f3_body: "Handlebar steering like a jet ski — instantly clear even for beginners",
+  katamaran_img_alt: "Ruban Marine catamaran at the shore",
+
+  galerie_eyebrow: "Gallery",
+  galerie_title: "Day, dusk, night.",
+  filter_tag: "Day",
+  filter_abend: "Evening",
+  filter_nacht: "Night",
+  filter_gaeste: "Guests",
+  gallery_prev_aria: "Previous images",
+  gallery_next_aria: "More images",
+  gallery_zoom_prefix: "Enlarge image",
+  lightbox_close_aria: "Close",
+  lightbox_prev_aria: "Previous image",
+  lightbox_next_aria: "Next image",
+
+  buchung_eyebrow: "Booking",
+  buchung_title: "Choose your time on the water.",
+  buchung_subtitle: "Pick the date, time, and duration directly online — you'll get instant confirmation.",
+
+  standort_eyebrow: "Location",
+  standort_title: "Our jetty.",
+  standort_address: "Wilhelminenhofstraße 92, 12459 Berlin",
+  standort_body: "Street parking is available nearby. You'll receive exact directions after booking.",
+  standort_maps_btn: "Open in Google Maps",
+  map_load_title: "Load map",
+  map_load_body_html: 'Loading the map connects to Google Maps and transmits your IP address to Google. More on this in our <button type="button" id="map-privacy-link" class="underline underline-offset-2">privacy policy</button>.',
+  map_load_btn: "Show map",
+  map_iframe_title: "Google Maps – Ruban Marine Berlin jetty",
+
+  bewertungen_eyebrow: "Reviews",
+  bewertungen_title: "What our guests say.",
+  bewertungen_subtitle: "Three things you can count on for every ride.",
+  bewertungen_quote: "We didn't want to build an ordinary boat — but a feeling: sunsets over the Spree, time with the people who matter, and the certainty that everything on board is thought through.",
+  bewertungen_quote_author: "— Ruban Marine Berlin",
+  bewertungen_video_aria: "Ruban Marine catamaran in the evening on the Spree",
+  video_pause_aria: "Pause video",
+  video_play_aria: "Play video",
+  bewertungen_f1_title: "Right on the Spree",
+  bewertungen_f1_body: "Central jetty in Berlin-Schöneweide.",
+  bewertungen_f2_title: "Family-friendly",
+  bewertungen_f2_body: "Life jackets for children always on board.",
+  bewertungen_f3_title: "Transparent pricing",
+  bewertungen_f3_body: "No hidden costs, clear cancellation terms.",
+  bewertungen_google_body: "Our guests share their experiences on Google. Read recent reviews or leave one yourself — we appreciate every piece of feedback.",
+  bewertungen_google_btn: "Read reviews on Google",
+
+  faq_eyebrow: "Questions & Answers",
+  faq_title: "Frequently asked questions",
+  faq_img_alt: "Ruban Marine catamaran at dusk on the Spree",
+  faq_cta_title: "Didn't find your question?",
+  faq_cta_body: "Our team is happy to help — write to us, we reply quickly.",
+  faq_cta_btn: "Get in touch",
+  faq_q1: "Do I need a boating licence?",
+  faq_a1: "No. No boating licence is required for our catamaran. The controls resemble a bicycle or jet-ski handlebar and are instantly clear, even for beginners.",
+  faq_q2: "Can I ride with children?",
+  faq_a2: "Yes, the catamaran is family-friendly. Child-sized life jackets are always on board.",
+  faq_q3: "Are life jackets provided?",
+  faq_a3: "Yes. Life jackets for adults and children, a life ring, a first-aid kit, and a fire extinguisher are all standard equipment.",
+  faq_q4: "Can I bring my own food?",
+  faq_a4: "Absolutely. A cooler box is available to you free of charge.",
+  faq_q5: "Can I bring drinks?",
+  faq_a5: "Yes, gladly. There's a cup holder on board for every guest.",
+  faq_q6: "What happens in bad weather?",
+  faq_a6: "In case of storms, thunderstorms, or an official closure of the waterway, we offer a free rebooking or a full refund.",
+  faq_q7: "How does the refund work?",
+  faq_a7: "If you cancel at least 24 hours before the ride, you'll get a 100% refund. For later cancellations or no-shows, no refund is given.",
+  faq_q8: "Where can I park?",
+  faq_a8: "Street parking is available near the jetty. You'll receive exact directions after your booking.",
+  faq_q9: "Where is the jetty?",
+  faq_a9: "Wilhelminenhofstraße 92, 12459 Berlin — see the map in the \"Location\" section.",
+
+  feedback_eyebrow: "Message",
+  feedback_title: "Questions or feedback?",
+  feedback_subtitle: "Write to us — we'll reply as quickly as possible.",
+  form_name: "Name",
+  form_email: "Email",
+  form_phone: "Phone (optional)",
+  form_message: "Message",
+  form_consent_html: 'I have read the <button type="button" id="feedback-privacy-link" class="underline underline-offset-2">privacy policy</button> and agree to the processing of my data to handle my request.',
+  form_send: "Send message",
+  form_sent_status: "Your email program is opening to send the message.",
+  form_mail_subject_prefix: "Website inquiry from ",
+
+  kontakt_eyebrow: "Contact",
+  kontakt_title: "We look forward to seeing you.",
+  kontakt_phone_label: "Phone / WhatsApp",
+  kontakt_email_label: "Email",
+  kontakt_address_label: "Jetty",
+  kontakt_hours_label: "Opening hours",
+  kontakt_hours_value: "Daily 10:00 AM – midnight",
+
+  footer_rights: "All rights reserved.",
+  footer_impressum: "Legal notice",
+  footer_datenschutz: "Privacy policy",
+  footer_agb: "Terms & cancellation policy",
+  footer_logo_alt: "Ruban Marine Berlin logo",
+
+  dlg_impressum_title: "Legal notice",
+  dlg_impressum_html: `<p><strong class="text-foreground">Information pursuant to § 5 TMG</strong></p>
+<p>Ruban Marine Berlin<br>Wilhelminenhofstraße 92<br>12459 Berlin, Germany</p>
+<p><strong class="text-foreground">Represented by:</strong><br>[Owner/Managing Director – please add]</p>
+<p><strong class="text-foreground">Contact:</strong><br>Phone: +49 178 4421637<br>Email: ruban6467@gmail.com</p>
+<p><strong class="text-foreground">VAT ID / tax number:</strong><br>[please add, if applicable]</p>
+<p><strong class="text-foreground">Responsible for content pursuant to § 18 (2) MStV:</strong><br>[Name, address – please add]</p>
+<p><strong class="text-foreground">EU dispute resolution:</strong><br>The European Commission provides a platform for online dispute resolution (ODR): <a class="underline" href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>. We are not obliged and not willing to participate in dispute resolution proceedings before a consumer arbitration board.</p>
+<p><strong class="text-foreground">Liability for content:</strong><br>As a service provider, we are responsible for our own content on these pages under general law. We assume no liability for the content of external links.</p>`,
+
+  dlg_datenschutz_title: "Privacy Policy",
+  dlg_datenschutz_html: `<p><strong class="text-foreground">1. Controller</strong><br>Ruban Marine Berlin, Wilhelminenhofstraße 92, 12459 Berlin, Germany, email: ruban6467@gmail.com, phone: +49 178 4421637.</p>
+<p><strong class="text-foreground">2. Collection and processing of data</strong><br>We only collect personal data if you voluntarily provide it to us via the contact or booking form (name, email address, phone number, message, as well as booking details such as date, time, and duration). Processing is carried out to handle your request or to initiate a contract pursuant to Art. 6(1)(b) GDPR.</p>
+<p><strong class="text-foreground">3. WhatsApp contact</strong><br>If you contact us via the WhatsApp buttons on this page, WhatsApp or the WhatsApp Web application of WhatsApp Ireland Limited / Meta Platforms Ireland Limited will open. WhatsApp's privacy policy applies. Use is voluntary.</p>
+<p><strong class="text-foreground">4. Google Maps</strong><br>On our location page, you can load a Google Maps map via a button. Only after you actively click will a connection to Google Ireland Limited's servers be established and your IP address transmitted. Without this click, no connection is made. More information: <a class="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+<p><strong class="text-foreground">5. Online booking calendar (SuperSaaS)</strong><br>For online booking, we use the calendar service provided by SuperSaaS. The required script is already embedded when this page loads, which establishes a connection to SuperSaaS's servers and transmits your IP address. If you make a booking via the calendar, SuperSaaS processes the data you enter (e.g. name, contact details, chosen time slot) on our behalf. SuperSaaS's privacy policy applies. <em>[Provider address and link to SuperSaaS's privacy policy to be added.]</em></p>
+<p><strong class="text-foreground">6. Fonts</strong><br>This website uses locally embedded fonts (self-hosted). No connection to Google Fonts servers is made, and no data is transmitted to third parties.</p>
+<p><strong class="text-foreground">7. Cookies &amp; tracking</strong><br>This website does not use tracking or analytics cookies, nor marketing pixels.</p>
+<p><strong class="text-foreground">8. Storage period</strong><br>We store your data only as long as necessary to handle your request or to comply with statutory retention obligations.</p>
+<p><strong class="text-foreground">9. Your rights</strong><br>You have the right to access, rectify, erase, and restrict the processing of your data, as well as a right to object and a right to data portability. You are also entitled to lodge a complaint with a data protection supervisory authority.</p>`,
+
+  dlg_agb_title: "Terms & Cancellation Policy",
+  dlg_agb_html: `<p><strong class="text-foreground">1. Scope</strong><br>These terms apply to all bookings of catamaran rides with Ruban Marine Berlin.</p>
+<p><strong class="text-foreground">2. Booking</strong><br>A booking request made via this website is initially non-binding and will be confirmed by us via WhatsApp, phone, or email.</p>
+<p><strong class="text-foreground">3. Prices</strong><br>The prices shown on this website at the time of booking apply, tiered by day of the week and time.</p>
+<p><strong class="text-foreground">4. Cancellation</strong><br>If you cancel at least 24 hours before the start of the ride, you will receive a full refund. For cancellations less than 24 hours before the ride or on the day of the ride, no refund will be given.</p>
+<p><strong class="text-foreground">5. Weather</strong><br>In case of storms, thunderstorms, or an official closure of the waterway, we offer a free rebooking or a full refund.</p>
+<p><strong class="text-foreground">6. Safety &amp; conduct on board</strong><br>The instructions of the skipper or crew must be followed. Life jackets must be worn when instructed. Alcohol consumption before and during the ride must not impair the safe operation of the boat.</p>
+<p><strong class="text-foreground">7. Liability</strong><br>Participation takes place within the framework of statutory duties of care. Guests are liable for damages caused by their own gross negligence or intent.</p>`,
+
+  dlg_close_aria: "Close",
+  meta_title: "Ruban Marine Berlin — Rent a Catamaran on the Spree",
+  meta_description: "Private catamaran tours on the Spree in Berlin. No boating licence needed, up to 4 guests, LED lighting, sunsets over Berlin. Book online now.",
+},
+
+ru: {
+  skip_link: "Перейти к содержимому",
+  nav_ueber_uns: "О нас",
+  nav_preise: "Цены",
+  nav_galerie: "Галерея",
+  nav_sicherheit: "Безопасность",
+  nav_buchung: "Бронирование",
+  nav_kontakt: "Контакты",
+  nav_routen: "Маршруты",
+  nav_bewertungen: "Отзывы",
+  lang_aria: "Язык",
+  btn_jetzt_buchen: "Забронировать",
+  menu_open_aria: "Открыть меню",
+  menu_close_aria: "Закрыть меню",
+
+  hero_eyebrow: "Берлин · Шпрее · Частная прогулка",
+  hero_title_html: 'Откройте <span class="gold-text">Берлин</span> с воды',
+  hero_subtitle: "Частные прогулки на катамаране по реке Шпрее — незабываемые моменты с семьёй, друзьями или партнёром. Стильно, безопасно и без прав на управление судном.",
+  hero_meta: "4 гостя · Права не нужны · от 59€/час",
+  hero_scroll_aria: "Прокрутить вниз",
+  hero_video_aria: "Катамаран Ruban Marine с LED-подсветкой ночью на реке Шпрее в Берлине",
+
+  about_eyebrow: "О Ruban Marine",
+  about_title: "Не просто лодка — а особое чувство.",
+  about_body: "Ruban Marine Berlin — это прогулки на катамаране, которые значат больше, чем просто поездка на лодке: закаты над Шпрее, музыка на борту, время с теми, кто вам дорог. Наш катамаран — собственная разработка, созданная именно для таких моментов.",
+  about_link_katamaran: "Подробнее о катамаране",
+  about_why_title: "Почему Ruban Marine?",
+  about_f1_title: "Без прав",
+  about_f1_body: "Управление как на гидроцикле — понятно сразу, даже без опыта.",
+  about_f2_title: "Для небольших групп",
+  about_f2_body: "До 4 гостей — идеально для семей, пар и друзей.",
+  about_img1_alt: "Прогулка навстречу закату по реке Шпрее",
+  about_img2_alt: "Зона отдыха с LED-подсветкой на борту",
+
+  routes_eyebrow: "Наши маршруты",
+  routes_title: "Откройте для себя самые красивые уголки Берлина",
+  routes_subtitle: "Каждая поездка проходит по самым красивым водным путям Берлина — точный маршрут мы выбираем вместе, в зависимости от продолжительности аренды и ваших пожеланий.",
+  route_spree_title: "Шпрее",
+  route_spree_body: "Познакомьтесь с сердцем Берлина с воды.",
+  route_spree_img_alt: "Прогулка по реке Шпрее в Берлине",
+  route_treptower_title: "Трептов-парк",
+  route_treptower_body: "Мимо зелёных зон и исторических набережных.",
+  route_treptower_img_alt: "Прогулка мимо Трептов-парка",
+  route_warschauer_title: "Варшавский мост",
+  route_warschauer_body: "Индустриальный шарм и панорама города.",
+  route_warschauer_img_alt: "Прогулка в сторону Варшавского моста",
+  route_oberbaum_title: "Обербаумбрюке",
+  route_oberbaum_body: "Самая знаменитая достопримечательность Шпрее.",
+  route_oberbaum_img_alt: "Прогулка в сторону моста Обербаумбрюке",
+  route_kanaele_title: "Живописные каналы",
+  route_kanaele_body: "Тихие рукава реки вдали от суеты.",
+  route_kanaele_img_alt: "Прогулка по живописным каналам",
+  route_mueggelsee_title: "В сторону озера Мюггельзе",
+  route_mueggelsee_body: "Открытая вода для более длительных поездок.",
+  route_mueggelsee_img_alt: "Прогулка в сторону озера Мюггельзе",
+
+  ausstattung_eyebrow: "Оснащение",
+  ausstattung_title: "Всё для приятного отдыха на борту.",
+  ausstattung_subtitle: "Свою еду и напитки можно брать с собой в любое время — обо всём остальном мы позаботились.",
+  a_sonnendach_title: "Большой тент от солнца",
+  a_sonnendach_body: "Тень и защита для комфортного отдыха на воде.",
+  a_sitze_title: "Удобные сиденья",
+  a_sitze_body: "Мягкие сиденья со спинкой на всю поездку.",
+  a_led_title: "LED- и вечернее освещение",
+  a_led_body: "Атмосферный свет для сумерек и ночных поездок.",
+  a_musik_title: "Bluetooth-музыка",
+  a_musik_body: "Ваш плейлист — подключается за секунды.",
+  a_usb_title: "USB-зарядка",
+  a_usb_body: "Всегда на связи, даже посреди Шпрее.",
+  a_kuehlbox_title: "Холодильная сумка",
+  a_kuehlbox_body: "Бесплатно предоставляется для напитков и закусок, взятых с собой.",
+  a_becher_title: "Подстаканники",
+  a_becher_body: "Для каждого гостя на борту, всегда под рукой.",
+  a_sunset_title: "Лучшие закаты Берлина",
+  a_sunset_body: "Самое красивое время для прогулки по воде.",
+  a_booking_title: "Простое онлайн-бронирование",
+  a_booking_body: "Выберите дату, время и продолжительность — в несколько кликов.",
+
+  sicherheit_eyebrow: "Безопасность",
+  sicherheit_title: "Наслаждайтесь без забот.",
+  sicherheit_body: "Наш катамаран официально зарегистрирован, имеет все необходимые документы и соответствует немецким и европейским требованиям безопасности. На борту вы найдёте полный комплект средств безопасности.",
+  sicherheit_card_title: "Проверенная безопасность",
+  sicherheit_card_body: "Зарегистрирован и проверен по немецким и европейским стандартам — для каждой поездки.",
+  sicherheit_westen_title: "Спасательные жилеты",
+  sicherheit_westen_body: "Для взрослых и детей — всегда на борту.",
+  sicherheit_hilfe_title: "Первая помощь и противопожарная защита",
+  sicherheit_hilfe_body: "Аптечка первой помощи и огнетушитель на борту.",
+  sicherheit_erreichbar_title: "Всегда на связи",
+  sicherheit_erreichbar_body: "Вопросы до или во время поездки? Мы всегда доступны по телефону и WhatsApp.",
+  sicherheit_img_alt: "Катамаран Ruban Marine со средствами безопасности у причала",
+
+  preise_eyebrow: "Цены",
+  preise_title: "Прозрачные цены, никаких сюрпризов.",
+  unit_per_hour: "/час",
+  badge_ab_59: "от 59€/час",
+  badge_ab_79: "от 79€/час",
+  badge_beliebt: "Популярно",
+  preise_weekday_title: "Будние дни",
+  preise_weekday_days: "Пн – Пт",
+  preise_weekend_title: "Выходные",
+  preise_weekend_days: "Сб – Вс",
+  preise_time_day: "10:00 – 19:00",
+  preise_time_evening: "20:00 – 23:00",
+  btn_whatsapp: "WhatsApp",
+  preise_img1_alt: "Катамаран Ruban Marine днём",
+  preise_img2_alt: "Катамаран Ruban Marine в вечернем свете",
+  preise_opening_title: "Часы работы",
+  preise_opening_body: "Ежедневно с 10:00 до 24:00. Первое бронирование с 10:00, последнее — в 23:00.",
+  preise_storno_title: "Условия отмены",
+  preise_storno_body: "Отмена за 24 часа: полный возврат средств. Позже или в день поездки: без возврата.",
+
+  katamaran_eyebrow: "Катамаран",
+  katamaran_title: "Современный. Устойчивый. Собственная разработка.",
+  katamaran_body1: "Наш современный алюминиевый моторный катамаран — собственная разработка Ruban Marine Berlin, возникшая из сочетания катамарана, лодки, водного транспорта и лаунж-платформы. Так мы объединили в одном судне устойчивость, безопасность, комфорт, простое управление и современный внешний вид.",
+  katamaran_body2: "Благодаря небольшой осадке катамаран проходит и в более мелкие воды, труднодоступные для классических моторных лодок.",
+  katamaran_f1_title: "До 4 взрослых",
+  katamaran_f1_body: "Семьи, пары, друзья",
+  katamaran_f2_title: "Зарегистрированное судно",
+  katamaran_f2_body: "Все документы в наличии",
+  katamaran_f3_title: "Простое управление",
+  katamaran_f3_body: "Руль как на гидроцикле — понятно сразу даже новичкам",
+  katamaran_img_alt: "Катамаран Ruban Marine у берега",
+
+  galerie_eyebrow: "Галерея",
+  galerie_title: "День, сумерки, ночь.",
+  filter_tag: "День",
+  filter_abend: "Вечер",
+  filter_nacht: "Ночь",
+  filter_gaeste: "Гости",
+  gallery_prev_aria: "Предыдущие фото",
+  gallery_next_aria: "Ещё фото",
+  gallery_zoom_prefix: "Увеличить фото",
+  lightbox_close_aria: "Закрыть",
+  lightbox_prev_aria: "Предыдущее фото",
+  lightbox_next_aria: "Следующее фото",
+
+  buchung_eyebrow: "Бронирование",
+  buchung_title: "Выберите время на воде.",
+  buchung_subtitle: "Выберите дату, время и продолжительность прямо онлайн — подтверждение вы получите сразу.",
+
+  standort_eyebrow: "Расположение",
+  standort_title: "Наш причал.",
+  standort_address: "Wilhelminenhofstraße 92, 12459 Berlin",
+  standort_body: "Поблизости есть уличная парковка. Точные указания по проезду вы получите после бронирования.",
+  standort_maps_btn: "Открыть в Google Картах",
+  map_load_title: "Загрузить карту",
+  map_load_body_html: 'При загрузке устанавливается соединение с Google Maps, и ваш IP-адрес передаётся Google. Подробнее в нашей <button type="button" id="map-privacy-link" class="underline underline-offset-2">политике конфиденциальности</button>.',
+  map_load_btn: "Показать карту",
+  map_iframe_title: "Google Карты – причал Ruban Marine Berlin",
+
+  bewertungen_eyebrow: "Отзывы",
+  bewertungen_title: "Что говорят наши гости.",
+  bewertungen_subtitle: "Три вещи, на которые вы можете рассчитывать в каждой поездке.",
+  bewertungen_quote: "Мы хотели создать не обычную лодку, а особое чувство: закаты над Шпрее, время с людьми, которые вам дороги, и уверенность, что всё на борту продумано.",
+  bewertungen_quote_author: "— Ruban Marine Berlin",
+  bewertungen_video_aria: "Катамаран Ruban Marine вечером на реке Шпрее",
+  video_pause_aria: "Приостановить видео",
+  video_play_aria: "Воспроизвести видео",
+  bewertungen_f1_title: "Прямо на Шпрее",
+  bewertungen_f1_body: "Центральный причал в районе Берлин-Шёневайде.",
+  bewertungen_f2_title: "Подходит для семей",
+  bewertungen_f2_body: "Детские спасательные жилеты всегда на борту.",
+  bewertungen_f3_title: "Прозрачные цены",
+  bewertungen_f3_body: "Никаких скрытых платежей, понятные условия отмены.",
+  bewertungen_google_body: "Наши гости делятся впечатлениями в Google. Прочитайте актуальные отзывы или оставьте свой — мы рады любой обратной связи.",
+  bewertungen_google_btn: "Читать отзывы в Google",
+
+  faq_eyebrow: "Вопросы и ответы",
+  faq_title: "Часто задаваемые вопросы",
+  faq_img_alt: "Катамаран Ruban Marine в сумерках на реке Шпрее",
+  faq_cta_title: "Не нашли ответ на свой вопрос?",
+  faq_cta_body: "Наша команда с радостью поможет — напишите нам, мы быстро ответим.",
+  faq_cta_btn: "Связаться с нами",
+  faq_q1: "Нужны ли права на управление судном?",
+  faq_a1: "Нет. Для нашего катамарана права на управление судном не требуются. Управление похоже на руль велосипеда или гидроцикла и понятно сразу, даже новичкам.",
+  faq_q2: "Можно ли кататься с детьми?",
+  faq_a2: "Да, катамаран подходит для семей. Детские спасательные жилеты всегда есть на борту.",
+  faq_q3: "Есть ли спасательные жилеты?",
+  faq_a3: "Да. Спасательные жилеты для взрослых и детей, спасательный круг, аптечка первой помощи и огнетушитель входят в стандартное оснащение.",
+  faq_q4: "Можно ли брать свою еду?",
+  faq_a4: "Конечно. В вашем распоряжении бесплатная холодильная сумка.",
+  faq_q5: "Можно ли брать напитки?",
+  faq_a5: "Да, с удовольствием. На борту есть подстаканник для каждого гостя.",
+  faq_q6: "Что будет при плохой погоде?",
+  faq_a6: "При шторме, грозе или официальном закрытии водного пути мы предлагаем бесплатный перенос поездки или полный возврат средств.",
+  faq_q7: "Как происходит возврат средств?",
+  faq_a7: "При отмене минимум за 24 часа до начала поездки вы получаете 100% возврат средств. При более поздней отмене или неявке возврат не производится.",
+  faq_q8: "Где находится парковка?",
+  faq_a8: "Рядом с причалом есть уличная парковка. Точные указания вы получите после бронирования.",
+  faq_q9: "Где находится причал?",
+  faq_a9: "Wilhelminenhofstraße 92, 12459 Berlin — см. карту в разделе «Расположение».",
+
+  feedback_eyebrow: "Сообщение",
+  feedback_title: "Вопросы или отзыв?",
+  feedback_subtitle: "Напишите нам — мы ответим как можно скорее.",
+  form_name: "Имя",
+  form_email: "Эл. почта",
+  form_phone: "Телефон (необязательно)",
+  form_message: "Сообщение",
+  form_consent_html: 'Я прочитал(а) <button type="button" id="feedback-privacy-link" class="underline underline-offset-2">политику конфиденциальности</button> и согласен(на) на обработку моих данных для обработки моего запроса.',
+  form_send: "Отправить сообщение",
+  form_sent_status: "Открывается ваша почтовая программа для отправки сообщения.",
+  form_mail_subject_prefix: "Запрос с сайта от ",
+
+  kontakt_eyebrow: "Контакты",
+  kontakt_title: "Будем рады вас видеть.",
+  kontakt_phone_label: "Телефон / WhatsApp",
+  kontakt_email_label: "Эл. почта",
+  kontakt_address_label: "Причал",
+  kontakt_hours_label: "Часы работы",
+  kontakt_hours_value: "Ежедневно с 10:00 до 24:00",
+
+  footer_rights: "Все права защищены.",
+  footer_impressum: "Выходные данные",
+  footer_datenschutz: "Конфиденциальность",
+  footer_agb: "Условия и отмена",
+  footer_logo_alt: "Логотип Ruban Marine Berlin",
+
+  dlg_impressum_title: "Выходные данные",
+  dlg_impressum_html: `<p><strong class="text-foreground">Сведения согласно § 5 TMG (нем. закон о телемедиа)</strong></p>
+<p>Ruban Marine Berlin<br>Wilhelminenhofstraße 92<br>12459 Berlin, Германия</p>
+<p><strong class="text-foreground">Представитель:</strong><br>[владелец/руководитель — заполнить]</p>
+<p><strong class="text-foreground">Контакты:</strong><br>Телефон: +49 178 4421637<br>Эл. почта: ruban6467@gmail.com</p>
+<p><strong class="text-foreground">Идентификационный номер плательщика НДС / налоговый номер:</strong><br>[заполнить, если применимо]</p>
+<p><strong class="text-foreground">Ответственный за содержание согласно § 18 абз. 2 MStV:</strong><br>[имя, адрес — заполнить]</p>
+<p><strong class="text-foreground">Разрешение споров в ЕС:</strong><br>Европейская комиссия предоставляет платформу для онлайн-разрешения споров (ODR): <a class="underline" href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>. Мы не обязаны и не готовы участвовать в процедурах разрешения споров в потребительском арбитраже.</p>
+<p><strong class="text-foreground">Ответственность за содержание:</strong><br>Как поставщик услуг, мы несём ответственность за собственный контент на этих страницах в соответствии с общими законами. За содержание внешних ссылок мы ответственности не несём.</p>`,
+
+  dlg_datenschutz_title: "Политика конфиденциальности",
+  dlg_datenschutz_html: `<p><strong class="text-foreground">1. Ответственный за обработку данных</strong><br>Ruban Marine Berlin, Wilhelminenhofstraße 92, 12459 Berlin, Германия, эл. почта: ruban6467@gmail.com, телефон: +49 178 4421637.</p>
+<p><strong class="text-foreground">2. Сбор и обработка данных</strong><br>Мы собираем персональные данные только в том случае, если вы добровольно предоставляете их нам через контактную форму или форму бронирования (имя, адрес эл. почты, номер телефона, сообщение, а также детали бронирования, такие как дата, время и продолжительность). Обработка осуществляется для рассмотрения вашего запроса или для заключения договора согласно ст. 6 абз. 1 лит. b GDPR.</p>
+<p><strong class="text-foreground">3. Связь через WhatsApp</strong><br>Если вы связываетесь с нами через кнопки WhatsApp на этой странице, открывается WhatsApp или веб-приложение WhatsApp Web компании WhatsApp Ireland Limited / Meta Platforms Ireland Limited. Действуют правила конфиденциальности WhatsApp. Использование добровольное.</p>
+<p><strong class="text-foreground">4. Google Карты</strong><br>На странице расположения вы можете загрузить карту Google Maps с помощью кнопки. Только после активного клика устанавливается соединение с серверами Google Ireland Limited и передаётся ваш IP-адрес. Без клика соединение не устанавливается. Подробнее: <a class="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+<p><strong class="text-foreground">5. Онлайн-календарь бронирования (SuperSaaS)</strong><br>Для онлайн-бронирования мы используем сервис календаря поставщика SuperSaaS. Необходимый для этого скрипт подключается уже при загрузке этой страницы, из-за чего устанавливается соединение с серверами SuperSaaS и передаётся ваш IP-адрес. Если вы совершаете бронирование через календарь, SuperSaaS обрабатывает введённые вами данные (например, имя, контактные данные, выбранное время) по нашему поручению. Действует политика конфиденциальности SuperSaaS. <em>[Адрес поставщика и ссылка на политику конфиденциальности SuperSaaS будут добавлены.]</em></p>
+<p><strong class="text-foreground">6. Шрифты</strong><br>Этот сайт использует локально встроенные шрифты (размещены на собственном сервере). Соединение с серверами Google Fonts не устанавливается, данные третьим лицам не передаются.</p>
+<p><strong class="text-foreground">7. Файлы cookie и отслеживание</strong><br>Этот сайт не использует отслеживающие или аналитические файлы cookie, а также маркетинговые пиксели.</p>
+<p><strong class="text-foreground">8. Срок хранения</strong><br>Мы храним ваши данные только столько времени, сколько необходимо для обработки вашего запроса или для соблюдения предусмотренных законом обязательств по хранению.</p>
+<p><strong class="text-foreground">9. Ваши права</strong><br>Вы имеете право на доступ, исправление, удаление и ограничение обработки ваших данных, а также право на возражение и право на переносимость данных. Вы также имеете право подать жалобу в надзорный орган по защите данных.</p>`,
+
+  dlg_agb_title: "Условия и отмена",
+  dlg_agb_html: `<p><strong class="text-foreground">1. Сфера действия</strong><br>Настоящие условия распространяются на все бронирования прогулок на катамаране в Ruban Marine Berlin.</p>
+<p><strong class="text-foreground">2. Бронирование</strong><br>Запрос на бронирование через этот сайт изначально не имеет обязательной силы и подтверждается нами по WhatsApp, телефону или электронной почте.</p>
+<p><strong class="text-foreground">3. Цены</strong><br>Действуют цены, указанные на сайте на момент бронирования, дифференцированные по дню недели и времени.</p>
+<p><strong class="text-foreground">4. Отмена</strong><br>При отмене минимум за 24 часа до начала поездки вы получаете полный возврат средств. При отмене менее чем за 24 часа до начала поездки или в день поездки возврат средств не производится.</p>
+<p><strong class="text-foreground">5. Погода</strong><br>При шторме, грозе или официальном закрытии водного пути мы предлагаем бесплатный перенос поездки или полный возврат средств.</p>
+<p><strong class="text-foreground">6. Безопасность и поведение на борту</strong><br>Указания судоводителя или экипажа должны выполняться. Спасательные жилеты необходимо надевать по указанию. Употребление алкоголя до и во время поездки не должно нарушать безопасную эксплуатацию судна.</p>
+<p><strong class="text-foreground">7. Ответственность</strong><br>Участие осуществляется в рамках установленных законом обязанностей по проявлению осторожности. За ущерб, возникший в результате грубой неосторожности или умысла гостей, они несут ответственность самостоятельно.</p>`,
+
+  dlg_close_aria: "Закрыть",
+  meta_title: "Ruban Marine Berlin — аренда катамарана на реке Шпрее",
+  meta_description: "Частные прогулки на катамаране по реке Шпрее в Берлине. Права на управление судном не нужны, до 4 гостей, LED-подсветка, закаты над Берлином. Забронируйте онлайн.",
+},
+
+ar: {
+  skip_link: "الانتقال إلى المحتوى",
+  nav_ueber_uns: "من نحن",
+  nav_preise: "الأسعار",
+  nav_galerie: "معرض الصور",
+  nav_sicherheit: "السلامة",
+  nav_buchung: "الحجز",
+  nav_kontakt: "تواصل معنا",
+  nav_routen: "المسارات",
+  nav_bewertungen: "التقييمات",
+  lang_aria: "اللغة",
+  btn_jetzt_buchen: "احجز الآن",
+  menu_open_aria: "فتح القائمة",
+  menu_close_aria: "إغلاق القائمة",
+
+  hero_eyebrow: "برلين · نهر شبريه · تجربة خاصة",
+  hero_title_html: 'اكتشف <span class="gold-text">برلين</span> من على الماء',
+  hero_subtitle: "رحلات خاصة بالكاتاماران على نهر شبريه — لحظات لا تُنسى مع العائلة أو الأصدقاء أو شريكك. أنيقة وآمنة ودون الحاجة إلى رخصة قيادة قوارب.",
+  hero_meta: "4 ضيوف · لا حاجة لرخصة قيادة · ابتداءً من 59€/ساعة",
+  hero_scroll_aria: "التمرير للأسفل",
+  hero_video_aria: "كاتاماران Ruban Marine بإضاءة LED ليلاً على نهر شبريه في برلين",
+
+  about_eyebrow: "عن Ruban Marine",
+  about_title: "ليس مجرد قارب — بل شعور خاص.",
+  about_body: "تمثل Ruban Marine Berlin رحلات كاتاماران هي أكثر من مجرد جولة بقارب: غروب الشمس فوق نهر شبريه، موسيقى على متن القارب، ووقت مع من يهمّونك. الكاتاماران الخاص بنا تصميم حصري طوّرناه بأنفسنا — مُصمَّم خصيصًا لهذه اللحظات.",
+  about_link_katamaran: "المزيد عن الكاتاماران",
+  about_why_title: "لماذا Ruban Marine؟",
+  about_f1_title: "بدون رخصة قيادة",
+  about_f1_body: "قيادة تشبه الجت سكي — سهلة الفهم فورًا، حتى بدون خبرة سابقة.",
+  about_f2_title: "للمجموعات الصغيرة",
+  about_f2_body: "حتى 4 ضيوف — مثالي للعائلات والأزواج والأصدقاء.",
+  about_img1_alt: "الإبحار نحو غروب الشمس على نهر شبريه",
+  about_img2_alt: "منطقة جلوس بإضاءة LED على متن القارب",
+
+  routes_eyebrow: "مساراتنا",
+  routes_title: "اكتشف أجمل أركان برلين",
+  routes_subtitle: "تمر كل رحلة بأجمل الممرات المائية في برلين — نختار المسار الدقيق معًا، حسب مدة الحجز ورغباتكم.",
+  route_spree_title: "نهر شبريه",
+  route_spree_body: "عِش قلب برلين النابض من على الماء.",
+  route_spree_img_alt: "الإبحار على نهر شبريه في برلين",
+  route_treptower_title: "حديقة تريبتاور",
+  route_treptower_body: "مرورًا بالمساحات الخضراء والضفاف التاريخية.",
+  route_treptower_img_alt: "الإبحار بمحاذاة حديقة تريبتاور",
+  route_warschauer_title: "جسر فارشاور",
+  route_warschauer_body: "سحر المباني الصناعية وأفق المدينة أمامك.",
+  route_warschauer_img_alt: "الإبحار باتجاه جسر فارشاور",
+  route_oberbaum_title: "جسر أوبرباوم",
+  route_oberbaum_body: "أشهر معلم على نهر شبريه.",
+  route_oberbaum_img_alt: "الإبحار باتجاه جسر أوبرباوم",
+  route_kanaele_title: "القنوات الخلابة",
+  route_kanaele_body: "ممرات مائية هادئة بعيدًا عن الزحام.",
+  route_kanaele_img_alt: "الإبحار عبر القنوات الخلابة",
+  route_mueggelsee_title: "باتجاه بحيرة موغلسي",
+  route_mueggelsee_body: "مياه مفتوحة رحبة للجولات الأطول.",
+  route_mueggelsee_img_alt: "الإبحار باتجاه بحيرة موغلسي",
+
+  ausstattung_eyebrow: "المرافق",
+  ausstattung_title: "كل ما تحتاجه لساعات مريحة على متن القارب.",
+  ausstattung_subtitle: "يمكنكم إحضار طعامكم ومشروباتكم الخاصة في أي وقت — أما كل شيء آخر فنحن نتكفل به.",
+  a_sonnendach_title: "مظلة شمسية كبيرة",
+  a_sonnendach_body: "ظل وحماية لساعات مريحة على الماء.",
+  a_sitze_title: "مقاعد مريحة",
+  a_sitze_body: "مقاعد مبطّنة بمساند ظهر طوال الرحلة.",
+  a_led_title: "إضاءة LED مسائية",
+  a_led_body: "إضاءة ذات أجواء مميزة لرحلات الغسق والليل.",
+  a_musik_title: "موسيقى عبر البلوتوث",
+  a_musik_body: "قائمة تشغيلك الخاصة، متصلة خلال ثوانٍ.",
+  a_usb_title: "منفذ شحن USB",
+  a_usb_body: "ابقَ متصلاً دائمًا، حتى في منتصف نهر شبريه.",
+  a_kuehlbox_title: "صندوق تبريد",
+  a_kuehlbox_body: "متوفر مجانًا للمشروبات والوجبات الخفيفة التي تحضرونها معكم.",
+  a_becher_title: "حوامل أكواب",
+  a_becher_body: "واحد لكل ضيف على متن القارب، دائمًا في متناول اليد.",
+  a_sunset_title: "أجمل غروب شمس في برلين",
+  a_sunset_body: "أجمل وقت للإبحار على الماء.",
+  a_booking_title: "حجز سهل عبر الإنترنت",
+  a_booking_body: "اختر التاريخ والوقت والمدة — خلال نقرات قليلة.",
+
+  sicherheit_eyebrow: "السلامة",
+  sicherheit_title: "استمتع بأمان، وسافر دون قلق.",
+  sicherheit_body: "الكاتاماران الخاص بنا مسجل رسميًا، ويحمل جميع الوثائق المطلوبة، ويستوفي معايير السلامة الألمانية والأوروبية. ستجد على متنه مجموعة كاملة من معدات السلامة.",
+  sicherheit_card_title: "سلامة معتمدة",
+  sicherheit_card_body: "مسجَّل ومفحوص وفق المعايير الألمانية والأوروبية — في كل رحلة.",
+  sicherheit_westen_title: "سترات النجاة",
+  sicherheit_westen_body: "للبالغين والأطفال، متوفرة دائمًا على متن القارب.",
+  sicherheit_hilfe_title: "الإسعافات الأولية والحماية من الحرائق",
+  sicherheit_hilfe_body: "حقيبة إسعافات أولية وطفاية حريق على متن القارب.",
+  sicherheit_erreichbar_title: "متاحون دائمًا",
+  sicherheit_erreichbar_body: "لديك أسئلة قبل أو أثناء الرحلة؟ نحن هنا لخدمتك عبر الهاتف والواتساب.",
+  sicherheit_img_alt: "كاتاماران Ruban Marine مع معدات السلامة عند الرصيف",
+
+  preise_eyebrow: "الأسعار",
+  preise_title: "أسعار شفافة، بلا مفاجآت.",
+  unit_per_hour: "/ساعة",
+  badge_ab_59: "ابتداءً من 59€/ساعة",
+  badge_ab_79: "ابتداءً من 79€/ساعة",
+  badge_beliebt: "الأكثر طلبًا",
+  preise_weekday_title: "أيام الأسبوع",
+  preise_weekday_days: "الإثنين – الجمعة",
+  preise_weekend_title: "عطلة نهاية الأسبوع",
+  preise_weekend_days: "السبت – الأحد",
+  preise_time_day: "10:00 – 19:00",
+  preise_time_evening: "20:00 – 23:00",
+  btn_whatsapp: "واتساب",
+  preise_img1_alt: "كاتاماران Ruban Marine نهارًا",
+  preise_img2_alt: "كاتاماران Ruban Marine في ضوء المساء",
+  preise_opening_title: "ساعات العمل",
+  preise_opening_body: "يوميًا من 10:00 حتى منتصف الليل. أول حجز من الساعة 10:00، وآخر حجز الساعة 23:00.",
+  preise_storno_title: "شروط الإلغاء",
+  preise_storno_body: "الإلغاء حتى 24 ساعة مسبقًا: استرداد كامل. بعد ذلك أو في يوم الرحلة: لا يوجد استرداد.",
+
+  katamaran_eyebrow: "الكاتاماران",
+  katamaran_title: "حديث. مستقر. تصميمنا الخاص.",
+  katamaran_body1: "كاتامارننا الحديث المصنوع من الألومنيوم والمزوَّد بمحرك هو تصميم حصري من Ruban Marine Berlin — وُلد من دمج الكاتاماران والقارب والمركبة المائية ومنصة الاسترخاء. بهذا نجمع بين الثبات والسلامة والراحة وسهولة التشغيل والمظهر العصري في مركب واحد.",
+  katamaran_body2: "بفضل غاطسه الضحل، يصل الكاتاماران أيضًا إلى المياه الضحلة التي يصعب على القوارب الآلية التقليدية الوصول إليها.",
+  katamaran_f1_title: "حتى 4 بالغين",
+  katamaran_f1_body: "عائلات، أزواج، أصدقاء",
+  katamaran_f2_title: "قارب مسجَّل",
+  katamaran_f2_body: "جميع الوثائق متوفرة",
+  katamaran_f3_title: "تحكم بسيط",
+  katamaran_f3_body: "مقود يشبه الجت سكي — سهل الفهم فورًا حتى للمبتدئين",
+  katamaran_img_alt: "كاتاماران Ruban Marine عند الشاطئ",
+
+  galerie_eyebrow: "معرض الصور",
+  galerie_title: "نهارًا، وعند الغسق، وليلاً.",
+  filter_tag: "نهار",
+  filter_abend: "مساء",
+  filter_nacht: "ليل",
+  filter_gaeste: "ضيوف",
+  gallery_prev_aria: "الصور السابقة",
+  gallery_next_aria: "المزيد من الصور",
+  gallery_zoom_prefix: "تكبير الصورة",
+  lightbox_close_aria: "إغلاق",
+  lightbox_prev_aria: "الصورة السابقة",
+  lightbox_next_aria: "الصورة التالية",
+
+  buchung_eyebrow: "الحجز",
+  buchung_title: "اختر وقتك على الماء.",
+  buchung_subtitle: "اختر التاريخ والوقت والمدة مباشرة عبر الإنترنت — وستحصل على تأكيد فوري.",
+
+  standort_eyebrow: "الموقع",
+  standort_title: "رصيفنا.",
+  standort_address: "Wilhelminenhofstraße 92, 12459 Berlin",
+  standort_body: "تتوفر مواقف سيارات على جانب الطريق بالقرب من المكان. ستحصل على تعليمات دقيقة للوصول بعد إتمام الحجز.",
+  standort_maps_btn: "فتح في خرائط جوجل",
+  map_load_title: "تحميل الخريطة",
+  map_load_body_html: 'عند التحميل، يتم الاتصال بخرائط جوجل ونقل عنوان IP الخاص بك إلى جوجل. مزيد من التفاصيل في <button type="button" id="map-privacy-link" class="underline underline-offset-2">سياسة الخصوصية</button> الخاصة بنا.',
+  map_load_btn: "عرض الخريطة",
+  map_iframe_title: "خرائط جوجل – رصيف Ruban Marine Berlin",
+
+  bewertungen_eyebrow: "التقييمات",
+  bewertungen_title: "ماذا يقول ضيوفنا.",
+  bewertungen_subtitle: "ثلاثة أمور يمكنكم الاعتماد عليها في كل رحلة.",
+  bewertungen_quote: "لم نرغب في بناء قارب عادي، بل في خلق شعور: غروب الشمس فوق نهر شبريه، ووقت مع من يهمّك أمرهم، واليقين بأن كل شيء على متن القارب مدروس بعناية.",
+  bewertungen_quote_author: "— Ruban Marine Berlin",
+  bewertungen_video_aria: "كاتاماران Ruban Marine مساءً على نهر شبريه",
+  video_pause_aria: "إيقاف الفيديو مؤقتًا",
+  video_play_aria: "تشغيل الفيديو",
+  bewertungen_f1_title: "مباشرة على نهر شبريه",
+  bewertungen_f1_body: "رصيف مركزي في حي شونيفايده ببرلين.",
+  bewertungen_f2_title: "مناسب للعائلات",
+  bewertungen_f2_body: "سترات نجاة للأطفال متوفرة دائمًا على متن القارب.",
+  bewertungen_f3_title: "أسعار شفافة",
+  bewertungen_f3_body: "بلا تكاليف خفية، وشروط إلغاء واضحة.",
+  bewertungen_google_body: "يشارك ضيوفنا تجاربهم على جوجل. اقرأ أحدث التقييمات أو اترك تقييمك الخاص — نرحّب بكل ملاحظاتكم.",
+  bewertungen_google_btn: "قراءة التقييمات على جوجل",
+
+  faq_eyebrow: "الأسئلة والأجوبة",
+  faq_title: "الأسئلة الشائعة",
+  faq_img_alt: "كاتاماران Ruban Marine عند الغسق على نهر شبريه",
+  faq_cta_title: "لم تجد سؤالك؟",
+  faq_cta_body: "فريقنا سعيد بمساعدتك — راسلنا وسنرد بسرعة.",
+  faq_cta_btn: "تواصل معنا",
+  faq_q1: "هل أحتاج إلى رخصة قيادة قوارب؟",
+  faq_a1: "لا. لا حاجة إلى رخصة قيادة قوارب لكاتامارننا. طريقة القيادة تشبه مقود الدراجة أو الجت سكي، ومفهومة فورًا حتى للمبتدئين.",
+  faq_q2: "هل يمكنني الإبحار مع الأطفال؟",
+  faq_a2: "نعم، الكاتاماران مناسب للعائلات. سترات النجاة بمقاسات الأطفال متوفرة دائمًا على متن القارب.",
+  faq_q3: "هل تتوفر سترات النجاة؟",
+  faq_a3: "نعم. سترات النجاة للبالغين والأطفال، وطوق نجاة، وحقيبة إسعافات أولية، وطفاية حريق، كلها جزء من التجهيزات الأساسية.",
+  faq_q4: "هل يمكنني إحضار طعامي الخاص؟",
+  faq_a4: "بالتأكيد. صندوق التبريد متاح لكم مجانًا.",
+  faq_q5: "هل يمكنني إحضار مشروباتي الخاصة؟",
+  faq_a5: "نعم، بكل سرور. يتوفر على متن القارب حامل أكواب لكل ضيف.",
+  faq_q6: "ماذا يحدث في حال سوء الأحوال الجوية؟",
+  faq_a6: "في حال العواصف أو الرعد أو إغلاق الممر المائي رسميًا، نقدّم إعادة حجز مجانية أو استردادًا كاملًا للمبلغ.",
+  faq_q7: "كيف يتم استرداد الأموال؟",
+  faq_a7: "عند الإلغاء قبل 24 ساعة على الأقل من بدء الرحلة، تحصل على استرداد كامل بنسبة 100%. عند الإلغاء المتأخر أو عدم الحضور، لا يتم استرداد المبلغ.",
+  faq_q8: "أين موقف السيارات؟",
+  faq_a8: "تتوفر مواقف سيارات على جانب الطريق بالقرب من الرصيف. ستحصل على تعليمات دقيقة بعد الحجز.",
+  faq_q9: "أين يقع الرصيف؟",
+  faq_a9: "Wilhelminenhofstraße 92, 12459 Berlin — راجع الخريطة في قسم «الموقع».",
+
+  feedback_eyebrow: "رسالة",
+  feedback_title: "أسئلة أو ملاحظات؟",
+  feedback_subtitle: "راسلنا — سنرد عليك في أسرع وقت ممكن.",
+  form_name: "الاسم",
+  form_email: "البريد الإلكتروني",
+  form_phone: "الهاتف (اختياري)",
+  form_message: "الرسالة",
+  form_consent_html: 'لقد قرأت <button type="button" id="feedback-privacy-link" class="underline underline-offset-2">سياسة الخصوصية</button> وأوافق على معالجة بياناتي لغرض معالجة طلبي.',
+  form_send: "إرسال الرسالة",
+  form_sent_status: "سيتم فتح برنامج البريد الإلكتروني لديك لإرسال الرسالة.",
+  form_mail_subject_prefix: "طلب عبر الموقع من ",
+
+  kontakt_eyebrow: "تواصل معنا",
+  kontakt_title: "يسعدنا التواصل معكم.",
+  kontakt_phone_label: "الهاتف / واتساب",
+  kontakt_email_label: "البريد الإلكتروني",
+  kontakt_address_label: "الرصيف",
+  kontakt_hours_label: "ساعات العمل",
+  kontakt_hours_value: "يوميًا من 10:00 حتى منتصف الليل",
+
+  footer_rights: "جميع الحقوق محفوظة.",
+  footer_impressum: "بيانات الناشر",
+  footer_datenschutz: "سياسة الخصوصية",
+  footer_agb: "الشروط وسياسة الإلغاء",
+  footer_logo_alt: "شعار Ruban Marine Berlin",
+
+  dlg_impressum_title: "بيانات الناشر",
+  dlg_impressum_html: `<p><strong class="text-foreground">بيانات وفقًا للمادة 5 من قانون الإعلام الألماني (TMG)</strong></p>
+<p>Ruban Marine Berlin<br>Wilhelminenhofstraße 92<br>12459 Berlin, ألمانيا</p>
+<p><strong class="text-foreground">يمثلها:</strong><br>[المالك/المدير المسؤول – يُرجى الإكمال]</p>
+<p><strong class="text-foreground">التواصل:</strong><br>الهاتف: 4421637 178 49+<br>البريد الإلكتروني: ruban6467@gmail.com</p>
+<p><strong class="text-foreground">الرقم الضريبي / رقم ضريبة القيمة المضافة:</strong><br>[يُرجى الإكمال إن وُجد]</p>
+<p><strong class="text-foreground">المسؤول عن المحتوى وفقًا للمادة 18 فقرة 2 من MStV:</strong><br>[الاسم، العنوان – يُرجى الإكمال]</p>
+<p><strong class="text-foreground">تسوية المنازعات في الاتحاد الأوروبي:</strong><br>توفّر المفوضية الأوروبية منصة لتسوية المنازعات عبر الإنترنت (ODR): <a class="underline" href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>. نحن غير ملزمين وغير مستعدين للمشاركة في إجراءات تسوية المنازعات أمام هيئة تحكيم استهلاكية.</p>
+<p><strong class="text-foreground">المسؤولية عن المحتوى:</strong><br>بصفتنا مقدم خدمة، نحن مسؤولون عن المحتوى الخاص بنا على هذه الصفحات وفقًا للقوانين العامة. لا نتحمل أي مسؤولية عن محتوى الروابط الخارجية.</p>`,
+
+  dlg_datenschutz_title: "سياسة الخصوصية",
+  dlg_datenschutz_html: `<p><strong class="text-foreground">1. الجهة المسؤولة</strong><br>Ruban Marine Berlin، Wilhelminenhofstraße 92، 12459 Berlin، ألمانيا، البريد الإلكتروني: ruban6467@gmail.com، الهاتف: 4421637 178 49+.</p>
+<p><strong class="text-foreground">2. جمع البيانات ومعالجتها</strong><br>نجمع البيانات الشخصية فقط عندما تقدّمونها لنا طواعيةً عبر نموذج التواصل أو الحجز (الاسم، عنوان البريد الإلكتروني، رقم الهاتف، الرسالة، وكذلك تفاصيل الحجز مثل التاريخ والوقت والمدة). تتم المعالجة لغرض التعامل مع طلبكم أو لغرض إبرام عقد وفقًا للمادة 6(1)(ب) من اللائحة العامة لحماية البيانات (GDPR).</p>
+<p><strong class="text-foreground">3. التواصل عبر واتساب</strong><br>عند التواصل معنا عبر أزرار واتساب على هذه الصفحة، يُفتح تطبيق واتساب أو تطبيق واتساب ويب التابع لشركة WhatsApp Ireland Limited / Meta Platforms Ireland Limited. تسري سياسة الخصوصية الخاصة بواتساب. الاستخدام اختياري.</p>
+<p><strong class="text-foreground">4. خرائط جوجل</strong><br>في صفحة الموقع، يمكنكم تحميل خريطة من Google Maps عبر زر. لا يتم الاتصال بخوادم شركة Google Ireland Limited ونقل عنوان IP الخاص بكم إلا بعد النقر الفعلي منكم. بدون هذا النقر، لا يتم إجراء أي اتصال. لمزيد من المعلومات: <a class="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+<p><strong class="text-foreground">5. تقويم الحجز عبر الإنترنت (SuperSaaS)</strong><br>للحجز عبر الإنترنت، نستخدم خدمة التقويم المقدَّمة من SuperSaaS. يتم تضمين النص البرمجي اللازم لذلك عند تحميل هذه الصفحة، مما يؤدي إلى إنشاء اتصال بخوادم SuperSaaS ونقل عنوان IP الخاص بكم. عند إجراء حجز عبر التقويم، تقوم SuperSaaS بمعالجة البيانات التي تُدخلونها (مثل الاسم وبيانات التواصل والموعد المختار) نيابة عنا. تسري سياسة الخصوصية الخاصة بـ SuperSaaS. <em>[سيُضاف عنوان مزوّد الخدمة ورابط سياسة الخصوصية الخاصة بـ SuperSaaS لاحقًا.]</em></p>
+<p><strong class="text-foreground">6. الخطوط</strong><br>يستخدم هذا الموقع خطوطًا مضمّنة محليًا (مستضافة ذاتيًا). لا يتم إجراء أي اتصال بخوادم Google Fonts، ولا تُنقل أي بيانات إلى أطراف ثالثة.</p>
+<p><strong class="text-foreground">7. ملفات تعريف الارتباط والتتبع</strong><br>لا يستخدم هذا الموقع ملفات تعريف ارتباط للتتبع أو التحليل، ولا وحدات بكسل تسويقية.</p>
+<p><strong class="text-foreground">8. مدة التخزين</strong><br>نحتفظ ببياناتكم فقط للمدة اللازمة لمعالجة طلبكم أو للوفاء بالتزامات الاحتفاظ القانونية.</p>
+<p><strong class="text-foreground">9. حقوقكم</strong><br>لكم الحق في الاطلاع على بياناتكم وتصحيحها وحذفها وتقييد معالجتها، بالإضافة إلى حق الاعتراض وحق نقل البيانات. كما يحق لكم تقديم شكوى لدى إحدى الجهات الإشرافية المعنية بحماية البيانات.</p>`,
+
+  dlg_agb_title: "الشروط وسياسة الإلغاء",
+  dlg_agb_html: `<p><strong class="text-foreground">1. نطاق السريان</strong><br>تسري هذه الشروط على جميع حجوزات رحلات الكاتاماران لدى Ruban Marine Berlin.</p>
+<p><strong class="text-foreground">2. الحجز</strong><br>يكون طلب الحجز عبر هذا الموقع غير ملزم في البداية، ويتم تأكيده من قبلنا عبر واتساب أو الهاتف أو البريد الإلكتروني.</p>
+<p><strong class="text-foreground">3. الأسعار</strong><br>تسري الأسعار الموضحة على هذا الموقع وقت الحجز، والمتدرجة حسب يوم الأسبوع والوقت.</p>
+<p><strong class="text-foreground">4. الإلغاء</strong><br>عند الإلغاء قبل 24 ساعة على الأقل من بدء الرحلة، تحصلون على استرداد كامل للمبلغ. عند الإلغاء قبل أقل من 24 ساعة من بدء الرحلة أو في يوم الرحلة، لا يتم استرداد المبلغ.</p>
+<p><strong class="text-foreground">5. الطقس</strong><br>في حال العواصف أو الرعد أو إغلاق الممر المائي رسميًا، نقدّم إعادة حجز مجانية أو استردادًا كاملًا للمبلغ.</p>
+<p><strong class="text-foreground">6. السلامة والسلوك على متن القارب</strong><br>يجب اتباع تعليمات ربان القارب أو الطاقم. يجب ارتداء سترات النجاة عند الطلب. يجب ألا يؤثر استهلاك الكحول قبل الرحلة وأثناءها على التشغيل الآمن للقارب.</p>
+<p><strong class="text-foreground">7. المسؤولية</strong><br>تتم المشاركة في إطار واجبات العناية القانونية. يتحمل الضيوف مسؤولية الأضرار الناتجة عن إهمالهم الجسيم أو تعمّدهم.</p>`,
+
+  dlg_close_aria: "إغلاق",
+  meta_title: "Ruban Marine Berlin — استئجار كاتاماران على نهر شبريه",
+  meta_description: "رحلات كاتاماران خاصة على نهر شبريه في برلين. لا حاجة لرخصة قيادة قوارب، حتى 4 ضيوف، إضاءة LED، غروب الشمس فوق برلين. احجز الآن عبر الإنترنت.",
+},
+};
+
+const SUPPORTED_LANGS = ['de', 'en', 'ru', 'ar'];
+const RTL_LANGS = ['ar'];
+let currentLang = 'de';
+
+function t(key, lang) {
+  const dict = I18N[lang] || I18N.de;
+  const val = dict[key];
+  return val !== undefined ? val : (I18N.de[key] !== undefined ? I18N.de[key] : key);
+}
+
+function detectInitialLang() {
+  const saved = localStorage.getItem('ruban_lang');
+  if (saved && SUPPORTED_LANGS.includes(saved)) return saved;
+  const nav = (navigator.language || 'de').slice(0, 2).toLowerCase();
+  return SUPPORTED_LANGS.includes(nav) ? nav : 'de';
+}
+
+function wireEmbeddedLinks() {
+  const mapLink = document.getElementById('map-privacy-link');
+  if (mapLink) mapLink.addEventListener('click', () => document.getElementById('dlg-datenschutz').showModal());
+  const feedbackLink = document.getElementById('feedback-privacy-link');
+  if (feedbackLink) feedbackLink.addEventListener('click', () => document.getElementById('dlg-datenschutz').showModal());
+}
+
+function rebuildGalleryAria(lang) {
+  document.querySelectorAll('.gallery-open').forEach(btn => {
+    const idx = Number(btn.dataset.index);
+    const img = window.galleryImages && window.galleryImages[idx];
+    if (img) btn.setAttribute('aria-label', t('gallery_zoom_prefix', lang) + ': ' + img.alt);
+  });
+}
+
+function applyLanguage(lang) {
+  if (!SUPPORTED_LANGS.includes(lang)) lang = 'de';
+  const isFirstRun = !document.documentElement.dataset.langReady;
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL_LANGS.includes(lang) ? 'rtl' : 'ltr';
+  document.documentElement.dataset.langReady = 'true';
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = t(el.dataset.i18n, lang);
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    el.innerHTML = t(el.dataset.i18nHtml, lang);
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+    el.setAttribute('alt', t(el.dataset.i18nAlt, lang));
+  });
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+    el.setAttribute('aria-label', t(el.dataset.i18nAriaLabel, lang));
+  });
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    el.setAttribute('title', t(el.dataset.i18nTitle, lang));
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    el.setAttribute('placeholder', t(el.dataset.i18nPlaceholder, lang));
+  });
+
+  document.title = t('meta_title', lang);
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute('content', t('meta_description', lang));
+
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.dataset.active = (b.dataset.lang === lang) ? 'true' : 'false';
+  });
+
+  wireEmbeddedLinks();
+  rebuildGalleryAria(lang);
+
+  const videoToggleBtn = document.getElementById('video-toggle');
+  const brandVideoEl = document.getElementById('brand-video');
+  if (videoToggleBtn && brandVideoEl) {
+    videoToggleBtn.setAttribute('aria-label', t(brandVideoEl.paused ? 'video_play_aria' : 'video_pause_aria', lang));
+  }
+
+  if (typeof initBookingWidget === 'function' && !isFirstRun) {
+    initBookingWidget(lang);
+  }
+
+  localStorage.setItem('ruban_lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+});
+
+applyLanguage(detectInitialLang());
+
+
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Header scroll state
@@ -1259,13 +2384,15 @@
     { src: 'Ruban/web/IMG_6703.webp', w: 1012, h: 1800, cat: ['abend', 'gaeste'], alt: 'Familie mit Kind an Bord im Abendlicht' },
   ];
 
+  window.galleryImages = galleryImages;
+
   const grid = document.getElementById('gallery-grid');
   galleryImages.forEach((img, i) => {
     const wrap = document.createElement('div');
     wrap.className = 'gallery-item shrink-0 h-[280px] sm:h-[380px] lg:h-[460px]';
     wrap.dataset.cat = img.cat.join(' ');
     wrap.innerHTML = `
-      <button type="button" class="gallery-open img-treat rounded-2xl overflow-hidden h-full block" data-index="${i}" aria-label="Bild vergrößern: ${img.alt}">
+      <button type="button" class="gallery-open img-treat rounded-2xl overflow-hidden h-full block" data-index="${i}" aria-label="${t('gallery_zoom_prefix', currentLang)}: ${img.alt}">
         <img src="${img.src}" width="${img.w}" height="${img.h}" alt="${img.alt}" loading="lazy" class="h-full w-auto">
       </button>`;
     grid.appendChild(wrap);
@@ -1341,10 +2468,10 @@
     const phone = document.getElementById('f-phone').value.trim();
     const message = document.getElementById('f-message').value.trim();
     const status = document.getElementById('feedback-status');
-    const subject = 'Anfrage über die Website von ' + name;
+    const subject = t('form_mail_subject_prefix', currentLang) + name;
     const body = `Name: ${name}\nE-Mail: ${email}\nTelefon: ${phone || '–'}\n\nNachricht:\n${message}`;
     window.location.href = 'mailto:ruban6467@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    status.textContent = 'Ihr E-Mail-Programm wird geöffnet, um die Nachricht zu senden.';
+    status.textContent = t('form_sent_status', currentLang);
     status.classList.remove('hidden');
   });
 
@@ -1357,7 +2484,7 @@
     iframe.style.border = '0';
     iframe.loading = 'lazy';
     iframe.referrerPolicy = 'no-referrer-when-downgrade';
-    iframe.setAttribute('title', 'Google Maps – Anlegestelle Ruban Marine Berlin');
+    iframe.setAttribute('title', t('map_iframe_title', currentLang));
     wrap.appendChild(iframe);
     document.getElementById('map-consent').remove();
   });
@@ -1371,11 +2498,11 @@
       if (brandVideo.paused) {
         brandVideo.play();
         videoToggleIcon.setAttribute('href', '#i-pause');
-        videoToggle.setAttribute('aria-label', 'Video pausieren');
+        videoToggle.setAttribute('aria-label', t('video_pause_aria', currentLang));
       } else {
         brandVideo.pause();
         videoToggleIcon.setAttribute('href', '#i-play');
-        videoToggle.setAttribute('aria-label', 'Video abspielen');
+        videoToggle.setAttribute('aria-label', t('video_play_aria', currentLang));
       }
     });
   }
