@@ -680,9 +680,9 @@
               <p class="text-sm text-foreground/70" data-i18n="preise_time_evening">20:00 – 23:00 Uhr</p>
               <p class="font-display text-3xl gold-text">79€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
             </div>
-            <div class="flex gap-3">
-              <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-gold flex-1 text-xs">Jetzt buchen</a>
-              <a href="https://wa.me/491784421637" data-i18n="btn_whatsapp" class="btn btn-outline flex-1 text-xs">WhatsApp</a>
+            <div class="flex flex-col min-[420px]:flex-row gap-3">
+              <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-gold flex-1 min-w-0 text-xs">Jetzt buchen</a>
+              <a href="https://wa.me/491784421637" data-i18n="btn_whatsapp" class="btn btn-outline flex-1 min-w-0 text-xs">WhatsApp</a>
             </div>
           </div>
         </div>
@@ -706,9 +706,9 @@
               <p class="text-sm text-foreground/70" data-i18n="preise_time_evening">20:00 – 23:00 Uhr</p>
               <p class="font-display text-3xl gold-text">99€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
             </div>
-            <div class="flex gap-3">
-              <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-gold flex-1 text-xs">Jetzt buchen</a>
-              <a href="https://wa.me/491784421637" data-i18n="btn_whatsapp" class="btn btn-outline flex-1 text-xs">WhatsApp</a>
+            <div class="flex flex-col min-[420px]:flex-row gap-3">
+              <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-gold flex-1 min-w-0 text-xs">Jetzt buchen</a>
+              <a href="https://wa.me/491784421637" data-i18n="btn_whatsapp" class="btn btn-outline flex-1 min-w-0 text-xs">WhatsApp</a>
             </div>
           </div>
         </div>
@@ -739,7 +739,7 @@
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
       <div class="reveal relative">
         <div class="img-treat rounded-2xl overflow-hidden shadow-luxury aspect-[3/4]">
-          <img src="Ruban/web/IMG_7940.webp" data-i18n-alt="katamaran_img_alt" alt="Ruban Marine Katamaran am Ufer" class="w-full h-full object-cover">
+          <img src="Ruban/web/IMG_7942.webp" data-i18n-alt="katamaran_img_alt" alt="Ruban Marine Katamaran mit geöffnetem Sonnendach" class="w-full h-full object-cover">
         </div>
       </div>
 
@@ -956,18 +956,7 @@
       </div>
 
       <div>
-        <div class="reveal reveal-delay-1 rounded-2xl p-6 sm:p-7 mb-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 sm:justify-between" style="background: linear-gradient(135deg, oklch(88% .12 90), oklch(78% .15 80));">
-          <div>
-            <p class="font-medium" data-i18n="faq_cta_title" style="color: oklch(16% .012 240);">Ihre Frage war nicht dabei?</p>
-            <p class="text-sm mt-1" data-i18n="faq_cta_body" style="color: oklch(16% .012 240 / .75);">Unser Team hilft gerne — schreiben Sie uns, wir antworten schnell.</p>
-          </div>
-          <a href="https://wa.me/491784421637" class="btn btn-dark shrink-0">
-            <svg class="w-4 h-4"><use href="#i-whatsapp"/></svg>
-            <span data-i18n="faq_cta_btn">Kontakt aufnehmen</span>
-          </a>
-        </div>
-
-        <div class="reveal reveal-delay-2 accordion divide-y divide-border/60 border-t border-b border-border/60">
+        <div class="reveal reveal-delay-1 accordion divide-y divide-border/60 border-t border-b border-border/60">
           <div class="accordion-item" data-open="false">
             <button class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left">
               <span class="font-medium" data-i18n="faq_q1">Benötige ich einen Bootsführerschein?</span>
@@ -1031,6 +1020,17 @@
             </button>
             <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a9">Wilhelminenhofstraße 92, 12459 Berlin — siehe Karte im Bereich „Standort“.</p></div>
           </div>
+        </div>
+
+        <div class="reveal reveal-delay-2 rounded-2xl p-6 sm:p-7 mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 sm:justify-between" style="background: linear-gradient(135deg, oklch(88% .12 90), oklch(78% .15 80));">
+          <div>
+            <p class="font-medium" data-i18n="faq_cta_title" style="color: oklch(16% .012 240);">Ihre Frage war nicht dabei?</p>
+            <p class="text-sm mt-1" data-i18n="faq_cta_body" style="color: oklch(16% .012 240 / .75);">Unser Team hilft gerne — schreiben Sie uns, wir antworten schnell.</p>
+          </div>
+          <a href="https://wa.me/491784421637" class="btn btn-dark shrink-0">
+            <svg class="w-4 h-4"><use href="#i-whatsapp"/></svg>
+            <span data-i18n="faq_cta_btn">Kontakt aufnehmen</span>
+          </a>
         </div>
       </div>
     </div>
@@ -1316,7 +1316,7 @@ de: {
   katamaran_f2_body: "Alle Dokumente vorhanden",
   katamaran_f3_title: "Einfache Steuerung",
   katamaran_f3_body: "Lenker wie beim Jetski — auch für Anfänger sofort verständlich",
-  katamaran_img_alt: "Ruban Marine Katamaran am Ufer",
+  katamaran_img_alt: "Ruban Marine Katamaran mit geöffnetem Sonnendach",
 
   galerie_eyebrow: "Galerie",
   galerie_title: "Tag, Dämmerung, Nacht.",
@@ -1569,7 +1569,7 @@ en: {
   katamaran_f2_body: "All documents in place",
   katamaran_f3_title: "Simple controls",
   katamaran_f3_body: "Handlebar steering like a jet ski — instantly clear even for beginners",
-  katamaran_img_alt: "Ruban Marine catamaran at the shore",
+  katamaran_img_alt: "Ruban Marine catamaran with open sun canopy",
 
   galerie_eyebrow: "Gallery",
   galerie_title: "Day, dusk, night.",
@@ -1822,7 +1822,7 @@ ru: {
   katamaran_f2_body: "Все документы в наличии",
   katamaran_f3_title: "Простое управление",
   katamaran_f3_body: "Руль как на гидроцикле — понятно сразу даже новичкам",
-  katamaran_img_alt: "Катамаран Ruban Marine у берега",
+  katamaran_img_alt: "Катамаран Ruban Marine с открытым тентом от солнца",
 
   galerie_eyebrow: "Галерея",
   galerie_title: "День, сумерки, ночь.",
@@ -2075,7 +2075,7 @@ ar: {
   katamaran_f2_body: "جميع الوثائق متوفرة",
   katamaran_f3_title: "تحكم بسيط",
   katamaran_f3_body: "مقود يشبه الجت سكي — سهل الفهم فورًا حتى للمبتدئين",
-  katamaran_img_alt: "كاتاماران Ruban Marine عند الشاطئ",
+  katamaran_img_alt: "كاتاماران Ruban Marine بمظلة شمسية مفتوحة",
 
   galerie_eyebrow: "معرض الصور",
   galerie_title: "نهارًا، وعند الغسق، وليلاً.",
@@ -2350,22 +2350,21 @@ applyLanguage(detectInitialLang());
   const galleryImages = [
     { src: 'Ruban/web/IMG_7599.webp', w: 1800, h: 1350, cat: ['nacht'], alt: 'Katamaran mit LED-Beleuchtung in der Dämmerung' },
     { src: 'Ruban/web/IMG_7880.webp', w: 1800, h: 1350, cat: ['abend'], alt: 'Sonnenuntergang über der Spree vom Katamaran aus' },
-    { src: 'Ruban/web/IMG_7743.webp', w: 1012, h: 1800, cat: ['abend', 'gaeste'], alt: 'Fahrt in den Sonnenuntergang mit Gast am Steuer' },
+    { src: 'Ruban/web/IMG_7743.webp', w: 1012, h: 1800, cat: ['abend'], alt: 'Fahrt in den Sonnenuntergang mit Gast am Steuer' },
     { src: 'Ruban/web/IMG_7813.webp', w: 1800, h: 1350, cat: ['tag'], alt: 'Katamaran am Steg bei Tageslicht' },
-    { src: 'Ruban/web/IMG_7727.webp', w: 1012, h: 1800, cat: ['nacht', 'gaeste'], alt: 'Nachtfahrt mit bunter LED-Beleuchtung' },
+    { src: 'Ruban/web/IMG_7727.webp', w: 1012, h: 1800, cat: ['nacht'], alt: 'Nachtfahrt mit bunter LED-Beleuchtung' },
     { src: 'Ruban/web/IMG_7770.webp', w: 1012, h: 1800, cat: ['tag', 'gaeste'], alt: 'Gäste bei einer Tagesfahrt auf der Spree' },
     { src: 'Ruban/web/IMG_7600.webp', w: 1309, h: 1800, cat: ['nacht'], alt: 'Katamaran mit türkiser LED-Beleuchtung am Abend' },
-    { src: 'Ruban/web/IMG_7885.webp', w: 1350, h: 1800, cat: ['abend', 'gaeste'], alt: 'Gast genießt den Sonnenuntergang an Bord' },
+    { src: 'Ruban/web/IMG_7885.webp', w: 1350, h: 1800, cat: ['abend'], alt: 'Gast genießt den Sonnenuntergang an Bord' },
     { src: 'Ruban/web/IMG_7810.webp', w: 1800, h: 1350, cat: ['tag'], alt: 'Katamaran am Anleger' },
     { src: 'Ruban/web/IMG_7734.webp', w: 1012, h: 1800, cat: ['nacht'], alt: 'Beleuchtete Sitzbereiche am Abend' },
-    { src: 'Ruban/web/IMG_7768.webp', w: 1012, h: 1800, cat: ['tag', 'gaeste'], alt: 'Gast steuert den Katamaran bei Tag' },
+    { src: 'Ruban/web/IMG_7768.webp', w: 1012, h: 1800, cat: ['tag'], alt: 'Gast steuert den Katamaran bei Tag' },
     { src: 'Ruban/web/IMG_7637.webp', w: 1350, h: 1800, cat: ['nacht'], alt: 'Nachtfahrt mit Positionslichtern' },
-    { src: 'Ruban/web/IMG_7892.webp', w: 1350, h: 1800, cat: ['abend', 'gaeste'], alt: 'Portrait eines Gastes im Abendlicht' },
+    { src: 'Ruban/web/IMG_7892.webp', w: 1350, h: 1800, cat: ['abend'], alt: 'Portrait eines Gastes im Abendlicht' },
     { src: 'Ruban/web/IMG_7942.webp', w: 1012, h: 1800, cat: ['tag'], alt: 'Katamaran mit geöffnetem Sonnendach' },
-    { src: 'Ruban/web/IMG_7728.webp', w: 1012, h: 1800, cat: ['nacht', 'gaeste'], alt: 'Fahrt bei Nacht mit Blick auf beleuchtete Ufer' },
-    { src: 'Ruban/web/IMG_7766.webp', w: 1012, h: 1800, cat: ['tag', 'gaeste'], alt: 'Gast am Steuer bei bewölktem Himmel' },
+    { src: 'Ruban/web/IMG_7728.webp', w: 1012, h: 1800, cat: ['nacht'], alt: 'Fahrt bei Nacht mit Blick auf beleuchtete Ufer' },
+    { src: 'Ruban/web/IMG_7766.webp', w: 1012, h: 1800, cat: ['tag'], alt: 'Gast am Steuer bei bewölktem Himmel' },
     { src: 'Ruban/web/IMG_7608.webp', w: 1350, h: 1800, cat: ['nacht'], alt: 'Cockpit bei Nacht mit blauer Beleuchtung' },
-    { src: 'Ruban/web/IMG_7940.webp', w: 1012, h: 1800, cat: ['tag'], alt: 'Katamaran am Ufer bei Tag' },
     { src: 'Ruban/web/IMG_7756.webp', w: 1012, h: 1800, cat: ['nacht'], alt: 'Blick über das beleuchtete Deck bei Nacht' },
     { src: 'Ruban/web/IMG_7646.webp', w: 1350, h: 1800, cat: ['nacht'], alt: 'LED-beleuchtetes Cockpit am Abend' },
     { src: 'Ruban/web/IMG_7814.webp', w: 1800, h: 1350, cat: ['tag'], alt: 'Katamaran am Steg im Sonnenlicht' },
