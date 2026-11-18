@@ -122,6 +122,10 @@
   :focus-visible { outline: 2px solid oklch(82% .14 85); outline-offset: 3px; border-radius: 4px; }
 
   .text-balance { text-wrap: balance; }
+  h1, h2, h3, h4 { text-wrap: balance; }
+  p, li, dd, dt, figcaption, label { text-wrap: pretty; }
+  p, li, dd, dt, figcaption, label, .accordion-trigger > span { -webkit-hyphens: auto; hyphens: auto; }
+  h1, h2, h3, h4 { -webkit-hyphens: manual; hyphens: manual; }
 
   .reveal {
     opacity: 0;
@@ -413,15 +417,15 @@
   <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 pb-10 sm:pb-14 pt-36 w-full">
     <p class="reveal is-visible hero-eyebrow text-xs sm:text-sm tracking-[0.3em] font-medium uppercase mb-6" data-i18n="hero_eyebrow">Auf der Messe · Entwickelt in Deutschland</p>
 
-    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+    <div class="flex flex-col xl:flex-row xl:items-end xl:justify-between gap-10">
       <div class="max-w-3xl">
-        <h1 class="reveal is-visible reveal-delay-1 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em]">
+        <h1 class="reveal is-visible reveal-delay-1 font-display whitespace-nowrap text-[clamp(1.5rem,8.6vw,3.75rem)] sm:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em]">
           RUBAN MARINE <span class="gold-text">400</span>
         </h1>
         <p class="reveal is-visible reveal-delay-1 mt-4 font-display text-2xl sm:text-3xl text-foreground/90 tracking-[-0.02em] text-balance" data-i18n="hero_title_sub">Der Katamaran mit Jet-Ski-Lenker</p>
       </div>
 
-      <div class="reveal is-visible reveal-delay-2 lg:max-w-md lg:pb-2">
+      <div class="reveal is-visible reveal-delay-2 max-w-xl xl:max-w-md xl:pb-2">
         <p class="text-foreground/75 text-base lead" data-i18n="hero_subtitle">Vier Sitze, ein Motorradlenker statt Steuerrad und ein Rumpf aus Marine-Aluminium. Gebaut für Freizeit, Vermietung und Tourismus.</p>
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <a href="#anfrage" class="btn btn-gold">
@@ -434,21 +438,21 @@
     </div>
 
     <dl class="reveal is-visible reveal-delay-3 hero-stats mt-12 rounded-2xl grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-foreground/10 overflow-hidden">
-      <div class="p-5 sm:p-6">
+      <div class="p-4 sm:p-6">
         <dt class="text-[11px] uppercase tracking-[0.2em] text-muted-foreground" data-i18n="stat_length">Länge</dt>
-        <dd class="mt-1.5 font-display text-2xl sm:text-3xl tracking-[-0.02em]">4,00 m</dd>
+        <dd class="mt-1.5 font-display whitespace-nowrap text-base min-[360px]:text-lg md:text-xl lg:text-3xl tracking-[-0.02em]">4,00 m</dd>
       </div>
-      <div class="p-5 sm:p-6">
+      <div class="p-4 sm:p-6">
         <dt class="text-[11px] uppercase tracking-[0.2em] text-muted-foreground" data-i18n="stat_capacity">Personen</dt>
-        <dd class="mt-1.5 font-display text-2xl sm:text-3xl tracking-[-0.02em]">4</dd>
+        <dd class="mt-1.5 font-display whitespace-nowrap text-base min-[360px]:text-lg md:text-xl lg:text-3xl tracking-[-0.02em]">4</dd>
       </div>
-      <div class="p-5 sm:p-6">
+      <div class="p-4 sm:p-6">
         <dt class="text-[11px] uppercase tracking-[0.2em] text-muted-foreground" data-i18n="stat_engine">Antrieb</dt>
-        <dd class="mt-1.5 font-display text-2xl sm:text-3xl tracking-[-0.02em]" data-i18n="stat_engine_value">15 PS / E</dd>
+        <dd class="mt-1.5 font-display whitespace-nowrap text-base min-[360px]:text-lg md:text-xl lg:text-3xl tracking-[-0.02em]" data-i18n="stat_engine_value">15 PS / E</dd>
       </div>
-      <div class="p-5 sm:p-6">
+      <div class="p-4 sm:p-6">
         <dt class="text-[11px] uppercase tracking-[0.2em] text-muted-foreground" data-i18n="stat_price">Preis</dt>
-        <dd class="mt-1.5 font-display text-2xl sm:text-3xl tracking-[-0.02em] gold-text" data-i18n="stat_price_value">ab 21.000 €</dd>
+        <dd class="mt-1.5 font-display whitespace-nowrap text-base min-[360px]:text-lg md:text-xl lg:text-3xl tracking-[-0.02em] gold-text" data-i18n="stat_price_value">ab 21.000 €</dd>
       </div>
     </dl>
   </div>
@@ -470,12 +474,12 @@
       <div class="reveal reveal-delay-1">
         <div class="divider-gold mb-6"></div>
         <p class="eyebrow mb-4" data-i18n="about_eyebrow">Über den Katamaran</p>
-        <h2 class="h-section text-4xl sm:text-5xl text-balance mb-6" data-i18n="about_title">Fahrgefühl wie auf dem Jetski. Platz wie auf einer Lounge.</h2>
+        <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance mb-6" data-i18n="about_title">Jetski-Feeling am Lenker. Lounge-Komfort an Bord.</h2>
         <p class="text-foreground/75 lead" data-i18n="about_body1">Der RUBAN MARINE 400 ist ein moderner viersitziger Aluminium-Katamaran, entwickelt in Deutschland. Er verbindet eigenständiges Design und den Komfort eines Freizeitboots mit einer Steuerung, die von Wassermotorrädern inspiriert ist.</p>
         <p class="mt-4 text-foreground/75 lead" data-i18n="about_body2">Statt eines klassischen Steuerrads lenken Sie mit einem Motorradlenker — einfach, ergonomisch und sofort intuitiv. Ob für den privaten Ausflug oder den gewerblichen Einsatz in Verleih, Tourismus und Hotellerie: Der 400 macht das Wasser für jeden zugänglich.</p>
 
         <h3 class="font-display text-lg mt-10 mb-5" data-i18n="use_title">Einsatzbereiche</h3>
-        <div class="grid grid-cols-2 gap-x-6 gap-y-6">
+        <div class="grid sm:grid-cols-2 gap-x-6 gap-y-6">
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 mt-0.5 shrink-0 text-gold"><use href="#i-home"/></svg>
             <div><p class="text-sm font-medium" data-i18n="use1_title">Privat</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="use1_body">Familienausflüge und Touren mit Freunden auf Seen und Flüssen</p></div>
@@ -502,12 +506,12 @@
       <div class="reveal flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
         <div class="max-w-xl">
           <p class="eyebrow mb-4" data-i18n="family_eyebrow">Die Modellreihe</p>
-          <h3 class="h-section text-3xl sm:text-4xl text-balance" data-i18n="family_title">Größer gedacht: Fahrgast-Katamarane bis 20 Meter.</h3>
+          <h3 class="h-section text-[clamp(1.25rem,6.4vw,1.45rem)] sm:text-3xl xl:text-4xl text-balance" data-i18n="family_title">Größer gedacht: Katamarane bis 20 Meter.</h3>
         </div>
         <p class="text-sm text-muted-foreground lead max-w-sm" data-i18n="family_body">Für Ausflugsschifffahrt, Gastronomie und Events fertigen wir Katamarane mit Panoramaverglasung für bis zu 35 Gäste.</p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="grid lg:grid-cols-2 gap-6">
         <article class="reveal card-surface card-lift rounded-2xl overflow-hidden flex flex-col">
           <div class="img-treat aspect-[16/10]">
             <img src="Ruban/web/messe/IMG_0403.webp" width="1800" height="1157" data-i18n-alt="rm20_img_alt" alt="RUBAN MARINE 20 als schwimmendes Restaurant bei Sonnenuntergang in Berlin" class="w-full h-full object-cover" loading="lazy">
@@ -515,7 +519,7 @@
           </div>
           <div class="p-6 sm:p-8 flex flex-col gap-4 flex-1">
             <div class="flex items-baseline justify-between gap-4 flex-wrap">
-              <h4 class="font-display text-2xl tracking-[-0.02em]">RUBAN MARINE 20</h4>
+              <h4 class="font-display text-[clamp(1rem,5.3vw,1.25rem)] sm:text-2xl tracking-[-0.02em]">RUBAN MARINE 20</h4>
               <p class="text-sm font-semibold gold-text" data-i18n="rm20_price">ab 300.000 €</p>
             </div>
             <p class="text-sm text-foreground/70 lead" data-i18n="rm20_body">Premium-Fahrgast-Katamaran als Geschäftsplattform auf dem Wasser: schwimmendes Restaurant, Panorama-Café, Ausflugsschiff oder Eventlocation — im Sommer unterwegs, im Winter am Steg.</p>
@@ -538,7 +542,7 @@
           </div>
           <div class="p-6 sm:p-8 flex flex-col gap-4 flex-1">
             <div class="flex items-baseline justify-between gap-4 flex-wrap">
-              <h4 class="font-display text-2xl tracking-[-0.02em]">RUBAN MARINE PANORAMA</h4>
+              <h4 class="font-display text-[clamp(1rem,5.3vw,1.25rem)] sm:text-2xl tracking-[-0.02em]">RUBAN MARINE PANORAMA</h4>
               <p class="text-sm font-semibold gold-text" data-i18n="price_on_request">Preis auf Anfrage</p>
             </div>
             <p class="text-sm text-foreground/70 lead" data-i18n="pano_body">Premium-Fahrgast-Katamarane mit verschiebbaren Glaswänden: offen im Sommer, geschlossen im Winter, komfortabel das ganze Jahr. Für Ausflüge, Firmenfeiern, Hochzeiten und Gastronomie.</p>
@@ -565,10 +569,10 @@
       <div class="reveal max-w-2xl mx-auto text-center mb-14">
         <div class="flex justify-center mb-6"><div class="divider-gold mx-auto"></div></div>
         <p class="eyebrow mb-4" data-i18n="benefits_eyebrow">Vorteile</p>
-        <h2 class="h-section text-4xl sm:text-5xl text-balance" data-i18n="benefits_title">Zwölf Gründe für den RUBAN MARINE 400</h2>
+        <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance" data-i18n="benefits_title">Zwölf gute Gründe</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10">
         <div class="reveal flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-handlebar"/></svg></span><p class="font-medium mt-1" data-i18n="b1_t">Jet-Ski-Steuerung</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b1_b">Bequemer Motorradlenker und ergonomisches Bedienfeld — sofort verständlich.</p></div>
         <div class="reveal reveal-delay-1 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-seat"/></svg></span><p class="font-medium mt-1" data-i18n="b2_t">Vier bequeme Sitze</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b2_b">Komfortabler Platz für vier Erwachsene.</p></div>
         <div class="reveal reveal-delay-2 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-hull"/></svg></span><p class="font-medium mt-1" data-i18n="b3_t">Robuster Aluminiumrumpf</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b3_b">Leicht, langlebig und korrosionsbeständig.</p></div>
@@ -593,7 +597,7 @@
       <div class="reveal max-w-xl">
         <div class="divider-gold mb-6"></div>
         <p class="eyebrow mb-4" data-i18n="specs_eyebrow">Technische Daten</p>
-        <h2 class="h-section text-4xl sm:text-5xl" data-i18n="specs_title">Alle Daten auf einen Blick.</h2>
+        <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl" data-i18n="specs_title">Alle Daten auf einen Blick.</h2>
       </div>
       <div class="reveal flex flex-wrap gap-2" role="tablist" data-i18n-aria-label="specs_tabs_aria" aria-label="Modell wählen">
         <button type="button" role="tab" class="spec-tab pill text-xs font-semibold px-5 py-2.5 rounded-full border" data-tab="rm400" data-active="true" aria-selected="true" aria-controls="panel-rm400">RM 400</button>
@@ -605,7 +609,7 @@
     <!-- RM 400 -->
     <div id="panel-rm400" class="spec-panel grid lg:grid-cols-5 gap-6 lg:gap-8" role="tabpanel">
       <div class="reveal lg:col-span-3 card-surface rounded-2xl overflow-hidden">
-        <div class="px-6 sm:px-8 py-5 border-b border-border/60 flex items-center justify-between gap-4">
+        <div class="px-6 sm:px-8 py-5 border-b border-border/60 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           <h3 class="font-display text-lg">RUBAN MARINE 400</h3>
           <span class="text-xs text-muted-foreground" data-i18n="specs_made">Entwickelt in Deutschland</span>
         </div>
@@ -635,7 +639,7 @@
     <!-- RM 20 -->
     <div id="panel-rm20" class="spec-panel grid lg:grid-cols-5 gap-6 lg:gap-8" role="tabpanel" hidden>
       <div class="lg:col-span-3 card-surface rounded-2xl overflow-hidden">
-        <div class="px-6 sm:px-8 py-5 border-b border-border/60 flex items-center justify-between gap-4">
+        <div class="px-6 sm:px-8 py-5 border-b border-border/60 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           <h3 class="font-display text-lg">RUBAN MARINE 12 / 15 / 20</h3>
           <span class="text-xs text-muted-foreground" data-i18n="specs_custom">Individuell auf Bestellung</span>
         </div>
@@ -666,7 +670,7 @@
     <!-- PANORAMA -->
     <div id="panel-panorama" class="spec-panel grid lg:grid-cols-5 gap-6 lg:gap-8" role="tabpanel" hidden>
       <div class="lg:col-span-3 card-surface rounded-2xl overflow-hidden">
-        <div class="px-6 sm:px-8 py-5 border-b border-border/60 flex items-center justify-between gap-4">
+        <div class="px-6 sm:px-8 py-5 border-b border-border/60 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           <h3 class="font-display text-lg">PANORAMA 12 / 15 / 20</h3>
           <span class="text-xs text-muted-foreground" data-i18n="specs_custom">Individuell auf Bestellung</span>
         </div>
@@ -703,7 +707,7 @@
       <img src="Ruban/web/messe/IMG_0424.webp" width="1800" height="1350" alt="" class="absolute inset-0 -z-[2] w-full h-full object-cover" loading="lazy">
       <div class="px-6 py-14 sm:px-14 sm:py-20 lg:py-24 max-w-2xl">
         <p class="eyebrow mb-4" data-i18n="cta_eyebrow">Live auf der Messe</p>
-        <h2 class="h-section text-4xl sm:text-5xl text-balance" data-i18n="cta_title">Setzen Sie sich ans Steuer.</h2>
+        <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance" data-i18n="cta_title">Setzen Sie sich ans Steuer.</h2>
         <p class="mt-5 text-foreground/80 lead" data-i18n="cta_body">Nehmen Sie auf dem RUBAN MARINE 400 Platz, prüfen Sie die Verarbeitung und sprechen Sie direkt mit dem Hersteller. Wir erstellen Ihnen ein individuelles Angebot — für Ihre Ausstattung und Ihren Einsatz.</p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a href="#anfrage" class="btn btn-gold">
@@ -731,7 +735,7 @@
       <div class="reveal max-w-3xl">
         <div class="divider-gold mb-6"></div>
         <p class="eyebrow mb-4" data-i18n="gallery_eyebrow">Fotos &amp; Videos</p>
-        <h2 class="h-section text-4xl sm:text-5xl" data-i18n="gallery_title">Tag, Abend, Nacht — in Fahrt.</h2>
+        <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl" data-i18n="gallery_title">Tag, Abend, Nacht — in Fahrt.</h2>
       </div>
     </div>
 
@@ -786,11 +790,11 @@
       <div class="reveal order-2 lg:order-1">
         <div class="divider-gold mb-6"></div>
         <p class="eyebrow mb-4" data-i18n="company_eyebrow">Über das Unternehmen</p>
-        <h2 class="h-section text-4xl sm:text-5xl text-balance mb-6" data-i18n="company_title">Ruban Marine — Katamarane aus Berlin.</h2>
+        <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance mb-6" data-i18n="company_title">Ruban Marine — Katamarane aus Berlin.</h2>
         <p class="text-foreground/75 lead" data-i18n="company_body1">Ruban Marine entwickelt und fertigt Aluminium-Katamarane in Deutschland — vom kompakten Viersitzer bis zum 20-Meter-Fahrgastschiff. Jedes Boot entsteht nach den Anforderungen unserer Kunden: Größe, Grundriss, Ausstattung und Antrieb.</p>
         <p class="mt-4 text-foreground/75 lead" data-i18n="company_body2">Der RUBAN MARINE 400 ist kein Prototyp: In Berlin ist er als Mietboot täglich auf der Spree im Einsatz — gesteuert von Gästen, die zum ersten Mal am Lenker sitzen. Diese Praxiserfahrung fließt direkt in jedes neue Boot ein.</p>
 
-        <div class="mt-10 grid sm:grid-cols-2 gap-4">
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-1 gap-4">
           <div class="card-surface rounded-2xl p-5 flex items-start gap-4"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-flag"/></svg></span><div><p class="text-sm font-medium" data-i18n="c1_t">Entwickelt in Deutschland</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="c1_b">Konstruktion und Fertigung aus einer Hand</p></div></div>
           <div class="card-surface rounded-2xl p-5 flex items-start gap-4"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-hull"/></svg></span><div><p class="text-sm font-medium" data-i18n="c2_t">Marine-Aluminium</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="c2_b">Leicht, robust und korrosionsbeständig</p></div></div>
           <div class="card-surface rounded-2xl p-5 flex items-start gap-4"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-sliders"/></svg></span><div><p class="text-sm font-medium" data-i18n="c3_t">Individuelle Fertigung</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="c3_b">Ausstattung und Antrieb nach Wunsch</p></div></div>
@@ -817,7 +821,7 @@
     <div class="reveal text-center mb-12">
       <div class="flex justify-center mb-6"><div class="divider-gold mx-auto"></div></div>
       <p class="eyebrow mb-4" data-i18n="form_eyebrow">Anfrage</p>
-      <h2 class="h-section text-4xl sm:text-5xl text-balance" data-i18n="form_title">Fordern Sie Ihr Angebot an.</h2>
+      <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance" data-i18n="form_title">Fordern Sie Ihr Angebot an.</h2>
       <p class="mt-4 text-foreground/70 lead" data-i18n="form_subtitle">Erzählen Sie uns von Ihrem Vorhaben — wir melden uns persönlich mit einem individuellen Angebot.</p>
     </div>
 
@@ -881,7 +885,7 @@
         <div class="reveal">
           <div class="divider-gold mb-6"></div>
           <p class="eyebrow mb-4" data-i18n="faq_eyebrow">Fragen &amp; Antworten</p>
-          <h2 class="h-section text-4xl sm:text-5xl" data-i18n="faq_title">Häufig gestellte Fragen</h2>
+          <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl" data-i18n="faq_title">Häufige Fragen</h2>
         </div>
         <div class="reveal reveal-delay-1 img-treat rounded-2xl overflow-hidden shadow-luxury mt-8 aspect-[4/5] hidden lg:block">
           <img src="Ruban/web/messe/IMG_0416.webp" width="1013" height="1800" data-i18n-alt="faq_img_alt" alt="Gäste unter dem Dach des RUBAN MARINE 400 bei einer Fahrt" class="w-full h-full object-cover object-[50%_40%]" loading="lazy">
@@ -936,10 +940,10 @@
     <div class="reveal max-w-2xl mb-14">
       <div class="divider-gold mb-6"></div>
       <p class="eyebrow mb-4" data-i18n="contact_eyebrow">Kontakt</p>
-      <h2 class="h-section text-4xl sm:text-5xl text-balance" data-i18n="contact_title">Sprechen wir über Ihr Boot.</h2>
+      <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance" data-i18n="contact_title">Sprechen wir über Ihr Boot.</h2>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-5">
       <a href="tel:+491784421637" class="reveal card-surface card-lift rounded-2xl p-7 flex flex-col gap-4 active:scale-[.98]">
         <svg class="w-7 h-7 text-gold"><use href="#i-phone"/></svg>
         <div><p class="text-xs text-muted-foreground uppercase tracking-wide mb-1" data-i18n="contact_phone">Telefon</p><p class="text-sm font-medium">+49 178 4421637</p></div>
@@ -954,7 +958,7 @@
       </a>
       <div class="reveal reveal-delay-3 card-surface rounded-2xl p-7 flex flex-col gap-4">
         <svg class="w-7 h-7 text-gold"><use href="#i-pin"/></svg>
-        <div><p class="text-xs text-muted-foreground uppercase tracking-wide mb-1" data-i18n="contact_address">Standort Berlin</p><p class="text-sm font-medium">Wilhelminenhofstraße 92, 12459 Berlin</p></div>
+        <div><p class="text-xs text-muted-foreground uppercase tracking-wide mb-1" data-i18n="contact_address">Standort Berlin</p><p class="text-sm font-medium">Wilhelminenhofstraße 92<br>12459 Berlin</p></div>
       </div>
     </div>
   </div>
@@ -991,7 +995,7 @@
 <dialog id="dlg-impressum" class="w-full max-w-2xl">
   <div class="card-surface rounded-2xl m-4 sm:m-0 p-7 sm:p-10 max-h-[85vh] overflow-y-auto">
     <div class="flex items-start justify-between mb-6">
-      <h3 class="font-display text-3xl" data-i18n="footer_impressum">Impressum</h3>
+      <h3 class="font-display text-2xl sm:text-3xl" data-i18n="footer_impressum">Impressum</h3>
       <button type="button" class="dlg-close p-1 text-muted-foreground hover:text-foreground active:scale-95 transition-transform" data-i18n-aria-label="close_aria" aria-label="Schließen"><svg class="w-6 h-6"><use href="#i-close"/></svg></button>
     </div>
     <div class="text-sm text-foreground/75 leading-[1.8] space-y-4" data-i18n-html="impressum_html">
@@ -1010,7 +1014,7 @@
 <dialog id="dlg-privacy" class="w-full max-w-2xl">
   <div class="card-surface rounded-2xl m-4 sm:m-0 p-7 sm:p-10 max-h-[85vh] overflow-y-auto">
     <div class="flex items-start justify-between mb-6">
-      <h3 class="font-display text-3xl" data-i18n="privacy_title">Datenschutzerklärung</h3>
+      <h3 class="font-display text-2xl sm:text-3xl" data-i18n="privacy_title">Datenschutzerklärung</h3>
       <button type="button" class="dlg-close p-1 text-muted-foreground hover:text-foreground active:scale-95 transition-transform" data-i18n-aria-label="close_aria" aria-label="Schließen"><svg class="w-6 h-6"><use href="#i-close"/></svg></button>
     </div>
     <div class="text-sm text-foreground/75 leading-[1.8] space-y-4" data-i18n-html="privacy_html">
@@ -1059,7 +1063,7 @@
     use4_title: 'Service & municipalities', use4_body: 'Special versions for waterway maintenance and inspection',
     use_note: 'Commercial use is subject to the applicable regulations and the necessary permits.',
     family_eyebrow: 'The model range',
-    family_title: 'Thinking bigger: passenger catamarans up to 20 metres.',
+    family_title: 'Thinking bigger: boats up to 20 metres.',
     family_body: 'For excursion services, hospitality and events we build catamarans with panoramic glazing for up to 35 guests.',
     rm20_img_alt: 'RUBAN MARINE 20 as a floating restaurant at sunset in Berlin',
     rm20_price: 'from €300,000',
@@ -1070,7 +1074,7 @@
     price_on_request: 'Price on request',
     pano_body: 'Premium passenger catamarans with sliding glass walls: open in summer, closed in winter, comfortable all year round. For excursions, corporate events, weddings and hospitality.',
     benefits_eyebrow: 'Benefits',
-    benefits_title: 'Twelve reasons for the RUBAN MARINE 400',
+    benefits_title: '12 reasons to choose this boat',
     b1_t: 'Jet-ski steering', b1_b: 'Comfortable motorcycle handlebar and an ergonomic control panel — instantly clear.',
     b2_t: 'Four comfortable seats', b2_b: 'Comfortable room for four adults.',
     b3_t: 'Sturdy aluminium hull', b3_b: 'Lightweight, durable and corrosion-resistant.',
@@ -1130,7 +1134,7 @@
     form_message: 'Your message', form_message_ph: 'e.g. desired equipment, quantity, delivery date',
     form_consent_html: 'I have read the <button type="button" class="open-privacy underline underline-offset-2 hover:text-foreground">privacy policy</button> and agree to the processing of my data to handle my enquiry.',
     form_send: 'Send enquiry', form_sent: 'Your email program is opening — just send the prepared message.', form_subject: 'Enquiry RUBAN MARINE — ',
-    faq_eyebrow: 'Questions & answers', faq_title: 'Frequently asked questions',
+    faq_eyebrow: 'Questions & answers', faq_title: 'Common questions',
     faq_img_alt: 'Guests under the roof of the RUBAN MARINE 400 during a cruise',
     faq_q1: 'How much does the RUBAN MARINE 400 cost?',
     faq_a1: 'The BASE version without engine starts at €21,000, the PETROL version with a petrol engine up to 15 hp at €25,000. The ELECTRIC version is priced individually. VAT and delivery terms depend on the agreed specification.',
@@ -1183,7 +1187,7 @@
     use4_title: 'Сервисные службы', use4_body: 'Специальные версии для обслуживания водоёмов и инспекций',
     use_note: 'Коммерческое использование осуществляется при соблюдении применимых требований и наличии необходимых разрешений.',
     family_eyebrow: 'Модельный ряд',
-    family_title: 'Масштабнее: пассажирские катамараны до 20 метров.',
+    family_title: 'Масштабнее: катамараны до 20 метров.',
     family_body: 'Для экскурсий, ресторанного бизнеса и мероприятий мы строим катамараны с панорамным остеклением вместимостью до 35 гостей.',
     rm20_img_alt: 'RUBAN MARINE 20 — плавучий ресторан на закате в Берлине',
     rm20_price: 'от 300 000 €',
@@ -1194,7 +1198,7 @@
     price_on_request: 'Цена по запросу',
     pano_body: 'Премиальные пассажирские катамараны с раздвижными стеклянными стенами: открытые летом, закрытые зимой, комфортные круглый год. Для экскурсий, корпоративов, свадеб и ресторанов.',
     benefits_eyebrow: 'Преимущества',
-    benefits_title: 'Двенадцать причин выбрать RUBAN MARINE 400',
+    benefits_title: '12 причин выбрать этот катамаран',
     b1_t: 'Управление Jet Ski Style', b1_b: 'Удобный мотоциклетный руль и эргономичная панель управления.',
     b2_t: 'Четыре удобных сиденья', b2_b: 'Комфортное размещение четырёх взрослых.',
     b3_t: 'Прочный алюминиевый корпус', b3_b: 'Лёгкий, долговечный и устойчивый к коррозии.',
@@ -1247,7 +1251,7 @@
     c3_t: 'Индивидуальное производство', c3_b: 'Оборудование и двигатель по вашему выбору',
     c4_t: 'В ежедневной эксплуатации', c4_b: 'Проверен в прокате на Шпрее',
     company_img_alt: 'RUBAN MARINE 400 у причала в Берлине, вид сбоку',
-    form_eyebrow: 'Запрос', form_title: 'Запросите предложение.',
+    form_eyebrow: 'Заявка', form_title: 'Запрос предложения',
     form_subtitle: 'Расскажите о ваших планах — мы лично свяжемся с вами и подготовим индивидуальное предложение.',
     form_name: 'Имя', form_email: 'Эл. почта', form_phone: 'Телефон (необязательно)', form_model: 'Модель', form_model_unsure: 'Пока не решил(а)',
     form_use: 'Планируемое использование', form_use1: 'Частное', form_use2: 'Прокат / туризм', form_use3: 'Отель, кемпинг или база отдыха', form_use4: 'Ресторан / мероприятия', form_use5: 'Дилер / перепродажа', form_use6: 'Другое',
@@ -1389,7 +1393,7 @@
     document.querySelectorAll('.spec-table').forEach(dl => {
       const rows = SPECS[dl.dataset.spec] || [];
       dl.innerHTML = rows.map(([label, value]) => `
-        <div class="spec-row grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-4 px-6 sm:px-8 py-3.5">
+        <div class="spec-row grid sm:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-0.5 sm:gap-4 px-6 sm:px-8 py-3.5">
           <dt class="text-muted-foreground">${pick(label, lang)}</dt>
           <dd class="font-medium text-foreground">${pick(value, lang)}</dd>
         </div>`).join('');
@@ -1620,7 +1624,199 @@
     document.querySelectorAll('.lang-btn').forEach(b => { b.dataset.active = b.dataset.lang === lang ? 'true' : 'false'; });
     renderSpecs(lang);
     renderGallery(lang);
+    typeset(document.body);
   }
+
+  /* ---------- Typography: no dangling short words, no one-word lines ---------- */
+  const NB = ' ';
+  // Function words that must not end a line (1–2 letter words are always included).
+  const SHORT_WORDS = new Set([
+    // de
+    'der', 'die', 'das', 'den', 'dem', 'des', 'ein', 'eine', 'einen', 'einem', 'einer', 'eines', 'und', 'oder', 'mit', 'für', 'von', 'vom', 'bis', 'zum', 'zur', 'aus', 'bei', 'beim', 'auf', 'per', 'ohne', 'über', 'nach', 'statt', 'durch', 'unter', 'sowie', 'wie', 'als',
+    // en
+    'the', 'and', 'for', 'nor', 'but', 'via', 'with', 'from', 'into', 'onto', 'over', 'than',
+    // ru
+    'для', 'при', 'без', 'над', 'под', 'про', 'или', 'как', 'через', 'перед', 'после', 'между', 'около', 'вместо',
+  ]);
+  const stripPunct = w => w.replace(/^[«„“"'(\[+]+|[»“”"'),.:;!?\]]+$/g, '');
+  function isShort(token) {
+    if (token.includes('MARINE')) return false;                   // model names ("RUBAN MARINE 400") are not quantities
+    const last = token.split(NB).pop();
+    if (/[.,:;!?)»“”]$/.test(last)) return false;                 // never glue across punctuation
+    const w = stripPunct(last);
+    if (!w) return false;
+    if (/^(ли|же|ж|бы|б|ль)$/u.test(w)) return false;            // particles belong to the previous word
+    if (/^\d[\d.,\/–-]*[%*]?$/.test(w)) return true;              // a number stays with its unit
+    if (/^\p{L}{1,2}$/u.test(w) && w === w.toLowerCase()) return true; // 1–2 letter lowercase words
+    if (/^\p{Lu}\p{Ll}?$/u.test(w) && /^(In|Im|Am|An|Zu|Ab|Mit|Für|Bei|Auf|Von|Bis|A|I|In|On|At|By|To|Of|В|С|К|У|О|А|И|На|По|За|Из|От|До|Для)$/u.test(w)) return true;
+    return SHORT_WORDS.has(w.toLowerCase());
+  }
+  function bindShortWords(s) {
+    const parts = s.split(' ');
+    let out = parts[0];
+    for (let i = 1; i < parts.length; i++) {
+      const prev = parts[i - 1], cur = parts[i];
+      const glue = prev !== '' && (
+        isShort(prev) ||
+        /^(ли|же|ж|бы|б|ль)[,.;:!?]*$/u.test(cur) ||                 // "Легко ли", "так же"
+        /^[—–]/.test(cur) ||                                         // no line starts with a dash
+        cur === '/' || prev === '/' && /^\d/.test(cur) ||             // "12 / 15 / 20", "a / b"
+        /^(€|₽|%|kg|кг|m|м|PS|kWh|кВт·ч)(?![\p{L}])/u.test(cur)       // unit stays with its number
+      );
+      out += (glue ? NB : ' ') + cur;
+    }
+    return out;
+  }
+  window.__typoIsShort = isShort; // used by the automated line-break check
+  function textNodes(el) {
+    const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    const list = [];
+    while (w.nextNode()) list.push(w.currentNode);
+    return list;
+  }
+  // Static pass: bind short words / numbers / dashes (width-independent).
+  const TYPESET_SEL = 'h1, h2, h3, h4, p, li, dt, dd, figcaption, .accordion-trigger > span, label > span';
+  const nodeBase = new WeakMap();   // text node -> text after the static pass
+  const elState = new WeakMap();    // element -> { base, fixed, width }
+  function typeset(root) {
+    root.querySelectorAll(TYPESET_SEL).forEach(el => {
+      const st = elState.get(el);
+      const tc = el.textContent;
+      if (st && (tc === st.base || tc === st.fixed)) return;
+      const isHeading = el.matches('h1, h2, h3, h4');
+      textNodes(el).forEach(n => {
+        let d = n.data
+          .replace(/\b(RUBAN|Ruban) (MARINE|Marine)\b/g, '$1' + NB + '$2')          // brand never splits
+          .replace(/\b(MARINE) (\d+|PANORAMA)\b/g, '$1' + NB + '$2')
+          .replace(/\b(PANORAMA) (\d+)\b/g, '$1' + NB + '$2')
+          .replace(/\bJet Ski\b/g, 'Jet' + NB + 'Ski');
+        if (d.includes(' ')) d = bindShortWords(d);
+        if (isHeading) d = d.replace(/(\p{L})-(\p{L})/gu, '$1\u2011$2');       // no breaks at hyphens in headings
+        if (d !== n.data) n.data = d;
+        nodeBase.set(n, n.data);
+      });
+      elState.set(el, { base: el.textContent, fixed: null, width: -1 });
+      if (resizeObs) resizeObs.observe(el);
+    });
+    fixOrphans(root);
+  }
+
+  // Measured pass: remove one-word lines by joining a lonely word to a
+  // neighbour — a join is kept only if it reduces one-word lines and nothing
+  // overflows or gets force-broken. Re-runs whenever the block width changes.
+  function wordTokens(el) {
+    const toks = [];
+    textNodes(el).forEach(n => {
+      const re = /[^ \n\t]+/g; let m;
+      while ((m = re.exec(n.data))) toks.push({ node: n, start: m.index, end: m.index + m[0].length, text: m[0] });
+    });
+    return toks;
+  }
+  function rectsOf(node, s, e) {
+    const r = document.createRange(); r.setStart(node, s); r.setEnd(node, e);
+    return [...r.getClientRects()].filter(x => x.width > 0);
+  }
+  function layoutInfo(el) {
+    const toks = wordTokens(el);
+    const pieces = [];   // one entry per rendered fragment: {top, tok, whole}
+    let broken = el.scrollWidth > el.clientWidth + 1;
+    toks.forEach((t, i) => {
+      const rs = rectsOf(t.node, t.start, t.end);
+      if (!rs.length) return;
+      if (t.text.includes(NB)) {
+        let off = t.start, prevTop = null;
+        t.text.split(NB).forEach(sub => {
+          const sr = rectsOf(t.node, off, off + sub.length);
+          if (sr.length) { if (prevTop !== null && Math.abs(sr[0].top - prevTop) > 4) broken = true; prevTop = sr[sr.length - 1].top; }
+          off += sub.length + 1;
+        });
+      }
+      const tops = [];
+      rs.forEach(r => { if (!tops.some(x => Math.abs(x - r.top) < 4)) tops.push(r.top); });
+      tops.forEach(top => pieces.push({ top, tok: i, whole: tops.length === 1 }));
+    });
+    const lines = [];
+    pieces.forEach(pc => { const L = lines.find(l => Math.abs(l.top - pc.top) < 4); if (L) L.p.push(pc); else lines.push({ top: pc.top, p: [pc] }); });
+    // one-word line: a single, whole (not hyphen-split) word that is not an NBSP-joined group
+    const singles = lines.length > 1
+      ? lines.filter(L => L.p.length === 1 && L.p[0].whole && !toks[L.p[0].tok].text.includes(NB)).map(L => L.p[0].tok)
+      : [];
+    return { toks, singles, broken };
+  }
+  function gapBetween(a, b) {
+    if (b.start > 0 && b.node.data[b.start - 1] === ' ') return { node: b.node, i: b.start - 1 };
+    if (a.node.data[a.end] === ' ') return { node: a.node, i: a.end };
+    return null;
+  }
+  const setChar = (g, ch) => { g.node.data = g.node.data.slice(0, g.i) + ch + g.node.data.slice(g.i + 1); };
+  function fixOrphan(el) {
+    const st = elState.get(el);
+    if (!st || !el.getClientRects().length) return;
+    const width = el.clientWidth;
+    if (width === st.width && el.textContent === st.fixed) return;
+    textNodes(el).forEach(n => { const b = nodeBase.get(n); if (b != null && n.data !== b) n.data = b; });
+    {
+      let info = layoutInfo(el);
+      for (let round = 0; round < 4 && info.singles.length; round++) {
+        const n = info.toks.length;
+        if (n < 2 || n > 80) break;
+        let best = null;
+        for (let a = 0; a < n - 1; a++) {
+          const g = gapBetween(info.toks[a], info.toks[a + 1]);
+          if (!g) continue;
+          setChar(g, NB);
+          const next = layoutInfo(el);
+          setChar(g, ' ');
+          if (!next.broken && next.singles.length < info.singles.length &&
+              (!best || next.singles.length < best.singles)) best = { a, singles: next.singles.length };
+          if (best && best.singles === 0) break;
+        }
+        if (!best) {
+          // fallback: two joins together, among the last words of the block
+          const from = Math.max(0, n - 11);
+          let pairFix = null;
+          outer: for (let a = from; a < n - 1; a++) for (let c = a + 1; c < n - 1; c++) {
+            const g1 = gapBetween(info.toks[a], info.toks[a + 1]);
+            const g2 = gapBetween(info.toks[c], info.toks[c + 1]);
+            if (!g1 || !g2) continue;
+            setChar(g1, NB); setChar(g2, NB);
+            const next = layoutInfo(el);
+            setChar(g2, ' '); setChar(g1, ' ');
+            if (!next.broken && next.singles.length < info.singles.length) { pairFix = [a, c]; break outer; }
+          }
+          if (!pairFix) break;
+          pairFix.map(a => gapBetween(info.toks[a], info.toks[a + 1])).forEach(g => setChar(g, NB));
+          info = layoutInfo(el);
+          continue;
+        }
+        setChar(gapBetween(info.toks[best.a], info.toks[best.a + 1]), NB);
+        info = layoutInfo(el);
+      }
+    }
+    st.fixed = el.textContent;
+    st.width = width;
+  }
+  function fixOrphans(root) {
+    (root || document).querySelectorAll(TYPESET_SEL).forEach(el => {
+      if (!el.querySelector('p, li, dt, dd')) fixOrphan(el);
+    });
+  }
+  const resizeObs = 'ResizeObserver' in window ? new ResizeObserver(entries => {
+    requestAnimationFrame(() => entries.forEach(e => {
+      const st = elState.get(e.target);
+      if (st && e.target.clientWidth !== st.width) fixOrphan(e.target);
+    }));
+  }) : null;
+  // Line breaks change when the webfont arrives, without any width change.
+  function refixAll() {
+    document.querySelectorAll(TYPESET_SEL).forEach(el => { const st = elState.get(el); if (st) st.width = -1; });
+    fixOrphans(document);
+  }
+  if (document.fonts) {
+    document.fonts.addEventListener('loadingdone', refixAll);
+    document.fonts.ready.then(refixAll);
+  }
+  window.addEventListener('load', refixAll);
 
   document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => {
     try { localStorage.setItem('ruban_lang', b.dataset.lang); } catch (e) {}
