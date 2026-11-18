@@ -12,3 +12,11 @@ Ruban/*.JPG.jpeg
 Ruban/*.MP4
 Ruban/logo.PNG
 Нові матеріали/
+
+# Admin panel secrets — never commit the real password hash/session secret.
+# Copy admin/config.example.php to admin/config.php on the server instead.
+admin/config.php
+
+# Photos uploaded live through the admin panel are server-managed content,
+# not source-controlled assets.
+Ruban/web/uploads/

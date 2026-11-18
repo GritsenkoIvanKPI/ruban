@@ -1,0 +1,1751 @@
+{
+  "sections": [
+    {
+      "id": "nav",
+      "label": "Navigation"
+    },
+    {
+      "id": "hero",
+      "label": "Startbereich (Hero)"
+    },
+    {
+      "id": "about",
+      "label": "Über uns"
+    },
+    {
+      "id": "routes",
+      "label": "Routen"
+    },
+    {
+      "id": "ausstattung",
+      "label": "Ausstattung"
+    },
+    {
+      "id": "sicherheit",
+      "label": "Sicherheit"
+    },
+    {
+      "id": "preise",
+      "label": "Preise"
+    },
+    {
+      "id": "katamaran",
+      "label": "Katamaran"
+    },
+    {
+      "id": "galerie",
+      "label": "Galerie"
+    },
+    {
+      "id": "buchung",
+      "label": "Buchung"
+    },
+    {
+      "id": "cookies",
+      "label": "Cookie-Banner"
+    },
+    {
+      "id": "standort",
+      "label": "Standort"
+    },
+    {
+      "id": "bewertungen",
+      "label": "Bewertungen"
+    },
+    {
+      "id": "faq",
+      "label": "FAQ"
+    },
+    {
+      "id": "feedback",
+      "label": "Kontaktformular"
+    },
+    {
+      "id": "kontakt",
+      "label": "Kontaktdaten"
+    },
+    {
+      "id": "footer",
+      "label": "Footer"
+    },
+    {
+      "id": "legal",
+      "label": "Rechtliche Texte"
+    },
+    {
+      "id": "seo",
+      "label": "SEO (Titel & Beschreibung)"
+    }
+  ],
+  "fields": [
+    {
+      "key": "skip_link",
+      "section": "nav",
+      "label": "Skip Link",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "nav_ueber_uns",
+      "section": "nav",
+      "label": "Ueber Uns",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "nav_preise",
+      "section": "nav",
+      "label": "Preise",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "nav_galerie",
+      "section": "nav",
+      "label": "Galerie",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "nav_sicherheit",
+      "section": "nav",
+      "label": "Sicherheit",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "nav_buchung",
+      "section": "nav",
+      "label": "Buchung",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "nav_kontakt",
+      "section": "nav",
+      "label": "Kontakt",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "nav_routen",
+      "section": "nav",
+      "label": "Routen",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "nav_bewertungen",
+      "section": "nav",
+      "label": "Bewertungen",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "lang_aria",
+      "section": "nav",
+      "label": "Lang — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "btn_jetzt_buchen",
+      "section": "nav",
+      "label": "Btn Jetzt Buchen",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "menu_open_aria",
+      "section": "nav",
+      "label": "Menu Open — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "menu_close_aria",
+      "section": "nav",
+      "label": "Menu Close — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "hero_eyebrow",
+      "section": "hero",
+      "label": "Hero — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "hero_title_html",
+      "section": "hero",
+      "label": "Hero Title — Text (mit HTML)",
+      "multiline": true,
+      "html": true
+    },
+    {
+      "key": "hero_subtitle",
+      "section": "hero",
+      "label": "Hero — Untertitel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "hero_meta",
+      "section": "hero",
+      "label": "Hero Meta",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "hero_scroll_aria",
+      "section": "hero",
+      "label": "Hero Scroll — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "hero_video_aria",
+      "section": "hero",
+      "label": "Hero Video — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "about_eyebrow",
+      "section": "about",
+      "label": "About — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "about_title",
+      "section": "about",
+      "label": "About — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "about_body",
+      "section": "about",
+      "label": "About — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "about_link_katamaran",
+      "section": "about",
+      "label": "About Link Katamaran",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "about_why_title",
+      "section": "about",
+      "label": "About Why — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "about_f1_title",
+      "section": "about",
+      "label": "About F1 — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "about_f1_body",
+      "section": "about",
+      "label": "About F1 — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "about_f2_title",
+      "section": "about",
+      "label": "About F2 — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "about_f2_body",
+      "section": "about",
+      "label": "About F2 — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "about_img1_alt",
+      "section": "about",
+      "label": "About Img1 Alt",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "about_img2_alt",
+      "section": "about",
+      "label": "About Img2 Alt",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "routes_eyebrow",
+      "section": "routes",
+      "label": "Routes — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "routes_title",
+      "section": "routes",
+      "label": "Routes — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "routes_subtitle",
+      "section": "routes",
+      "label": "Routes — Untertitel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "route_spree_title",
+      "section": "routes",
+      "label": "Spree — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "route_spree_body",
+      "section": "routes",
+      "label": "Spree — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "route_spree_img_alt",
+      "section": "routes",
+      "label": "Spree — Bildbeschreibung (Alt-Text)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "route_treptower_title",
+      "section": "routes",
+      "label": "Treptower — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "route_treptower_body",
+      "section": "routes",
+      "label": "Treptower — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "route_treptower_img_alt",
+      "section": "routes",
+      "label": "Treptower — Bildbeschreibung (Alt-Text)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "route_warschauer_title",
+      "section": "routes",
+      "label": "Warschauer — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "route_warschauer_body",
+      "section": "routes",
+      "label": "Warschauer — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "route_warschauer_img_alt",
+      "section": "routes",
+      "label": "Warschauer — Bildbeschreibung (Alt-Text)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "route_oberbaum_title",
+      "section": "routes",
+      "label": "Oberbaum — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "route_oberbaum_body",
+      "section": "routes",
+      "label": "Oberbaum — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "route_oberbaum_img_alt",
+      "section": "routes",
+      "label": "Oberbaum — Bildbeschreibung (Alt-Text)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "route_kanaele_title",
+      "section": "routes",
+      "label": "Kanaele — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "route_kanaele_body",
+      "section": "routes",
+      "label": "Kanaele — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "route_kanaele_img_alt",
+      "section": "routes",
+      "label": "Kanaele — Bildbeschreibung (Alt-Text)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "route_mueggelsee_title",
+      "section": "routes",
+      "label": "Mueggelsee — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "route_mueggelsee_body",
+      "section": "routes",
+      "label": "Mueggelsee — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "route_mueggelsee_img_alt",
+      "section": "routes",
+      "label": "Mueggelsee — Bildbeschreibung (Alt-Text)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "ausstattung_eyebrow",
+      "section": "ausstattung",
+      "label": "Ausstattung — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "ausstattung_title",
+      "section": "ausstattung",
+      "label": "Ausstattung — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "ausstattung_subtitle",
+      "section": "ausstattung",
+      "label": "Ausstattung — Untertitel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "a_sonnendach_title",
+      "section": "ausstattung",
+      "label": "Sonnendach — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "a_sonnendach_body",
+      "section": "ausstattung",
+      "label": "Sonnendach — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "a_sitze_title",
+      "section": "ausstattung",
+      "label": "Sitze — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "a_sitze_body",
+      "section": "ausstattung",
+      "label": "Sitze — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "a_led_title",
+      "section": "ausstattung",
+      "label": "Led — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "a_led_body",
+      "section": "ausstattung",
+      "label": "Led — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "a_musik_title",
+      "section": "ausstattung",
+      "label": "Musik — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "a_musik_body",
+      "section": "ausstattung",
+      "label": "Musik — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "a_usb_title",
+      "section": "ausstattung",
+      "label": "Usb — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "a_usb_body",
+      "section": "ausstattung",
+      "label": "Usb — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "a_kuehlbox_title",
+      "section": "ausstattung",
+      "label": "Kuehlbox — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "a_kuehlbox_body",
+      "section": "ausstattung",
+      "label": "Kuehlbox — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "a_becher_title",
+      "section": "ausstattung",
+      "label": "Becher — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "a_becher_body",
+      "section": "ausstattung",
+      "label": "Becher — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "a_sunset_title",
+      "section": "ausstattung",
+      "label": "Sunset — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "a_sunset_body",
+      "section": "ausstattung",
+      "label": "Sunset — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "a_booking_title",
+      "section": "ausstattung",
+      "label": "Booking — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "a_booking_body",
+      "section": "ausstattung",
+      "label": "Booking — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "sicherheit_eyebrow",
+      "section": "sicherheit",
+      "label": "Sicherheit — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "sicherheit_title",
+      "section": "sicherheit",
+      "label": "Sicherheit — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "sicherheit_body",
+      "section": "sicherheit",
+      "label": "Sicherheit — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "sicherheit_card_title",
+      "section": "sicherheit",
+      "label": "Sicherheit Card — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "sicherheit_card_body",
+      "section": "sicherheit",
+      "label": "Sicherheit Card — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "sicherheit_westen_title",
+      "section": "sicherheit",
+      "label": "Sicherheit Westen — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "sicherheit_westen_body",
+      "section": "sicherheit",
+      "label": "Sicherheit Westen — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "sicherheit_hilfe_title",
+      "section": "sicherheit",
+      "label": "Sicherheit Hilfe — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "sicherheit_hilfe_body",
+      "section": "sicherheit",
+      "label": "Sicherheit Hilfe — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "sicherheit_erreichbar_title",
+      "section": "sicherheit",
+      "label": "Sicherheit Erreichbar — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "sicherheit_erreichbar_body",
+      "section": "sicherheit",
+      "label": "Sicherheit Erreichbar — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "sicherheit_img_alt",
+      "section": "sicherheit",
+      "label": "Sicherheit — Bildbeschreibung (Alt-Text)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_eyebrow",
+      "section": "preise",
+      "label": "Preise — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_title",
+      "section": "preise",
+      "label": "Preise — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "unit_per_hour",
+      "section": "preise",
+      "label": "Unit Per Hour",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_weekday_day_price",
+      "section": "preise",
+      "label": "Preise Weekday Day — Preis (nur Zahl)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_weekday_evening_price",
+      "section": "preise",
+      "label": "Preise Weekday Evening — Preis (nur Zahl)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_weekend_day_price",
+      "section": "preise",
+      "label": "Preise Weekend Day — Preis (nur Zahl)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_weekend_evening_price",
+      "section": "preise",
+      "label": "Preise Weekend Evening — Preis (nur Zahl)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "badge_ab_59",
+      "section": "preise",
+      "label": "Badge Ab 59",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "badge_ab_79",
+      "section": "preise",
+      "label": "Badge Ab 79",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "badge_beliebt",
+      "section": "preise",
+      "label": "Badge Beliebt",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_weekday_title",
+      "section": "preise",
+      "label": "Preise Weekday — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_weekday_days",
+      "section": "preise",
+      "label": "Preise Weekday — Tage",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_weekend_title",
+      "section": "preise",
+      "label": "Preise Weekend — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_weekend_days",
+      "section": "preise",
+      "label": "Preise Weekend — Tage",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_time_day",
+      "section": "preise",
+      "label": "Preise Time Day",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_time_evening",
+      "section": "preise",
+      "label": "Preise Time Evening",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "btn_whatsapp",
+      "section": "preise",
+      "label": "Btn Whatsapp",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_img1_alt",
+      "section": "preise",
+      "label": "Preise Img1 Alt",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_img2_alt",
+      "section": "preise",
+      "label": "Preise Img2 Alt",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_opening_title",
+      "section": "preise",
+      "label": "Preise Opening — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_opening_body",
+      "section": "preise",
+      "label": "Preise Opening — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "preise_storno_title",
+      "section": "preise",
+      "label": "Preise Storno — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "preise_storno_body",
+      "section": "preise",
+      "label": "Preise Storno — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "katamaran_eyebrow",
+      "section": "katamaran",
+      "label": "Katamaran — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "katamaran_title",
+      "section": "katamaran",
+      "label": "Katamaran — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "katamaran_body1",
+      "section": "katamaran",
+      "label": "Katamaran Body1",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "katamaran_body2",
+      "section": "katamaran",
+      "label": "Katamaran Body2",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "katamaran_f1_title",
+      "section": "katamaran",
+      "label": "Katamaran F1 — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "katamaran_f1_body",
+      "section": "katamaran",
+      "label": "Katamaran F1 — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "katamaran_f2_title",
+      "section": "katamaran",
+      "label": "Katamaran F2 — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "katamaran_f2_body",
+      "section": "katamaran",
+      "label": "Katamaran F2 — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "katamaran_f3_title",
+      "section": "katamaran",
+      "label": "Katamaran F3 — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "katamaran_f3_body",
+      "section": "katamaran",
+      "label": "Katamaran F3 — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "katamaran_img_alt",
+      "section": "katamaran",
+      "label": "Katamaran — Bildbeschreibung (Alt-Text)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "galerie_eyebrow",
+      "section": "galerie",
+      "label": "Galerie — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "galerie_title",
+      "section": "galerie",
+      "label": "Galerie — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "filter_tag",
+      "section": "galerie",
+      "label": "Filter Tag",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "filter_abend",
+      "section": "galerie",
+      "label": "Filter Abend",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "filter_nacht",
+      "section": "galerie",
+      "label": "Filter Nacht",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "filter_gaeste",
+      "section": "galerie",
+      "label": "Filter Gaeste",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "gallery_prev_aria",
+      "section": "galerie",
+      "label": "Gallery Prev — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "gallery_next_aria",
+      "section": "galerie",
+      "label": "Gallery Next — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "gallery_zoom_prefix",
+      "section": "galerie",
+      "label": "Gallery Zoom — Präfix",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "lightbox_close_aria",
+      "section": "galerie",
+      "label": "Lightbox Close — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "lightbox_prev_aria",
+      "section": "galerie",
+      "label": "Lightbox Prev — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "lightbox_next_aria",
+      "section": "galerie",
+      "label": "Lightbox Next — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "buchung_eyebrow",
+      "section": "buchung",
+      "label": "Buchung — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "buchung_title",
+      "section": "buchung",
+      "label": "Buchung — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "buchung_subtitle",
+      "section": "buchung",
+      "label": "Buchung — Untertitel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "booking_consent_title",
+      "section": "buchung",
+      "label": "Booking Consent — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "booking_consent_body",
+      "section": "buchung",
+      "label": "Booking Consent — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "booking_consent_btn",
+      "section": "buchung",
+      "label": "Booking Consent — Button-Text",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "standort_eyebrow",
+      "section": "standort",
+      "label": "Standort — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "standort_title",
+      "section": "standort",
+      "label": "Standort — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "standort_address",
+      "section": "standort",
+      "label": "Standort — Adresse",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "standort_body",
+      "section": "standort",
+      "label": "Standort — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "standort_maps_btn",
+      "section": "standort",
+      "label": "Standort Maps — Button-Text",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "map_load_title",
+      "section": "standort",
+      "label": "Map Load — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "map_load_body_html",
+      "section": "standort",
+      "label": "Map Load Body — Text (mit HTML)",
+      "multiline": true,
+      "html": true
+    },
+    {
+      "key": "map_load_btn",
+      "section": "standort",
+      "label": "Map Load — Button-Text",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "map_iframe_title",
+      "section": "standort",
+      "label": "Map Iframe — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "bewertungen_eyebrow",
+      "section": "bewertungen",
+      "label": "Bewertungen — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "bewertungen_title",
+      "section": "bewertungen",
+      "label": "Bewertungen — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "bewertungen_subtitle",
+      "section": "bewertungen",
+      "label": "Bewertungen — Untertitel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "bewertungen_quote",
+      "section": "bewertungen",
+      "label": "Bewertungen Quote",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "bewertungen_quote_author",
+      "section": "bewertungen",
+      "label": "Bewertungen Quote — Autor",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "bewertungen_video_aria",
+      "section": "bewertungen",
+      "label": "Bewertungen Video — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "video_pause_aria",
+      "section": "bewertungen",
+      "label": "Video Pause — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "video_play_aria",
+      "section": "bewertungen",
+      "label": "Video Play — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "bewertungen_f1_title",
+      "section": "bewertungen",
+      "label": "Bewertungen F1 — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "bewertungen_f1_body",
+      "section": "bewertungen",
+      "label": "Bewertungen F1 — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "bewertungen_f2_title",
+      "section": "bewertungen",
+      "label": "Bewertungen F2 — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "bewertungen_f2_body",
+      "section": "bewertungen",
+      "label": "Bewertungen F2 — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "bewertungen_f3_title",
+      "section": "bewertungen",
+      "label": "Bewertungen F3 — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "bewertungen_f3_body",
+      "section": "bewertungen",
+      "label": "Bewertungen F3 — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "bewertungen_google_body",
+      "section": "bewertungen",
+      "label": "Bewertungen Google — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "bewertungen_google_btn",
+      "section": "bewertungen",
+      "label": "Bewertungen Google — Button-Text",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_eyebrow",
+      "section": "faq",
+      "label": "Faq — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_title",
+      "section": "faq",
+      "label": "Faq — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_img_alt",
+      "section": "faq",
+      "label": "Faq — Bildbeschreibung (Alt-Text)",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_cta_title",
+      "section": "faq",
+      "label": "Faq Cta — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_cta_body",
+      "section": "faq",
+      "label": "Faq Cta — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "faq_cta_btn",
+      "section": "faq",
+      "label": "Faq Cta — Button-Text",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_q1",
+      "section": "faq",
+      "label": "Faq Q1",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_a1",
+      "section": "faq",
+      "label": "Faq A1",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "faq_q2",
+      "section": "faq",
+      "label": "Faq Q2",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_a2",
+      "section": "faq",
+      "label": "Faq A2",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "faq_q3",
+      "section": "faq",
+      "label": "Faq Q3",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_a3",
+      "section": "faq",
+      "label": "Faq A3",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "faq_q4",
+      "section": "faq",
+      "label": "Faq Q4",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_a4",
+      "section": "faq",
+      "label": "Faq A4",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "faq_q5",
+      "section": "faq",
+      "label": "Faq Q5",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_a5",
+      "section": "faq",
+      "label": "Faq A5",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "faq_q6",
+      "section": "faq",
+      "label": "Faq Q6",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_a6",
+      "section": "faq",
+      "label": "Faq A6",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "faq_q7",
+      "section": "faq",
+      "label": "Faq Q7",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_a7",
+      "section": "faq",
+      "label": "Faq A7",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "faq_q8",
+      "section": "faq",
+      "label": "Faq Q8",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_a8",
+      "section": "faq",
+      "label": "Faq A8",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "faq_q9",
+      "section": "faq",
+      "label": "Faq Q9",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "faq_a9",
+      "section": "faq",
+      "label": "Faq A9",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "feedback_eyebrow",
+      "section": "feedback",
+      "label": "Feedback — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "feedback_title",
+      "section": "feedback",
+      "label": "Feedback — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "feedback_subtitle",
+      "section": "feedback",
+      "label": "Feedback — Untertitel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "form_name",
+      "section": "feedback",
+      "label": "Form Name",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "form_email",
+      "section": "feedback",
+      "label": "Form Email",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "form_phone",
+      "section": "feedback",
+      "label": "Form Phone",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "form_message",
+      "section": "feedback",
+      "label": "Form Message",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "form_consent_html",
+      "section": "feedback",
+      "label": "Form Consent — Text (mit HTML)",
+      "multiline": true,
+      "html": true
+    },
+    {
+      "key": "form_send",
+      "section": "feedback",
+      "label": "Form Send",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "form_sent_status",
+      "section": "feedback",
+      "label": "Form Sent — Statustext",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "form_mail_subject_prefix",
+      "section": "feedback",
+      "label": "Form Mail Subject — Präfix",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "kontakt_eyebrow",
+      "section": "kontakt",
+      "label": "Kontakt — Kicker",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "kontakt_title",
+      "section": "kontakt",
+      "label": "Kontakt — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "kontakt_phone_label",
+      "section": "kontakt",
+      "label": "Kontakt Phone — Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "kontakt_email_label",
+      "section": "kontakt",
+      "label": "Kontakt Email — Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "kontakt_address_label",
+      "section": "kontakt",
+      "label": "Kontakt Address — Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "kontakt_hours_label",
+      "section": "kontakt",
+      "label": "Kontakt Hours — Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "kontakt_hours_value",
+      "section": "kontakt",
+      "label": "Kontakt Hours — Wert",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "footer_rights",
+      "section": "footer",
+      "label": "Footer Rights",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "footer_impressum",
+      "section": "footer",
+      "label": "Footer Impressum",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "footer_datenschutz",
+      "section": "footer",
+      "label": "Footer Datenschutz",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "footer_agb",
+      "section": "footer",
+      "label": "Footer Agb",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "footer_cookie_settings",
+      "section": "cookies",
+      "label": "Footer Cookie Settings",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "footer_logo_alt",
+      "section": "footer",
+      "label": "Footer Logo Alt",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "cookie_banner_title",
+      "section": "cookies",
+      "label": "Cookie Banner — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "cookie_banner_body_html",
+      "section": "cookies",
+      "label": "Cookie Banner Body — Text (mit HTML)",
+      "multiline": true,
+      "html": true
+    },
+    {
+      "key": "cookie_settings_btn",
+      "section": "cookies",
+      "label": "Cookie Settings — Button-Text",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "cookie_reject_all",
+      "section": "cookies",
+      "label": "Cookie Reject All",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "cookie_accept_all",
+      "section": "cookies",
+      "label": "Cookie Accept All",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "cookie_settings_title",
+      "section": "cookies",
+      "label": "Cookie Settings — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "cookie_necessary_title",
+      "section": "cookies",
+      "label": "Cookie Necessary — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "cookie_necessary_body",
+      "section": "cookies",
+      "label": "Cookie Necessary — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "cookie_booking_title",
+      "section": "cookies",
+      "label": "Cookie Booking — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "cookie_booking_body",
+      "section": "cookies",
+      "label": "Cookie Booking — Text",
+      "multiline": true,
+      "html": false
+    },
+    {
+      "key": "cookie_settings_save",
+      "section": "cookies",
+      "label": "Cookie Settings Save",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "dlg_impressum_title",
+      "section": "legal",
+      "label": "Impressum — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "dlg_impressum_html",
+      "section": "legal",
+      "label": "Impressum — Text (mit HTML)",
+      "multiline": true,
+      "html": true
+    },
+    {
+      "key": "dlg_datenschutz_title",
+      "section": "legal",
+      "label": "Datenschutz — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "dlg_datenschutz_html",
+      "section": "legal",
+      "label": "Datenschutz — Text (mit HTML)",
+      "multiline": true,
+      "html": true
+    },
+    {
+      "key": "dlg_agb_title",
+      "section": "legal",
+      "label": "Agb — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "dlg_agb_html",
+      "section": "legal",
+      "label": "Agb — Text (mit HTML)",
+      "multiline": true,
+      "html": true
+    },
+    {
+      "key": "dlg_close_aria",
+      "section": "legal",
+      "label": "Close — Barrierefreiheits-Label",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "meta_title",
+      "section": "seo",
+      "label": "Meta — Titel",
+      "multiline": false,
+      "html": false
+    },
+    {
+      "key": "meta_description",
+      "section": "seo",
+      "label": "Meta Description",
+      "multiline": false,
+      "html": false
+    }
+  ],
+  "images": [
+    {
+      "key": "footer_logo_alt",
+      "label": "Footer Logo Alt"
+    },
+    {
+      "key": "hero_video_aria",
+      "label": "Hero Video"
+    },
+    {
+      "key": "about_img1_alt",
+      "label": "About Img1 Alt"
+    },
+    {
+      "key": "about_img2_alt",
+      "label": "About Img2 Alt"
+    },
+    {
+      "key": "route_spree_img_alt",
+      "label": "Spree"
+    },
+    {
+      "key": "route_treptower_img_alt",
+      "label": "Treptower"
+    },
+    {
+      "key": "route_warschauer_img_alt",
+      "label": "Warschauer"
+    },
+    {
+      "key": "route_oberbaum_img_alt",
+      "label": "Oberbaum"
+    },
+    {
+      "key": "route_kanaele_img_alt",
+      "label": "Kanaele"
+    },
+    {
+      "key": "route_mueggelsee_img_alt",
+      "label": "Mueggelsee"
+    },
+    {
+      "key": "sicherheit_img_alt",
+      "label": "Sicherheit"
+    },
+    {
+      "key": "preise_img1_alt",
+      "label": "Preise Img1 Alt"
+    },
+    {
+      "key": "preise_img2_alt",
+      "label": "Preise Img2 Alt"
+    },
+    {
+      "key": "katamaran_img_alt",
+      "label": "Katamaran"
+    },
+    {
+      "key": "bewertungen_video_aria",
+      "label": "Bewertungen Video"
+    },
+    {
+      "key": "faq_img_alt",
+      "label": "Faq"
+    }
+  ]
+}

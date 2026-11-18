@@ -344,6 +344,99 @@
 </head>
 <body class="antialiased">
 
+<div id="cookie-banner" hidden class="fixed inset-x-0 bottom-0 z-[100] p-4 sm:p-6">
+  <div class="max-w-3xl mx-auto card-surface rounded-2xl p-5 sm:p-6 shadow-luxury flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
+    <div class="flex-1">
+      <p class="font-medium mb-1" data-i18n="cookie_banner_title">Diese Website verwendet Cookies</p>
+      <p class="text-xs text-muted-foreground leading-relaxed" data-i18n-html="cookie_banner_body_html">Wir nutzen nur technisch notwendige Speicherung. Für unseren Online-Buchungskalender benötigen wir Ihre Einwilligung. Mehr dazu in unserer <button type="button" id="cookie-banner-privacy-link" class="underline underline-offset-2">Datenschutzerklärung</button>.</p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-2.5 shrink-0">
+      <button type="button" id="cookie-open-settings" class="btn btn-outline text-xs" data-i18n="cookie_settings_btn">Einstellungen</button>
+      <button type="button" id="cookie-reject-all" class="btn btn-outline text-xs" data-i18n="cookie_reject_all">Nur notwendige</button>
+      <button type="button" id="cookie-accept-all" class="btn btn-gold text-xs" data-i18n="cookie_accept_all">Alle akzeptieren</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var KEY = 'ruban_cookie_consent';
+
+    function getConsent() {
+      try {
+        var raw = localStorage.getItem(KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) { return null; }
+    }
+
+    function saveConsent(booking) {
+      var data = { necessary: true, booking: !!booking, ts: Date.now(), v: 1 };
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+      document.dispatchEvent(new CustomEvent('cookieconsentchange', { detail: data }));
+      return data;
+    }
+
+    window.RubanConsent = { get: getConsent, save: saveConsent };
+
+    function ready(fn) {
+      if (document.readyState !== 'loading') fn();
+      else document.addEventListener('DOMContentLoaded', fn);
+    }
+
+    ready(function () {
+      var banner = document.getElementById('cookie-banner');
+      var dialog = document.getElementById('dlg-cookie-settings');
+      var toggleBooking = document.getElementById('cookie-toggle-booking');
+
+      function hideBanner() { if (banner) banner.hidden = true; }
+      function openSettings() {
+        var existing = getConsent();
+        if (toggleBooking) toggleBooking.checked = !!(existing && existing.booking);
+        if (dialog) dialog.showModal();
+      }
+
+      if (!getConsent() && banner) banner.hidden = false;
+
+      var acceptBtn = document.getElementById('cookie-accept-all');
+      if (acceptBtn) acceptBtn.addEventListener('click', function () { saveConsent(true); hideBanner(); });
+
+      var rejectBtn = document.getElementById('cookie-reject-all');
+      if (rejectBtn) rejectBtn.addEventListener('click', function () { saveConsent(false); hideBanner(); });
+
+      var openBtn = document.getElementById('cookie-open-settings');
+      if (openBtn) openBtn.addEventListener('click', openSettings);
+
+      var footerBtn = document.getElementById('footer-cookie-settings');
+      if (footerBtn) footerBtn.addEventListener('click', function (e) { e.preventDefault(); openSettings(); });
+
+      var saveBtn = document.getElementById('cookie-settings-save');
+      if (saveBtn) saveBtn.addEventListener('click', function () {
+        saveConsent(toggleBooking && toggleBooking.checked);
+        if (dialog) dialog.close();
+        hideBanner();
+      });
+
+      var settingsAcceptAllBtn = document.getElementById('cookie-settings-accept-all');
+      if (settingsAcceptAllBtn) settingsAcceptAllBtn.addEventListener('click', function () {
+        saveConsent(true);
+        if (dialog) dialog.close();
+        hideBanner();
+      });
+
+      var bannerPrivacyLink = document.getElementById('cookie-banner-privacy-link');
+      if (bannerPrivacyLink) bannerPrivacyLink.addEventListener('click', function () {
+        var dsDialog = document.getElementById('dlg-datenschutz');
+        if (dsDialog) dsDialog.showModal();
+      });
+
+      if (dialog) {
+        dialog.querySelectorAll('.dlg-close').forEach(function (b) { b.addEventListener('click', function () { dialog.close(); }); });
+        dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
+      }
+    });
+  })();
+</script>
+
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
@@ -396,7 +489,7 @@
 <header id="site-header" class="fixed top-0 inset-x-0 z-50">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between h-20">
     <a href="#hero" class="flex items-center gap-3 group">
-      <img src="Ruban/web/logo-128.webp" data-i18n-alt="footer_logo_alt" alt="Ruban Marine Berlin Logo" class="h-11 w-11 rounded-full">
+      <img src="Ruban/web/logo-128.webp" data-img-key="footer_logo_alt" data-i18n-alt="footer_logo_alt" alt="Ruban Marine Berlin Logo" class="h-11 w-11 rounded-full">
       <span class="font-display text-xl tracking-wide text-foreground">Ruban <span class="gold-text">Marine</span></span>
     </a>
 
@@ -457,7 +550,7 @@
 
 <section id="hero" class="relative min-h-[100svh] flex flex-col justify-end overflow-hidden">
   <div class="absolute inset-0">
-    <video src="Ruban/web/hero-loop.mp4" poster="Ruban/web/hero-loop-poster.webp" class="w-full h-full object-cover" autoplay muted loop playsinline data-i18n-aria-label="hero_video_aria" aria-label="Ruban Marine Katamaran mit LED-Beleuchtung bei Nacht auf der Spree in Berlin"></video>
+    <video src="Ruban/web/hero-loop.mp4" poster="Ruban/web/hero-loop-poster.webp" data-img-key="hero_video_aria" class="w-full h-full object-cover" autoplay muted loop playsinline data-i18n-aria-label="hero_video_aria" aria-label="Ruban Marine Katamaran mit LED-Beleuchtung bei Nacht auf der Spree in Berlin"></video>
     <div class="absolute inset-0 bg-gradient-hero"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-background/40"></div>
     <div class="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-background/80 to-transparent pointer-events-none"></div>
@@ -503,10 +596,10 @@
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
       <div class="reveal relative">
         <div class="img-treat rounded-2xl overflow-hidden shadow-luxury aspect-[4/5]">
-          <img src="Ruban/web/IMG_7743.webp" data-i18n-alt="about_img1_alt" alt="Fahrt in den Sonnenuntergang auf der Spree" class="w-full h-full object-cover">
+          <img src="Ruban/web/IMG_7743.webp" data-img-key="about_img1_alt" data-i18n-alt="about_img1_alt" alt="Fahrt in den Sonnenuntergang auf der Spree" class="w-full h-full object-cover">
         </div>
         <div class="absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 w-32 sm:w-44 rounded-2xl overflow-hidden shadow-luxury" style="border: 4px solid oklch(14% .012 240);">
-          <img src="Ruban/web/IMG_7734.webp" data-i18n-alt="about_img2_alt" alt="LED-beleuchteter Sitzbereich an Bord" class="w-full h-full object-cover aspect-square">
+          <img src="Ruban/web/IMG_7734.webp" data-img-key="about_img2_alt" data-i18n-alt="about_img2_alt" alt="LED-beleuchteter Sitzbereich an Bord" class="w-full h-full object-cover aspect-square">
         </div>
       </div>
 
@@ -554,7 +647,7 @@
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="reveal rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="img-treat overflow-hidden aspect-[4/3]">
-            <img src="Ruban/web/IMG_7770.webp" data-i18n-alt="route_spree_img_alt" alt="Fahrt auf der Spree in Berlin" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_7770.webp" data-img-key="route_spree_img_alt" data-i18n-alt="route_spree_img_alt" alt="Fahrt auf der Spree in Berlin" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
             <h3 class="font-display text-xl mb-2" data-i18n="route_spree_title">Spree</h3>
@@ -564,7 +657,7 @@
         </div>
         <div class="reveal reveal-delay-1 rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="img-treat overflow-hidden aspect-[4/3]">
-            <img src="Ruban/web/IMG_7813.webp" data-i18n-alt="route_treptower_img_alt" alt="Fahrt vorbei am Treptower Park" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_7813.webp" data-img-key="route_treptower_img_alt" data-i18n-alt="route_treptower_img_alt" alt="Fahrt vorbei am Treptower Park" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
             <h3 class="font-display text-xl mb-2" data-i18n="route_treptower_title">Treptower Park</h3>
@@ -574,7 +667,7 @@
         </div>
         <div class="reveal reveal-delay-2 rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="img-treat overflow-hidden aspect-[4/3]">
-            <img src="Ruban/web/IMG_7768.webp" data-i18n-alt="route_warschauer_img_alt" alt="Fahrt Richtung Warschauer Brücke" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_7768.webp" data-img-key="route_warschauer_img_alt" data-i18n-alt="route_warschauer_img_alt" alt="Fahrt Richtung Warschauer Brücke" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
             <h3 class="font-display text-xl mb-2" data-i18n="route_warschauer_title">Warschauer Brücke</h3>
@@ -584,7 +677,7 @@
         </div>
         <div class="reveal rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="img-treat overflow-hidden aspect-[4/3]">
-            <img src="Ruban/web/IMG_6697.webp" data-i18n-alt="route_oberbaum_img_alt" alt="Fahrt Richtung Oberbaumbrücke" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_6697.webp" data-img-key="route_oberbaum_img_alt" data-i18n-alt="route_oberbaum_img_alt" alt="Fahrt Richtung Oberbaumbrücke" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
             <h3 class="font-display text-xl mb-2" data-i18n="route_oberbaum_title">Oberbaumbrücke</h3>
@@ -594,7 +687,7 @@
         </div>
         <div class="reveal reveal-delay-1 rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="img-treat overflow-hidden aspect-[4/3]">
-            <img src="Ruban/web/IMG_7599.webp" data-i18n-alt="route_kanaele_img_alt" alt="Fahrt durch malerische Kanäle" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_7599.webp" data-img-key="route_kanaele_img_alt" data-i18n-alt="route_kanaele_img_alt" alt="Fahrt durch malerische Kanäle" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
             <h3 class="font-display text-xl mb-2" data-i18n="route_kanaele_title">Malerische Kanäle</h3>
@@ -604,7 +697,7 @@
         </div>
         <div class="reveal reveal-delay-2 rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="img-treat overflow-hidden aspect-[4/3]">
-            <img src="Ruban/web/IMG_7880.webp" data-i18n-alt="route_mueggelsee_img_alt" alt="Fahrt Richtung Müggelsee" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_7880.webp" data-img-key="route_mueggelsee_img_alt" data-i18n-alt="route_mueggelsee_img_alt" alt="Fahrt Richtung Müggelsee" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
             <h3 class="font-display text-xl mb-2" data-i18n="route_mueggelsee_title">Richtung Müggelsee</h3>
@@ -719,7 +812,7 @@
           </div>
         </div>
         <div class="reveal reveal-delay-2 img-treat rounded-2xl overflow-hidden aspect-[4/5]">
-          <img src="Ruban/web/IMG_7814.webp" data-i18n-alt="sicherheit_img_alt" alt="Ruban Marine Katamaran mit Sicherheitsausstattung am Steg" class="w-full h-full object-cover">
+          <img src="Ruban/web/IMG_7814.webp" data-img-key="sicherheit_img_alt" data-i18n-alt="sicherheit_img_alt" alt="Ruban Marine Katamaran mit Sicherheitsausstattung am Steg" class="w-full h-full object-cover">
         </div>
         <div class="reveal reveal-delay-3 card-surface rounded-2xl p-6 flex flex-col gap-4">
           <svg class="w-7 h-7" style="color:oklch(82% .14 85)"><use href="#i-headset"/></svg>
@@ -745,7 +838,7 @@
       <div class="grid lg:grid-cols-2 gap-6">
         <div class="reveal rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="relative img-treat overflow-hidden aspect-[16/10]">
-            <img src="Ruban/web/IMG_7127.webp" data-i18n-alt="preise_img1_alt" alt="Ruban Marine Katamaran am Tag" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_7127.webp" data-img-key="preise_img1_alt" data-i18n-alt="preise_img1_alt" alt="Ruban Marine Katamaran am Tag" class="w-full h-full object-cover">
             <span class="absolute top-4 left-4 z-10 rounded-full px-4 py-2 font-display text-lg" data-i18n="badge_ab_59" style="background: oklch(82% .14 85); color: oklch(16% .012 240);">ab 59€/Std</span>
           </div>
           <div class="p-6 sm:p-8">
@@ -755,11 +848,11 @@
             </div>
             <div class="flex items-end justify-between py-4 border-b border-border/60">
               <p class="text-sm text-foreground/70" data-i18n="preise_time_day">10:00 – 19:00 Uhr</p>
-              <p class="font-display text-3xl gold-text">59€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
+              <p class="font-display text-3xl gold-text"><span data-i18n="preise_weekday_day_price">59</span>€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
             </div>
             <div class="flex items-end justify-between py-4 mb-6">
               <p class="text-sm text-foreground/70" data-i18n="preise_time_evening">20:00 – 23:00 Uhr</p>
-              <p class="font-display text-3xl gold-text">79€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
+              <p class="font-display text-3xl gold-text"><span data-i18n="preise_weekday_evening_price">79</span>€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
             </div>
             <div class="flex flex-col min-[420px]:flex-row gap-3">
               <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-gold flex-1 min-w-0 text-xs">Jetzt buchen</a>
@@ -770,7 +863,7 @@
 
         <div class="reveal reveal-delay-1 rounded-2xl overflow-hidden" style="background: oklch(16.5% .013 240);">
           <div class="relative img-treat overflow-hidden aspect-[16/10]">
-            <img src="Ruban/web/IMG_7885.webp" data-i18n-alt="preise_img2_alt" alt="Ruban Marine Katamaran im Abendlicht" class="w-full h-full object-cover">
+            <img src="Ruban/web/IMG_7885.webp" data-img-key="preise_img2_alt" data-i18n-alt="preise_img2_alt" alt="Ruban Marine Katamaran im Abendlicht" class="w-full h-full object-cover">
             <span class="absolute top-4 left-4 z-10 rounded-full px-4 py-2 font-display text-lg" data-i18n="badge_ab_79" style="background: oklch(82% .14 85); color: oklch(16% .012 240);">ab 79€/Std</span>
             <span class="absolute top-4 right-4 z-10 text-[10px] font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full bg-background/80 backdrop-blur" data-i18n="badge_beliebt">Beliebt</span>
           </div>
@@ -781,11 +874,11 @@
             </div>
             <div class="flex items-end justify-between py-4 border-b border-border/60">
               <p class="text-sm text-foreground/70" data-i18n="preise_time_day">10:00 – 19:00 Uhr</p>
-              <p class="font-display text-3xl gold-text">79€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
+              <p class="font-display text-3xl gold-text"><span data-i18n="preise_weekend_day_price">79</span>€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
             </div>
             <div class="flex items-end justify-between py-4 mb-6">
               <p class="text-sm text-foreground/70" data-i18n="preise_time_evening">20:00 – 23:00 Uhr</p>
-              <p class="font-display text-3xl gold-text">99€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
+              <p class="font-display text-3xl gold-text"><span data-i18n="preise_weekend_evening_price">99</span>€<span class="text-sm font-sans text-muted-foreground" data-i18n="unit_per_hour">/Std</span></p>
             </div>
             <div class="flex flex-col min-[420px]:flex-row gap-3">
               <a href="#buchung" data-i18n="btn_jetzt_buchen" class="btn btn-gold flex-1 min-w-0 text-xs">Jetzt buchen</a>
@@ -820,7 +913,7 @@
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
       <div class="reveal relative">
         <div class="img-treat rounded-2xl overflow-hidden shadow-luxury aspect-[3/4]">
-          <img src="Ruban/web/IMG_7942.webp" data-i18n-alt="katamaran_img_alt" alt="Ruban Marine Katamaran mit geöffnetem Sonnendach" class="w-full h-full object-cover">
+          <img src="Ruban/web/IMG_7942.webp" data-img-key="katamaran_img_alt" data-i18n-alt="katamaran_img_alt" alt="Ruban Marine Katamaran mit geöffnetem Sonnendach" class="w-full h-full object-cover">
         </div>
       </div>
 
@@ -908,17 +1001,28 @@
     <div class="reveal max-w-2xl mb-12">
       <div class="divider-gold mb-6"></div>
       <p class="text-xs tracking-[0.25em] uppercase font-semibold mb-4" data-i18n="buchung_eyebrow" style="color: oklch(82% .14 85);">Buchung</p>
-      <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]" data-i18n="buchung_title">Wählen Sie Ihre Zeit auf dem Wasser.</h2>
-      <p class="mt-4 text-foreground/70 leading-[1.7]" data-i18n="buchung_subtitle">Datum, Uhrzeit und Dauer direkt online auswählen — Sie erhalten sofort eine Bestätigung.</p>
+      <h2 id="buchung-title" class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]" data-i18n="buchung_title">Wählen Sie Ihre Zeit auf dem Wasser.</h2>
+      <p id="buchung-subtitle" class="mt-4 text-foreground/70 leading-[1.7]" data-i18n="buchung_subtitle">Datum, Uhrzeit und Dauer direkt online auswählen — Sie erhalten sofort eine Bestätigung.</p>
     </div>
 
-    <div class="reveal card-surface rounded-2xl p-4 sm:p-6 overflow-hidden">
+    <div id="buchung-card" class="reveal card-surface rounded-2xl p-4 sm:p-6 overflow-hidden">
       <div id="ss-booking-widget" class="min-h-[600px]"></div>
     </div>
   </div>
 
-  <script src="https://cdn.supersaas.net/widget.js"></script>
   <script>
+    // Online booking switch. Set to true to bring the SuperSaaS calendar back;
+    // while false the section shows the "currently closed" notice instead.
+    var BOOKING_ENABLED = false;
+
+    function loadSuperSaasScript(cb) {
+      if (window.SuperSaaS) { cb(); return; }
+      var s = document.createElement('script');
+      s.src = 'https://cdn.supersaas.net/widget.js';
+      s.onload = cb;
+      document.head.appendChild(s);
+    }
+
     function initBookingWidget(lang) {
       if (window.supersaas_843995 && typeof window.supersaas_843995.die === 'function') {
         window.supersaas_843995.die();
@@ -927,7 +1031,57 @@
       if (container) container.innerHTML = '';
       window.supersaas_843995 = new SuperSaaS("635072:rubanmarineberlin", "843995:Booking", { "widget_type": "frame", "container": "#ss-booking-widget", "width": "100%", "height": "780px", "slot_view": "btn", "legend": "show", "shared": { "lang": lang } });
     }
-    initBookingWidget(document.documentElement.lang || "de");
+
+    function showBookingConsentGate() {
+      var container = document.getElementById('ss-booking-widget');
+      if (!container) return;
+      container.innerHTML =
+        '<div class="flex flex-col items-center justify-center text-center p-8 min-h-[600px]">' +
+        '<svg class="w-10 h-10 mb-4" style="color:oklch(82% .14 85)"><use href="#i-calendar"/></svg>' +
+        '<p class="font-medium mb-2" data-i18n="booking_consent_title">Buchungskalender laden</p>' +
+        '<p class="text-xs text-muted-foreground max-w-xs mb-5 leading-relaxed" data-i18n="booking_consent_body">Der Kalender wird vom Anbieter SuperSaaS bereitgestellt. Beim Laden wird eine Verbindung zu dessen Servern hergestellt und Ihre IP-Adresse übertragen.</p>' +
+        '<button type="button" id="booking-consent-btn" class="btn btn-gold" data-i18n="booking_consent_btn">Kalender anzeigen</button>' +
+        '</div>';
+      if (typeof applyLanguage === 'function' && typeof currentLang !== 'undefined') applyLanguage(currentLang);
+      var btn = document.getElementById('booking-consent-btn');
+      if (btn) btn.addEventListener('click', function () {
+        window.RubanConsent.save(true);
+        loadSuperSaasScript(function () { initBookingWidget(document.documentElement.lang || 'de'); });
+      });
+    }
+
+    function showBookingClosed() {
+      var title = document.getElementById('buchung-title');
+      var subtitle = document.getElementById('buchung-subtitle');
+      var card = document.getElementById('buchung-card');
+      if (title) title.dataset.i18n = 'buchung_closed_title';
+      if (subtitle) subtitle.dataset.i18n = 'buchung_closed_body';
+      if (card) card.hidden = true;
+    }
+
+    function bootBooking() {
+      if (!BOOKING_ENABLED) { showBookingClosed(); return; }
+      var consent = window.RubanConsent.get();
+      if (consent && consent.booking) {
+        loadSuperSaasScript(function () { initBookingWidget(document.documentElement.lang || 'de'); });
+      } else {
+        showBookingConsentGate();
+      }
+    }
+    bootBooking();
+
+    document.addEventListener('cookieconsentchange', function (e) {
+      if (!BOOKING_ENABLED) return;
+      if (e.detail.booking) {
+        loadSuperSaasScript(function () {
+          initBookingWidget((typeof currentLang !== 'undefined' && currentLang) || document.documentElement.lang || 'de');
+        });
+      } else if (window.supersaas_843995) {
+        if (typeof window.supersaas_843995.die === 'function') window.supersaas_843995.die();
+        window.supersaas_843995 = null;
+        showBookingConsentGate();
+      }
+    });
   </script>
 </section>
 
@@ -980,7 +1134,7 @@
       </div>
 
       <div class="reveal reveal-delay-1 lg:col-span-2 relative rounded-3xl overflow-hidden shadow-luxury aspect-[7/10]">
-        <video id="brand-video" class="w-full h-full object-cover" src="Ruban/web/boat-loop.mp4" poster="Ruban/web/boat-loop-poster.webp" autoplay muted loop playsinline data-i18n-aria-label="bewertungen_video_aria" aria-label="Ruban Marine Katamaran am Abend auf der Spree"></video>
+        <video id="brand-video" class="w-full h-full object-cover" src="Ruban/web/boat-loop.mp4" poster="Ruban/web/boat-loop-poster.webp" data-img-key="bewertungen_video_aria" autoplay muted loop playsinline data-i18n-aria-label="bewertungen_video_aria" aria-label="Ruban Marine Katamaran am Abend auf der Spree"></video>
         <button id="video-toggle" type="button" class="absolute inset-0 m-auto w-14 h-14 rounded-full flex items-center justify-center bg-background/40 backdrop-blur border border-foreground/30 text-foreground hover:bg-background/60 transition-colors" aria-label="Video pausieren">
           <svg class="w-5 h-5" id="video-toggle-icon"><use href="#i-pause"/></svg>
         </button>
@@ -1032,7 +1186,7 @@
           <h2 class="font-display text-4xl sm:text-5xl leading-tight tracking-[-0.02em]" data-i18n="faq_title">Häufig gestellte Fragen</h2>
         </div>
         <div class="reveal reveal-delay-1 img-treat rounded-2xl overflow-hidden shadow-luxury mt-8 aspect-[4/5]">
-          <img src="Ruban/web/IMG_7919.webp" data-i18n-alt="faq_img_alt" alt="Ruban Marine Katamaran in der Abenddämmerung auf der Spree" class="w-full h-full object-cover">
+          <img src="Ruban/web/IMG_7919.webp" data-img-key="faq_img_alt" data-i18n-alt="faq_img_alt" alt="Ruban Marine Katamaran in der Abenddämmerung auf der Spree" class="w-full h-full object-cover">
         </div>
       </div>
 
@@ -1192,7 +1346,7 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8 pb-10 border-b border-border/60">
       <a href="#hero" class="flex items-center gap-3">
-        <img src="Ruban/web/logo-128.webp" data-i18n-alt="footer_logo_alt" alt="Ruban Marine Berlin Logo" class="h-10 w-10 rounded-full">
+        <img src="Ruban/web/logo-128.webp" data-img-key="footer_logo_alt" data-i18n-alt="footer_logo_alt" alt="Ruban Marine Berlin Logo" class="h-10 w-10 rounded-full">
         <span class="font-display text-lg">Ruban <span class="gold-text">Marine</span></span>
       </a>
       <nav class="flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground" aria-label="Footer Navigation">
@@ -1212,6 +1366,7 @@
         <button type="button" id="open-impressum" class="hover:text-foreground transition-colors underline-offset-2 hover:underline" data-i18n="footer_impressum">Impressum</button>
         <button type="button" id="open-datenschutz" class="hover:text-foreground transition-colors underline-offset-2 hover:underline" data-i18n="footer_datenschutz">Datenschutz</button>
         <button type="button" id="open-agb" class="hover:text-foreground transition-colors underline-offset-2 hover:underline" data-i18n="footer_agb">AGB &amp; Stornobedingungen</button>
+        <button type="button" id="footer-cookie-settings" class="hover:text-foreground transition-colors underline-offset-2 hover:underline" data-i18n="footer_cookie_settings">Cookie-Einstellungen</button>
       </div>
     </div>
   </div>
@@ -1247,9 +1402,9 @@
       <p><strong class="text-foreground">2. Erhebung und Verarbeitung von Daten</strong><br>Wir erheben personenbezogene Daten nur, wenn Sie uns diese über das Kontakt- oder Buchungsformular freiwillig mitteilen (Name, E-Mail-Adresse, Telefonnummer, Nachricht sowie Buchungsdetails wie Datum, Uhrzeit und Dauer). Die Verarbeitung erfolgt zur Bearbeitung Ihrer Anfrage bzw. zur Anbahnung eines Vertrages gemäß Art. 6 Abs. 1 lit. b DSGVO.</p>
       <p><strong class="text-foreground">3. WhatsApp-Kontakt</strong><br>Wenn Sie über die WhatsApp-Buttons auf dieser Seite Kontakt aufnehmen, öffnet sich WhatsApp bzw. die WhatsApp-Web-Anwendung des Anbieters WhatsApp Ireland Limited / Meta Platforms Ireland Limited. Es gelten die Datenschutzbestimmungen von WhatsApp. Die Nutzung ist freiwillig.</p>
       <p><strong class="text-foreground">4. Google Maps</strong><br>Auf unserer Standortseite können Sie über einen Button eine Karte von Google Maps laden. Erst nach Ihrem aktiven Klick wird eine Verbindung zu Servern von Google Ireland Limited hergestellt und Ihre IP-Adresse übertragen. Ohne diesen Klick findet keine Verbindung statt. Weitere Informationen: <a class="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-      <p><strong class="text-foreground">5. Online-Buchungskalender (SuperSaaS)</strong><br>Für die Online-Buchung nutzen wir den Kalenderdienst des Anbieters SuperSaaS. Das dafür erforderliche Skript wird bereits beim Laden dieser Seite eingebunden, wodurch eine Verbindung zu den Servern von SuperSaaS hergestellt und Ihre IP-Adresse übertragen wird. Wenn Sie über den Kalender eine Buchung vornehmen, verarbeitet SuperSaaS die von Ihnen eingegebenen Daten (z.&nbsp;B. Name, Kontaktdaten, gewählter Termin) in unserem Auftrag. Es gelten die Datenschutzbestimmungen von SuperSaaS. <em>[Anbieteradresse und Link zur Datenschutzerklärung von SuperSaaS bitte ergänzen.]</em></p>
+      <p><strong class="text-foreground">5. Online-Buchungskalender (SuperSaaS)</strong><br>Für die Online-Buchung nutzen wir den Kalenderdienst des Anbieters SuperSaaS. Das dafür erforderliche Skript wird erst geladen, nachdem Sie im Cookie-Banner bzw. in den Cookie-Einstellungen aktiv zugestimmt haben („Buchungskalender") oder direkt im Buchungsbereich auf „Kalender anzeigen" klicken. Erst dann wird eine Verbindung zu den Servern von SuperSaaS hergestellt und Ihre IP-Adresse übertragen. Wenn Sie über den Kalender eine Buchung vornehmen, verarbeitet SuperSaaS die von Ihnen eingegebenen Daten (z.&nbsp;B. Name, Kontaktdaten, gewählter Termin) in unserem Auftrag. Es gelten die Datenschutzbestimmungen von SuperSaaS. <em>[Anbieteradresse und Link zur Datenschutzerklärung von SuperSaaS bitte ergänzen.]</em></p>
       <p><strong class="text-foreground">6. Schriftarten</strong><br>Diese Website nutzt lokal eingebundene Schriftarten (selbst gehostet). Es findet keine Verbindung zu Google-Fonts-Servern statt, es werden keine Daten an Dritte übermittelt.</p>
-      <p><strong class="text-foreground">7. Cookies &amp; Tracking</strong><br>Diese Website verwendet keine Tracking- oder Analyse-Cookies und keine Marketing-Pixel.</p>
+      <p><strong class="text-foreground">7. Cookies &amp; Tracking</strong><br>Diese Website verwendet keine Tracking- oder Analyse-Cookies und keine Marketing-Pixel. Ihre Sprachauswahl wird technisch notwendig lokal in Ihrem Browser gespeichert (localStorage). Beim ersten Besuch fragen wir per Cookie-Banner Ihre Einwilligung für den Online-Buchungskalender (SuperSaaS, siehe Punkt 5) ab; Ihre Entscheidung wird ebenfalls lokal in Ihrem Browser gespeichert. Sie können Ihre Auswahl jederzeit über den Link „Cookie-Einstellungen" im Footer ändern.</p>
       <p><strong class="text-foreground">8. Speicherdauer</strong><br>Wir speichern Ihre Daten nur so lange, wie es zur Bearbeitung Ihrer Anfrage bzw. zur Erfüllung gesetzlicher Aufbewahrungspflichten erforderlich ist.</p>
       <p><strong class="text-foreground">9. Ihre Rechte</strong><br>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie ein Widerspruchsrecht und ein Recht auf Datenübertragbarkeit. Zudem steht Ihnen ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde zu.</p>
     </div>
@@ -1270,6 +1425,35 @@
       <p><strong class="text-foreground">5. Wetter</strong><br>Bei Sturm, Gewitter oder behördlicher Sperrung der Wasserstraße bieten wir eine kostenlose Umbuchung oder vollständige Rückerstattung an.</p>
       <p><strong class="text-foreground">6. Sicherheit &amp; Verhalten an Bord</strong><br>Die Anweisungen des Bootsführers bzw. der Crew sind zu befolgen. Rettungswesten sind auf Anweisung zu tragen. Der Konsum von Alkohol vor und während der Fahrt darf die sichere Nutzung des Bootes nicht beeinträchtigen.</p>
       <p><strong class="text-foreground">7. Haftung</strong><br>Die Teilnahme erfolgt im Rahmen der gesetzlichen Sorgfaltspflichten. Für Schäden, die auf grober Fahrlässigkeit oder Vorsatz der Gäste beruhen, haften diese selbst.</p>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlg-cookie-settings" class="w-full max-w-lg">
+  <div class="card-surface rounded-2xl m-4 sm:m-0 p-7 sm:p-10 max-h-[85vh] overflow-y-auto">
+    <div class="flex items-start justify-between mb-6">
+      <h3 class="font-display text-3xl" data-i18n="cookie_settings_title">Cookie-Einstellungen</h3>
+      <button class="dlg-close p-1 text-muted-foreground hover:text-foreground" data-i18n-aria-label="dlg_close_aria" aria-label="Schließen"><svg class="w-6 h-6"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="space-y-5">
+      <div class="flex items-start justify-between gap-4 pb-5 border-b border-border/60">
+        <div>
+          <p class="font-medium mb-1" data-i18n="cookie_necessary_title">Technisch notwendig</p>
+          <p class="text-xs text-muted-foreground leading-relaxed" data-i18n="cookie_necessary_body">Für den Betrieb der Website erforderlich, z. B. Ihre Spracheinstellung. Kann nicht deaktiviert werden.</p>
+        </div>
+        <input type="checkbox" checked disabled class="mt-1 w-5 h-5 shrink-0" style="accent-color: oklch(82% .14 85);" data-i18n-aria-label="cookie_necessary_title" aria-label="Technisch notwendig, immer aktiv">
+      </div>
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="font-medium mb-1" data-i18n="cookie_booking_title">Buchungskalender (SuperSaaS)</p>
+          <p class="text-xs text-muted-foreground leading-relaxed" data-i18n="cookie_booking_body">Lädt den externen Kalender zur Online-Buchung. Dabei wird eine Verbindung zu Servern von SuperSaaS hergestellt und Ihre IP-Adresse übertragen.</p>
+        </div>
+        <input type="checkbox" id="cookie-toggle-booking" class="mt-1 w-5 h-5 shrink-0" style="accent-color: oklch(82% .14 85);" data-i18n-aria-label="cookie_booking_title" aria-label="Buchungskalender">
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-3 mt-8">
+      <button type="button" id="cookie-settings-save" class="btn btn-gold flex-1" data-i18n="cookie_settings_save">Auswahl speichern</button>
+      <button type="button" id="cookie-settings-accept-all" class="btn btn-outline flex-1" data-i18n="cookie_accept_all">Alle akzeptieren</button>
     </div>
   </div>
 </dialog>
@@ -1370,6 +1554,10 @@ de: {
   preise_eyebrow: "Preise",
   preise_title: "Transparente Preise, keine Überraschungen.",
   unit_per_hour: "/Std",
+  preise_weekday_day_price: "59",
+  preise_weekday_evening_price: "79",
+  preise_weekend_day_price: "79",
+  preise_weekend_evening_price: "99",
   badge_ab_59: "ab 59€/Std",
   badge_ab_79: "ab 79€/Std",
   badge_beliebt: "Beliebt",
@@ -1415,6 +1603,11 @@ de: {
   buchung_eyebrow: "Buchung",
   buchung_title: "Wählen Sie Ihre Zeit auf dem Wasser.",
   buchung_subtitle: "Datum, Uhrzeit und Dauer direkt online auswählen — Sie erhalten sofort eine Bestätigung.",
+  buchung_closed_title: "Wir haben derzeit geschlossen.",
+  buchung_closed_body: "Online-Buchungen sind vorübergehend nicht möglich.",
+  booking_consent_title: "Buchungskalender laden",
+  booking_consent_body: "Der Kalender wird vom Anbieter SuperSaaS bereitgestellt. Beim Laden wird eine Verbindung zu dessen Servern hergestellt und Ihre IP-Adresse übertragen.",
+  booking_consent_btn: "Kalender anzeigen",
 
   standort_eyebrow: "Standort",
   standort_title: "Unsere Anlegestelle.",
@@ -1492,7 +1685,19 @@ de: {
   footer_impressum: "Impressum",
   footer_datenschutz: "Datenschutz",
   footer_agb: "AGB & Stornobedingungen",
+  footer_cookie_settings: "Cookie-Einstellungen",
   footer_logo_alt: "Ruban Marine Berlin Logo",
+  cookie_banner_title: "Diese Website verwendet Cookies",
+  cookie_banner_body_html: `Wir nutzen nur technisch notwendige Speicherung. Für unseren Online-Buchungskalender benötigen wir Ihre Einwilligung. Mehr dazu in unserer <button type="button" id="cookie-banner-privacy-link" class="underline underline-offset-2">Datenschutzerklärung</button>.`,
+  cookie_settings_btn: "Einstellungen",
+  cookie_reject_all: "Nur notwendige",
+  cookie_accept_all: "Alle akzeptieren",
+  cookie_settings_title: "Cookie-Einstellungen",
+  cookie_necessary_title: "Technisch notwendig",
+  cookie_necessary_body: "Für den Betrieb der Website erforderlich, z. B. Ihre Spracheinstellung. Kann nicht deaktiviert werden.",
+  cookie_booking_title: "Buchungskalender (SuperSaaS)",
+  cookie_booking_body: "Lädt den externen Kalender zur Online-Buchung. Dabei wird eine Verbindung zu Servern von SuperSaaS hergestellt und Ihre IP-Adresse übertragen.",
+  cookie_settings_save: "Auswahl speichern",
 
   dlg_impressum_title: "Impressum",
   dlg_impressum_html: `<p><strong class="text-foreground">Angaben gemäß § 5 TMG</strong></p>
@@ -1509,9 +1714,9 @@ de: {
 <p><strong class="text-foreground">2. Erhebung und Verarbeitung von Daten</strong><br>Wir erheben personenbezogene Daten nur, wenn Sie uns diese über das Kontakt- oder Buchungsformular freiwillig mitteilen (Name, E-Mail-Adresse, Telefonnummer, Nachricht sowie Buchungsdetails wie Datum, Uhrzeit und Dauer). Die Verarbeitung erfolgt zur Bearbeitung Ihrer Anfrage bzw. zur Anbahnung eines Vertrages gemäß Art. 6 Abs. 1 lit. b DSGVO.</p>
 <p><strong class="text-foreground">3. WhatsApp-Kontakt</strong><br>Wenn Sie über die WhatsApp-Buttons auf dieser Seite Kontakt aufnehmen, öffnet sich WhatsApp bzw. die WhatsApp-Web-Anwendung des Anbieters WhatsApp Ireland Limited / Meta Platforms Ireland Limited. Es gelten die Datenschutzbestimmungen von WhatsApp. Die Nutzung ist freiwillig.</p>
 <p><strong class="text-foreground">4. Google Maps</strong><br>Auf unserer Standortseite können Sie über einen Button eine Karte von Google Maps laden. Erst nach Ihrem aktiven Klick wird eine Verbindung zu Servern von Google Ireland Limited hergestellt und Ihre IP-Adresse übertragen. Ohne diesen Klick findet keine Verbindung statt. Weitere Informationen: <a class="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-<p><strong class="text-foreground">5. Online-Buchungskalender (SuperSaaS)</strong><br>Für die Online-Buchung nutzen wir den Kalenderdienst des Anbieters SuperSaaS. Das dafür erforderliche Skript wird bereits beim Laden dieser Seite eingebunden, wodurch eine Verbindung zu den Servern von SuperSaaS hergestellt und Ihre IP-Adresse übertragen wird. Wenn Sie über den Kalender eine Buchung vornehmen, verarbeitet SuperSaaS die von Ihnen eingegebenen Daten (z.&nbsp;B. Name, Kontaktdaten, gewählter Termin) in unserem Auftrag. Es gelten die Datenschutzbestimmungen von SuperSaaS. <em>[Anbieteradresse und Link zur Datenschutzerklärung von SuperSaaS bitte ergänzen.]</em></p>
+<p><strong class="text-foreground">5. Online-Buchungskalender (SuperSaaS)</strong><br>Für die Online-Buchung nutzen wir den Kalenderdienst des Anbieters SuperSaaS. Das dafür erforderliche Skript wird erst geladen, nachdem Sie im Cookie-Banner bzw. in den Cookie-Einstellungen aktiv zugestimmt haben („Buchungskalender") oder direkt im Buchungsbereich auf „Kalender anzeigen" klicken. Erst dann wird eine Verbindung zu den Servern von SuperSaaS hergestellt und Ihre IP-Adresse übertragen. Wenn Sie über den Kalender eine Buchung vornehmen, verarbeitet SuperSaaS die von Ihnen eingegebenen Daten (z.&nbsp;B. Name, Kontaktdaten, gewählter Termin) in unserem Auftrag. Es gelten die Datenschutzbestimmungen von SuperSaaS. <em>[Anbieteradresse und Link zur Datenschutzerklärung von SuperSaaS bitte ergänzen.]</em></p>
 <p><strong class="text-foreground">6. Schriftarten</strong><br>Diese Website nutzt lokal eingebundene Schriftarten (selbst gehostet). Es findet keine Verbindung zu Google-Fonts-Servern statt, es werden keine Daten an Dritte übermittelt.</p>
-<p><strong class="text-foreground">7. Cookies &amp; Tracking</strong><br>Diese Website verwendet keine Tracking- oder Analyse-Cookies und keine Marketing-Pixel.</p>
+<p><strong class="text-foreground">7. Cookies &amp; Tracking</strong><br>Diese Website verwendet keine Tracking- oder Analyse-Cookies und keine Marketing-Pixel. Ihre Sprachauswahl wird technisch notwendig lokal in Ihrem Browser gespeichert (localStorage). Beim ersten Besuch fragen wir per Cookie-Banner Ihre Einwilligung für den Online-Buchungskalender (SuperSaaS, siehe Punkt 5) ab; Ihre Entscheidung wird ebenfalls lokal in Ihrem Browser gespeichert. Sie können Ihre Auswahl jederzeit über den Link „Cookie-Einstellungen" im Footer ändern.</p>
 <p><strong class="text-foreground">8. Speicherdauer</strong><br>Wir speichern Ihre Daten nur so lange, wie es zur Bearbeitung Ihrer Anfrage bzw. zur Erfüllung gesetzlicher Aufbewahrungspflichten erforderlich ist.</p>
 <p><strong class="text-foreground">9. Ihre Rechte</strong><br>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie ein Widerspruchsrecht und ein Recht auf Datenübertragbarkeit. Zudem steht Ihnen ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde zu.</p>`,
 
@@ -1623,6 +1828,10 @@ en: {
   preise_eyebrow: "Prices",
   preise_title: "Transparent prices, no surprises.",
   unit_per_hour: "/hr",
+  preise_weekday_day_price: "59",
+  preise_weekday_evening_price: "79",
+  preise_weekend_day_price: "79",
+  preise_weekend_evening_price: "99",
   badge_ab_59: "from €59/hr",
   badge_ab_79: "from €79/hr",
   badge_beliebt: "Popular",
@@ -1668,6 +1877,11 @@ en: {
   buchung_eyebrow: "Booking",
   buchung_title: "Choose your time on the water.",
   buchung_subtitle: "Pick the date, time, and duration directly online — you'll get instant confirmation.",
+  buchung_closed_title: "We are currently closed.",
+  buchung_closed_body: "Online booking is unavailable for the time being.",
+  booking_consent_title: "Load booking calendar",
+  booking_consent_body: "The calendar is provided by SuperSaaS. Loading it connects to their servers and transmits your IP address.",
+  booking_consent_btn: "Show calendar",
 
   standort_eyebrow: "Location",
   standort_title: "Our jetty.",
@@ -1745,7 +1959,19 @@ en: {
   footer_impressum: "Legal notice",
   footer_datenschutz: "Privacy policy",
   footer_agb: "Terms & cancellation policy",
+  footer_cookie_settings: "Cookie settings",
   footer_logo_alt: "Ruban Marine Berlin logo",
+  cookie_banner_title: "This website uses cookies",
+  cookie_banner_body_html: `We only use technically necessary storage. Our online booking calendar requires your consent. More in our <button type="button" id="cookie-banner-privacy-link" class="underline underline-offset-2">privacy policy</button>.`,
+  cookie_settings_btn: "Settings",
+  cookie_reject_all: "Necessary only",
+  cookie_accept_all: "Accept all",
+  cookie_settings_title: "Cookie settings",
+  cookie_necessary_title: "Technically necessary",
+  cookie_necessary_body: "Required to operate the website, e.g. your language setting. Cannot be disabled.",
+  cookie_booking_title: "Booking calendar (SuperSaaS)",
+  cookie_booking_body: "Loads the external calendar for online booking. This connects to SuperSaaS servers and transmits your IP address.",
+  cookie_settings_save: "Save selection",
 
   dlg_impressum_title: "Legal notice",
   dlg_impressum_html: `<p><strong class="text-foreground">Information pursuant to § 5 TMG</strong></p>
@@ -1762,9 +1988,9 @@ en: {
 <p><strong class="text-foreground">2. Collection and processing of data</strong><br>We only collect personal data if you voluntarily provide it to us via the contact or booking form (name, email address, phone number, message, as well as booking details such as date, time, and duration). Processing is carried out to handle your request or to initiate a contract pursuant to Art. 6(1)(b) GDPR.</p>
 <p><strong class="text-foreground">3. WhatsApp contact</strong><br>If you contact us via the WhatsApp buttons on this page, WhatsApp or the WhatsApp Web application of WhatsApp Ireland Limited / Meta Platforms Ireland Limited will open. WhatsApp's privacy policy applies. Use is voluntary.</p>
 <p><strong class="text-foreground">4. Google Maps</strong><br>On our location page, you can load a Google Maps map via a button. Only after you actively click will a connection to Google Ireland Limited's servers be established and your IP address transmitted. Without this click, no connection is made. More information: <a class="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-<p><strong class="text-foreground">5. Online booking calendar (SuperSaaS)</strong><br>For online booking, we use the calendar service provided by SuperSaaS. The required script is already embedded when this page loads, which establishes a connection to SuperSaaS's servers and transmits your IP address. If you make a booking via the calendar, SuperSaaS processes the data you enter (e.g. name, contact details, chosen time slot) on our behalf. SuperSaaS's privacy policy applies. <em>[Provider address and link to SuperSaaS's privacy policy to be added.]</em></p>
+<p><strong class="text-foreground">5. Online booking calendar (SuperSaaS)</strong><br>For online booking, we use the calendar service provided by SuperSaaS. The required script is only loaded after you actively consent via the cookie banner or cookie settings ("Booking calendar"), or click "Show calendar" directly in the booking section. Only then does a connection to SuperSaaS's servers get established and your IP address transmitted. If you make a booking via the calendar, SuperSaaS processes the data you enter (e.g. name, contact details, chosen time slot) on our behalf. SuperSaaS's privacy policy applies. <em>[Provider address and link to SuperSaaS's privacy policy to be added.]</em></p>
 <p><strong class="text-foreground">6. Fonts</strong><br>This website uses locally embedded fonts (self-hosted). No connection to Google Fonts servers is made, and no data is transmitted to third parties.</p>
-<p><strong class="text-foreground">7. Cookies &amp; tracking</strong><br>This website does not use tracking or analytics cookies, nor marketing pixels.</p>
+<p><strong class="text-foreground">7. Cookies &amp; tracking</strong><br>This website does not use tracking or analytics cookies, nor marketing pixels. Your language choice is stored locally in your browser (localStorage) as a technically necessary setting. On your first visit, we ask via a cookie banner for your consent to the online booking calendar (SuperSaaS, see point 5); your choice is likewise stored locally in your browser. You can change your choice at any time via the "Cookie settings" link in the footer.</p>
 <p><strong class="text-foreground">8. Storage period</strong><br>We store your data only as long as necessary to handle your request or to comply with statutory retention obligations.</p>
 <p><strong class="text-foreground">9. Your rights</strong><br>You have the right to access, rectify, erase, and restrict the processing of your data, as well as a right to object and a right to data portability. You are also entitled to lodge a complaint with a data protection supervisory authority.</p>`,
 
@@ -1876,6 +2102,10 @@ ru: {
   preise_eyebrow: "Цены",
   preise_title: "Прозрачные цены, никаких сюрпризов.",
   unit_per_hour: "/час",
+  preise_weekday_day_price: "59",
+  preise_weekday_evening_price: "79",
+  preise_weekend_day_price: "79",
+  preise_weekend_evening_price: "99",
   badge_ab_59: "от 59€/час",
   badge_ab_79: "от 79€/час",
   badge_beliebt: "Популярно",
@@ -1921,6 +2151,11 @@ ru: {
   buchung_eyebrow: "Бронирование",
   buchung_title: "Выберите время на воде.",
   buchung_subtitle: "Выберите дату, время и продолжительность прямо онлайн — подтверждение вы получите сразу.",
+  buchung_closed_title: "Сейчас мы закрыты.",
+  buchung_closed_body: "Онлайн-бронирование временно недоступно.",
+  booking_consent_title: "Загрузить календарь бронирования",
+  booking_consent_body: "Календарь предоставляется сервисом SuperSaaS. При загрузке устанавливается соединение с их серверами и передаётся ваш IP-адрес.",
+  booking_consent_btn: "Показать календарь",
 
   standort_eyebrow: "Расположение",
   standort_title: "Наш причал.",
@@ -1998,7 +2233,19 @@ ru: {
   footer_impressum: "Выходные данные",
   footer_datenschutz: "Конфиденциальность",
   footer_agb: "Условия и отмена",
+  footer_cookie_settings: "Настройки cookie",
   footer_logo_alt: "Логотип Ruban Marine Berlin",
+  cookie_banner_title: "Этот сайт использует cookie",
+  cookie_banner_body_html: `Мы используем только технически необходимое хранение данных. Для нашего онлайн-календаря бронирования требуется ваше согласие. Подробнее в нашей <button type="button" id="cookie-banner-privacy-link" class="underline underline-offset-2">Политике конфиденциальности</button>.`,
+  cookie_settings_btn: "Настройки",
+  cookie_reject_all: "Только необходимые",
+  cookie_accept_all: "Принять все",
+  cookie_settings_title: "Настройки cookie",
+  cookie_necessary_title: "Технически необходимые",
+  cookie_necessary_body: "Необходимы для работы сайта, например для сохранения выбранного языка. Не могут быть отключены.",
+  cookie_booking_title: "Календарь бронирования (SuperSaaS)",
+  cookie_booking_body: "Загружает внешний календарь для онлайн-бронирования. При этом устанавливается соединение с серверами SuperSaaS и передаётся ваш IP-адрес.",
+  cookie_settings_save: "Сохранить выбор",
 
   dlg_impressum_title: "Выходные данные",
   dlg_impressum_html: `<p><strong class="text-foreground">Сведения согласно § 5 TMG (нем. закон о телемедиа)</strong></p>
@@ -2015,9 +2262,9 @@ ru: {
 <p><strong class="text-foreground">2. Сбор и обработка данных</strong><br>Мы собираем персональные данные только в том случае, если вы добровольно предоставляете их нам через контактную форму или форму бронирования (имя, адрес эл. почты, номер телефона, сообщение, а также детали бронирования, такие как дата, время и продолжительность). Обработка осуществляется для рассмотрения вашего запроса или для заключения договора согласно ст. 6 абз. 1 лит. b GDPR.</p>
 <p><strong class="text-foreground">3. Связь через WhatsApp</strong><br>Если вы связываетесь с нами через кнопки WhatsApp на этой странице, открывается WhatsApp или веб-приложение WhatsApp Web компании WhatsApp Ireland Limited / Meta Platforms Ireland Limited. Действуют правила конфиденциальности WhatsApp. Использование добровольное.</p>
 <p><strong class="text-foreground">4. Google Карты</strong><br>На странице расположения вы можете загрузить карту Google Maps с помощью кнопки. Только после активного клика устанавливается соединение с серверами Google Ireland Limited и передаётся ваш IP-адрес. Без клика соединение не устанавливается. Подробнее: <a class="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-<p><strong class="text-foreground">5. Онлайн-календарь бронирования (SuperSaaS)</strong><br>Для онлайн-бронирования мы используем сервис календаря поставщика SuperSaaS. Необходимый для этого скрипт подключается уже при загрузке этой страницы, из-за чего устанавливается соединение с серверами SuperSaaS и передаётся ваш IP-адрес. Если вы совершаете бронирование через календарь, SuperSaaS обрабатывает введённые вами данные (например, имя, контактные данные, выбранное время) по нашему поручению. Действует политика конфиденциальности SuperSaaS. <em>[Адрес поставщика и ссылка на политику конфиденциальности SuperSaaS будут добавлены.]</em></p>
+<p><strong class="text-foreground">5. Онлайн-календарь бронирования (SuperSaaS)</strong><br>Для онлайн-бронирования мы используем сервис календаря поставщика SuperSaaS. Необходимый для этого скрипт загружается только после того, как вы дадите активное согласие через баннер cookie или настройки cookie («Календарь бронирования»), либо нажмёте «Показать календарь» непосредственно в разделе бронирования. Только тогда устанавливается соединение с серверами SuperSaaS и передаётся ваш IP-адрес. Если вы совершаете бронирование через календарь, SuperSaaS обрабатывает введённые вами данные (например, имя, контактные данные, выбранное время) по нашему поручению. Действует политика конфиденциальности SuperSaaS. <em>[Адрес поставщика и ссылка на политику конфиденциальности SuperSaaS будут добавлены.]</em></p>
 <p><strong class="text-foreground">6. Шрифты</strong><br>Этот сайт использует локально встроенные шрифты (размещены на собственном сервере). Соединение с серверами Google Fonts не устанавливается, данные третьим лицам не передаются.</p>
-<p><strong class="text-foreground">7. Файлы cookie и отслеживание</strong><br>Этот сайт не использует отслеживающие или аналитические файлы cookie, а также маркетинговые пиксели.</p>
+<p><strong class="text-foreground">7. Файлы cookie и отслеживание</strong><br>Этот сайт не использует отслеживающие или аналитические файлы cookie, а также маркетинговые пиксели. Выбор языка технически необходимо сохраняется локально в вашем браузере (localStorage). При первом посещении мы запрашиваем через баннер cookie ваше согласие на онлайн-календарь бронирования (SuperSaaS, см. пункт 5); ваше решение также сохраняется локально в вашем браузере. Вы можете изменить свой выбор в любое время через ссылку «Настройки cookie» в футере.</p>
 <p><strong class="text-foreground">8. Срок хранения</strong><br>Мы храним ваши данные только столько времени, сколько необходимо для обработки вашего запроса или для соблюдения предусмотренных законом обязательств по хранению.</p>
 <p><strong class="text-foreground">9. Ваши права</strong><br>Вы имеете право на доступ, исправление, удаление и ограничение обработки ваших данных, а также право на возражение и право на переносимость данных. Вы также имеете право подать жалобу в надзорный орган по защите данных.</p>`,
 
@@ -2129,6 +2376,10 @@ ar: {
   preise_eyebrow: "الأسعار",
   preise_title: "أسعار شفافة، بلا مفاجآت.",
   unit_per_hour: "/ساعة",
+  preise_weekday_day_price: "59",
+  preise_weekday_evening_price: "79",
+  preise_weekend_day_price: "79",
+  preise_weekend_evening_price: "99",
   badge_ab_59: "ابتداءً من 59€/ساعة",
   badge_ab_79: "ابتداءً من 79€/ساعة",
   badge_beliebt: "الأكثر طلبًا",
@@ -2174,6 +2425,11 @@ ar: {
   buchung_eyebrow: "الحجز",
   buchung_title: "اختر وقتك على الماء.",
   buchung_subtitle: "اختر التاريخ والوقت والمدة مباشرة عبر الإنترنت — وستحصل على تأكيد فوري.",
+  buchung_closed_title: "نحن مغلقون حاليًا.",
+  buchung_closed_body: "الحجز عبر الإنترنت غير متاح مؤقتًا.",
+  booking_consent_title: "تحميل تقويم الحجز",
+  booking_consent_body: "يتم توفير التقويم من مزوّد الخدمة SuperSaaS. عند التحميل، يتم الاتصال بخوادمه ونقل عنوان IP الخاص بك.",
+  booking_consent_btn: "عرض التقويم",
 
   standort_eyebrow: "الموقع",
   standort_title: "رصيفنا.",
@@ -2251,7 +2507,19 @@ ar: {
   footer_impressum: "بيانات الناشر",
   footer_datenschutz: "سياسة الخصوصية",
   footer_agb: "الشروط وسياسة الإلغاء",
+  footer_cookie_settings: "إعدادات ملفات تعريف الارتباط",
   footer_logo_alt: "شعار Ruban Marine Berlin",
+  cookie_banner_title: "يستخدم هذا الموقع ملفات تعريف الارتباط",
+  cookie_banner_body_html: `نستخدم فقط التخزين الضروري تقنيًا. يتطلب تقويم الحجز لدينا موافقتك. مزيد من المعلومات في <button type="button" id="cookie-banner-privacy-link" class="underline underline-offset-2">سياسة الخصوصية</button>.`,
+  cookie_settings_btn: "الإعدادات",
+  cookie_reject_all: "الضروري فقط",
+  cookie_accept_all: "قبول الكل",
+  cookie_settings_title: "إعدادات ملفات تعريف الارتباط",
+  cookie_necessary_title: "ضروري تقنيًا",
+  cookie_necessary_body: "ضروري لتشغيل الموقع، مثل إعداد اللغة الخاص بك. لا يمكن إيقافه.",
+  cookie_booking_title: "تقويم الحجز (SuperSaaS)",
+  cookie_booking_body: "يقوم بتحميل التقويم الخارجي للحجز عبر الإنترنت. يؤدي ذلك إلى الاتصال بخوادم SuperSaaS ونقل عنوان IP الخاص بك.",
+  cookie_settings_save: "حفظ الاختيار",
 
   dlg_impressum_title: "بيانات الناشر",
   dlg_impressum_html: `<p><strong class="text-foreground">بيانات وفقًا للمادة 5 من قانون الإعلام الألماني (TMG)</strong></p>
@@ -2268,9 +2536,9 @@ ar: {
 <p><strong class="text-foreground">2. جمع البيانات ومعالجتها</strong><br>نجمع البيانات الشخصية فقط عندما تقدّمونها لنا طواعيةً عبر نموذج التواصل أو الحجز (الاسم، عنوان البريد الإلكتروني، رقم الهاتف، الرسالة، وكذلك تفاصيل الحجز مثل التاريخ والوقت والمدة). تتم المعالجة لغرض التعامل مع طلبكم أو لغرض إبرام عقد وفقًا للمادة 6(1)(ب) من اللائحة العامة لحماية البيانات (GDPR).</p>
 <p><strong class="text-foreground">3. التواصل عبر واتساب</strong><br>عند التواصل معنا عبر أزرار واتساب على هذه الصفحة، يُفتح تطبيق واتساب أو تطبيق واتساب ويب التابع لشركة WhatsApp Ireland Limited / Meta Platforms Ireland Limited. تسري سياسة الخصوصية الخاصة بواتساب. الاستخدام اختياري.</p>
 <p><strong class="text-foreground">4. خرائط جوجل</strong><br>في صفحة الموقع، يمكنكم تحميل خريطة من Google Maps عبر زر. لا يتم الاتصال بخوادم شركة Google Ireland Limited ونقل عنوان IP الخاص بكم إلا بعد النقر الفعلي منكم. بدون هذا النقر، لا يتم إجراء أي اتصال. لمزيد من المعلومات: <a class="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-<p><strong class="text-foreground">5. تقويم الحجز عبر الإنترنت (SuperSaaS)</strong><br>للحجز عبر الإنترنت، نستخدم خدمة التقويم المقدَّمة من SuperSaaS. يتم تضمين النص البرمجي اللازم لذلك عند تحميل هذه الصفحة، مما يؤدي إلى إنشاء اتصال بخوادم SuperSaaS ونقل عنوان IP الخاص بكم. عند إجراء حجز عبر التقويم، تقوم SuperSaaS بمعالجة البيانات التي تُدخلونها (مثل الاسم وبيانات التواصل والموعد المختار) نيابة عنا. تسري سياسة الخصوصية الخاصة بـ SuperSaaS. <em>[سيُضاف عنوان مزوّد الخدمة ورابط سياسة الخصوصية الخاصة بـ SuperSaaS لاحقًا.]</em></p>
+<p><strong class="text-foreground">5. تقويم الحجز عبر الإنترنت (SuperSaaS)</strong><br>للحجز عبر الإنترنت، نستخدم خدمة التقويم المقدَّمة من SuperSaaS. لا يتم تحميل النص البرمجي اللازم لذلك إلا بعد موافقتكم الفعلية عبر بانر ملفات تعريف الارتباط أو إعدادات ملفات تعريف الارتباط ("تقويم الحجز")، أو بالنقر على "عرض التقويم" مباشرةً في قسم الحجز. عندها فقط يتم إنشاء اتصال بخوادم SuperSaaS ونقل عنوان IP الخاص بكم. عند إجراء حجز عبر التقويم، تقوم SuperSaaS بمعالجة البيانات التي تُدخلونها (مثل الاسم وبيانات التواصل والموعد المختار) نيابة عنا. تسري سياسة الخصوصية الخاصة بـ SuperSaaS. <em>[سيُضاف عنوان مزوّد الخدمة ورابط سياسة الخصوصية الخاصة بـ SuperSaaS لاحقًا.]</em></p>
 <p><strong class="text-foreground">6. الخطوط</strong><br>يستخدم هذا الموقع خطوطًا مضمّنة محليًا (مستضافة ذاتيًا). لا يتم إجراء أي اتصال بخوادم Google Fonts، ولا تُنقل أي بيانات إلى أطراف ثالثة.</p>
-<p><strong class="text-foreground">7. ملفات تعريف الارتباط والتتبع</strong><br>لا يستخدم هذا الموقع ملفات تعريف ارتباط للتتبع أو التحليل، ولا وحدات بكسل تسويقية.</p>
+<p><strong class="text-foreground">7. ملفات تعريف الارتباط والتتبع</strong><br>لا يستخدم هذا الموقع ملفات تعريف ارتباط للتتبع أو التحليل، ولا وحدات بكسل تسويقية. يتم حفظ اختياركم للغة محليًا في متصفحكم (localStorage) كإعداد ضروري تقنيًا. عند زيارتكم الأولى، نطلب عبر بانر ملفات تعريف الارتباط موافقتكم على تقويم الحجز عبر الإنترنت (SuperSaaS، انظر البند 5)؛ ويُحفظ اختياركم أيضًا محليًا في متصفحكم. يمكنكم تغيير اختياركم في أي وقت عبر رابط "إعدادات ملفات تعريف الارتباط" في التذييل.</p>
 <p><strong class="text-foreground">8. مدة التخزين</strong><br>نحتفظ ببياناتكم فقط للمدة اللازمة لمعالجة طلبكم أو للوفاء بالتزامات الاحتفاظ القانونية.</p>
 <p><strong class="text-foreground">9. حقوقكم</strong><br>لكم الحق في الاطلاع على بياناتكم وتصحيحها وحذفها وتقييد معالجتها، بالإضافة إلى حق الاعتراض وحق نقل البيانات. كما يحق لكم تقديم شكوى لدى إحدى الجهات الإشرافية المعنية بحماية البيانات.</p>`,
 
@@ -2365,7 +2633,7 @@ function applyLanguage(lang) {
     videoToggleBtn.setAttribute('aria-label', t(brandVideoEl.paused ? 'video_play_aria' : 'video_pause_aria', lang));
   }
 
-  if (typeof initBookingWidget === 'function' && !isFirstRun) {
+  if (typeof initBookingWidget === 'function' && !isFirstRun && window.supersaas_843995) {
     initBookingWidget(lang);
   }
 
@@ -2467,16 +2735,22 @@ applyLanguage(detectInitialLang());
   window.galleryImages = galleryImages;
 
   const grid = document.getElementById('gallery-grid');
-  galleryImages.forEach((img, i) => {
-    const wrap = document.createElement('div');
-    wrap.className = 'gallery-item shrink-0 h-[280px] sm:h-[380px] lg:h-[460px]';
-    wrap.dataset.cat = img.cat.join(' ');
-    wrap.innerHTML = `
-      <button type="button" class="gallery-open img-treat rounded-2xl overflow-hidden h-full block" data-index="${i}" aria-label="${t('gallery_zoom_prefix', currentLang)}: ${img.alt}">
-        <img src="${img.src}" width="${img.w}" height="${img.h}" alt="${img.alt}" loading="lazy" class="h-full w-auto">
-      </button>`;
-    grid.appendChild(wrap);
-  });
+
+  function renderGalleryGrid() {
+    grid.innerHTML = '';
+    galleryImages.forEach((img, i) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'gallery-item shrink-0 h-[280px] sm:h-[380px] lg:h-[460px]';
+      wrap.dataset.cat = img.cat.join(' ');
+      wrap.innerHTML = `
+        <button type="button" class="gallery-open img-treat rounded-2xl overflow-hidden h-full block" data-index="${i}" aria-label="${t('gallery_zoom_prefix', currentLang)}: ${img.alt}">
+          <img src="${img.src}" width="${img.w}" height="${img.h}" alt="${img.alt}" loading="lazy" class="h-full w-auto">
+        </button>`;
+      grid.appendChild(wrap);
+    });
+    const activeFilter = document.querySelector('.filter-btn[data-active="true"]');
+    if (activeFilter) applyGalleryFilter(activeFilter.dataset.filter);
+  }
 
   // Gallery filter + slider
   const galleryPrev = document.getElementById('gallery-prev');
@@ -2503,7 +2777,7 @@ applyLanguage(detectInitialLang());
       applyGalleryFilter(btn.dataset.filter);
     });
   });
-  applyGalleryFilter(document.querySelector('.filter-btn[data-active="true"]').dataset.filter);
+  renderGalleryGrid();
 
   grid.addEventListener('scroll', updateGalleryNav, { passive: true });
   window.addEventListener('resize', updateGalleryNav);
@@ -2601,6 +2875,43 @@ applyLanguage(detectInitialLang());
   wireDialog('open-agb', 'dlg-agb');
   document.getElementById('map-privacy-link').addEventListener('click', () => document.getElementById('dlg-datenschutz').showModal());
   document.getElementById('feedback-privacy-link').addEventListener('click', () => document.getElementById('dlg-datenschutz').showModal());
+
+  // Content overrides from the admin panel (content.json). The page renders
+  // instantly with the defaults above; if edited content exists, it's applied
+  // on top a moment later. Silently falls back to defaults if content.json
+  // is missing (e.g. admin backend not deployed yet) or unreachable.
+  (async function loadContentOverrides() {
+    try {
+      const res = await fetch('content.json', { cache: 'no-store' });
+      if (!res.ok) return;
+      const data = await res.json();
+
+      if (data.text) {
+        SUPPORTED_LANGS.forEach((l) => {
+          if (data.text[l]) Object.assign(I18N[l], data.text[l]);
+        });
+      }
+
+      if (data.images) {
+        document.querySelectorAll('[data-img-key]').forEach((el) => {
+          const url = data.images[el.dataset.imgKey];
+          if (!url) return;
+          if (el.tagName === 'VIDEO') el.setAttribute('poster', url);
+          else el.setAttribute('src', url);
+        });
+      }
+
+      if (Array.isArray(data.gallery) && data.gallery.length) {
+        galleryImages.length = 0;
+        galleryImages.push(...data.gallery);
+        renderGalleryGrid();
+      }
+
+      applyLanguage(currentLang);
+    } catch (e) {
+      // no content.json (e.g. local static preview) — keep built-in defaults
+    }
+  })();
 </script>
 
 </body>
