@@ -125,7 +125,8 @@
   h1, h2, h3, h4 { text-wrap: balance; }
   p, li, dd, dt, figcaption, label { text-wrap: pretty; }
   p, li, dd, dt, figcaption, label, .accordion-trigger > span { -webkit-hyphens: auto; hyphens: auto; }
-  h1, h2, h3, h4 { -webkit-hyphens: manual; hyphens: manual; }
+  h1, h2, h3, h4, .eyebrow, p.font-medium, p.font-display, .accordion-trigger > span, figcaption { -webkit-hyphens: manual; hyphens: manual; }
+  p, li, dd { hyphenate-limit-chars: 10 4 4; }
 
   .reveal {
     opacity: 0;
@@ -149,6 +150,7 @@
     color: transparent;
   }
 
+  @media (max-width: 639px) { .eyebrow { letter-spacing: .2em !important; } }
   .eyebrow { font-size: .75rem; letter-spacing: .25em; text-transform: uppercase; font-weight: 600; color: oklch(82% .14 85); }
   .h-section { font-family: 'Inter', system-ui, sans-serif; font-weight: 600; line-height: 1.12; letter-spacing: -0.03em; }
   .lead { line-height: 1.7; }
@@ -246,6 +248,7 @@
   .frame-dark { border: 4px solid oklch(14% .012 240); }
 
   dialog { border: none; padding: 0; background: transparent; max-width: none; max-height: none; color: oklch(97% .005 240); }
+  dialog:focus, dialog:focus-visible, dialog > div:focus, dialog > div:focus-visible { outline: none; }
   dialog::backdrop { background: oklch(8% .01 240 / .82); backdrop-filter: blur(6px); }
 
   .accordion-panel { max-height: 0; overflow: hidden; transition: max-height .5s cubic-bezier(.16,1,.3,1); }
@@ -254,10 +257,66 @@
   .accordion-chevron { transition: transform .4s cubic-bezier(.16,1,.3,1); }
   .accordion-trigger:hover span { color: oklch(88% .1 90); }
 
-  .lang-btn { cursor: pointer; }
-  .lang-btn[data-active="true"] { color: oklch(16% .012 240); background: oklch(82% .14 85); }
-  .lang-btn[data-active="false"] { opacity: .55; }
-  .lang-btn[data-active="false"]:hover { opacity: .85; }
+  .use-icon {
+    display: inline-grid; place-items: center; flex: none;
+    width: 2.25rem; height: 2.25rem; border-radius: .75rem;
+    color: oklch(82% .14 85);
+    background: oklch(82% .14 85 / .07);
+    border: 1px solid oklch(82% .14 85 / .2);
+    box-shadow: inset 0 1px 0 oklch(97% .005 240 / .04), 0 6px 16px -8px oklch(82% .14 85 / .25);
+  }
+  .use-icon svg { width: 1.25rem; height: 1.25rem; }
+  .use-icon + div { padding-top: .5rem; }
+  .lang-dd-toggle {
+    display: inline-flex; align-items: center; gap: .4rem;
+    height: 2.5rem; padding: 0 .75rem; border-radius: 999px;
+    font-size: .75rem; font-weight: 500; letter-spacing: .06em;
+    color: oklch(97% .005 240 / .85);
+    border: 1px solid oklch(97% .005 240 / .14);
+    background: oklch(18% .014 240 / .35);
+    cursor: pointer;
+    transition: border-color .25s ease, background-color .25s ease, transform .3s cubic-bezier(.16,1,.3,1);
+  }
+  .lang-dd-toggle:hover { border-color: oklch(82% .14 85 / .5); background-color: oklch(22% .016 240 / .6); }
+  .lang-dd-toggle:focus-visible { outline: 2px solid oklch(82% .14 85); outline-offset: 2px; }
+  .lang-dd-toggle:active { transform: scale(.96); }
+  .lang-dd-chevron { transition: transform .35s cubic-bezier(.16,1,.3,1); }
+  .lang-dd[data-open="true"] .lang-dd-chevron { transform: rotate(180deg); }
+  .lang-dd-menu {
+    position: absolute; top: calc(100% + .5rem); right: 0; z-index: 70;
+    min-width: 9.5rem; padding: .3rem; margin: 0; list-style: none;
+    border-radius: .85rem;
+    background: oklch(17% .014 240 / .96);
+    border: 1px solid oklch(30% .018 240 / .7);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 1px 2px oklch(5% .01 240 / .3), 0 12px 32px -8px oklch(5% .01 240 / .55), 0 0 0 1px oklch(82% .14 85 / .04);
+    opacity: 0; transform: translateY(-4px) scale(.97); transform-origin: top right;
+    pointer-events: none; visibility: hidden;
+    transition: opacity .2s ease, transform .3s cubic-bezier(.16,1,.3,1), visibility 0s linear .3s;
+  }
+  .lang-dd[data-open="true"] .lang-dd-menu {
+    opacity: 1; transform: none; pointer-events: auto; visibility: visible;
+    transition: opacity .2s ease, transform .3s cubic-bezier(.16,1,.3,1), visibility 0s;
+  }
+  .lang-btn {
+    display: flex; align-items: center; gap: .6rem; width: 100%;
+    padding: .45rem .6rem; border-radius: .55rem;
+    font-size: .8125rem; color: oklch(97% .005 240 / .78); text-align: left;
+    cursor: pointer; transition: background-color .2s ease, color .2s ease;
+  }
+  .lang-btn:hover { background: oklch(97% .005 240 / .06); color: oklch(97% .005 240); }
+  .lang-btn:focus-visible { outline: none; background: oklch(97% .005 240 / .08); color: oklch(97% .005 240); box-shadow: inset 0 0 0 1px oklch(82% .14 85 / .6); }
+  .lang-btn:active { background: oklch(97% .005 240 / .1); }
+  .lang-btn[aria-checked="true"] { color: oklch(97% .005 240); }
+  .lang-box {
+    display: inline-grid; place-items: center; flex: none;
+    width: .95rem; height: .95rem; border-radius: .25rem;
+    border: 1px solid oklch(97% .005 240 / .28);
+    transition: background-color .2s ease, border-color .2s ease;
+  }
+  .lang-box svg { width: .7rem; height: .7rem; color: oklch(16% .012 240); opacity: 0; transform: scale(.6); transition: opacity .2s ease, transform .3s cubic-bezier(.34,1.56,.64,1); }
+  .lang-btn[aria-checked="true"] .lang-box { background: oklch(82% .14 85); border-color: oklch(82% .14 85); }
+  .lang-btn[aria-checked="true"] .lang-box svg { opacity: 1; transform: none; }
 
   .pill { transition: background-color .3s ease, color .3s ease, border-color .3s ease, transform .3s cubic-bezier(.16,1,.3,1); }
   .pill:active { transform: scale(.96); }
@@ -267,12 +326,14 @@
 
   .spec-row:nth-child(odd) { background: oklch(100% 0 0 / .018); }
 
-  .field { width: 100%; background: oklch(24% .018 240); border: 1px solid oklch(28% .018 240); border-radius: 1rem; padding: .875rem 1rem; font-size: .875rem; color: oklch(97% .005 240); transition: border-color .3s ease, background-color .3s ease; }
+  .field { width: 100%; background: oklch(24% .018 240); border: 1px solid oklch(28% .018 240); border-radius: 1rem; padding: .875rem 1rem; font-size: 1rem; color: oklch(97% .005 240); transition: border-color .3s ease, background-color .3s ease; }
+  @media (min-width: 640px) { .field { font-size: .875rem; } }
   .field:hover { border-color: oklch(36% .02 240); }
   .field:focus { outline: none; border-color: oklch(82% .14 85); }
   select.field { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' fill='none' stroke='%23a3abb5' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.1rem; padding-right: 2.75rem; }
   select.field option { background: oklch(20% .016 240); }
   .consent-box { accent-color: oklch(82% .14 85); }
+  label .open-privacy { display: inline; text-align: inherit; font: inherit; color: inherit; }
 
   .cta-band { position: relative; isolation: isolate; }
   .cta-band::before {
@@ -289,6 +350,7 @@
       radial-gradient(45% 55% at 5% 90%, oklch(70% .13 220 / .07), transparent 70%);
   }
 
+  .video-caption { text-shadow: 0 1px 2px oklch(8% .01 240 / .7), 0 2px 12px oklch(8% .01 240 / .6); }
   .video-toggle { transition: transform .35s cubic-bezier(.16,1,.3,1), background-color .3s ease; }
   .video-toggle:hover { transform: scale(1.06); background: oklch(14% .012 240 / .75); }
   .video-toggle:active { transform: scale(.95); }
@@ -320,6 +382,8 @@
     <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18a2.2 2.2 0 1 1-2.2-2.2A2.2 2.2 0 0 1 9 18zM19 16.3a2.2 2.2 0 1 1-2.2-2.2 2.2 2.2 0 0 1 2.2 2.2z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9 18V6.8L19 4.5v11.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
     <symbol id="i-rail" viewBox="0 0 24 24"><path d="M3 17h18M6 17V8l3-3M18 17V8l-3-3M9 5h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.5 5.2 3.5 8.5s-1.1 6.1-3.5 8.5c-2.4-2.4-3.5-5.2-3.5-8.5s1.1-6.1 3.5-8.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-send" viewBox="0 0 24 24"><path d="M20 4L3 11l7 2.5L12.5 21z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M20 4l-10 9.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
     <symbol id="i-anchor" viewBox="0 0 24 24"><circle cx="12" cy="5.5" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 7.5V21M6 14a6 6 0 0 0 12 0M4 14h4M16 14h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
@@ -334,10 +398,10 @@
     <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M18.5 16v4M16.5 18h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
     <symbol id="i-ruler" viewBox="0 0 24 24"><rect x="2.5" y="8" width="19" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 8v3M10 8v4M13.5 8v3M17 8v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
     <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="15" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
-    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 20v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
-    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M11 12l8-8M16 7l2.5 2.5M14 9l2 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
-    <symbol id="i-tent" viewBox="0 0 24 24"><path d="M2.5 20L12 4l9.5 16z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 20l3-5.5 3 5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
-    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.5 6.5a4 4 0 0 0 5 5L12 19a2.1 2.1 0 0 1-3-3l7.5-7.5a4 4 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M15 3.8a4 4 0 0 1 5.2 5.2l-2.7-.6-1.9-1.9z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9v11h13V9"/><path d="M10 20v-5.5h4V20"/></g></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 20.5 2.5"/><path d="m15.5 7.5 3 3 2.5-2.5-3-3"/></g></symbol>
+    <symbol id="i-tent" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20 13 4"/><path d="M20.5 20 11 4"/><path d="M15.5 20 12 14l-3.5 6"/><path d="M2 20h20"/></g></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></g></symbol>
     <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h12l-2.5 4L17 12H5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 3v2.2M12 18.8V21M21 12h-2.2M5.2 12H3M18.4 5.6l-1.5 1.5M7.1 16.9l-1.5 1.5M18.4 18.4l-1.5-1.5M7.1 7.1 5.6 5.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
   </defs>
@@ -346,13 +410,13 @@
 <a href="#main" data-i18n="skip_link" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-gold focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-full">Zum Inhalt springen</a>
 
 <header id="site-header" class="fixed top-0 inset-x-0 z-50">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between h-20">
-    <a href="#hero" class="flex items-center gap-3">
-      <img src="Ruban/web/logo-128.webp" alt="Ruban Marine Logo" class="h-11 w-11 rounded-full">
-      <span class="font-display text-xl tracking-wide text-foreground">Ruban <span class="gold-text">Marine</span></span>
+  <div class="max-w-7xl mx-auto px-4 min-[360px]:px-5 sm:px-8 flex items-center justify-between h-20">
+    <a href="#hero" class="flex items-center gap-2.5 sm:gap-3 shrink-0 rounded-full">
+      <img src="Ruban/web/logo-128.webp" alt="Ruban Marine Logo" class="h-10 w-10 min-[360px]:h-11 min-[360px]:w-11 rounded-full">
+      <span class="font-display text-lg min-[360px]:text-xl tracking-wide text-foreground whitespace-nowrap">Ruban <span class="gold-text">Marine</span></span>
     </a>
 
-    <nav class="hidden xl:flex items-center gap-8 text-sm text-foreground/80" aria-label="Navigation">
+    <nav class="hidden xl:flex items-center gap-6 2xl:gap-8 text-sm text-foreground/80 whitespace-nowrap" aria-label="Navigation">
       <a href="#katamaran" data-i18n="nav_model" class="nav-link hover:text-foreground transition-colors">Das Modell</a>
       <a href="#vorteile" data-i18n="nav_benefits" class="nav-link hover:text-foreground transition-colors">Vorteile</a>
       <a href="#technik" data-i18n="nav_specs" class="nav-link hover:text-foreground transition-colors">Technische Daten</a>
@@ -362,18 +426,24 @@
       <a href="#kontakt" data-i18n="nav_contact" class="nav-link hover:text-foreground transition-colors">Kontakt</a>
     </nav>
 
-    <div class="hidden xl:flex items-center gap-4">
-      <div class="flex items-center gap-1 text-xs font-medium text-muted-foreground" aria-label="Sprache">
-        <button type="button" class="lang-btn px-2.5 py-1 rounded-full transition-colors" data-lang="de">DE</button>
-        <button type="button" class="lang-btn px-2.5 py-1 rounded-full transition-colors" data-lang="en">EN</button>
-        <button type="button" class="lang-btn px-2.5 py-1 rounded-full transition-colors" data-lang="ru">RU</button>
+    <div class="flex items-center gap-1.5 sm:gap-2 xl:gap-4 shrink-0 ml-3">
+      <div class="lang-dd relative" data-lang-dd>
+        <button type="button" class="lang-dd-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" data-i18n-aria-label="lang_aria" aria-label="Sprache wählen">
+          <svg class="hidden min-[360px]:block w-4 h-4 opacity-70" aria-hidden="true"><use href="#i-globe"/></svg>
+          <span class="lang-current">DE</span>
+          <svg class="lang-dd-chevron w-3 h-3 opacity-60" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+        </button>
+        <ul id="lang-menu" class="lang-dd-menu" role="menu" data-i18n-aria-label="lang_aria" aria-label="Sprache wählen">
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false" class="lang-btn" data-lang="de" lang="de"><span class="lang-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>Deutsch</span></button></li>
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false" class="lang-btn" data-lang="en" lang="en"><span class="lang-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>English</span></button></li>
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false" class="lang-btn" data-lang="ru" lang="ru"><span class="lang-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>Русский</span></button></li>
+        </ul>
       </div>
-      <a href="#anfrage" data-i18n="btn_offer" class="btn btn-gold">Angebot anfordern</a>
+      <a href="#anfrage" data-i18n="btn_offer" class="btn btn-gold hidden xl:inline-flex">Angebot anfordern</a>
+      <button id="menu-toggle" type="button" class="xl:hidden text-foreground p-1.5 sm:p-2 rounded-full hover:bg-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[oklch(82%_.14_85)] active:scale-95 transition-transform" data-i18n-aria-label="menu_open_aria" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="w-7 h-7"><use href="#i-menu"/></svg>
+      </button>
     </div>
-
-    <button id="menu-toggle" type="button" class="xl:hidden text-foreground p-2 rounded-full hover:bg-foreground/5 active:scale-95 transition-transform" data-i18n-aria-label="menu_open_aria" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
-      <svg class="w-7 h-7"><use href="#i-menu"/></svg>
-    </button>
   </div>
 </header>
 
@@ -382,11 +452,6 @@
     <svg class="w-6 h-6"><use href="#i-close"/></svg>
   </button>
   <div class="min-h-full flex flex-col items-center justify-center gap-10 px-5 py-24">
-    <div class="flex items-center gap-1.5 text-xs font-medium text-muted-foreground" aria-label="Sprache">
-      <button type="button" class="lang-btn px-3 py-1.5 rounded-full transition-colors" data-lang="de">DE</button>
-      <button type="button" class="lang-btn px-3 py-1.5 rounded-full transition-colors" data-lang="en">EN</button>
-      <button type="button" class="lang-btn px-3 py-1.5 rounded-full transition-colors" data-lang="ru">RU</button>
-    </div>
     <nav class="flex flex-col items-center gap-4 font-display text-xl" aria-label="Mobile Navigation">
       <a href="#katamaran" data-i18n="nav_model" class="mobile-link text-foreground hover:text-gold transition-colors">Das Modell</a>
       <a href="#vorteile" data-i18n="nav_benefits" class="mobile-link text-foreground hover:text-gold transition-colors">Vorteile</a>
@@ -427,7 +492,7 @@
 
       <div class="reveal is-visible reveal-delay-2 max-w-xl xl:max-w-md xl:pb-2">
         <p class="text-foreground/75 text-base lead" data-i18n="hero_subtitle">Vier Sitze, ein Motorradlenker statt Steuerrad und ein Rumpf aus Marine-Aluminium. Gebaut für Freizeit, Vermietung und Tourismus.</p>
-        <div class="mt-7 flex flex-wrap items-center gap-3">
+        <div class="mt-7 flex flex-col min-[480px]:flex-row min-[480px]:flex-wrap min-[480px]:items-center gap-3">
           <a href="#anfrage" class="btn btn-gold">
             <span data-i18n="btn_offer">Angebot anfordern</span>
             <svg class="w-4 h-4"><use href="#i-arrow-right"/></svg>
@@ -439,19 +504,19 @@
 
     <dl class="reveal is-visible reveal-delay-3 hero-stats mt-12 rounded-2xl grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-foreground/10 overflow-hidden">
       <div class="p-4 sm:p-6">
-        <dt class="text-[11px] uppercase tracking-[0.2em] text-muted-foreground" data-i18n="stat_length">Länge</dt>
-        <dd class="mt-1.5 font-display whitespace-nowrap text-base min-[360px]:text-lg md:text-xl lg:text-3xl tracking-[-0.02em]">4,00 m</dd>
+        <dt class="text-xs uppercase tracking-[0.18em] text-muted-foreground" data-i18n="stat_length">Länge</dt>
+        <dd class="mt-1.5 font-display whitespace-nowrap text-base min-[360px]:text-lg md:text-xl lg:text-3xl tracking-[-0.02em]" data-i18n="stat_length_v">4,00 m</dd>
       </div>
       <div class="p-4 sm:p-6">
-        <dt class="text-[11px] uppercase tracking-[0.2em] text-muted-foreground" data-i18n="stat_capacity">Personen</dt>
+        <dt class="text-xs uppercase tracking-[0.18em] text-muted-foreground" data-i18n="stat_capacity">Personen</dt>
         <dd class="mt-1.5 font-display whitespace-nowrap text-base min-[360px]:text-lg md:text-xl lg:text-3xl tracking-[-0.02em]">4</dd>
       </div>
       <div class="p-4 sm:p-6">
-        <dt class="text-[11px] uppercase tracking-[0.2em] text-muted-foreground" data-i18n="stat_engine">Antrieb</dt>
+        <dt class="text-xs uppercase tracking-[0.18em] text-muted-foreground" data-i18n="stat_engine">Antrieb</dt>
         <dd class="mt-1.5 font-display whitespace-nowrap text-base min-[360px]:text-lg md:text-xl lg:text-3xl tracking-[-0.02em]" data-i18n="stat_engine_value">15 PS / E</dd>
       </div>
       <div class="p-4 sm:p-6">
-        <dt class="text-[11px] uppercase tracking-[0.2em] text-muted-foreground" data-i18n="stat_price">Preis</dt>
+        <dt class="text-xs uppercase tracking-[0.18em] text-muted-foreground" data-i18n="stat_price">Preis</dt>
         <dd class="mt-1.5 font-display whitespace-nowrap text-base min-[360px]:text-lg md:text-xl lg:text-3xl tracking-[-0.02em] gold-text" data-i18n="stat_price_value">ab 21.000 €</dd>
       </div>
     </dl>
@@ -461,13 +526,10 @@
 <!-- 2. ABOUT THE CATAMARAN -->
 <section id="katamaran" class="relative py-20 sm:py-28">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center lg:items-stretch">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center lg:items-stretch">
       <div class="reveal relative lg:h-full">
         <div class="img-treat rounded-2xl overflow-hidden shadow-luxury aspect-[4/3] lg:aspect-auto lg:h-full">
           <img src="Ruban/web/messe/IMG_0411.webp" width="1800" height="1350" data-i18n-alt="about_img1_alt" alt="Gäste an Bord des RUBAN MARINE 400 vor der Oberbaumbrücke in Berlin" class="w-full h-full object-cover object-[38%_50%]" loading="lazy">
-        </div>
-        <div class="absolute z-[2] -bottom-8 -right-3 sm:-bottom-10 sm:-right-8 lg:-bottom-6 w-32 sm:w-44 rounded-2xl overflow-hidden shadow-luxury frame-dark">
-          <img src="Ruban/web/messe/IMG_0414.webp" width="1350" height="1800" data-i18n-alt="about_img2_alt" alt="Motorradlenker und Armaturenbrett des RUBAN MARINE 400" class="w-full h-full object-cover aspect-[3/4]" loading="lazy">
         </div>
       </div>
 
@@ -479,21 +541,21 @@
         <p class="mt-4 text-foreground/75 lead" data-i18n="about_body2">Statt eines klassischen Steuerrads lenken Sie mit einem Motorradlenker — einfach, ergonomisch und sofort intuitiv. Ob für den privaten Ausflug oder den gewerblichen Einsatz in Verleih, Tourismus und Hotellerie: Der 400 macht das Wasser für jeden zugänglich.</p>
 
         <h3 class="font-display text-lg mt-10 mb-5" data-i18n="use_title">Einsatzbereiche</h3>
-        <div class="grid sm:grid-cols-2 gap-x-6 gap-y-6">
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0 text-gold"><use href="#i-home"/></svg>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+          <div class="flex items-start gap-3.5">
+            <span class="use-icon" aria-hidden="true"><svg><use href="#i-home"/></svg></span>
             <div><p class="text-sm font-medium" data-i18n="use1_title">Privat</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="use1_body">Familienausflüge und Touren mit Freunden auf Seen und Flüssen</p></div>
           </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0 text-gold"><use href="#i-key"/></svg>
+          <div class="flex items-start gap-3.5">
+            <span class="use-icon" aria-hidden="true"><svg><use href="#i-key"/></svg></span>
             <div><p class="text-sm font-medium" data-i18n="use2_title">Bootsverleih</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="use2_body">Vermietung an Touristen, Urlauber und Gäste der Stadt</p></div>
           </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0 text-gold"><use href="#i-tent"/></svg>
+          <div class="flex items-start gap-3.5">
+            <span class="use-icon" aria-hidden="true"><svg><use href="#i-tent"/></svg></span>
             <div><p class="text-sm font-medium" data-i18n="use3_title">Hotels &amp; Campingplätze</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="use3_body">Zusatzangebot für Resorts, Campingplätze und Ferienanlagen</p></div>
           </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0 text-gold"><use href="#i-wrench"/></svg>
+          <div class="flex items-start gap-3.5">
+            <span class="use-icon" aria-hidden="true"><svg><use href="#i-wrench"/></svg></span>
             <div><p class="text-sm font-medium" data-i18n="use4_title">Service &amp; Kommunen</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="use4_body">Sonderversionen für Gewässerpflege und Inspektion</p></div>
           </div>
         </div>
@@ -511,11 +573,11 @@
         <p class="text-sm text-muted-foreground lead max-w-sm" data-i18n="family_body">Für Ausflugsschifffahrt, Gastronomie und Events fertigen wir Katamarane mit Panoramaverglasung für bis zu 35 Gäste.</p>
       </div>
 
-      <div class="grid lg:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <article class="reveal card-surface card-lift rounded-2xl overflow-hidden flex flex-col">
           <div class="img-treat aspect-[16/10]">
             <img src="Ruban/web/messe/IMG_0403.webp" width="1800" height="1157" data-i18n-alt="rm20_img_alt" alt="RUBAN MARINE 20 als schwimmendes Restaurant bei Sonnenuntergang in Berlin" class="w-full h-full object-cover" loading="lazy">
-            <span class="absolute z-[2] top-4 left-4 text-[11px] font-semibold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full bg-background/70 backdrop-blur text-gold-soft">RM 12 · 15 · 20</span>
+            <span class="absolute z-[2] top-4 left-4 text-xs font-semibold uppercase tracking-[0.16em] px-3 py-1.5 rounded-full bg-background/70 backdrop-blur text-gold-soft">RM 12 · 15 · 20</span>
           </div>
           <div class="p-6 sm:p-8 flex flex-col gap-4 flex-1">
             <div class="flex items-baseline justify-between gap-4 flex-wrap">
@@ -528,7 +590,7 @@
               <li class="px-3 py-1.5 rounded-full border border-border" data-i18n="fam_cap">bis 35 Gäste</li>
               <li class="px-3 py-1.5 rounded-full border border-border" data-i18n="fam_drive">Elektro · Hybrid · Diesel</li>
             </ul>
-            <button type="button" class="tab-jump link-gold mt-auto pt-2 inline-flex items-center gap-2 text-sm font-medium self-start" data-tab-target="rm20">
+            <button type="button" class="tab-jump link-gold mt-auto inline-flex items-center gap-2 min-h-[44px] text-sm font-medium self-start" data-tab-target="rm20">
               <span data-i18n="family_link">Technische Daten ansehen</span>
               <svg class="w-4 h-4"><use href="#i-arrow-right"/></svg>
             </button>
@@ -538,7 +600,7 @@
         <article class="reveal reveal-delay-1 card-surface card-lift rounded-2xl overflow-hidden flex flex-col">
           <div class="img-treat aspect-[16/10]">
             <img src="Ruban/web/messe/IMG_0425.webp" width="1800" height="1166" data-i18n-alt="pano_img_alt" alt="RUBAN MARINE PANORAMA mit beleuchtetem Panoramasalon am Abend" class="w-full h-full object-cover" loading="lazy">
-            <span class="absolute z-[2] top-4 left-4 text-[11px] font-semibold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full bg-background/70 backdrop-blur text-gold-soft">Panorama 12 · 15 · 20</span>
+            <span class="absolute z-[2] top-4 left-4 text-xs font-semibold uppercase tracking-[0.16em] px-3 py-1.5 rounded-full bg-background/70 backdrop-blur text-gold-soft">Panorama 12 · 15 · 20</span>
           </div>
           <div class="p-6 sm:p-8 flex flex-col gap-4 flex-1">
             <div class="flex items-baseline justify-between gap-4 flex-wrap">
@@ -551,7 +613,7 @@
               <li class="px-3 py-1.5 rounded-full border border-border" data-i18n="fam_cap">bis 35 Gäste</li>
               <li class="px-3 py-1.5 rounded-full border border-border">Open · Closed · Transform</li>
             </ul>
-            <button type="button" class="tab-jump link-gold mt-auto pt-2 inline-flex items-center gap-2 text-sm font-medium self-start" data-tab-target="panorama">
+            <button type="button" class="tab-jump link-gold mt-auto inline-flex items-center gap-2 min-h-[44px] text-sm font-medium self-start" data-tab-target="panorama">
               <span data-i18n="family_link">Technische Daten ansehen</span>
               <svg class="w-4 h-4"><use href="#i-arrow-right"/></svg>
             </button>
@@ -565,14 +627,14 @@
 <!-- 3. KEY BENEFITS -->
 <section id="vorteile" class="relative py-20 sm:py-28">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="card-surface glow-bg rounded-3xl px-5 py-12 sm:p-14">
+    <div class="card-surface glow-bg rounded-3xl px-3.5 min-[360px]:px-5 py-12 sm:p-14">
       <div class="reveal max-w-2xl mx-auto text-center mb-14">
         <div class="flex justify-center mb-6"><div class="divider-gold mx-auto"></div></div>
         <p class="eyebrow mb-4" data-i18n="benefits_eyebrow">Vorteile</p>
         <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance" data-i18n="benefits_title">Zwölf gute Gründe</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10">
         <div class="reveal flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-handlebar"/></svg></span><p class="font-medium mt-1" data-i18n="b1_t">Jet-Ski-Steuerung</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b1_b">Bequemer Motorradlenker und ergonomisches Bedienfeld — sofort verständlich.</p></div>
         <div class="reveal reveal-delay-1 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-seat"/></svg></span><p class="font-medium mt-1" data-i18n="b2_t">Vier bequeme Sitze</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b2_b">Komfortabler Platz für vier Erwachsene.</p></div>
         <div class="reveal reveal-delay-2 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-hull"/></svg></span><p class="font-medium mt-1" data-i18n="b3_t">Robuster Aluminiumrumpf</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b3_b">Leicht, langlebig und korrosionsbeständig.</p></div>
@@ -599,15 +661,15 @@
         <p class="eyebrow mb-4" data-i18n="specs_eyebrow">Technische Daten</p>
         <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl" data-i18n="specs_title">Alle Daten auf einen Blick.</h2>
       </div>
-      <div class="reveal flex flex-wrap gap-2" role="tablist" data-i18n-aria-label="specs_tabs_aria" aria-label="Modell wählen">
-        <button type="button" role="tab" class="spec-tab pill text-xs font-semibold px-5 py-2.5 rounded-full border" data-tab="rm400" data-active="true" aria-selected="true" aria-controls="panel-rm400">RM 400</button>
-        <button type="button" role="tab" class="spec-tab pill text-xs font-semibold px-5 py-2.5 rounded-full border" data-tab="rm20" data-active="false" aria-selected="false" aria-controls="panel-rm20">RM 20</button>
-        <button type="button" role="tab" class="spec-tab pill text-xs font-semibold px-5 py-2.5 rounded-full border" data-tab="panorama" data-active="false" aria-selected="false" aria-controls="panel-panorama">PANORAMA</button>
+      <div class="reveal grid grid-cols-3 sm:flex sm:flex-wrap gap-2" role="tablist" data-i18n-aria-label="specs_tabs_aria" aria-label="Modell wählen">
+        <button type="button" role="tab" class="spec-tab pill text-xs font-semibold px-2 sm:px-5 min-h-[44px] rounded-full border" data-tab="rm400" data-active="true" aria-selected="true" aria-controls="panel-rm400">RM 400</button>
+        <button type="button" role="tab" class="spec-tab pill text-xs font-semibold px-2 sm:px-5 min-h-[44px] rounded-full border" data-tab="rm20" data-active="false" aria-selected="false" aria-controls="panel-rm20">RM 20</button>
+        <button type="button" role="tab" class="spec-tab pill text-xs font-semibold px-2 sm:px-5 min-h-[44px] rounded-full border" data-tab="panorama" data-active="false" aria-selected="false" aria-controls="panel-panorama">PANORAMA</button>
       </div>
     </div>
 
     <!-- RM 400 -->
-    <div id="panel-rm400" class="spec-panel grid lg:grid-cols-5 gap-6 lg:gap-8" role="tabpanel">
+    <div id="panel-rm400" class="spec-panel grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8" role="tabpanel">
       <div class="reveal lg:col-span-3 card-surface rounded-2xl overflow-hidden">
         <div class="px-6 sm:px-8 py-5 border-b border-border/60 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           <h3 class="font-display text-lg">RUBAN MARINE 400</h3>
@@ -620,16 +682,16 @@
       <div class="lg:col-span-2 flex flex-col gap-5 lg:sticky lg:top-28 lg:self-start">
         <p class="reveal eyebrow" data-i18n="variants_title">Ausstattung &amp; Preise</p>
         <div class="reveal card-surface card-lift rounded-2xl p-6">
-          <div class="flex items-baseline justify-between gap-3"><p class="font-display text-lg">400 BASE</p><p class="font-semibold gold-text whitespace-nowrap" data-i18n="v1_price">ab 21.000 €</p></div>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1"><p class="font-display text-lg">400 BASE</p><p class="font-semibold gold-text whitespace-nowrap" data-i18n="v1_price">ab 21.000 €</p></div>
           <p class="mt-2 text-sm text-muted-foreground leading-relaxed" data-i18n="v1_body">Ohne Motor: Aluminiumrumpf, vier Sitze, Lenkung, Armaturenbrett, Soundsystem, LED-Beleuchtung, Reling und abnehmbares Dach.</p>
         </div>
         <div class="reveal reveal-delay-1 card-float card-lift rounded-2xl p-6 relative">
-          <span class="absolute -top-3 right-5 text-[10px] font-bold uppercase tracking-[0.18em] px-3 py-1 rounded-full bg-gold text-primary-foreground" data-i18n="v2_badge">Fahrbereit</span>
-          <div class="flex items-baseline justify-between gap-3"><p class="font-display text-lg">400 PETROL</p><p class="font-semibold gold-text whitespace-nowrap" data-i18n="v2_price">ab 25.000 €</p></div>
+          <span class="absolute -top-3 right-5 text-xs font-bold uppercase tracking-[0.16em] px-3 py-1 rounded-full bg-gold text-primary-foreground" data-i18n="v2_badge">Fahrbereit</span>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1"><p class="font-display text-lg">400 PETROL</p><p class="font-semibold gold-text whitespace-nowrap" data-i18n="v2_price">ab 25.000 €</p></div>
           <p class="mt-2 text-sm text-muted-foreground leading-relaxed" data-i18n="v2_body">Mit Außenborder-Benzinmotor bis 15 PS, 35-Liter-Tank und der kompletten Basisausstattung.</p>
         </div>
         <div class="reveal reveal-delay-2 card-surface card-lift rounded-2xl p-6">
-          <div class="flex items-baseline justify-between gap-3"><p class="font-display text-lg">400 ELECTRIC</p><p class="font-semibold gold-text whitespace-nowrap" data-i18n="price_on_request">Preis auf Anfrage</p></div>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1"><p class="font-display text-lg">400 ELECTRIC</p><p class="font-semibold gold-text whitespace-nowrap" data-i18n="price_on_request">Preis auf Anfrage</p></div>
           <p class="mt-2 text-sm text-muted-foreground leading-relaxed" data-i18n="v3_body">Elektrischer Antrieb mit individuell abgestimmtem Akkusystem — Leistung, Kapazität und Reichweite nach Ihrem Bedarf.</p>
         </div>
         <p class="reveal text-xs text-muted-foreground/80 leading-relaxed" data-i18n="variants_note">Startpreise. Endpreis, Mehrwertsteuer und Lieferbedingungen richten sich nach der vereinbarten Ausstattung.</p>
@@ -637,7 +699,7 @@
     </div>
 
     <!-- RM 20 -->
-    <div id="panel-rm20" class="spec-panel grid lg:grid-cols-5 gap-6 lg:gap-8" role="tabpanel" hidden>
+    <div id="panel-rm20" class="spec-panel grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8" role="tabpanel" hidden>
       <div class="lg:col-span-3 card-surface rounded-2xl overflow-hidden">
         <div class="px-6 sm:px-8 py-5 border-b border-border/60 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           <h3 class="font-display text-lg">RUBAN MARINE 12 / 15 / 20</h3>
@@ -668,7 +730,7 @@
     </div>
 
     <!-- PANORAMA -->
-    <div id="panel-panorama" class="spec-panel grid lg:grid-cols-5 gap-6 lg:gap-8" role="tabpanel" hidden>
+    <div id="panel-panorama" class="spec-panel grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8" role="tabpanel" hidden>
       <div class="lg:col-span-3 card-surface rounded-2xl overflow-hidden">
         <div class="px-6 sm:px-8 py-5 border-b border-border/60 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           <h3 class="font-display text-lg">PANORAMA 12 / 15 / 20</h3>
@@ -680,7 +742,7 @@
       <div class="lg:col-span-2 flex flex-col gap-5 lg:sticky lg:top-28 lg:self-start">
         <div class="card-float rounded-2xl p-6 sm:p-7">
           <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground" data-i18n="stat_price">Preis</p>
-          <p class="mt-2 font-display text-3xl gold-text tracking-[-0.02em]" data-i18n="price_on_request">Preis auf Anfrage</p>
+          <p class="mt-2 font-display text-2xl min-[400px]:text-3xl gold-text tracking-[-0.02em]" data-i18n="price_on_request">Preis auf Anfrage</p>
           <p class="mt-3 text-sm text-muted-foreground leading-relaxed" data-i18n="pano_price_note">Jeder Katamaran wird individuell gefertigt. Der Preis richtet sich nach Modell, Antrieb, Interieur, Verglasung und Energiesystem.</p>
         </div>
         <div class="card-surface rounded-2xl p-6 sm:p-7">
@@ -709,7 +771,7 @@
         <p class="eyebrow mb-4" data-i18n="cta_eyebrow">Live auf der Messe</p>
         <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance" data-i18n="cta_title">Setzen Sie sich ans Steuer.</h2>
         <p class="mt-5 text-foreground/80 lead" data-i18n="cta_body">Nehmen Sie auf dem RUBAN MARINE 400 Platz, prüfen Sie die Verarbeitung und sprechen Sie direkt mit dem Hersteller. Wir erstellen Ihnen ein individuelles Angebot — für Ihre Ausstattung und Ihren Einsatz.</p>
-        <div class="mt-8 flex flex-wrap gap-3">
+        <div class="mt-8 flex flex-col min-[480px]:flex-row min-[480px]:flex-wrap gap-3">
           <a href="#anfrage" class="btn btn-gold">
             <span data-i18n="btn_offer">Angebot anfordern</span>
             <svg class="w-4 h-4"><use href="#i-arrow-right"/></svg>
@@ -739,17 +801,17 @@
       </div>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-5 mb-14">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-14">
       <figure class="reveal img-treat rounded-2xl overflow-hidden shadow-luxury aspect-video relative group">
         <video class="gallery-video w-full h-full object-cover" src="Ruban/web/hero-loop.mp4" poster="Ruban/web/hero-loop-poster.webp" muted loop playsinline preload="none" data-i18n-aria-label="video1_aria" aria-label="Video: RUBAN MARINE 400 bei Nacht mit LED-Beleuchtung"></video>
-        <figcaption class="absolute z-[2] bottom-5 left-5 right-20 text-sm font-medium" data-i18n="video1_caption">Nachtfahrt mit LED-Beleuchtung</figcaption>
+        <figcaption class="video-caption absolute z-[2] bottom-5 left-5 right-[5.5rem] text-sm font-medium" data-i18n="video1_caption">Nachtfahrt mit LED-Beleuchtung</figcaption>
         <button type="button" class="video-toggle absolute z-[2] bottom-4 right-4 w-12 h-12 rounded-full bg-background/55 backdrop-blur border border-foreground/15 flex items-center justify-center" data-i18n-aria-label="video_toggle_aria" aria-label="Video abspielen oder pausieren">
           <svg class="w-4 h-4"><use href="#i-play"/></svg>
         </button>
       </figure>
       <figure class="reveal reveal-delay-1 img-treat rounded-2xl overflow-hidden shadow-luxury aspect-video relative group">
         <video class="gallery-video w-full h-full object-cover" src="Ruban/web/boat-loop.mp4" poster="Ruban/web/boat-loop-poster.webp" muted loop playsinline preload="none" data-i18n-aria-label="video2_aria" aria-label="Video: RUBAN MARINE 400 in Fahrt auf der Spree"></video>
-        <figcaption class="absolute z-[2] bottom-5 left-5 right-20 text-sm font-medium" data-i18n="video2_caption">Unterwegs auf der Spree in Berlin</figcaption>
+        <figcaption class="video-caption absolute z-[2] bottom-5 left-5 right-[5.5rem] text-sm font-medium" data-i18n="video2_caption">Unterwegs auf der Spree in Berlin</figcaption>
         <button type="button" class="video-toggle absolute z-[2] bottom-4 right-4 w-12 h-12 rounded-full bg-background/55 backdrop-blur border border-foreground/15 flex items-center justify-center" data-i18n-aria-label="video_toggle_aria" aria-label="Video abspielen oder pausieren">
           <svg class="w-4 h-4"><use href="#i-play"/></svg>
         </button>
@@ -757,11 +819,11 @@
     </div>
 
     <div class="reveal flex flex-wrap gap-2 mb-8" role="group" data-i18n-aria-label="gallery_filter_aria" aria-label="Galerie filtern">
-      <button type="button" class="filter-btn pill text-xs font-medium px-4 py-2 rounded-full border" data-filter="all" data-active="true" data-i18n="filter_all">Alle</button>
-      <button type="button" class="filter-btn pill text-xs font-medium px-4 py-2 rounded-full border" data-filter="boat" data-active="false" data-i18n="filter_boat">Exterieur</button>
-      <button type="button" class="filter-btn pill text-xs font-medium px-4 py-2 rounded-full border" data-filter="detail" data-active="false" data-i18n="filter_detail">Details</button>
-      <button type="button" class="filter-btn pill text-xs font-medium px-4 py-2 rounded-full border" data-filter="ride" data-active="false" data-i18n="filter_ride">In Fahrt</button>
-      <button type="button" class="filter-btn pill text-xs font-medium px-4 py-2 rounded-full border" data-filter="fleet" data-active="false" data-i18n="filter_fleet">RM 20 &amp; Panorama</button>
+      <button type="button" class="filter-btn pill text-xs font-medium px-4 min-h-[44px] rounded-full border" data-filter="all" data-active="true" data-i18n="filter_all">Alle</button>
+      <button type="button" class="filter-btn pill text-xs font-medium px-4 min-h-[44px] rounded-full border" data-filter="boat" data-active="false" data-i18n="filter_boat">Exterieur</button>
+      <button type="button" class="filter-btn pill text-xs font-medium px-4 min-h-[44px] rounded-full border" data-filter="detail" data-active="false" data-i18n="filter_detail">Details</button>
+      <button type="button" class="filter-btn pill text-xs font-medium px-4 min-h-[44px] rounded-full border" data-filter="ride" data-active="false" data-i18n="filter_ride">In Fahrt</button>
+      <button type="button" class="filter-btn pill text-xs font-medium px-4 min-h-[44px] rounded-full border" data-filter="fleet" data-active="false" data-i18n="filter_fleet">RM 20 &amp; Panorama</button>
     </div>
 
     <div class="reveal">
@@ -776,17 +838,17 @@
 
 <dialog id="lightbox" class="fixed inset-0 w-full h-full m-0 p-0">
   <div class="relative w-full h-full flex items-center justify-center px-4">
-    <button id="lightbox-close" type="button" class="absolute top-5 right-5 sm:top-8 sm:right-8 z-10 text-foreground/80 hover:text-foreground active:scale-95 transition-transform p-2" data-i18n-aria-label="close_aria" aria-label="Schließen"><svg class="w-8 h-8"><use href="#i-close"/></svg></button>
-    <button id="lightbox-prev" type="button" class="absolute left-2 sm:left-8 z-10 text-foreground/70 hover:text-foreground active:scale-95 transition-transform p-3" data-i18n-aria-label="gallery_prev_aria" aria-label="Vorheriges Bild"><svg class="w-8 h-8 sm:w-10 sm:h-10"><use href="#i-chevron-left"/></svg></button>
+    <button id="lightbox-close" type="button" class="absolute top-5 right-5 sm:top-8 sm:right-8 z-10 text-foreground/80 hover:text-foreground active:scale-95 transition-transform p-2" data-i18n-aria-label="close_aria" aria-label="Schließen"><svg class="w-6 h-6 sm:w-8 sm:h-8"><use href="#i-close"/></svg></button>
+    <button id="lightbox-prev" type="button" class="absolute left-2 sm:left-8 z-10 w-11 h-11 sm:w-14 sm:h-14 grid place-items-center rounded-full bg-background/60 backdrop-blur border border-foreground/15 text-foreground/85 hover:text-foreground active:scale-95 transition-transform" data-i18n-aria-label="gallery_prev_aria" aria-label="Vorheriges Bild"><svg class="w-6 h-6 sm:w-8 sm:h-8 sm:w-10 sm:h-10"><use href="#i-chevron-left"/></svg></button>
     <img id="lightbox-img" src="" alt="" class="max-h-[86vh] max-w-[90vw] object-contain rounded-lg shadow-luxury">
-    <button id="lightbox-next" type="button" class="absolute right-2 sm:right-8 z-10 text-foreground/70 hover:text-foreground active:scale-95 transition-transform p-3" data-i18n-aria-label="gallery_next_aria" aria-label="Nächstes Bild"><svg class="w-8 h-8 sm:w-10 sm:h-10"><use href="#i-chevron-right"/></svg></button>
+    <button id="lightbox-next" type="button" class="absolute right-2 sm:right-8 z-10 w-11 h-11 sm:w-14 sm:h-14 grid place-items-center rounded-full bg-background/60 backdrop-blur border border-foreground/15 text-foreground/85 hover:text-foreground active:scale-95 transition-transform" data-i18n-aria-label="gallery_next_aria" aria-label="Nächstes Bild"><svg class="w-6 h-6 sm:w-8 sm:h-8 sm:w-10 sm:h-10"><use href="#i-chevron-right"/></svg></button>
   </div>
 </dialog>
 
 <!-- 7. ABOUT THE COMPANY -->
 <section id="unternehmen" class="relative py-20 sm:py-28">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
       <div class="reveal order-2 lg:order-1">
         <div class="divider-gold mb-6"></div>
         <p class="eyebrow mb-4" data-i18n="company_eyebrow">Über das Unternehmen</p>
@@ -794,7 +856,7 @@
         <p class="text-foreground/75 lead" data-i18n="company_body1">Ruban Marine entwickelt und fertigt Aluminium-Katamarane in Deutschland — vom kompakten Viersitzer bis zum 20-Meter-Fahrgastschiff. Jedes Boot entsteht nach den Anforderungen unserer Kunden: Größe, Grundriss, Ausstattung und Antrieb.</p>
         <p class="mt-4 text-foreground/75 lead" data-i18n="company_body2">Der RUBAN MARINE 400 ist kein Prototyp: In Berlin ist er als Mietboot täglich auf der Spree im Einsatz — gesteuert von Gästen, die zum ersten Mal am Lenker sitzen. Diese Praxiserfahrung fließt direkt in jedes neue Boot ein.</p>
 
-        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-1 gap-4">
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
           <div class="card-surface rounded-2xl p-5 flex items-start gap-4"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-flag"/></svg></span><div><p class="text-sm font-medium" data-i18n="c1_t">Entwickelt in Deutschland</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="c1_b">Konstruktion und Fertigung aus einer Hand</p></div></div>
           <div class="card-surface rounded-2xl p-5 flex items-start gap-4"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-hull"/></svg></span><div><p class="text-sm font-medium" data-i18n="c2_t">Marine-Aluminium</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="c2_b">Leicht, robust und korrosionsbeständig</p></div></div>
           <div class="card-surface rounded-2xl p-5 flex items-start gap-4"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-sliders"/></svg></span><div><p class="text-sm font-medium" data-i18n="c3_t">Individuelle Fertigung</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="c3_b">Ausstattung und Antrieb nach Wunsch</p></div></div>
@@ -825,7 +887,7 @@
       <p class="mt-4 text-foreground/70 lead" data-i18n="form_subtitle">Erzählen Sie uns von Ihrem Vorhaben — wir melden uns persönlich mit einem individuellen Angebot.</p>
     </div>
 
-    <form id="enquiry-form" class="reveal card-float rounded-2xl p-6 sm:p-10 grid sm:grid-cols-2 gap-6">
+    <form id="enquiry-form" class="reveal card-float rounded-2xl p-5 min-[360px]:p-6 sm:p-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
       <div class="flex flex-col gap-2">
         <label for="f-name" class="text-xs font-medium text-muted-foreground uppercase tracking-wide" data-i18n="form_name">Name</label>
         <input required type="text" id="f-name" name="name" autocomplete="name" class="field">
@@ -841,11 +903,11 @@
       <div class="flex flex-col gap-2">
         <label for="f-model" class="text-xs font-medium text-muted-foreground uppercase tracking-wide" data-i18n="form_model">Modell</label>
         <select id="f-model" name="model" class="field">
-          <option value="RUBAN MARINE 400 PETROL">RUBAN MARINE 400 PETROL</option>
-          <option value="RUBAN MARINE 400 ELECTRIC">RUBAN MARINE 400 ELECTRIC</option>
-          <option value="RUBAN MARINE 400 BASE">RUBAN MARINE 400 BASE</option>
-          <option value="RUBAN MARINE 12 / 15 / 20">RUBAN MARINE 12 / 15 / 20</option>
-          <option value="RUBAN MARINE PANORAMA">RUBAN MARINE PANORAMA</option>
+          <option value="RUBAN MARINE 400 PETROL">RM 400 PETROL</option>
+          <option value="RUBAN MARINE 400 ELECTRIC">RM 400 ELECTRIC</option>
+          <option value="RUBAN MARINE 400 BASE">RM 400 BASE</option>
+          <option value="RUBAN MARINE 12 / 15 / 20">RM 20 (12 / 15 / 20 m)</option>
+          <option value="RUBAN MARINE PANORAMA">RM PANORAMA</option>
           <option value="?" data-i18n="form_model_unsure">Noch unentschieden</option>
         </select>
       </div>
@@ -864,8 +926,8 @@
         <label for="f-message" class="text-xs font-medium text-muted-foreground uppercase tracking-wide" data-i18n="form_message">Ihre Nachricht</label>
         <textarea id="f-message" name="message" rows="4" class="field resize-none" data-i18n-placeholder="form_message_ph" placeholder="z. B. gewünschte Ausstattung, Stückzahl, Liefertermin"></textarea>
       </div>
-      <label class="sm:col-span-2 flex items-start gap-3 text-xs text-muted-foreground">
-        <input required type="checkbox" id="f-consent" name="consent" class="consent-box mt-0.5">
+      <label class="sm:col-span-2 flex items-start gap-3 text-sm sm:text-xs leading-relaxed text-muted-foreground cursor-pointer">
+        <input required type="checkbox" id="f-consent" name="consent" class="consent-box mt-0.5 w-5 h-5 sm:w-4 sm:h-4 shrink-0">
         <span data-i18n-html="form_consent_html">Ich habe die <button type="button" class="open-privacy underline underline-offset-2 hover:text-foreground">Datenschutzerklärung</button> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu.</span>
       </label>
       <button type="submit" class="sm:col-span-2 btn btn-gold">
@@ -880,7 +942,7 @@
 <!-- 9. FAQ -->
 <section id="faq" class="relative py-20 sm:py-28">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
       <div>
         <div class="reveal">
           <div class="divider-gold mb-6"></div>
@@ -943,7 +1005,7 @@
       <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance" data-i18n="contact_title">Sprechen wir über Ihr Boot.</h2>
     </div>
 
-    <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
       <a href="tel:+491784421637" class="reveal card-surface card-lift rounded-2xl p-7 flex flex-col gap-4 active:scale-[.98]">
         <svg class="w-7 h-7 text-gold"><use href="#i-phone"/></svg>
         <div><p class="text-xs text-muted-foreground uppercase tracking-wide mb-1" data-i18n="contact_phone">Telefon</p><p class="text-sm font-medium">+49 178 4421637</p></div>
@@ -973,20 +1035,20 @@
         <img src="Ruban/web/logo-128.webp" alt="Ruban Marine Logo" class="h-10 w-10 rounded-full">
         <span class="font-display text-lg">Ruban <span class="gold-text">Marine</span></span>
       </a>
-      <nav class="flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground" aria-label="Footer Navigation">
-        <a href="#katamaran" data-i18n="nav_model" class="hover:text-foreground transition-colors">Das Modell</a>
-        <a href="#vorteile" data-i18n="nav_benefits" class="hover:text-foreground transition-colors">Vorteile</a>
-        <a href="#technik" data-i18n="nav_specs" class="hover:text-foreground transition-colors">Technische Daten</a>
-        <a href="#galerie" data-i18n="nav_gallery" class="hover:text-foreground transition-colors">Galerie</a>
-        <a href="#anfrage" data-i18n="nav_enquiry" class="hover:text-foreground transition-colors">Anfrage</a>
-        <a href="#kontakt" data-i18n="nav_contact" class="hover:text-foreground transition-colors">Kontakt</a>
+      <nav class="flex flex-wrap gap-x-8 gap-y-1 text-sm text-muted-foreground" aria-label="Footer Navigation">
+        <a href="#katamaran" data-i18n="nav_model" class="inline-flex items-center min-h-[44px] hover:text-foreground focus-visible:text-foreground transition-colors">Das Modell</a>
+        <a href="#vorteile" data-i18n="nav_benefits" class="inline-flex items-center min-h-[44px] hover:text-foreground focus-visible:text-foreground transition-colors">Vorteile</a>
+        <a href="#technik" data-i18n="nav_specs" class="inline-flex items-center min-h-[44px] hover:text-foreground focus-visible:text-foreground transition-colors">Technische Daten</a>
+        <a href="#galerie" data-i18n="nav_gallery" class="inline-flex items-center min-h-[44px] hover:text-foreground focus-visible:text-foreground transition-colors">Galerie</a>
+        <a href="#anfrage" data-i18n="nav_enquiry" class="inline-flex items-center min-h-[44px] hover:text-foreground focus-visible:text-foreground transition-colors">Anfrage</a>
+        <a href="#kontakt" data-i18n="nav_contact" class="inline-flex items-center min-h-[44px] hover:text-foreground focus-visible:text-foreground transition-colors">Kontakt</a>
       </nav>
     </div>
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-8 text-xs text-muted-foreground">
       <p>© <span id="year"></span> Ruban Marine Berlin. <span data-i18n="footer_rights">Alle Rechte vorbehalten.</span></p>
-      <div class="flex flex-wrap gap-x-6 gap-y-2">
-        <button type="button" id="open-impressum" class="hover:text-foreground transition-colors underline-offset-2 hover:underline" data-i18n="footer_impressum">Impressum</button>
-        <button type="button" class="open-privacy hover:text-foreground transition-colors underline-offset-2 hover:underline" data-i18n="footer_privacy">Datenschutz</button>
+      <div class="flex flex-wrap gap-x-6">
+        <button type="button" id="open-impressum" class="min-h-[44px] hover:text-foreground transition-colors underline-offset-2 hover:underline" data-i18n="footer_impressum">Impressum</button>
+        <button type="button" class="open-privacy min-h-[44px] hover:text-foreground transition-colors underline-offset-2 hover:underline" data-i18n="footer_privacy">Datenschutz</button>
       </div>
     </div>
   </div>
@@ -1042,6 +1104,8 @@
     meta_title: 'RUBAN MARINE 400 — Aluminium catamaran with jet-ski handlebar | Ruban Marine',
     meta_description: 'RUBAN MARINE 400: four-seat aluminium catamaran with jet-ski-style handlebar steering, developed in Germany. Petrol or electric drive, from €21,000. Request a quote.',
     skip_link: 'Skip to content',
+    lang_aria: 'Choose language',
+    stat_length_v: '4.00 m',
     menu_open_aria: 'Open menu', menu_close_aria: 'Close menu', close_aria: 'Close',
     nav_model: 'The model', nav_benefits: 'Benefits', nav_specs: 'Specifications', nav_gallery: 'Gallery', nav_company: 'Company', nav_contact: 'Contact', nav_enquiry: 'Enquiry',
     btn_offer: 'Request a quote', btn_specs: 'Specifications', btn_call: 'Call us',
@@ -1051,7 +1115,6 @@
     hero_subtitle: 'Four seats, a motorcycle handlebar instead of a steering wheel and a hull of marine-grade aluminium. Built for leisure, rental and tourism.',
     stat_length: 'Length', stat_capacity: 'People', stat_engine: 'Drive', stat_engine_value: '15 hp / E', stat_price: 'Price', stat_price_value: 'from €21,000',
     about_img1_alt: 'Guests aboard the RUBAN MARINE 400 in front of the Oberbaum Bridge in Berlin',
-    about_img2_alt: 'Motorcycle handlebar and dashboard of the RUBAN MARINE 400',
     about_eyebrow: 'About the catamaran',
     about_title: 'Rides like a jet ski. Relaxes like a lounge.',
     about_body1: 'The RUBAN MARINE 400 is a modern four-seat aluminium catamaran developed in Germany. It combines an original design and the comfort of a leisure boat with steering inspired by personal watercraft.',
@@ -1166,6 +1229,8 @@
     meta_title: 'RUBAN MARINE 400 — алюминиевый катамаран с рулём в стиле Jet Ski | Ruban Marine',
     meta_description: 'RUBAN MARINE 400: четырёхместный алюминиевый катамаран с мотоциклетным рулём в стиле Jet Ski, разработанный в Германии. Бензиновый или электрический двигатель, от 21 000 €. Запросите предложение.',
     skip_link: 'Перейти к содержанию',
+    lang_aria: 'Выбрать язык',
+    stat_length_v: '4,00 м',
     menu_open_aria: 'Открыть меню', menu_close_aria: 'Закрыть меню', close_aria: 'Закрыть',
     nav_model: 'Модель', nav_benefits: 'Преимущества', nav_specs: 'Характеристики', nav_gallery: 'Галерея', nav_company: 'О компании', nav_contact: 'Контакты', nav_enquiry: 'Запрос',
     btn_offer: 'Запросить предложение', btn_specs: 'Характеристики', btn_call: 'Позвонить',
@@ -1175,7 +1240,6 @@
     hero_subtitle: 'Четыре сиденья, мотоциклетный руль вместо штурвала и корпус из морского алюминия. Создан для отдыха, проката и туризма.',
     stat_length: 'Длина', stat_capacity: 'Человек', stat_engine: 'Двигатель', stat_engine_value: '15 л. с. / E', stat_price: 'Цена', stat_price_value: 'от 21 000 €',
     about_img1_alt: 'Гости на борту RUBAN MARINE 400 у моста Обербаумбрюкке в Берлине',
-    about_img2_alt: 'Мотоциклетный руль и приборная панель RUBAN MARINE 400',
     about_eyebrow: 'О катамаране',
     about_title: 'Управление как у Jet Ski. Простор как в лаунже.',
     about_body1: 'RUBAN MARINE 400 — современный четырёхместный алюминиевый катамаран, разработанный в Германии. Он сочетает оригинальный дизайн и комфорт прогулочного судна с управлением, вдохновлённым водными мотоциклами.',
@@ -1393,7 +1457,7 @@
     document.querySelectorAll('.spec-table').forEach(dl => {
       const rows = SPECS[dl.dataset.spec] || [];
       dl.innerHTML = rows.map(([label, value]) => `
-        <div class="spec-row grid sm:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-0.5 sm:gap-4 px-6 sm:px-8 py-3.5">
+        <div class="spec-row grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-0.5 sm:gap-4 px-6 sm:px-8 py-3.5">
           <dt class="text-muted-foreground">${pick(label, lang)}</dt>
           <dd class="font-medium text-foreground">${pick(value, lang)}</dd>
         </div>`).join('');
@@ -1621,7 +1685,8 @@
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => el.setAttribute('placeholder', t(el.dataset.i18nPlaceholder, lang)));
     document.title = t('meta_title', lang);
     document.querySelector('meta[name="description"]').setAttribute('content', t('meta_description', lang));
-    document.querySelectorAll('.lang-btn').forEach(b => { b.dataset.active = b.dataset.lang === lang ? 'true' : 'false'; });
+    document.querySelectorAll('.lang-btn').forEach(b => b.setAttribute('aria-checked', b.dataset.lang === lang ? 'true' : 'false'));
+    document.querySelectorAll('.lang-current').forEach(el => { el.textContent = lang.toUpperCase(); });
     renderSpecs(lang);
     renderGallery(lang);
     typeset(document.body);
@@ -1818,9 +1883,32 @@
   }
   window.addEventListener('load', refixAll);
 
-  document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => {
+  const langDd = document.querySelector('[data-lang-dd]');
+  const langToggle = langDd.querySelector('.lang-dd-toggle');
+  const langOpts = [...langDd.querySelectorAll('.lang-btn')];
+  function setLangDd(open, focusItem) {
+    langDd.dataset.open = open ? 'true' : 'false';
+    langToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open && focusItem) (langOpts.find(o => o.getAttribute('aria-checked') === 'true') || langOpts[0]).focus();
+  }
+  langToggle.addEventListener('click', () => setLangDd(langDd.dataset.open !== 'true', true));
+  langToggle.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); e.stopPropagation(); setLangDd(true, true); }
+  });
+  langDd.addEventListener('keydown', e => {
+    const i = langOpts.indexOf(document.activeElement);
+    if (e.key === 'Escape') { setLangDd(false); langToggle.focus(); }
+    else if (i > -1 && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
+      e.preventDefault();
+      langOpts[(i + (e.key === 'ArrowDown' ? 1 : -1) + langOpts.length) % langOpts.length].focus();
+    } else if (i > -1 && e.key === 'Tab') setLangDd(false);
+  });
+  document.addEventListener('click', e => { if (!langDd.contains(e.target)) setLangDd(false); });
+  langOpts.forEach(b => b.addEventListener('click', () => {
     try { localStorage.setItem('ruban_lang', b.dataset.lang); } catch (e) {}
     applyLanguage(b.dataset.lang);
+    setLangDd(false);
+    langToggle.focus();
   }));
 
   captureGerman();
