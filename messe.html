@@ -266,7 +266,6 @@
     box-shadow: inset 0 1px 0 oklch(97% .005 240 / .04), 0 6px 16px -8px oklch(82% .14 85 / .25);
   }
   .use-icon svg { width: 1.25rem; height: 1.25rem; }
-  .use-icon + div { padding-top: .5rem; }
   .lang-dd-toggle {
     display: inline-flex; align-items: center; gap: .4rem;
     height: 2.5rem; padding: 0 .75rem; border-radius: 999px;
@@ -473,14 +472,16 @@
 <!-- 1. HERO -->
 <section id="hero" class="relative min-h-[100svh] flex flex-col justify-end overflow-hidden">
   <div class="absolute inset-0">
-    <video src="Ruban/web/hero-loop.mp4" poster="Ruban/web/hero-loop-poster.webp" class="w-full h-full object-cover" autoplay muted loop playsinline data-i18n-aria-label="hero_video_aria" aria-label="RUBAN MARINE 400 mit LED-Beleuchtung bei Nacht"></video>
+    <video id="hero-video" poster="Ruban/web/messe/hero-desktop.webp" class="w-full h-full object-cover" autoplay muted loop playsinline preload="auto" data-i18n-aria-label="hero_video_aria" aria-label="RUBAN MARINE 400 in Fahrt">
+      <source src="Ruban/web/messe/hero-mobile.mp4" type="video/mp4" media="(max-width: 767px) and (orientation: portrait)">
+      <source src="Ruban/web/messe/hero-desktop.mp4" type="video/mp4">
+    </video>
     <div class="absolute inset-0 bg-gradient-hero"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-background/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/25"></div>
     <div class="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-background/80 to-transparent pointer-events-none"></div>
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 pb-10 sm:pb-14 pt-36 w-full">
-    <p class="reveal is-visible hero-eyebrow text-xs sm:text-sm tracking-[0.3em] font-medium uppercase mb-6" data-i18n="hero_eyebrow">Auf der Messe · Entwickelt in Deutschland</p>
 
     <div class="flex flex-col xl:flex-row xl:items-end xl:justify-between gap-10">
       <div class="max-w-3xl">
@@ -491,8 +492,7 @@
       </div>
 
       <div class="reveal is-visible reveal-delay-2 max-w-xl xl:max-w-md xl:pb-2">
-        <p class="text-foreground/75 text-base lead" data-i18n="hero_subtitle">Vier Sitze, ein Motorradlenker statt Steuerrad und ein Rumpf aus Marine-Aluminium. Gebaut für Freizeit, Vermietung und Tourismus.</p>
-        <div class="mt-7 flex flex-col min-[480px]:flex-row min-[480px]:flex-wrap min-[480px]:items-center gap-3">
+        <div class="flex flex-col min-[480px]:flex-row min-[480px]:flex-wrap min-[480px]:items-center gap-3">
           <a href="#anfrage" class="btn btn-gold">
             <span data-i18n="btn_offer">Angebot anfordern</span>
             <svg class="w-4 h-4"><use href="#i-arrow-right"/></svg>
@@ -534,32 +534,29 @@
       </div>
 
       <div class="reveal reveal-delay-1">
-        <div class="divider-gold mb-6"></div>
         <p class="eyebrow mb-4" data-i18n="about_eyebrow">Über den Katamaran</p>
         <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance mb-6" data-i18n="about_title">Jetski-Feeling am Lenker. Lounge-Komfort an Bord.</h2>
         <p class="text-foreground/75 lead" data-i18n="about_body1">Der RUBAN MARINE 400 ist ein moderner viersitziger Aluminium-Katamaran, entwickelt in Deutschland. Er verbindet eigenständiges Design und den Komfort eines Freizeitboots mit einer Steuerung, die von Wassermotorrädern inspiriert ist.</p>
-        <p class="mt-4 text-foreground/75 lead" data-i18n="about_body2">Statt eines klassischen Steuerrads lenken Sie mit einem Motorradlenker — einfach, ergonomisch und sofort intuitiv. Ob für den privaten Ausflug oder den gewerblichen Einsatz in Verleih, Tourismus und Hotellerie: Der 400 macht das Wasser für jeden zugänglich.</p>
 
         <h3 class="font-display text-lg mt-10 mb-5" data-i18n="use_title">Einsatzbereiche</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
-          <div class="flex items-start gap-3.5">
+          <div class="flex items-center gap-3.5">
             <span class="use-icon" aria-hidden="true"><svg><use href="#i-home"/></svg></span>
-            <div><p class="text-sm font-medium" data-i18n="use1_title">Privat</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="use1_body">Familienausflüge und Touren mit Freunden auf Seen und Flüssen</p></div>
+            <div><p class="text-sm font-medium" data-i18n="use1_title">Privat</p></div>
           </div>
-          <div class="flex items-start gap-3.5">
+          <div class="flex items-center gap-3.5">
             <span class="use-icon" aria-hidden="true"><svg><use href="#i-key"/></svg></span>
-            <div><p class="text-sm font-medium" data-i18n="use2_title">Bootsverleih</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="use2_body">Vermietung an Touristen, Urlauber und Gäste der Stadt</p></div>
+            <div><p class="text-sm font-medium" data-i18n="use2_title">Bootsverleih</p></div>
           </div>
-          <div class="flex items-start gap-3.5">
+          <div class="flex items-center gap-3.5">
             <span class="use-icon" aria-hidden="true"><svg><use href="#i-tent"/></svg></span>
-            <div><p class="text-sm font-medium" data-i18n="use3_title">Hotels &amp; Campingplätze</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="use3_body">Zusatzangebot für Resorts, Campingplätze und Ferienanlagen</p></div>
+            <div><p class="text-sm font-medium" data-i18n="use3_title">Hotels &amp; Campingplätze</p></div>
           </div>
-          <div class="flex items-start gap-3.5">
+          <div class="flex items-center gap-3.5">
             <span class="use-icon" aria-hidden="true"><svg><use href="#i-wrench"/></svg></span>
-            <div><p class="text-sm font-medium" data-i18n="use4_title">Service &amp; Kommunen</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="use4_body">Sonderversionen für Gewässerpflege und Inspektion</p></div>
+            <div><p class="text-sm font-medium" data-i18n="use4_title">Service &amp; Kommunen</p></div>
           </div>
         </div>
-        <p class="mt-6 text-xs text-muted-foreground/80 leading-relaxed" data-i18n="use_note">Die gewerbliche Nutzung erfolgt unter Einhaltung der geltenden Vorschriften und mit den erforderlichen Genehmigungen.</p>
       </div>
     </div>
 
@@ -570,7 +567,6 @@
           <p class="eyebrow mb-4" data-i18n="family_eyebrow">Die Modellreihe</p>
           <h3 class="h-section text-[clamp(1.25rem,6.4vw,1.45rem)] sm:text-3xl xl:text-4xl text-balance" data-i18n="family_title">Größer gedacht: Katamarane bis 20 Meter.</h3>
         </div>
-        <p class="text-sm text-muted-foreground lead max-w-sm" data-i18n="family_body">Für Ausflugsschifffahrt, Gastronomie und Events fertigen wir Katamarane mit Panoramaverglasung für bis zu 35 Gäste.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -629,24 +625,23 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="card-surface glow-bg rounded-3xl px-3.5 min-[360px]:px-5 py-12 sm:p-14">
       <div class="reveal max-w-2xl mx-auto text-center mb-14">
-        <div class="flex justify-center mb-6"><div class="divider-gold mx-auto"></div></div>
         <p class="eyebrow mb-4" data-i18n="benefits_eyebrow">Vorteile</p>
         <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance" data-i18n="benefits_title">Zwölf gute Gründe</h2>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10">
-        <div class="reveal flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-handlebar"/></svg></span><p class="font-medium mt-1" data-i18n="b1_t">Jet-Ski-Steuerung</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b1_b">Bequemer Motorradlenker und ergonomisches Bedienfeld — sofort verständlich.</p></div>
-        <div class="reveal reveal-delay-1 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-seat"/></svg></span><p class="font-medium mt-1" data-i18n="b2_t">Vier bequeme Sitze</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b2_b">Komfortabler Platz für vier Erwachsene.</p></div>
-        <div class="reveal reveal-delay-2 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-hull"/></svg></span><p class="font-medium mt-1" data-i18n="b3_t">Robuster Aluminiumrumpf</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b3_b">Leicht, langlebig und korrosionsbeständig.</p></div>
-        <div class="reveal reveal-delay-3 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-bolt"/></svg></span><p class="font-medium mt-1" data-i18n="b4_t">Benzin oder Elektro</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b4_b">Freie Wahl des Antriebs — passend zu Ihrem Einsatz.</p></div>
-        <div class="reveal flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-roof"/></svg></span><p class="font-medium mt-1" data-i18n="b5_t">Abnehmbares Dach</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b5_b">Sonnenschutz, wenn Sie ihn brauchen — offenes Fahren, wenn nicht.</p></div>
-        <div class="reveal reveal-delay-1 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-music"/></svg></span><p class="font-medium mt-1" data-i18n="b6_t">Soundsystem</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b6_b">Integrierte Lautsprecher für Musik an Bord.</p></div>
-        <div class="reveal reveal-delay-2 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-sparkle"/></svg></span><p class="font-medium mt-1" data-i18n="b7_t">LED-Beleuchtung</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b7_b">Effektvolle Ambientebeleuchtung für Deck und Rumpf.</p></div>
-        <div class="reveal reveal-delay-3 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-moon"/></svg></span><p class="font-medium mt-1" data-i18n="b8_t">Nachtbeleuchtung</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b8_b">Navigationslichter und Zusatzbeleuchtung für Fahrten am Abend.</p></div>
-        <div class="reveal flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-rail"/></svg></span><p class="font-medium mt-1" data-i18n="b9_t">Metallreling</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b9_b">Seitliche Handläufe für sicheren Halt an Bord.</p></div>
-        <div class="reveal reveal-delay-1 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-gauge"/></svg></span><p class="font-medium mt-1" data-i18n="b10_t">Modernes Armaturenbrett</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b10_b">Alle Bedien- und Kontrollelemente übersichtlich angeordnet.</p></div>
-        <div class="reveal reveal-delay-2 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-ruler"/></svg></span><p class="font-medium mt-1" data-i18n="b11_t">Kompakte Maße</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b11_b">Einfach zu transportieren, zu lagern und zu betreiben.</p></div>
-        <div class="reveal reveal-delay-3 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-sliders"/></svg></span><p class="font-medium mt-1" data-i18n="b12_t">Individuelle Ausstattung</p><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="b12_b">Ausstattung nach Ihren Anforderungen anpassbar.</p></div>
+        <div class="reveal flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-handlebar"/></svg></span><p class="font-medium mt-1" data-i18n="b1_t">Jet-Ski-Steuerung</p></div>
+        <div class="reveal reveal-delay-1 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-seat"/></svg></span><p class="font-medium mt-1" data-i18n="b2_t">Vier bequeme Sitze</p></div>
+        <div class="reveal reveal-delay-2 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-hull"/></svg></span><p class="font-medium mt-1" data-i18n="b3_t">Robuster Aluminiumrumpf</p></div>
+        <div class="reveal reveal-delay-3 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-bolt"/></svg></span><p class="font-medium mt-1" data-i18n="b4_t">Benzin oder Elektro</p></div>
+        <div class="reveal flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-roof"/></svg></span><p class="font-medium mt-1" data-i18n="b5_t">Abnehmbares Dach</p></div>
+        <div class="reveal reveal-delay-1 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-music"/></svg></span><p class="font-medium mt-1" data-i18n="b6_t">Soundsystem</p></div>
+        <div class="reveal reveal-delay-2 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-sparkle"/></svg></span><p class="font-medium mt-1" data-i18n="b7_t">LED-Beleuchtung</p></div>
+        <div class="reveal reveal-delay-3 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-moon"/></svg></span><p class="font-medium mt-1" data-i18n="b8_t">Nachtbeleuchtung</p></div>
+        <div class="reveal flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-rail"/></svg></span><p class="font-medium mt-1" data-i18n="b9_t">Metallreling</p></div>
+        <div class="reveal reveal-delay-1 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-gauge"/></svg></span><p class="font-medium mt-1" data-i18n="b10_t">Modernes Armaturenbrett</p></div>
+        <div class="reveal reveal-delay-2 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-ruler"/></svg></span><p class="font-medium mt-1" data-i18n="b11_t">Kompakte Maße</p></div>
+        <div class="reveal reveal-delay-3 flex flex-col gap-3"><span class="icon-badge"><svg class="w-6 h-6"><use href="#i-sliders"/></svg></span><p class="font-medium mt-1" data-i18n="b12_t">Individuelle Ausstattung</p></div>
       </div>
     </div>
   </div>
@@ -657,7 +652,6 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
       <div class="reveal max-w-xl">
-        <div class="divider-gold mb-6"></div>
         <p class="eyebrow mb-4" data-i18n="specs_eyebrow">Technische Daten</p>
         <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl" data-i18n="specs_title">Alle Daten auf einen Blick.</h2>
       </div>
@@ -673,10 +667,8 @@
       <div class="reveal lg:col-span-3 card-surface rounded-2xl overflow-hidden">
         <div class="px-6 sm:px-8 py-5 border-b border-border/60 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           <h3 class="font-display text-lg">RUBAN MARINE 400</h3>
-          <span class="text-xs text-muted-foreground" data-i18n="specs_made">Entwickelt in Deutschland</span>
         </div>
         <dl class="spec-table text-sm" data-spec="rm400"></dl>
-        <p class="px-6 sm:px-8 py-5 text-xs text-muted-foreground leading-relaxed border-t border-border/60" data-i18n="rm400_note">* Die Höchstgeschwindigkeit hängt von Motor, Beladung und Einsatzbedingungen ab. Der Wert von bis zu 20 km/h wird durch Testfahrten bestätigt.</p>
       </div>
 
       <div class="lg:col-span-2 flex flex-col gap-5 lg:sticky lg:top-28 lg:self-start">
@@ -694,7 +686,6 @@
           <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1"><p class="font-display text-lg">400 ELECTRIC</p><p class="font-semibold gold-text whitespace-nowrap" data-i18n="price_on_request">Preis auf Anfrage</p></div>
           <p class="mt-2 text-sm text-muted-foreground leading-relaxed" data-i18n="v3_body">Elektrischer Antrieb mit individuell abgestimmtem Akkusystem — Leistung, Kapazität und Reichweite nach Ihrem Bedarf.</p>
         </div>
-        <p class="reveal text-xs text-muted-foreground/80 leading-relaxed" data-i18n="variants_note">Startpreise. Endpreis, Mehrwertsteuer und Lieferbedingungen richten sich nach der vereinbarten Ausstattung.</p>
       </div>
     </div>
 
@@ -703,16 +694,13 @@
       <div class="lg:col-span-3 card-surface rounded-2xl overflow-hidden">
         <div class="px-6 sm:px-8 py-5 border-b border-border/60 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           <h3 class="font-display text-lg">RUBAN MARINE 12 / 15 / 20</h3>
-          <span class="text-xs text-muted-foreground" data-i18n="specs_custom">Individuell auf Bestellung</span>
         </div>
         <dl class="spec-table text-sm" data-spec="rm20"></dl>
-        <p class="px-6 sm:px-8 py-5 text-xs text-muted-foreground leading-relaxed border-t border-border/60" data-i18n="rm20_note">* Die zulässige Fahrgastzahl wird im Projekt festgelegt und im Genehmigungs- und Abnahmeverfahren bestätigt. Die Kategorie D allein ersetzt bei Fahrgastschiffen nicht die erforderlichen Genehmigungen.</p>
       </div>
       <div class="lg:col-span-2 flex flex-col gap-5 lg:sticky lg:top-28 lg:self-start">
         <div class="card-float rounded-2xl p-6 sm:p-7">
           <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground" data-i18n="stat_price">Preis</p>
           <p class="mt-2 font-display text-3xl gold-text tracking-[-0.02em]" data-i18n="rm20_price">ab 300.000 €</p>
-          <p class="mt-3 text-sm text-muted-foreground leading-relaxed" data-i18n="rm20_price_note">Richtwert für ein Basisprojekt. Der Endpreis hängt von Länge, Antrieb, Akkusystem, Solarmodulen, Innenausbau, Verglasung und Zertifizierung ab.</p>
         </div>
         <div class="card-surface rounded-2xl p-6 sm:p-7">
           <p class="font-display text-lg mb-4" data-i18n="exec_title">Drei Ausführungen</p>
@@ -734,16 +722,13 @@
       <div class="lg:col-span-3 card-surface rounded-2xl overflow-hidden">
         <div class="px-6 sm:px-8 py-5 border-b border-border/60 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           <h3 class="font-display text-lg">PANORAMA 12 / 15 / 20</h3>
-          <span class="text-xs text-muted-foreground" data-i18n="specs_custom">Individuell auf Bestellung</span>
         </div>
         <dl class="spec-table text-sm" data-spec="panorama"></dl>
-        <p class="px-6 sm:px-8 py-5 text-xs text-muted-foreground leading-relaxed border-t border-border/60" data-i18n="pano_note">* Die tatsächliche Fahrgastzahl ergibt sich aus dem technischen Projekt, den Sicherheitsanforderungen und den erforderlichen Genehmigungen.</p>
       </div>
       <div class="lg:col-span-2 flex flex-col gap-5 lg:sticky lg:top-28 lg:self-start">
         <div class="card-float rounded-2xl p-6 sm:p-7">
           <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground" data-i18n="stat_price">Preis</p>
           <p class="mt-2 font-display text-2xl min-[400px]:text-3xl gold-text tracking-[-0.02em]" data-i18n="price_on_request">Preis auf Anfrage</p>
-          <p class="mt-3 text-sm text-muted-foreground leading-relaxed" data-i18n="pano_price_note">Jeder Katamaran wird individuell gefertigt. Der Preis richtet sich nach Modell, Antrieb, Interieur, Verglasung und Energiesystem.</p>
         </div>
         <div class="card-surface rounded-2xl p-6 sm:p-7">
           <p class="font-display text-lg mb-4" data-i18n="pano_exec_title">Open · Closed · Transform</p>
@@ -770,7 +755,6 @@
       <div class="px-6 py-14 sm:px-14 sm:py-20 lg:py-24 max-w-2xl">
         <p class="eyebrow mb-4" data-i18n="cta_eyebrow">Live auf der Messe</p>
         <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance" data-i18n="cta_title">Setzen Sie sich ans Steuer.</h2>
-        <p class="mt-5 text-foreground/80 lead" data-i18n="cta_body">Nehmen Sie auf dem RUBAN MARINE 400 Platz, prüfen Sie die Verarbeitung und sprechen Sie direkt mit dem Hersteller. Wir erstellen Ihnen ein individuelles Angebot — für Ihre Ausstattung und Ihren Einsatz.</p>
         <div class="mt-8 flex flex-col min-[480px]:flex-row min-[480px]:flex-wrap gap-3">
           <a href="#anfrage" class="btn btn-gold">
             <span data-i18n="btn_offer">Angebot anfordern</span>
@@ -795,7 +779,6 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
       <div class="reveal max-w-3xl">
-        <div class="divider-gold mb-6"></div>
         <p class="eyebrow mb-4" data-i18n="gallery_eyebrow">Fotos &amp; Videos</p>
         <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl" data-i18n="gallery_title">Tag, Abend, Nacht — in Fahrt.</h2>
       </div>
@@ -850,17 +833,15 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
       <div class="reveal order-2 lg:order-1">
-        <div class="divider-gold mb-6"></div>
         <p class="eyebrow mb-4" data-i18n="company_eyebrow">Über das Unternehmen</p>
         <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance mb-6" data-i18n="company_title">Ruban Marine — Katamarane aus Berlin.</h2>
         <p class="text-foreground/75 lead" data-i18n="company_body1">Ruban Marine entwickelt und fertigt Aluminium-Katamarane in Deutschland — vom kompakten Viersitzer bis zum 20-Meter-Fahrgastschiff. Jedes Boot entsteht nach den Anforderungen unserer Kunden: Größe, Grundriss, Ausstattung und Antrieb.</p>
-        <p class="mt-4 text-foreground/75 lead" data-i18n="company_body2">Der RUBAN MARINE 400 ist kein Prototyp: In Berlin ist er als Mietboot täglich auf der Spree im Einsatz — gesteuert von Gästen, die zum ersten Mal am Lenker sitzen. Diese Praxiserfahrung fließt direkt in jedes neue Boot ein.</p>
 
-        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-          <div class="card-surface rounded-2xl p-5 flex items-start gap-4"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-flag"/></svg></span><div><p class="text-sm font-medium" data-i18n="c1_t">Entwickelt in Deutschland</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="c1_b">Konstruktion und Fertigung aus einer Hand</p></div></div>
-          <div class="card-surface rounded-2xl p-5 flex items-start gap-4"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-hull"/></svg></span><div><p class="text-sm font-medium" data-i18n="c2_t">Marine-Aluminium</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="c2_b">Leicht, robust und korrosionsbeständig</p></div></div>
-          <div class="card-surface rounded-2xl p-5 flex items-start gap-4"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-sliders"/></svg></span><div><p class="text-sm font-medium" data-i18n="c3_t">Individuelle Fertigung</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="c3_b">Ausstattung und Antrieb nach Wunsch</p></div></div>
-          <div class="card-surface rounded-2xl p-5 flex items-start gap-4"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-anchor"/></svg></span><div><p class="text-sm font-medium" data-i18n="c4_t">Im täglichen Einsatz</p><p class="text-xs text-muted-foreground mt-1 leading-relaxed" data-i18n="c4_b">Erprobt im Bootsverleih auf der Spree</p></div></div>
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
+          <div class="flex items-center gap-3.5"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-flag"/></svg></span><div><p class="text-sm font-medium" data-i18n="c1_t">Entwickelt in Deutschland</p></div></div>
+          <div class="flex items-center gap-3.5"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-hull"/></svg></span><div><p class="text-sm font-medium" data-i18n="c2_t">Marine-Aluminium</p></div></div>
+          <div class="flex items-center gap-3.5"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-sliders"/></svg></span><div><p class="text-sm font-medium" data-i18n="c3_t">Individuelle Fertigung</p></div></div>
+          <div class="flex items-center gap-3.5"><span class="icon-badge shrink-0 !w-11 !h-11"><svg class="w-5 h-5"><use href="#i-anchor"/></svg></span><div><p class="text-sm font-medium" data-i18n="c4_t">Im täglichen Einsatz</p></div></div>
         </div>
       </div>
 
@@ -881,10 +862,8 @@
 <section id="anfrage" class="relative py-20 sm:py-28">
   <div class="max-w-3xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-12">
-      <div class="flex justify-center mb-6"><div class="divider-gold mx-auto"></div></div>
       <p class="eyebrow mb-4" data-i18n="form_eyebrow">Anfrage</p>
       <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance" data-i18n="form_title">Fordern Sie Ihr Angebot an.</h2>
-      <p class="mt-4 text-foreground/70 lead" data-i18n="form_subtitle">Erzählen Sie uns von Ihrem Vorhaben — wir melden uns persönlich mit einem individuellen Angebot.</p>
     </div>
 
     <form id="enquiry-form" class="reveal card-float rounded-2xl p-5 min-[360px]:p-6 sm:p-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -945,7 +924,6 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
       <div>
         <div class="reveal">
-          <div class="divider-gold mb-6"></div>
           <p class="eyebrow mb-4" data-i18n="faq_eyebrow">Fragen &amp; Antworten</p>
           <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl" data-i18n="faq_title">Häufige Fragen</h2>
         </div>
@@ -955,34 +933,6 @@
       </div>
 
       <div class="reveal reveal-delay-1 accordion divide-y divide-border/60 border-t border-b border-border/60 self-start">
-        <div class="accordion-item" data-open="false">
-          <button type="button" class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false"><span class="font-medium transition-colors" data-i18n="faq_q1">Was kostet der RUBAN MARINE 400?</span><svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg></button>
-          <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a1">Die Version BASE ohne Motor beginnt bei 21.000 €, die Version PETROL mit Benzinmotor bis 15 PS bei 25.000 €. Den Preis für die Version ELECTRIC berechnen wir individuell. Mehrwertsteuer und Lieferbedingungen richten sich nach der vereinbarten Ausstattung.</p></div>
-        </div>
-        <div class="accordion-item" data-open="false">
-          <button type="button" class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false"><span class="font-medium transition-colors" data-i18n="faq_q2">Brauche ich einen Bootsführerschein?</span><svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg></button>
-          <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a2">Auf den meisten Binnengewässern in Deutschland dürfen Boote mit bis zu 15 PS ohne Sportbootführerschein gefahren werden. Regional können abweichende Regeln gelten — wir beraten Sie gern zu Ihrem Revier.</p></div>
-        </div>
-        <div class="accordion-item" data-open="false">
-          <button type="button" class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false"><span class="font-medium transition-colors" data-i18n="faq_q3">Benzin oder Elektro — was passt zu mir?</span><svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg></button>
-          <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a3">Die Benzinversion mit Außenborder bis 15 PS und 35-Liter-Tank eignet sich für längere Strecken. Der Elektroantrieb fährt leise und emissionsfrei — Motorleistung, Akkukapazität und Reichweite stimmen wir auf Ihren Einsatz ab.</p></div>
-        </div>
-        <div class="accordion-item" data-open="false">
-          <button type="button" class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false"><span class="font-medium transition-colors" data-i18n="faq_q4">Eignet sich der Katamaran für Verleih, Hotels oder Campingplätze?</span><svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg></button>
-          <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a4">Ja. Die einfache Lenkersteuerung, das robuste Aluminium und die kompakten Maße machen den 400 ideal für den gewerblichen Verleih. Wir setzen ihn selbst täglich in unserem Bootsverleih in Berlin ein. Für die gewerbliche Nutzung sind die örtlich geltenden Genehmigungen erforderlich.</p></div>
-        </div>
-        <div class="accordion-item" data-open="false">
-          <button type="button" class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false"><span class="font-medium transition-colors" data-i18n="faq_q5">Lässt sich das Boot leicht transportieren?</span><svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg></button>
-          <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a5">Mit 4,00 m Länge, 1,95 m Breite und rund 450 kg ohne Motor ist der 400 kompakt genug für Transport und Lagerung an Land. Zu Lieferung und Transport beraten wir Sie im Rahmen des Angebots.</p></div>
-        </div>
-        <div class="accordion-item" data-open="false">
-          <button type="button" class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false"><span class="font-medium transition-colors" data-i18n="faq_q6">Kann ich die Ausstattung anpassen?</span><svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg></button>
-          <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a6">Ja. Antrieb, Ausstattung und Sonderversionen — etwa für Gewässerpflege oder Inspektionsarbeiten — passen wir an Ihre Anforderungen an.</p></div>
-        </div>
-        <div class="accordion-item" data-open="false">
-          <button type="button" class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false"><span class="font-medium transition-colors" data-i18n="faq_q7">Wie steht es um Dokumentation und Zertifizierung?</span><svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg></button>
-          <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a7">Die erforderliche technische Dokumentation und Zertifizierung erstellen wir entsprechend den geltenden Anforderungen und dem Verwendungszweck des Bootes.</p></div>
-        </div>
         <div class="accordion-item" data-open="false">
           <button type="button" class="accordion-trigger w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false"><span class="font-medium transition-colors" data-i18n="faq_q8">Bauen Sie auch größere Katamarane?</span><svg class="accordion-chevron w-5 h-5 shrink-0 text-muted-foreground"><use href="#i-plus"/></svg></button>
           <div class="accordion-panel"><p class="pb-5 text-sm text-foreground/70 leading-[1.7]" data-i18n="faq_a8">Ja. Die Serien RUBAN MARINE und RUBAN MARINE PANORAMA gibt es mit 12, 15 oder 20 m Länge für bis zu 35 Fahrgäste — als Ausflugsschiff, schwimmendes Restaurant, Café oder Eventlocation. Der RUBAN MARINE 20 beginnt bei 300.000 €, die PANORAMA-Serie kalkulieren wir individuell.</p></div>
@@ -1000,7 +950,6 @@
 <section id="kontakt" class="relative py-20 sm:py-28">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="reveal max-w-2xl mb-14">
-      <div class="divider-gold mb-6"></div>
       <p class="eyebrow mb-4" data-i18n="contact_eyebrow">Kontakt</p>
       <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance" data-i18n="contact_title">Sprechen wir über Ihr Boot.</h2>
     </div>
@@ -1109,7 +1058,7 @@
     menu_open_aria: 'Open menu', menu_close_aria: 'Close menu', close_aria: 'Close',
     nav_model: 'The model', nav_benefits: 'Benefits', nav_specs: 'Specifications', nav_gallery: 'Gallery', nav_company: 'Company', nav_contact: 'Contact', nav_enquiry: 'Enquiry',
     btn_offer: 'Request a quote', btn_specs: 'Specifications', btn_call: 'Call us',
-    hero_video_aria: 'RUBAN MARINE 400 with LED lighting at night',
+    hero_video_aria: 'RUBAN MARINE 400 under way',
     hero_eyebrow: 'At the show · Developed in Germany',
     hero_title_sub: 'The catamaran with a jet-ski handlebar',
     hero_subtitle: 'Four seats, a motorcycle handlebar instead of a steering wheel and a hull of marine-grade aluminium. Built for leisure, rental and tourism.',
@@ -1234,7 +1183,7 @@
     menu_open_aria: 'Открыть меню', menu_close_aria: 'Закрыть меню', close_aria: 'Закрыть',
     nav_model: 'Модель', nav_benefits: 'Преимущества', nav_specs: 'Характеристики', nav_gallery: 'Галерея', nav_company: 'О компании', nav_contact: 'Контакты', nav_enquiry: 'Запрос',
     btn_offer: 'Запросить предложение', btn_specs: 'Характеристики', btn_call: 'Позвонить',
-    hero_video_aria: 'RUBAN MARINE 400 с LED-подсветкой ночью',
+    hero_video_aria: 'RUBAN MARINE 400 на воде',
     hero_eyebrow: 'На выставке · Разработано в Германии',
     hero_title_sub: 'Катамаран с рулём в стиле Jet Ski',
     hero_subtitle: 'Четыре сиденья, мотоциклетный руль вместо штурвала и корпус из морского алюминия. Создан для отдыха, проката и туризма.',
@@ -1388,7 +1337,7 @@
       [['Steuerung', 'Steering', 'Управление'], ['Motorradlenker im Jet-Ski-Stil', 'Jet-ski-style motorcycle handlebar', 'Мотоциклетный руль Jet Ski Style']],
       [['Benzinmotor', 'Petrol engine', 'Бензиновый двигатель'], ['bis 15 PS', 'up to 15 hp', 'до 15 л. с.']],
       [['Alternativer Antrieb', 'Alternative drive', 'Альтернативный двигатель'], ['Elektromotor', 'Electric motor', 'Электрический']],
-      [['Höchstgeschwindigkeit', 'Top speed', 'Максимальная скорость'], ['bis 20 km/h*', 'up to 20 km/h*', 'до 20 км/ч*']],
+      [['Höchstgeschwindigkeit', 'Top speed', 'Максимальная скорость'], ['bis 20 km/h', 'up to 20 km/h', 'до 20 км/ч']],
       [['Kraftstofftank', 'Fuel tank', 'Топливный бак'], ['35 Liter', '35 litres', '35 литров']],
       [['Sitzplätze', 'Seats', 'Пассажирские сиденья'], ['4']],
       [['Dach', 'Roof', 'Крыша'], ['abnehmbar', 'removable', 'съёмная']],
@@ -1403,7 +1352,7 @@
       [['Modelle', 'Models', 'Модели'], ['RM 12 / RM 15 / RM 20']],
       [['Länge', 'Length', 'Длина'], ['12 / 15 / 20 m', '12 / 15 / 20 m', '12 / 15 / 20 м']],
       [['Breite', 'Beam', 'Ширина'], ['bis 5,00 m', 'up to 5.00 m', 'до 5,00 м']],
-      [['Kapazität', 'Capacity', 'Вместимость'], ['bis 35 Fahrgäste*', 'up to 35 passengers*', 'до 35 пассажиров*']],
+      [['Kapazität', 'Capacity', 'Вместимость'], ['bis 35 Fahrgäste', 'up to 35 passengers', 'до 35 пассажиров']],
       [['Typ', 'Type', 'Тип'], ['Fahrgast-Katamaran', 'Passenger catamaran', 'Пассажирский катамаран']],
       [['Bauweise', 'Construction', 'Конструкция'], ['Zweirumpf', 'Twin hull', 'Двухкорпусная']],
       [['Material', 'Material', 'Материал'], ['Marine-Aluminium', 'Marine-grade aluminium', 'Морской алюминий']],
@@ -1427,7 +1376,7 @@
       [['Modelle', 'Models', 'Модели'], ['PANORAMA 12 / 15 / 20']],
       [['Länge', 'Length', 'Длина'], ['12 / 15 / 20 m', '12 / 15 / 20 m', '12 / 15 / 20 м']],
       [['Breite', 'Beam', 'Ширина'], ['bis 5 m', 'up to 5 m', 'до 5 м']],
-      [['Kapazität', 'Capacity', 'Вместимость'], ['bis 35 Fahrgäste*', 'up to 35 passengers*', 'до 35 пассажиров*']],
+      [['Kapazität', 'Capacity', 'Вместимость'], ['bis 35 Fahrgäste', 'up to 35 passengers', 'до 35 пассажиров']],
       [['Typ', 'Type', 'Тип'], ['Fahrgast-Katamaran', 'Passenger catamaran', 'Пассажирский катамаран']],
       [['Rumpf', 'Hull', 'Корпус'], ['Aluminium', 'Aluminium', 'Алюминиевый']],
       [['Aufbaurahmen', 'Superstructure frame', 'Каркас надстройки'], ['Aluminium', 'Aluminium', 'Алюминиевый']],
@@ -1609,6 +1558,9 @@
   const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  const heroVideo = document.getElementById('hero-video');
+  if (heroVideo && matchMedia('(max-width: 767px) and (orientation: portrait)').matches) heroVideo.poster = 'Ruban/web/messe/hero-mobile.webp';
 
   const menu = document.getElementById('mobile-menu');
   const menuToggle = document.getElementById('menu-toggle');
