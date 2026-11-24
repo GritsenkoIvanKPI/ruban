@@ -10,6 +10,13 @@ DirectoryIndex index.html index.php
   RewriteRule ^ https://rubanmarine.de%{REQUEST_URI} [L,R=301]
   RewriteCond %{HTTP_HOST} ^www\.rubanmarine\.de$ [NC]
   RewriteRule ^ https://rubanmarine.de%{REQUEST_URI} [L,R=301]
+  # Pretty URL: /catamarans serves messe.html
+  RewriteRule ^catamarans/$ /catamarans [L,R=301]
+  RewriteRule ^catamarans$ messe.html [L]
+  # Old addresses → /catamarans (only for direct requests, not the internal rewrite above)
+  RewriteCond %{THE_REQUEST} \s/+messe(\.html)?[\s?/] [NC]
+  RewriteRule ^ /catamarans [L,R=301]
+  RewriteRule ^messe/?$ /catamarans [L,R=301,NC]
   # Hide dotfiles and internal docs
   RewriteRule (^|/)\.(?!well-known/) - [F]
   RewriteRule \.(md|example\.php)$ - [F,NC]
