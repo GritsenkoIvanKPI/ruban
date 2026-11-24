@@ -1,0 +1,7 @@
+# Only the endpoint is reachable; config and rate-limit data are private.
+<FilesMatch "^(config|config\.example)\.php$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>

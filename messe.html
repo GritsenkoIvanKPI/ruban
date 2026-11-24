@@ -341,6 +341,10 @@
     .spec-tab { min-height: 5rem; border-radius: 1.1rem; gap: .3rem; } .spec-tab-name { font-size: 1.25rem; } .spec-tab-sub { font-size: .8125rem; } }
   @media (max-width: 359px) { .spec-tab { padding-inline: .25rem; } .spec-tab-name { font-size: .8125rem; letter-spacing: 0; } }
   @media (prefers-reduced-motion: reduce) { .model-switch-ind { transition: none; } }
+  .hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  #enquiry-form button[type="submit"][aria-busy="true"] { opacity: .7; pointer-events: none; }
+  #form-status[data-state="error"] { color: oklch(78% .12 30); }
+  #form-status a { text-decoration: underline; text-underline-offset: 2px; }
   .pill { transition: background-color .3s ease, color .3s ease, border-color .3s ease, transform .3s cubic-bezier(.16,1,.3,1); }
   .pill:active { transform: scale(.96); }
   .pill[data-active="true"] { color: oklch(16% .012 240); background: oklch(82% .14 85); border-color: transparent; }
@@ -942,11 +946,15 @@
         <input required type="checkbox" id="f-consent" name="consent" class="consent-box mt-0.5 w-5 h-5 sm:w-4 sm:h-4 shrink-0">
         <span data-i18n-html="form_consent_html">Ich habe die <button type="button" class="open-privacy underline underline-offset-2 hover:text-foreground">Datenschutzerklärung</button> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu.</span>
       </label>
+      <div class="hp-field" aria-hidden="true">
+        <label for="f-website">Website</label>
+        <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
       <button type="submit" class="sm:col-span-2 btn btn-gold">
         <svg class="w-4 h-4"><use href="#i-send"/></svg>
         <span data-i18n="form_send">Anfrage senden</span>
       </button>
-      <p id="form-status" class="sm:col-span-2 text-sm text-center text-gold" hidden></p>
+      <p id="form-status" class="sm:col-span-2 text-sm text-center text-gold" role="status" aria-live="polite" hidden></p>
     </form>
   </div>
 </section>
@@ -1075,7 +1083,7 @@
     </div>
     <div class="text-sm text-foreground/75 leading-[1.8] space-y-4" data-i18n-html="privacy_html">
       <p><strong class="text-foreground">1. Verantwortlicher</strong><br>Ruban Marine Berlin, Wilhelminenhofstraße 92, 12459 Berlin, E-Mail: ruban6467@gmail.com, Telefon: +49 178 4421637.</p>
-      <p><strong class="text-foreground">2. Anfrageformular</strong><br>Wenn Sie das Anfrageformular nutzen, öffnet sich Ihr E-Mail-Programm mit den eingegebenen Angaben (Name, E-Mail-Adresse, Telefonnummer, Modell, Nutzung, Nachricht). Die Daten werden erst übermittelt, wenn Sie die E-Mail selbst absenden. Wir verarbeiten sie zur Bearbeitung Ihrer Anfrage und zur Erstellung eines Angebots gemäß Art. 6 Abs. 1 lit. b DSGVO.</p>
+      <p><strong class="text-foreground">2. Anfrageformular</strong><br>Wenn Sie das Anfrageformular absenden, werden Ihre Angaben (Name, E-Mail-Adresse, Telefonnummer, Modell, Nutzung, Nachricht) per E-Mail an uns übermittelt. Für den Versand nutzen wir den Dienst Resend (Resend, Inc., USA) als Auftragsverarbeiter; die Übermittlung erfolgt auf Grundlage der EU-Standardvertragsklauseln. Die Daten werden nicht auf unserem Webserver gespeichert. Wir verarbeiten sie zur Bearbeitung Ihrer Anfrage und zur Erstellung eines Angebots gemäß Art. 6 Abs. 1 lit. b DSGVO.</p>
       <p><strong class="text-foreground">3. WhatsApp</strong><br>Wenn Sie uns über WhatsApp kontaktieren, öffnet sich WhatsApp bzw. WhatsApp Web der WhatsApp Ireland Limited / Meta Platforms Ireland Limited. Es gelten deren Datenschutzbestimmungen. Die Nutzung ist freiwillig.</p>
       <p><strong class="text-foreground">4. Hosting &amp; technische Dienste</strong><br>Beim Aufruf dieser Seite werden technisch notwendige Daten (z. B. IP-Adresse, Zeitpunkt, Browser) verarbeitet. Für die Darstellung wird das Stylesheet-Framework Tailwind CSS über ein Content Delivery Network geladen; dabei wird Ihre IP-Adresse an den CDN-Anbieter übertragen (Art. 6 Abs. 1 lit. f DSGVO).</p>
       <p><strong class="text-foreground">5. Cookies &amp; Tracking</strong><br>Diese Seite verwendet keine Tracking- oder Analyse-Cookies. Ihre Sprachauswahl wird technisch notwendig lokal in Ihrem Browser gespeichert (localStorage).</p>
@@ -1190,7 +1198,7 @@
     form_use: 'Planned use', form_use1: 'Private', form_use2: 'Boat rental / tourism', form_use3: 'Hotel, campsite or holiday park', form_use4: 'Hospitality / events', form_use5: 'Dealer / resale', form_use6: 'Other',
     form_message: 'Your message', form_message_ph: 'e.g. desired equipment, quantity, delivery date',
     form_consent_html: 'I have read the <button type="button" class="open-privacy underline underline-offset-2 hover:text-foreground">privacy policy</button> and agree to the processing of my data to handle my enquiry.',
-    form_send: 'Send enquiry', form_sent: 'Your email program is opening — just send the prepared message.', form_subject: 'Enquiry RUBAN MARINE — ',
+    form_send: 'Send enquiry', form_sent: 'Thank you! Your enquiry has been sent — we will get back to you shortly.', form_sending: 'Sending…', form_error_html: 'Sending failed. Please write to us directly: <a href="mailto:ruban6467@gmail.com">ruban6467@gmail.com</a>', form_subject: 'Enquiry RUBAN MARINE — ',
     faq_eyebrow: 'Questions & answers', faq_title: 'Common questions',
     faq_img_alt: 'Guests under the roof of the RUBAN MARINE 400 during a cruise',
     faq_q1: 'How much does the RUBAN MARINE 400 cost?',
@@ -1216,7 +1224,7 @@
     footer_rights: 'All rights reserved.', footer_impressum: 'Legal notice', footer_privacy: 'Privacy',
     impressum_html: '<p><strong class="text-foreground">Information pursuant to § 5 TMG</strong></p><p>Ruban Marine Berlin<br>Wilhelminenhofstraße 92<br>12459 Berlin, Germany</p><p><strong class="text-foreground">Represented by:</strong><br>[Owner/Managing Director – please add]</p><p><strong class="text-foreground">Contact:</strong><br>Phone: +49 178 4421637<br>Email: ruban6467@gmail.com</p><p><strong class="text-foreground">VAT ID / tax number:</strong><br>[please add, if applicable]</p><p><strong class="text-foreground">Responsible for content pursuant to § 18 (2) MStV:</strong><br>[Name, address – please add]</p><p><strong class="text-foreground">EU dispute resolution:</strong><br>The European Commission provides a platform for online dispute resolution (ODR): <a class="underline" href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>. We are not obliged and not willing to participate in dispute resolution proceedings before a consumer arbitration board.</p><p><strong class="text-foreground">Liability for content:</strong><br>As a service provider, we are responsible for our own content on these pages under general law. We assume no liability for the content of external links.</p>',
     privacy_title: 'Privacy policy',
-    privacy_html: '<p><strong class="text-foreground">1. Controller</strong><br>Ruban Marine Berlin, Wilhelminenhofstraße 92, 12459 Berlin, Germany, email: ruban6467@gmail.com, phone: +49 178 4421637.</p><p><strong class="text-foreground">2. Enquiry form</strong><br>When you use the enquiry form, your email program opens with the details you entered (name, email address, phone number, model, use, message). The data is only transmitted when you send the email yourself. We process it to handle your enquiry and prepare a quote pursuant to Art. 6(1)(b) GDPR.</p><p><strong class="text-foreground">3. WhatsApp</strong><br>If you contact us via WhatsApp, WhatsApp or WhatsApp Web of WhatsApp Ireland Limited / Meta Platforms Ireland Limited will open. Their privacy policy applies. Use is voluntary.</p><p><strong class="text-foreground">4. Hosting & technical services</strong><br>When you visit this page, technically necessary data (e.g. IP address, time, browser) is processed. The stylesheet framework Tailwind CSS is loaded via a content delivery network; your IP address is transmitted to the CDN provider (Art. 6(1)(f) GDPR).</p><p><strong class="text-foreground">5. Cookies & tracking</strong><br>This page does not use tracking or analytics cookies. Your language choice is stored locally in your browser (localStorage) as a technically necessary setting.</p><p><strong class="text-foreground">6. Storage period</strong><br>We store your data only for as long as necessary to handle your enquiry or as required by statutory retention obligations.</p><p><strong class="text-foreground">7. Your rights</strong><br>You have the right to access, rectification, erasure, restriction of processing, data portability and objection, as well as the right to lodge a complaint with a data protection supervisory authority.</p>',
+    privacy_html: '<p><strong class="text-foreground">1. Controller</strong><br>Ruban Marine Berlin, Wilhelminenhofstraße 92, 12459 Berlin, Germany, email: ruban6467@gmail.com, phone: +49 178 4421637.</p><p><strong class="text-foreground">2. Enquiry form</strong><br>When you submit the enquiry form, the details you entered (name, email address, phone number, model, use, message) are sent to us by email. We use the service Resend (Resend, Inc., USA) as a processor for sending; the transfer is based on the EU Standard Contractual Clauses. The data is not stored on our web server. We process it to handle your enquiry and prepare a quote pursuant to Art. 6(1)(b) GDPR.</p><p><strong class="text-foreground">3. WhatsApp</strong><br>If you contact us via WhatsApp, WhatsApp or WhatsApp Web of WhatsApp Ireland Limited / Meta Platforms Ireland Limited will open. Their privacy policy applies. Use is voluntary.</p><p><strong class="text-foreground">4. Hosting & technical services</strong><br>When you visit this page, technically necessary data (e.g. IP address, time, browser) is processed. The stylesheet framework Tailwind CSS is loaded via a content delivery network; your IP address is transmitted to the CDN provider (Art. 6(1)(f) GDPR).</p><p><strong class="text-foreground">5. Cookies & tracking</strong><br>This page does not use tracking or analytics cookies. Your language choice is stored locally in your browser (localStorage) as a technically necessary setting.</p><p><strong class="text-foreground">6. Storage period</strong><br>We store your data only for as long as necessary to handle your enquiry or as required by statutory retention obligations.</p><p><strong class="text-foreground">7. Your rights</strong><br>You have the right to access, rectification, erasure, restriction of processing, data portability and objection, as well as the right to lodge a complaint with a data protection supervisory authority.</p>',
   };
 
   I18N.ru = {
@@ -1315,7 +1323,7 @@
     form_use: 'Планируемое использование', form_use1: 'Частное', form_use2: 'Прокат / туризм', form_use3: 'Отель, кемпинг или база отдыха', form_use4: 'Ресторан / мероприятия', form_use5: 'Дилер / перепродажа', form_use6: 'Другое',
     form_message: 'Ваше сообщение', form_message_ph: 'например, желаемая комплектация, количество, срок поставки',
     form_consent_html: 'Я ознакомился(-ась) с <button type="button" class="open-privacy underline underline-offset-2 hover:text-foreground">политикой конфиденциальности</button> и согласен(-на) на обработку моих данных для рассмотрения запроса.',
-    form_send: 'Отправить запрос', form_sent: 'Открывается почтовая программа — просто отправьте подготовленное письмо.', form_subject: 'Запрос RUBAN MARINE — ',
+    form_send: 'Отправить запрос', form_sent: 'Спасибо! Ваш запрос отправлен — мы скоро свяжемся с вами.', form_sending: 'Отправка…', form_error_html: 'Не удалось отправить. Напишите нам напрямую: <a href="mailto:ruban6467@gmail.com">ruban6467@gmail.com</a>', form_subject: 'Запрос RUBAN MARINE — ',
     faq_eyebrow: 'Вопросы и ответы', faq_title: 'Частые вопросы',
     faq_img_alt: 'Гости под крышей RUBAN MARINE 400 во время прогулки',
     faq_q1: 'Сколько стоит RUBAN MARINE 400?',
@@ -1341,7 +1349,7 @@
     footer_rights: 'Все права защищены.', footer_impressum: 'Импрессум', footer_privacy: 'Конфиденциальность',
     impressum_html: '<p><strong class="text-foreground">Сведения согласно § 5 TMG (нем. закон о телемедиа)</strong></p><p>Ruban Marine Berlin<br>Wilhelminenhofstraße 92<br>12459 Berlin, Германия</p><p><strong class="text-foreground">Представитель:</strong><br>[владелец/руководитель — заполнить]</p><p><strong class="text-foreground">Контакты:</strong><br>Телефон: +49 178 4421637<br>Эл. почта: ruban6467@gmail.com</p><p><strong class="text-foreground">Идентификационный номер плательщика НДС / налоговый номер:</strong><br>[заполнить, если применимо]</p><p><strong class="text-foreground">Ответственный за содержание согласно § 18 абз. 2 MStV:</strong><br>[имя, адрес — заполнить]</p><p><strong class="text-foreground">Разрешение споров в ЕС:</strong><br>Европейская комиссия предоставляет платформу для онлайн-разрешения споров (ODR): <a class="underline" href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>. Мы не обязаны и не готовы участвовать в процедурах разрешения споров в потребительском арбитраже.</p><p><strong class="text-foreground">Ответственность за содержание:</strong><br>Как поставщик услуг, мы несём ответственность за собственный контент на этих страницах в соответствии с общими законами. За содержание внешних ссылок мы ответственности не несём.</p>',
     privacy_title: 'Политика конфиденциальности',
-    privacy_html: '<p><strong class="text-foreground">1. Ответственный за обработку данных</strong><br>Ruban Marine Berlin, Wilhelminenhofstraße 92, 12459 Berlin, Германия, эл. почта: ruban6467@gmail.com, телефон: +49 178 4421637.</p><p><strong class="text-foreground">2. Форма запроса</strong><br>При использовании формы запроса открывается ваша почтовая программа с введёнными данными (имя, эл. почта, телефон, модель, назначение, сообщение). Данные передаются только после того, как вы сами отправите письмо. Мы обрабатываем их для рассмотрения запроса и подготовки предложения согласно ст. 6 абз. 1 лит. b GDPR.</p><p><strong class="text-foreground">3. WhatsApp</strong><br>При обращении через WhatsApp открывается WhatsApp или WhatsApp Web компании WhatsApp Ireland Limited / Meta Platforms Ireland Limited. Действует их политика конфиденциальности. Использование добровольно.</p><p><strong class="text-foreground">4. Хостинг и технические сервисы</strong><br>При посещении страницы обрабатываются технически необходимые данные (например, IP-адрес, время, браузер). Для отображения загружается фреймворк Tailwind CSS через сеть доставки контента; при этом ваш IP-адрес передаётся провайдеру CDN (ст. 6 абз. 1 лит. f GDPR).</p><p><strong class="text-foreground">5. Файлы cookie и отслеживание</strong><br>Эта страница не использует отслеживающие или аналитические файлы cookie. Выбор языка технически необходимо сохраняется локально в вашем браузере (localStorage).</p><p><strong class="text-foreground">6. Срок хранения</strong><br>Мы храним ваши данные только столько, сколько необходимо для обработки запроса или предусмотрено законодательными сроками хранения.</p><p><strong class="text-foreground">7. Ваши права</strong><br>Вы имеете право на доступ, исправление, удаление, ограничение обработки, переносимость данных и возражение, а также право подать жалобу в надзорный орган по защите данных.</p>',
+    privacy_html: '<p><strong class="text-foreground">1. Ответственный за обработку данных</strong><br>Ruban Marine Berlin, Wilhelminenhofstraße 92, 12459 Berlin, Германия, эл. почта: ruban6467@gmail.com, телефон: +49 178 4421637.</p><p><strong class="text-foreground">2. Форма запроса</strong><br>При отправке формы запроса введённые данные (имя, эл. почта, телефон, модель, назначение, сообщение) передаются нам по электронной почте. Для отправки мы используем сервис Resend (Resend, Inc., США) в качестве обработчика данных; передача осуществляется на основании стандартных договорных положений ЕС. Данные не хранятся на нашем веб-сервере. Мы обрабатываем их для рассмотрения запроса и подготовки предложения согласно ст. 6 абз. 1 лит. b GDPR.</p><p><strong class="text-foreground">3. WhatsApp</strong><br>При обращении через WhatsApp открывается WhatsApp или WhatsApp Web компании WhatsApp Ireland Limited / Meta Platforms Ireland Limited. Действует их политика конфиденциальности. Использование добровольно.</p><p><strong class="text-foreground">4. Хостинг и технические сервисы</strong><br>При посещении страницы обрабатываются технически необходимые данные (например, IP-адрес, время, браузер). Для отображения загружается фреймворк Tailwind CSS через сеть доставки контента; при этом ваш IP-адрес передаётся провайдеру CDN (ст. 6 абз. 1 лит. f GDPR).</p><p><strong class="text-foreground">5. Файлы cookie и отслеживание</strong><br>Эта страница не использует отслеживающие или аналитические файлы cookie. Выбор языка технически необходимо сохраняется локально в вашем браузере (localStorage).</p><p><strong class="text-foreground">6. Срок хранения</strong><br>Мы храним ваши данные только столько, сколько необходимо для обработки запроса или предусмотрено законодательными сроками хранения.</p><p><strong class="text-foreground">7. Ваши права</strong><br>Вы имеете право на доступ, исправление, удаление, ограничение обработки, переносимость данных и возражение, а также право подать жалобу в надзорный орган по защите данных.</p>',
   };
 
   // German strings that only live in JS (everything else is read from the markup).
@@ -1349,7 +1357,9 @@
     meta_title: document.title,
     meta_description: document.querySelector('meta[name="description"]').getAttribute('content'),
     gallery_zoom: 'Bild vergrößern',
-    form_sent: 'Ihr E-Mail-Programm öffnet sich — senden Sie die vorbereitete Nachricht einfach ab.',
+    form_sent: 'Vielen Dank! Ihre Anfrage wurde gesendet — wir melden uns in Kürze.',
+    form_sending: 'Wird gesendet…',
+    form_error_html: 'Senden fehlgeschlagen. Schreiben Sie uns bitte direkt: <a href="mailto:ruban6467@gmail.com">ruban6467@gmail.com</a>',
     form_subject: 'Anfrage RUBAN MARINE — ',
   });
 
@@ -1665,21 +1675,40 @@
     if (e.target.closest('.open-privacy')) { e.preventDefault(); dlgPrivacy.showModal(); }
   });
 
-  /* ---------- Enquiry form (mailto handoff, no backend) ---------- */
-  document.getElementById('enquiry-form').addEventListener('submit', (e) => {
+  /* ---------- Enquiry form (sent via api/enquiry.php → Resend) ---------- */
+  const enquiryForm = document.getElementById('enquiry-form');
+  const formOpenedAt = Date.now();
+  enquiryForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const val = id => document.getElementById(id).value.trim();
     const useSel = document.getElementById('f-use');
     const modelSel = document.getElementById('f-model');
-    const name = val('f-name');
-    const subject = t('form_subject') + modelSel.value.replace('?', '') + ' — ' + name;
-    const body =
-      `Name: ${name}\nE-Mail: ${val('f-email')}\nTelefon: ${val('f-phone') || '–'}\n` +
-      `Modell: ${modelSel.options[modelSel.selectedIndex].text}\nNutzung: ${useSel.options[useSel.selectedIndex].text}\n` +
-      `Sprache: ${currentLang.toUpperCase()}\nQuelle: Messe-Seite\n\n${val('f-message')}`;
-    window.location.href = 'mailto:ruban6467@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    const submitBtn = enquiryForm.querySelector('button[type="submit"]');
+    const label = submitBtn.querySelector('[data-i18n="form_send"]');
     const status = document.getElementById('form-status');
-    status.textContent = t('form_sent');
+    const data = {
+      name: val('f-name'), email: val('f-email'), phone: val('f-phone'),
+      model: modelSel.options[modelSel.selectedIndex].text, use: useSel.options[useSel.selectedIndex].text,
+      message: val('f-message'), consent: document.getElementById('f-consent').checked,
+      website: val('f-website'), elapsed: Date.now() - formOpenedAt, lang: currentLang, page: 'Messe',
+    };
+    submitBtn.setAttribute('aria-busy', 'true');
+    label.textContent = t('form_sending');
+    status.hidden = true;
+    let ok = false;
+    try {
+      const res = await fetch('api/enquiry.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      ok = res.ok && (await res.json()).ok === true;
+    } catch (_) { ok = false; }
+    submitBtn.removeAttribute('aria-busy');
+    label.textContent = t('form_send');
+    status.dataset.state = ok ? 'ok' : 'error';
+    if (ok) {
+      status.textContent = t('form_sent');
+      enquiryForm.reset();
+    } else {
+      status.innerHTML = t('form_error_html');
+    }
     status.hidden = false;
   });
 
