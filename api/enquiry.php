@@ -46,6 +46,22 @@ $page    = $clean($in['page'] ?? '', 60);
 if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || empty($in['consent'])) reply(422, ['ok' => false, 'error' => 'fields']);
 foreach ([$name, $email, $phone, $model, $use] as $one) if (preg_match('/[\r\n]/', $one)) reply(422, ['ok' => false, 'error' => 'fields']);
 
+// Same rules as the form on the page — reject junk even if the page is bypassed.
+$letters = fn(string $v): int => preg_match_all('/\p{L}/u', $v);
+$repeated = fn(string $v): bool => (bool)preg_match('/^(.)\1+$/u', mb_strtolower(preg_replace('/\s+/u', '', $v) ?? ''));
+$bad = false;
+if (!preg_match("/^\p{L}[\p{L}\p{M}' .\-]*$/u", $name) || $letters($name) < 2 || $repeated($name)) $bad = true;
+if (!preg_match('/^[^\s@]+@[^\s@]+\.\p{L}{2,}$/u', $email) || strpos($email, '..') !== false) $bad = true;
+if ($phone !== '') {
+    $digits = preg_replace('/\D/', '', $phone) ?? '';
+    if (!preg_match('/^\+?[\d\s()\/.\-]+$/', $phone) || strlen($digits) < 7 || strlen($digits) > 15 || $repeated($digits)) $bad = true;
+}
+if ($message !== '') {
+    if (mb_strlen($message) < 10 || $letters($message) < 5 || $repeated($message)) $bad = true;
+    if (preg_match_all('/https?:\/\/|www\./i', $message) > 1) $bad = true;
+}
+if ($bad) reply(422, ['ok' => false, 'error' => 'fields']);
+
 // Rate limit: max 5 enquiries per IP per 10 minutes.
 $dir = sys_get_temp_dir() . '/ruban-enquiry';
 @mkdir($dir, 0700, true);
