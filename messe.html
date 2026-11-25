@@ -231,6 +231,26 @@
   .gallery-nav-btn:active { transform: scale(.94); }
   .gallery-nav-btn:disabled { opacity: .35; pointer-events: none; }
 
+  /* Image placeholders: tiny blurred preview behind each photo, real photo fades in */
+  .img-treat[data-ph] { background-color: oklch(19% .015 240); isolation: isolate; }
+  .ph-layer { position: absolute; inset: 0; z-index: -1; background-size: cover; background-position: center; filter: blur(18px) saturate(1.1); transform: scale(1.2); pointer-events: none; }
+  .cta-band > .ph-layer { z-index: -3; }
+  img.fade-img { opacity: 0; transition: opacity .7s cubic-bezier(.16,1,.3,1), transform 1.1s cubic-bezier(.16,1,.3,1); }
+  img.fade-img.is-loaded { opacity: 1; }
+  img.fade-img.is-failed { opacity: 0; }
+  /* Page preloader */
+  .preloader { position: fixed; inset: 0; z-index: 200; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem;
+    background: radial-gradient(60% 50% at 50% 45%, oklch(17% .016 240), oklch(11% .012 240)); transition: opacity .6s cubic-bezier(.16,1,.3,1), visibility 0s linear .6s;
+    animation: preloader-failsafe 0s linear 5s forwards; }
+  .preloader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+  .preloader-logo { width: 3.5rem; height: 3.5rem; border-radius: 999px; animation: preloader-breathe 1.8s ease-in-out infinite; }
+  .preloader-line { position: relative; width: 7.5rem; height: 2px; border-radius: 2px; overflow: hidden; background: oklch(97% .005 240 / .1); }
+  .preloader-line::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(90deg, transparent, oklch(82% .14 85), transparent);
+    transform: translateX(-100%); animation: preloader-sweep 1.2s cubic-bezier(.65,0,.35,1) infinite; }
+  @keyframes preloader-sweep { to { transform: translateX(100%); } }
+  @keyframes preloader-breathe { 0%, 100% { opacity: .75; transform: scale(.97); } 50% { opacity: 1; transform: scale(1); } }
+  @keyframes preloader-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+  @media (prefers-reduced-motion: reduce) { .preloader-logo, .preloader-line::after { animation: none; } }
   .img-treat { position: relative; overflow: hidden; }
   .img-treat img, .img-treat video { transition: transform 1.1s cubic-bezier(.16,1,.3,1); }
   .img-treat:hover img { transform: scale(1.055); }
@@ -406,6 +426,11 @@
   <link rel="preload" as="image" href="/Ruban/web/messe/hero-desktop.webp" type="image/webp" media="not all and (max-width: 767px) and (orientation: portrait)" fetchpriority="high">
 </head>
 <body class="antialiased">
+<div id="preloader" class="preloader" aria-hidden="true">
+  <img src="/Ruban/web/logo-128.webp" alt="" width="56" height="56" class="preloader-logo" fetchpriority="high">
+  <span class="preloader-line"></span>
+</div>
+<script>setTimeout(function () { var p = document.getElementById('preloader'); if (p) p.classList.add('is-done'); }, 2000);</script>
 
 <svg width="0" height="0" class="absolute" aria-hidden="true">
   <defs>
@@ -572,8 +597,8 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center lg:items-stretch">
       <div class="reveal relative lg:h-full">
-        <div class="img-treat rounded-2xl overflow-hidden shadow-luxury aspect-[4/3] lg:aspect-auto lg:h-full">
-          <img src="/Ruban/web/messe/IMG_0411-1080.webp" srcset="/Ruban/web/messe/IMG_0411-640.webp 640w, /Ruban/web/messe/IMG_0411-1080.webp 1080w, /Ruban/web/messe/IMG_0411.webp 1800w" sizes="(min-width: 1280px) 584px, (min-width: 1024px) 45vw, calc(100vw - 40px)" decoding="async" width="1800" height="1350" data-i18n-alt="about_img1_alt" alt="Gäste an Bord des RUBAN MARINE 400 vor der Oberbaumbrücke in Berlin" class="w-full h-full object-cover object-[38%_50%]" loading="lazy">
+        <div data-ph="IMG_0411" class="img-treat rounded-2xl overflow-hidden shadow-luxury aspect-[4/3] lg:aspect-auto lg:h-full">
+          <img src="/Ruban/web/messe/IMG_0411-1080.webp" srcset="/Ruban/web/messe/IMG_0411-640.webp 640w, /Ruban/web/messe/IMG_0411-1080.webp 1080w, /Ruban/web/messe/IMG_0411.webp 1800w" sizes="(min-width: 1280px) 584px, (min-width: 1024px) 45vw, calc(100vw - 40px)" decoding="async" width="1800" height="1350" data-i18n-alt="about_img1_alt" alt="Gäste an Bord des RUBAN MARINE 400 vor der Oberbaumbrücke in Berlin" class="fade-img w-full h-full object-cover object-[38%_50%]" loading="lazy">
         </div>
       </div>
 
@@ -615,8 +640,8 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <article class="reveal card-surface card-lift rounded-2xl overflow-hidden flex flex-col">
-          <div class="img-treat aspect-[16/10]">
-            <img src="/Ruban/web/messe/IMG_0403-1080.webp" srcset="/Ruban/web/messe/IMG_0403-640.webp 640w, /Ruban/web/messe/IMG_0403-1080.webp 1080w, /Ruban/web/messe/IMG_0403.webp 1800w" sizes="(min-width: 1280px) 600px, (min-width: 1024px) 47vw, calc(100vw - 40px)" decoding="async" width="1800" height="1157" data-i18n-alt="rm20_img_alt" alt="RUBAN MARINE 20 als schwimmendes Restaurant bei Sonnenuntergang in Berlin" class="w-full h-full object-cover" loading="lazy">
+          <div data-ph="IMG_0403" class="img-treat aspect-[16/10]">
+            <img src="/Ruban/web/messe/IMG_0403-1080.webp" srcset="/Ruban/web/messe/IMG_0403-640.webp 640w, /Ruban/web/messe/IMG_0403-1080.webp 1080w, /Ruban/web/messe/IMG_0403.webp 1800w" sizes="(min-width: 1280px) 600px, (min-width: 1024px) 47vw, calc(100vw - 40px)" decoding="async" width="1800" height="1157" data-i18n-alt="rm20_img_alt" alt="RUBAN MARINE 20 als schwimmendes Restaurant bei Sonnenuntergang in Berlin" class="fade-img w-full h-full object-cover" loading="lazy">
             <span class="absolute z-[2] top-4 left-4 text-xs font-semibold uppercase tracking-[0.16em] px-3 py-1.5 rounded-full bg-background/70 backdrop-blur text-gold-soft">RM 12 · 15 · 20</span>
           </div>
           <div class="p-6 sm:p-8 flex flex-col gap-4 flex-1">
@@ -638,8 +663,8 @@
         </article>
 
         <article class="reveal reveal-delay-1 card-surface card-lift rounded-2xl overflow-hidden flex flex-col">
-          <div class="img-treat aspect-[16/10]">
-            <img src="/Ruban/web/messe/IMG_0425-1080.webp" srcset="/Ruban/web/messe/IMG_0425-640.webp 640w, /Ruban/web/messe/IMG_0425-1080.webp 1080w, /Ruban/web/messe/IMG_0425.webp 1800w" sizes="(min-width: 1280px) 600px, (min-width: 1024px) 47vw, calc(100vw - 40px)" decoding="async" width="1800" height="1166" data-i18n-alt="pano_img_alt" alt="RUBAN MARINE PANORAMA mit beleuchtetem Panoramasalon am Abend" class="w-full h-full object-cover" loading="lazy">
+          <div data-ph="IMG_0425" class="img-treat aspect-[16/10]">
+            <img src="/Ruban/web/messe/IMG_0425-1080.webp" srcset="/Ruban/web/messe/IMG_0425-640.webp 640w, /Ruban/web/messe/IMG_0425-1080.webp 1080w, /Ruban/web/messe/IMG_0425.webp 1800w" sizes="(min-width: 1280px) 600px, (min-width: 1024px) 47vw, calc(100vw - 40px)" decoding="async" width="1800" height="1166" data-i18n-alt="pano_img_alt" alt="RUBAN MARINE PANORAMA mit beleuchtetem Panoramasalon am Abend" class="fade-img w-full h-full object-cover" loading="lazy">
             <span class="absolute z-[2] top-4 left-4 text-xs font-semibold uppercase tracking-[0.16em] px-3 py-1.5 rounded-full bg-background/70 backdrop-blur text-gold-soft">Panorama 12 · 15 · 20</span>
           </div>
           <div class="p-6 sm:p-8 flex flex-col gap-4 flex-1">
@@ -803,8 +828,8 @@
 <!-- 5. CALL TO ACTION -->
 <section id="cta" class="relative py-10 sm:py-14">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="reveal cta-band rounded-3xl overflow-hidden shadow-luxury">
-      <img src="/Ruban/web/messe/IMG_0424-1080.webp" srcset="/Ruban/web/messe/IMG_0424-640.webp 640w, /Ruban/web/messe/IMG_0424-1080.webp 1080w, /Ruban/web/messe/IMG_0424.webp 1800w" sizes="(min-width: 1280px) 1216px, 100vw" decoding="async" width="1800" height="1350" alt="" class="absolute inset-0 -z-[2] w-full h-full object-cover" loading="lazy">
+    <div data-ph="IMG_0424" class="reveal cta-band rounded-3xl overflow-hidden shadow-luxury">
+      <img src="/Ruban/web/messe/IMG_0424-1080.webp" srcset="/Ruban/web/messe/IMG_0424-640.webp 640w, /Ruban/web/messe/IMG_0424-1080.webp 1080w, /Ruban/web/messe/IMG_0424.webp 1800w" sizes="(min-width: 1280px) 1216px, 100vw" decoding="async" width="1800" height="1350" alt="" class="fade-img absolute inset-0 -z-[2] w-full h-full object-cover" loading="lazy">
       <div class="px-6 py-14 sm:px-14 sm:py-20 lg:py-24 max-w-2xl">
         <p class="eyebrow mb-4" data-i18n="cta_eyebrow">Live auf der Messe</p>
         <h2 class="h-section text-[clamp(1.4rem,7.2vw,1.6rem)] sm:text-4xl xl:text-5xl text-balance" data-i18n="cta_title">Setzen Sie sich ans Steuer.</h2>
@@ -899,8 +924,8 @@
       </div>
 
       <div class="reveal reveal-delay-1 relative order-1 lg:order-2">
-        <div class="img-treat rounded-2xl overflow-hidden shadow-luxury aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]">
-          <img src="/Ruban/web/messe/IMG_0402-1080.webp" srcset="/Ruban/web/messe/IMG_0402-640.webp 640w, /Ruban/web/messe/IMG_0402-1080.webp 1080w, /Ruban/web/messe/IMG_0402.webp 1800w" sizes="(min-width: 1280px) 584px, (min-width: 1024px) 45vw, calc(100vw - 40px)" decoding="async" width="1800" height="1350" data-i18n-alt="company_img_alt" alt="RUBAN MARINE 400 am Steg in Berlin, Seitenansicht" class="w-full h-full object-cover" loading="lazy">
+        <div data-ph="IMG_0402" class="img-treat rounded-2xl overflow-hidden shadow-luxury aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]">
+          <img src="/Ruban/web/messe/IMG_0402-1080.webp" srcset="/Ruban/web/messe/IMG_0402-640.webp 640w, /Ruban/web/messe/IMG_0402-1080.webp 1080w, /Ruban/web/messe/IMG_0402.webp 1800w" sizes="(min-width: 1280px) 584px, (min-width: 1024px) 45vw, calc(100vw - 40px)" decoding="async" width="1800" height="1350" data-i18n-alt="company_img_alt" alt="RUBAN MARINE 400 am Steg in Berlin, Seitenansicht" class="fade-img w-full h-full object-cover" loading="lazy">
         </div>
       </div>
     </div>
@@ -1494,6 +1519,58 @@
     });
   }
 
+  /* ---------- Preloader: hide once the first screen is ready (max 2.5 s) ---------- */
+  (() => {
+    const pl = document.getElementById('preloader');
+    if (!pl) return;
+    const start = performance.now();
+    let hidden = false;
+    const hide = () => {
+      if (hidden) return; hidden = true;
+      const wait = Math.max(0, 350 - (performance.now() - start));
+      setTimeout(() => { pl.classList.add('is-done'); setTimeout(() => pl.remove(), 700); }, wait);
+    };
+    const v = document.getElementById('hero-video');
+    const poster = new Image();
+    const posterReady = new Promise(r => { poster.onload = poster.onerror = r; poster.src = v ? (matchMedia('(max-width: 767px) and (orientation: portrait)').matches ? '/Ruban/web/messe/hero-mobile.webp' : v.poster) : ''; if (!v) r(); });
+    const videoReady = new Promise(r => { if (!v || v.readyState >= 2) r(); else { v.addEventListener('loadeddata', r, { once: true }); v.addEventListener('error', r, { once: true }); } });
+    const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+    Promise.all([Promise.race([posterReady, videoReady]), fontsReady]).then(hide);
+    setTimeout(hide, 2500);
+  })();
+
+  /* ---------- Image placeholders + fade-in ---------- */
+  const PH = {"IMG_0396":"UklGRgoBAABXRUJQVlA4IP4AAABQBgCdASoYACEAPwFwrFArJqQiqqwBYCAJYjcAAo8G15ko376/HNIm364si/xNllVniBQsCEf+FaCKAADYFOUTAcEm18zeSuOkzhuIhg5YXqidZFytVlRwbTFmXnz1bP/4mAvuKx5DuvmcD9/Zg92JAlbzYAaJ2bGTq8z2MiZuZSMCNDNfT/cdAAwZueFadN2mBYlRns1A9c6t+ErLVtWID3Ws3Ng+bdKgPvAn/KJf3tbJSjEf0F/74Y7mfYQLR9AsnSNoyDIaKCS54HNwOzh3GHKRcrtilao2pME/MjZcD5P8Wf1iFV5D6i8IsqvgKQRl2HpmArru3ldfW5QgAA==","IMG_0397":"UklGRuQAAABXRUJQVlA4INgAAADwBQCdASoYACEAPwFssFGrJaSiqrgMAWAgCWQAtsgINMEnP1m6onu+M2/pVP9jPeN8g4JeKKG0AAD+0OO0SV68KeJErSB2u2xVsyb2FnC6iMBAjKwJqYC9ePr4qjnW6XxRZxNkOZfjIl6AM4EH3w+ehkjO5OKd4Tk1yngZad2K9MLKcMgtjXPSGYrJxQjQr6jHAfeNbboMYA6vQwHedBe4oObbySwrDkVOTLMZPARA/bULPOfYduvHg9ozzucatGQTHrmtqwRtDom/xRhs+5ZDd/yvU2+AAAA=","IMG_0398":"UklGRtwAAABXRUJQVlA4INAAAABQBgCdASoYACEAPwFssFGrJaSiqrgMAWAgCUAZVoRW0GP7yU5n6Ax6O2sd4wjq6IxnbiMc6Jem07fiAAD+7oe34MsPVJB6MUMwf0KFuVSfmLYJ3AV+P4a9RlWZZPNNH652KKN0q16ThvKqf9q7MSMi224vCO8fJr6tOfKOBA4M3YUG2BYhVw6HvIxO0X4akN3wBR27xTRvKzF4QESFqU9F7klh7yXkMtAWs05hqUWiOnAs0Hv0D2Vlihj89sA2qEKK/TQtEwltuPSVHva0IAAA","IMG_0399":"UklGRu4AAABXRUJQVlA4IOIAAAAwBgCdASoYACEAPv1orE6rJiQiKq35YB+JQBfqamAGtaCWJW7cWB4XMo1MSUO1Ys9qFjNPNdcxKdvAAP6WmNvVXj2S6FgWK/2x95Uti6UWMfDMBDWkNYmRJHop8FtdOYMd3aVtqt0FWzPeAn2pxWgTOJa5/mqvNdVVV0lOutBahwUAhI7O4vl9OtkqKun0nLuPEQTWtrOJzQ9IrWhrvdo1Ltplvv9afown8k3NY6xiUQNDUwLCB9A4FtEz1hagB74x2SfdpTMMW6RLsWV2mSsLj9C8z21WvHJgtUQ83Cq4I0AA","IMG_0400":"UklGRtIAAABXRUJQVlA4IMYAAACQBQCdASoYACEAPvloqU6qpiOiNVgIAVAfCWMAwcwUPk9GjO9uWS57OAxIvCWv0L+WB43WgAD3sJj6Rq6wacBSPJfHfeau6OMYIs2Edev+1zAgIbyGjWip6OD+eeJ2prQFfXV7R0Ze7BbK97Ya2YAuhqR2PMzFqMewzIP31X27w8FMP6ynxWErvA7tDZOEbSjNVd8fJNA4zIfqfCmGnBxdmc8hG5+C5dFPZvZYRpGbQmAUKoy8uHvyXej8UEMUKpkxIAAAAAA=","IMG_0401":"UklGRrIAAABXRUJQVlA4IKYAAADQBACdASoYABIAPwF2slOrJySiqAgBYCAJZwDHMBEbDaU3iZ4ckIrPm1PZPD562AD9K5w8vMqxY7X7KuBqZSw2ihiGtqHb80oT5dBIKCbNCwWnLm6SrIgCOK7eucJ4npnf9f5re1CTyKSjjxcoXUT7cBe/wql3FtLYkfZcjrk21z0fNjM/s9S0S+OHZnqQXAi2BEtB5DPpFUXk4VCBWEplkSqOCOAA","IMG_0402":"UklGRqYAAABXRUJQVlA4IJoAAAAQBQCdASoYABIAPwFyr1KrJqQiqAqpYCAJZwDL4BInqXoxZU2H67uJVVAfLwn1lhgAAP7ZjB4p0gL9h2fW/YSb/8oZlDD0z06kVAlNKElXnppf0x4xbTutwcyNW7AQjDMTZocagsPFDjzhbUR+pc+O/2PI1LBimaXrduuiPiWl6mZlsp2r/DHH/MlOyLZRm6GIfApKaBQWIyAA","IMG_0403":"UklGRpAAAABXRUJQVlA4IIQAAAAwBACdASoYABAAPwFqrE8rJiQiMAgBYCAJYwC06CHRuKocheY3PXoWbTAA/tBzQJiSxCCdKjwvjSYOxsYGppe4q9pE1ImtfJpE4uO+FgnPIiHwdt3KT3ltkVliM+jfijgc87vdQipY/+8mUFtxbMQWBrXrdmYmVlIdqqNplroT4xdwkAA=","IMG_0404":"UklGRqAAAABXRUJQVlA4IJQAAABwBQCdASoYACwAPvlqqk6qpiQiNVgIAVAfCWcAyFwWZz3BQPqVLLPM73gSN/6ojulABZeAAP3XkgMpKSeckgWW8ZSdc3C2kmSelQA9KSBeXy0DeK1V7NGTC+bcliwO0pK4gLR5yvwsjXRTeeD2uQHbTLoiiVBCMaF1bKlTyzXY9wq88Myffn8FnlVufLwZazpkAAAA","IMG_0405":"UklGRuYAAABXRUJQVlA4INoAAAAQBgCdASoYACYAPv1orE6rJiQiKq35YB+JZwDG9Baaq9ZR8jFUmpBcHJKYF6Gqf9y1biHKGs62CAAA/lX0GjlC41NXDmQ9XWNmE4DI9cD7QpokDyTAsvTQJlZ5VOSIvnb9aWG18H9UK4FLTpw2P4n8j1uUng/V+0Ch8erX0x9+hB6MqOLpfzx416fPMcz3WLGRovsEkcLZ1nOzE9a77jlbX8ym+JEKxDQf84Xvqr7LRNAmN/ZCswVpI3JPlWAOVzKODivJ+bc08AV/RC/b00arg9KiBm8mHwAAAA==","IMG_0406":"UklGRuwAAABXRUJQVlA4IOAAAABwBgCdASoYACEAPwF2rFGrJ6QiqrgMAWAgCUAXYAQSITUyBsZlvDPE77oqvhGW2AjZ62NgyY36f4jjLwAA999MecBSqbDRhYX+nz5s9GVpuZpA17ych47WxFiHpfjpZ3igce85z92bgX12265QuW4Arc/MMmfpCfS3V2EiC5MGrO1laJlQgEMHTM1fwnX6YoQKqJqHrwA+jgET16GdJHh5Gz3fsEIOC2HTxfCyVBsKRXbP2c9M4ET7SQ+jXTc1fJAMyGKZE14aq1nwS/6datRUKzSSoqz5OLi4L44iMQAAAA==","IMG_0407":"UklGRtgAAABXRUJQVlA4IMwAAADwBQCdASoYACEAPwFyslCrJySiqqoBYCAJQBXDgoJGcRoiCFWzKrJT1lbR02TYzdg5GvF9hvvU+AD+VGW9SWo9Y3nXAxpWnYZI9xLNnSJdsnN9WBF4XWp9hNifZOjbSN3QQ5EVZHbInNp85z9dXGWScfuqHtfXVDDe0B+bpikwtydZHseV1HG5IDUOeIHyJT5WIyOkdG9Q/uxqTD6Xzg7b8lnG7JL//5GfvnWH7Lp4cE2DdKlDm59Ks2uJu3AQZPR3nUJ/RL4yqffAAAA=","IMG_0408":"UklGRvQAAABXRUJQVlA4IOgAAACwBgCdASoYACEAPwFsr1CrJaQisBVaqWAgCWUAyEEgAOv2Bw0VHqsWUIT+dkjEozOt3ExOOehBssDSO6tdGAD+1vTu3hwZYYneJkVZY8sNJ0LK/lJFPPZNvw9zjlgopTqATW7xWnaWM20grwqt3tJe0ht9XLS5wLCcv9kif6J8WJ4BlxE8BRQDkRQE19l0ga+DU1D64CI2mPHfuzN1kRS6UQxpX2kF1GSKDSwMIW+VZ5oG1LGPDNJ4f7ivDkgVHJ8VUAW47VGKOJ57YAc8KzvVNnRVlsaRxBZHRl48Ar6IIMCjbJAAAAAA","IMG_0409":"UklGRg4BAABXRUJQVlA4IAIBAADQBgCdASoYACEAPwFysFIrJqSipWzJYCAJZwDCCdwLiBtpEOF/PczIDwNTv7q9MtHOnx3loUFWgFA3IpsX8wAA/uTPnfchEE/573XOZbQb0tsEXj2XJBS1LzTMlscqWgXDMJkd5Spe1brD7apd+66LBxy4KrG6KBsNp2uFjA7UEuEc7VjtthZP/dYa51wvJTwuv6MGXIlHIs1YKWQdoPgOKQLZCKWdqAwoVjFJ6W2yL3iDsOUBEkK2iJCvFN4mlJXsz00RPWSLtbUPti/XXG8tx1BWzK5/tm1EDuZB1J2nz3KpFhfQVVCkxcYE9SxY6im/7Xej8Rg6znvPpv36MQqeQAA=","IMG_0410":"UklGRsoAAABXRUJQVlA4IL4AAACQBQCdASoYACsAPwF0s1MrJqSipWsxYCAJZQDLaIpo491gm0Ow02QQucNAB5p5HMXO8qYTAAD+z4Hz2JIJIfrKaXNWzcANGdhdbK4CjgDjtvy2qXwHBkjLtVrpZZBGx/aSgJ8bPcTSqvefP9/WxX2bSl6zdZjL7mugWUd89WyFCZMPGEPQjgz/9oFji9a5j66+Ygn+BG9JX6LGjWHX1d7Lq7R4VQXPD190A4a7oFGlxv9VYTQVI60t+LcGfAAA","IMG_0411":"UklGRsgAAABXRUJQVlA4ILwAAAAQBQCdASoYABIAPwF4s1OrJySiqAgBYCAJQBABTgCuOxikVkwoEj8Y1XVGmGrsXxPYAPEzu0xtBkkS2abPXdoVSLcYa3qkZKkkKLiZb6QokVpS/JQjO6J3c8GfIDc59AIXDUJ3mtqNrKr6HlAr9IycvP+1O768ADrWWYHqGuENt99/Ja+H2mjPoanGz/ETw3LNisuOo4GKgL1i4mZp0XS9zYDXmLKG2d5s/4WRwsl2BWtEA1Y/iAkDv1QAAA==","IMG_0412":"UklGRvIAAABXRUJQVlA4IOYAAAAwBgCdASoYACEAPwFgq08rJSOiNVgIAWAgCWMAtOgSsrdQLaEjthNEku21UZIbTulVYWo1lpt9t+AAAPxah+D3W7ekBOoTQnX5A3pfmGVYBfpFw8E1WNXB33cWLX5BZLW14alyDw4Z5SYAVMAt70rFgLT76ToFk8MkA1rs7zsQ/qMWgO6j4b5kqoegb1xIrjpnOf6UT69ogv0ANsYkBL6sRk5qRFhV4U60+ETn7W8AENrt8RTMrL3nJfFzW1NFAYKXA1QjhCrTrUGIf8xGBjpptaMsY4XKHZjw22ywi5X+C+hHjgAAAA==","IMG_0413":"UklGRuoAAABXRUJQVlA4IN4AAADwBQCdASoYACsAPwF2rlOrJyOipWzJYCAJQBjQAQCPv1Z4qfq3gsozleOJ3XEYe+BgSOKU8vcrMAD+E6Y/0fzTTOrmtx03bf3h49oSYuGyh3tFpCFdxstclg9BYnXZdY6xcrptNxZ0Ox9ojFaKnkZ3Sv03grBjGMg0VKS/cSdzw4PDK9eznt+lOE0FS8ouON+iUHITt50ItoNDo0KbrFkW5mt+1fGItKrUL/1e9KSoJf0Kd0BXkEu7m5rV1I2Q+5XxHWwoMSHChnjP6m7JLuBjbW/zSS30cJBspZJAAAA=","IMG_0414":"UklGRgABAABXRUJQVlA4IPQAAACwBgCdASoYACEAPwFqsFGrJaSiqrgMAWAgCUAWnTGciGKFMCHvHXumSm0799vd9hFdMTM2yikS3ydxqpQGgADypoCkK4XtlBLukA5D6jVrKH13C4U8c+NjKD+/hQ9pDa8pu9HPfPM28Hq/4O+gUB1KLnSgE1Ykpuv+Nrxb8bqHy3BzZ5tgYp65wD4+TQnqJhDK2MJYs9pfXa/y74b51C/kqWEZitZ2DuWudXavOXJ7g7RNM6+FbqMsWp1p9AUX2wnl+KxM3NUV4xvC5F7lMDczbqgR+J94j6jq/XeHK/Cl9A8RBkMLtbh3Dnz1dxLfXAKMAAAA","IMG_0415":"UklGRvoAAABXRUJQVlA4IO4AAAAQBgCdASoYACEAPwFsr0+rJiQiKqwBYCAJZwDIXBQYnFNKCNsMyTbELyxs7ifO+Sp90ycQTp18dQAA/ZShVDzj+nruC1trx97JLYSIcCM4u3cbMms/KQMjEbvUY8xNnPB1Z9pMcuVxpXRzDcM0xIZH2OYZkyXKvWwtzp8g4czUuAYuLFaGRWWCVBbspS/atrny3JqLhsKBXIyc2Xn6YJ4P4xdLEPl0IJXiJeOOJFRiuBQtlg3NwIwwKu6zeO9J+4VF6C7aIDXftRMeKQYrCwodinkkMF94enjeQSaQXcBUOsmoOLBjnEz2ni8gAAAA","IMG_0416":"UklGRvoAAABXRUJQVlA4IO4AAADQBgCdASoYACsAPwF4rlSrJyOjJWsxYCAJaADDRf/gsLf/SEM2APcjG4w+qkJPOJE2eoTnEvpEC7fHuKaA4AAA9vo65flNmTCNg7yfr5uhhC/IGYWwsxjz+ybBMpa1z3SJW+yoYrIYPREY7PRA2Ac1JzBhGUjfg8auwIbYAbj0MG5Fj5j0V5qv9bGHU+ZHKivOm3lkybWbAfGj4w3nLNmA7BA9loaXrPaMyyX/cQA07NMXce6E4ftkX5VzY8NxoNdFM1hrjicd/9nAQdBkULG0DVFxATF6en5lbb3OzAXDbCsQuftCJ16xBEDiAAAA","IMG_0417":"UklGRhABAABXRUJQVlA4IAQBAACQBgCdASoYACEAPwFwq1CrJqOiqqwBYCAJZwC/tbNxpypUSNXk1MkGAeSG2uXxeahS+7A+cyWbjEp1MhAAAP6DY8X/1/dzcQGa6zE8V0++MG/pH6vAkRbJvSAiaA97elS/0MPomdlbvGsqcwDqUYubaO+JgzDmAqth6esoXiglh7lO4Y73zoIAVBw0lEECwQmYzZcKuV31BWoBWHoMfwO1E12PXJ36NMrefEfRhfwJwSBn9Qf+XDBwvbvQ7bh1gp9NCykhT7/ksU4aYpHzcuWmjDcaf7FN4ugPyj4dOwUrBSF0Gi6FhoHBwv2SkjYed9n0A6ygPk8EhDQ32NbggGkAfYAAAA==","IMG_0418":"UklGRqoAAABXRUJQVlA4IJ4AAAAQBQCdASoYABIAPwFyslGrJqSiqAqpYCAJZwDLpBEi8yeVqM9NXJrdVo8gFLJ0YosAAPuXtfxRRFuR3EL6qgY+z3X7h28Ulg2YLXKw4k7IvCvQpk2SU+sNT9+vH7WuWy+EsVWqz9DRKi9AdstoIqDDhPGogOrzahEAKjT7+ROdMEHsg9Ecwk+Tf4RLJP9PqVU7UjVlV0gjzusIBsEAAA==","IMG_0419":"UklGRvgAAABXRUJQVlA4IOwAAAAQBwCdASoYACEAPwF0r1CrJyQiqrgMAWAgCUAXz3KawA7K4mQL81pzPQHn27D3YDE7bGmX6M9BijhdndROs6xZQAD+VGbCfYogJB7cKYmRcHnWMYSywS8i79VeCSp28JRCYvLlrEfhJ32wz7sglXrAqI5oiKUS60eAGSfjBQO2mMg/MN1Rmo2rEse3ONr6fGCQKPdbIYVpYUXIg3BYd+4NSGS8C6Xj0Kl5MYLu6F2bJSuPAo++2wlrFFnP11T29KbUip0f+RKwmh3ljYshhZuUzPTTlCsB6hBbK8wAvHp8rz/Kdp8qFi/cW65AAA==","IMG_0420":"UklGRk4BAABXRUJQVlA4IEIBAADwBwCdASoYACsAPwFqrVArJaQiqrgN+WAgCWwAnTKEgI9h4WZ4Md6vptRa+6cWb2fMF9lZGxL7QYnDWUOwiV4ewYhhc71vlIAA59GyjNCVe/sPW+pG5fL6eI2mYyBD60os94Vfdn+14Lt5PPJACed13N37XpNjy05nF9hkaL4zEJFyku2zU4n0QpfqXoXKkG3NWJBTG4+3biyN2KJrgpVqvA8+JjIPg76MVHelZs0h5Dj/G32dxWQBDDaH6soKiLKqwRLtJHQt6dCZqBQTexQBeTVebmJAiOk/y6uihn1+DI6mCfGFTdrptNumU03my+t8w8K+bBEgDwIzw+qH8mAahrCh7lTo55TITNp7srGQXfZWVuuQUlhA087WbOz1eYN4NPw1kOboPi7JEvhF9kukgSfq67rbSmQzKgClhlWKzAAA","IMG_0421":"UklGRuIAAABXRUJQVlA4INYAAAAwBgCdASoYACsAPwFurVIrJiQiqrgMAWAgCWMAxnyAH18OPGlfeaInjh3fk28jzVFYktDMaZBS1sgAAP7oAKCLt1Co2adO6beDNHtl8TqZPGTVfJCYUBkzMDZYtaP1InesOebsLpV5DJKy3dNu8jmYzwXWEE6rApLRScn7y77NLN9+kNuk+9pCYFB2BS3CK28JbARNY2oqQgFZQ19SzInhTi5WiJXwFcJzQb5Q/tKjpELw0JY17+afGM4Cs1fIIsVUMOj01OR2hB2Q5zYCxWql+r4skAAA","IMG_0422":"UklGRiYBAABXRUJQVlA4IBoBAAAwBwCdASoYACsAPwFurlIrJiQiqrgMAWAgCWwAnTOk/LDTcokWHxzWrDYRCATu5ESQ5CjMpqlPowJLgT5tFbFOAAAA/tlRcde45AjxFtJFaRXL72qY/AoOoFm2tuJxFwztzGicjvnxcZkoQtozGerscrFSdhmgv23mxLXpOOAqxGjYm8mhQSonjsdFbMEcYY8bKKWDhy3CbWtVSo4j9rpJRz3Z9wkqlaqej27rvURRTplNSoEEf9QZnQ0nXe1zUar6ugPCJZjO2mFpaNL8Q4bX/dAPwubbr0XIhA0onOmPwT3px9FWH1ddoxAo62Psn5AGLfb0VoRO5Pdu71M/hk+JhScplfS9SBwUR0w+P/6Hlkj9sbDLyjwYAAA=","IMG_0423":"UklGRuQAAABXRUJQVlA4INgAAADwBQCdASoYACsAPwFksVGrJKSiqrgMAWAgCWUA0FR1bRmDlhMazdePT1jRfcjBhVOF2To4ibu+cAD+rqWDEuVUw8jGA3ualc8Yd0nzv6GJ0z1KRyBlMjHZK6oE31ohm2qQuZEHJJDwbkNFRtH6CrbafYQN1aOB3OVUcoErCdNe3fTFuf2d/fyiY6sOGgjv/GbmuB9TOw6N6nR7TH/hQCU7mufYz+w+vFAD6rSW9/c8FrEFaYlN6QvbT1j2ZtMCYwQghXVqKzdAt1kbH2OBa0kvBnrObQAAAAA=","IMG_0424":"UklGRroAAABXRUJQVlA4IK4AAAAQBQCdASoYABIAPwF0rlKrJqQiqAqpYCAJZwDD6Yy8T8fZV6dYW4vkMuRO02yMh9gAAP5AmSpULa0iulVpW7pWqV3bUOSNgrbkIVEHzr+9FditX5vjSGIMzecizt5I7bS0gtSeq+bSJyCWBacXsbmqrJaB7x+irpqz1sGVK+TGUPnA+bhlSMONa/F53A14Co2HWWBG+0EvAhF4wwQ8jG8LOR285I2owrJtzKR5QAA=","IMG_0425":"UklGRpoAAABXRUJQVlA4II4AAADwAwCdASoYABAAPwFqrE8rJaQiMAgBYCAJZgCdAywBhJteOjBgRSHgAMonrf82KIs3TvjAHmR4QgTJLfHr4k1LmEtKo5+ciR8qtPjAy9TGcnlPrSk+7Cu6AtdH6OY2uHeUMjLIrxa44vhyakpQJszCLusrVImtRAYvjPyno8vnD8Rd+mfifjJhqJYjEQAA"};
+  function initImages(root) {
+    root.querySelectorAll('[data-ph]').forEach(el => {
+      const d = PH[el.dataset.ph];
+      if (!d || el.querySelector(':scope > .ph-layer')) return;
+      const layer = document.createElement('span');
+      layer.className = 'ph-layer';
+      layer.setAttribute('aria-hidden', 'true');
+      layer.style.backgroundImage = `url(data:image/webp;base64,${d})`;
+      el.prepend(layer);
+    });
+    root.querySelectorAll('img.fade-img').forEach(img => {
+      const done = () => img.classList.add('is-loaded');
+      if (img.complete && img.naturalWidth) done();
+      else { img.addEventListener('load', done, { once: true }); img.addEventListener('error', () => img.classList.add('is-failed'), { once: true }); }
+    });
+  }
+  initImages(document);
+
+  // Start loading the first gallery photos well before the gallery scrolls into view.
+  let galleryNear = false;
+  function primeGallery() {
+    [...document.querySelectorAll('#gallery-grid .gallery-item:not([hidden]) img')].slice(0, 6).forEach(img => { img.loading = 'eager'; });
+  }
+  if ('IntersectionObserver' in window) {
+    const gio = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) { galleryNear = true; primeGallery(); gio.disconnect(); }
+    }, { rootMargin: '1600px 0px' });
+    gio.observe(document.getElementById('galerie'));
+  }
+
   /* ---------- Gallery data ---------- */
   const W = '/Ruban/web/messe/';
   const galleryImages = [
@@ -1538,10 +1615,12 @@
   function renderGallery(lang) {
     grid.innerHTML = galleryImages.map((img, i) => `
       <div class="gallery-item shrink-0 h-[300px] sm:h-[400px] lg:h-[480px]" data-cat="${img.cat}" ${activeFilter !== 'all' && img.cat !== activeFilter ? 'hidden' : ''}>
-        <button type="button" class="gallery-open img-treat rounded-2xl overflow-hidden h-full block" data-index="${i}" aria-label="${t('gallery_zoom', lang)}: ${pick(img.alt, lang)}">
-          <img src="${W + img.src}-640.webp" srcset="${W + img.src}-640.webp 640w, ${W + img.src}-1080.webp 1080w" sizes="${thumbSizes(img)}" width="${img.w}" height="${img.h}" alt="${pick(img.alt, lang)}" loading="lazy" decoding="async" class="h-full w-auto">
+        <button type="button" class="gallery-open img-treat rounded-2xl overflow-hidden h-full block" data-ph="${img.src}" data-index="${i}" aria-label="${t('gallery_zoom', lang)}: ${pick(img.alt, lang)}">
+          <img src="${W + img.src}-640.webp" srcset="${W + img.src}-640.webp 640w, ${W + img.src}-1080.webp 1080w" sizes="${thumbSizes(img)}" width="${img.w}" height="${img.h}" alt="${pick(img.alt, lang)}" loading="lazy" decoding="async" class="fade-img h-full w-auto">
         </button>
       </div>`).join('');
+    initImages(grid);
+    if (galleryNear) primeGallery();
     updateGalleryNav();
   }
 
